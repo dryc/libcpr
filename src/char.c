@@ -14,6 +14,13 @@ char_equal(const char_t chr1, const char_t chr2) {
 }
 
 int
+char_compare(const char_t chr1, const char_t chr2) {
+  if (unlikely(chr1 == chr2))
+    return 0;
+  return likely(chr1 > chr2) ? 1 : -1;
+}
+
+int
 char_is_alnum(const char_t chr) {
   return likely(isalnum(chr) != 0) ? TRUE : FALSE;
 }
