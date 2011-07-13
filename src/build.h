@@ -7,8 +7,10 @@
 extern "C" {
 #endif
 
+/* public prelude included from <cprime.h> */
 #include "prelude.h"
 
+/* public headers included from <cprime.h> */
 #include "atomic.h"
 #include "bool.h"
 #include "byte.h"
@@ -30,7 +32,11 @@ extern "C" {
 #include "uuid.h"
 #include "vector.h"
 
+/* private headers for the build process only */
 #include "config.h"
+
+/* optional headers not included by <cprime.h> */
+#include "memory.h"
 
 #ifdef __cplusplus
 }

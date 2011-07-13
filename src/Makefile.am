@@ -39,6 +39,7 @@ pkginclude_HEADERS = \
   integer.h \
   list.h \
   map.h \
+  memory.h \
   mutex.h \
   posix.h \
   prelude.h \

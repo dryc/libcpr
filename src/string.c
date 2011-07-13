@@ -1,9 +1,7 @@
 /* This is free and unencumbered software released into the public domain. */
 
 #include "build.h"
-#include <stdlib.h>  /* for calloc(), free() */
-#include <string.h>  /* for strlen(), strcmp() */
-#include <strings.h>
+#include <stdlib.h> /* for calloc(), free() */
 
 string_t*
 string_allocate(const size_t size) {
