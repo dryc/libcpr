@@ -163,6 +163,38 @@ string_is_xdigit(const string_t* const string) {
 }
 
 int
+string_has_prefix(const string_t* const string, const char* const prefix) {
+  validate_arguments(string != NULL && prefix != NULL);
+
+  if (unlikely(string_is_empty(string) == TRUE))
+    return FALSE; // empty strings don't have prefixes
+
+  const size_t string_len = string_size(string);
+  const size_t prefix_len = strlen(prefix);
+  if (unlikely(string_len < prefix_len))
+    return FALSE; // a string can't contain a prefix longer than itself
+
+  const char* string_data = string->data;
+  return unlikely(strncmp(string_data, prefix, prefix_len) == 0) ? TRUE : FALSE;
+}
+
+int
+string_has_suffix(const string_t* const string, const char* const suffix) {
+  validate_arguments(string != NULL && suffix != NULL);
+
+  if (unlikely(string_is_empty(string) == TRUE))
+    return FALSE; // empty strings don't have suffixes
+
+  const size_t string_len = string_size(string);
+  const size_t suffix_len = strlen(suffix);
+  if (unlikely(string_len < suffix_len))
+    return FALSE; // a string can't contain a suffix longer than itself
+
+  const char* string_data = string->data + string_len - suffix_len; // FIXME: UTF-8 support
+  return unlikely(strncmp(string_data, suffix, suffix_len) == 0) ? TRUE : FALSE;
+}
+
+int
 string_clear(string_t* string) {
   validate_arguments(string != NULL);
 

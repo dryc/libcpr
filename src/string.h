@@ -43,6 +43,9 @@ extern int string_is_space(const string_t* const string);
 extern int string_is_upper(const string_t* const string);
 extern int string_is_xdigit(const string_t* const string);
 
+extern int string_has_prefix(const string_t* const string, const char* const prefix);
+extern int string_has_suffix(const string_t* const string, const char* const suffix);
+
 extern int string_clear(string_t* string);
 
 #ifdef __cplusplus
