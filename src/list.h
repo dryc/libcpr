@@ -19,6 +19,8 @@ typedef struct {
   size_t length;
 } list_t;
 
+extern list_t* list_allocate();
+
 #ifdef __cplusplus
 }
 #endif
