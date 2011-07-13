@@ -4,7 +4,7 @@
 #include <stdlib.h> /* for calloc() */
 
 list_t*
-list_allocate() {
+list_alloc_empty() {
   return calloc(1, sizeof(list_t));
 }
 
