@@ -8,13 +8,76 @@
 string_t*
 string_allocate(const size_t size) {
   string_t* string = calloc(1, sizeof(string_t));
+  string_init_with_size(string, size);
+  return string;
+}
+
+int
+string_init_empty(string_t* string) {
+  validate_arguments(string != NULL);
+
+  bzero(string, sizeof(string_t));
+
+  return 0;
+}
+
+int
+string_init_with(string_t* string, const char* const data, const size_t size) {
+  validate_arguments(string != NULL);
+  if (likely(size > 0 && size != STRING_SIZE_UNKNOWN))
+    validate_arguments(data != NULL);
+
+  int result = string_init_empty(string);
+
+  if (likely(data != NULL && *data != '\0' && size > 0)) {
+    // Copy the given string contents, up to the specified byte length:
+    const size_t size2 = unlikely(size == STRING_SIZE_UNKNOWN) ? strlen(data) : size;
+    string->data = strndup(data, size2);
+    string->size = size2;
+
+    if (unlikely(string->data == NULL))
+      result = -errno; // insufficient memory (ENOMEM)
+  }
+
+  return result;
+}
+
+int
+string_init_with_data(string_t* string, const char* const data) {
+  validate_arguments(string != NULL);
+
+  int result = string_init_empty(string);
+
+  if (likely(data != NULL && *data != '\0')) {
+    // Copy the given string contents, also determining and memoizing the
+    // byte length in order to speed up subsequent operations on the string:
+    string->data = strdup(data);
+    string->size = strlen(data); // TODO: avoid traversing the input twice.
+
+    if (unlikely(string->data == NULL))
+      result = -errno; // insufficient memory (ENOMEM)
+  }
+
+  return result;
+}
+
+int
+string_init_with_size(string_t* string, const size_t size) {
+  validate_arguments(string != NULL);
+
+  int result = string_init_empty(string);
 
   if (likely(size > 0 && size != STRING_SIZE_UNKNOWN)) {
-    string->data = calloc(size, sizeof(byte_t));
-  }
-  string->size = size;
+    // Allocate sufficient memory for the string contents, including an
+    // extra byte for the terminating null sentinel:
+    string->data = calloc(size + 1, sizeof(byte_t));
+    string->size = size;
 
-  return string;
+    if (unlikely(string->data == NULL))
+      result = -errno; // insufficient memory (ENOMEM)
+  }
+
+  return result;
 }
 
 size_t
@@ -37,7 +100,7 @@ string_length(const string_t* const string) {
 #ifndef _CPRIME_HAVE_UTF8
   return string_size(string); // ASCII only
 #else
-#error UTF-8 support has not yet been implemented.
+#error UTF-8 support for string_length() has not yet been implemented.
 #endif /* !_CPRIME_HAVE_UTF8 */
 }
 
