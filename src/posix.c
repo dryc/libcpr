@@ -1,8 +1,9 @@
 /* This is free and unencumbered software released into the public domain. */
 
 #include "build.h"
-#include <unistd.h> /* for POSIX system calls and functions */
-#include <poll.h>   /* for poll() */
+#include <unistd.h>  /* for POSIX system calls and functions */
+#include <poll.h>    /* for poll() */
+#include <pthread.h> /* for pthread_create() */
 
 int
 posix_close(const int fd) {
@@ -40,6 +41,22 @@ posix_poll(struct pollfd fds[], const nfds_t nfds, const int timeout) {
     switch (errno) {
       case EINTR:
       case EAGAIN:
+        continue; // retry the syscall
+      default:
+        break;
+    }
+  }
+  return result;
+}
+
+int
+posix_pthread_create(pthread_t* restrict thread, const pthread_attr_t* restrict attr,
+               void* (*start_routine)(void*), void* restrict arg) {
+  int result = 0;
+  while (unlikely((result = pthread_create(thread, attr, start_routine, arg)) != 0)) {
+    switch (result) {
+      case EAGAIN:
+        // TODO: invoke the warning handler callback function.
         continue; // retry the syscall
       default:
         break;
