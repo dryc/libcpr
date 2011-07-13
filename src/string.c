@@ -4,14 +4,6 @@
 #include <string.h>  /* for strlen(), strcmp() */
 #include <strings.h>
 
-int
-string_empty(const string_t* const string) {
-  if (unlikely(string == NULL))
-    return -EINVAL;
-
-  return unlikely(string_length(string) == 0) ? TRUE : FALSE;
-}
-
 size_t
 string_size(const string_t* const string) {
   if (unlikely(string == NULL))
@@ -61,4 +53,12 @@ string_compare(const string_t* const string1, const string_t* const string2) {
     return 0;
 
   return strcmp(string1->data, string2->data);
+}
+
+int
+string_is_empty(const string_t* const string) {
+  if (unlikely(string == NULL))
+    return -EINVAL;
+
+  return unlikely(string_length(string) == 0) ? TRUE : FALSE;
 }

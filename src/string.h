@@ -19,13 +19,13 @@ typedef struct {
   size_t size;
 } string_t;
 
-extern int string_empty(const string_t* const string);
-
 extern size_t string_size(const string_t* const string);
 extern size_t string_length(const string_t* const string);
 
 extern int string_equal(const string_t* const string1, const string_t* const string2);
 extern int string_compare(const string_t* const string1, const string_t* const string2);
+
+extern int string_is_empty(const string_t* const string);
 
 #ifdef __cplusplus
 }
