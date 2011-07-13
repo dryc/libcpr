@@ -1,7 +1,6 @@
 /* This is free and unencumbered software released into the public domain. */
 
-#include "prelude.h"
-#include "bool.h"
+#include "build.h"
 
 int
 bool_equal(const bool_t bool1, const bool_t bool2) {
