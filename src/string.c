@@ -1,7 +1,7 @@
 /* This is free and unencumbered software released into the public domain. */
 
 #include "build.h"
-#include <stdlib.h>  /* for calloc() */
+#include <stdlib.h>  /* for calloc(), free() */
 #include <string.h>  /* for strlen(), strcmp() */
 #include <strings.h>
 
@@ -160,4 +160,17 @@ string_is_xdigit(const string_t* const string) {
   validate_arguments(string != NULL);
 
   return FALSE; // TODO
+}
+
+int
+string_clear(string_t* string) {
+  validate_arguments(string != NULL);
+
+  if (likely(string->data != NULL)) {
+    free(string->data);
+    string->data = NULL;
+  }
+  string->size = 0;
+
+  return 0;
 }
