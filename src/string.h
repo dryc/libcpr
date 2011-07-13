@@ -27,6 +27,20 @@ extern int string_compare(const string_t* const string1, const string_t* const s
 
 extern int string_is_empty(const string_t* const string);
 
+extern int string_is_alnum(const string_t* const string);
+extern int string_is_alpha(const string_t* const string);
+extern int string_is_ascii(const string_t* const string);
+extern int string_is_blank(const string_t* const string);
+extern int string_is_cntrl(const string_t* const string);
+extern int string_is_digit(const string_t* const string);
+extern int string_is_graph(const string_t* const string);
+extern int string_is_lower(const string_t* const string);
+extern int string_is_print(const string_t* const string);
+extern int string_is_punct(const string_t* const string);
+extern int string_is_space(const string_t* const string);
+extern int string_is_upper(const string_t* const string);
+extern int string_is_xdigit(const string_t* const string);
+
 #ifdef __cplusplus
 }
 #endif
