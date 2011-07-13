@@ -11,6 +11,8 @@ extern "C" {
 
 typedef _Bool bool_t;
 
+extern int bool_equal(const bool_t bool1, const bool_t bool2);
+
 #ifdef __cplusplus
 }
 #endif
