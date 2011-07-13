@@ -7,6 +7,8 @@
 extern "C" {
 #endif
 
+#include <stddef.h> /* for size_t */
+
 typedef struct {
   void* head;
   void* tail;
@@ -14,7 +16,7 @@ typedef struct {
 
 typedef struct {
   list_element_t* first;
-  int length;
+  size_t length;
 } list_t;
 
 #ifdef __cplusplus

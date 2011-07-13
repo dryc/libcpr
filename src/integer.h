@@ -7,9 +7,11 @@
 extern "C" {
 #endif
 
+#include <stddef.h> /* for size_t */
+
 typedef struct {
   void* data;
-  int size;
+  size_t size;
 } integer_t;
 
 #ifdef __cplusplus

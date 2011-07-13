@@ -7,9 +7,11 @@
 extern "C" {
 #endif
 
+#include <stddef.h> /* for size_t */
+
 typedef struct {
   void* data; // TODO
-  int count;
+  size_t count;
 } vector_t;
 
 #ifdef __cplusplus
