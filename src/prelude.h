@@ -27,8 +27,10 @@ extern "C" {
 #endif /* min */
 
 /* for argument validation at function entry points */
-#define validate_arguments(expr) \
-  if (unlikely(!(expr))) return -EINVAL;
+#define validate_with_errno_return(expr) \
+  if (unlikely(!(expr))) return -(errno = EINVAL);
+#define validate_with_null_return(expr) \
+  if (unlikely(!(expr))) return errno = EINVAL, NULL;
 
 #ifdef __cplusplus
 }

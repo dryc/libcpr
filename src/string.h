@@ -24,6 +24,8 @@ extern string_t* string_alloc_with(const char* const data, const size_t size);
 extern string_t* string_alloc_with_size(const size_t size);
 extern string_t* string_alloc_with_data(const char* const data);
 
+extern string_t* string_clone(const string_t* const string);
+
 extern int string_init_empty(string_t* string);
 extern int string_init_with(string_t* string, const char* const data, const size_t size);
 extern int string_init_with_data(string_t* string, const char* const data);

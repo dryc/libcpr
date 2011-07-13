@@ -31,9 +31,18 @@ string_alloc_with_size(const size_t size) {
   return string;
 }
 
+string_t*
+string_clone(const string_t* const string) {
+  validate_with_null_return(string != NULL);
+  if (likely(string->size > 0 && string->size != STRING_SIZE_UNKNOWN))
+    validate_with_null_return(string->data != NULL);
+
+  return string_alloc_with(string->data, string->size);
+}
+
 int
 string_init_empty(string_t* string) {
-  validate_arguments(string != NULL);
+  validate_with_errno_return(string != NULL);
 
   bzero(string, sizeof(string_t));
 
@@ -42,9 +51,9 @@ string_init_empty(string_t* string) {
 
 int
 string_init_with(string_t* string, const char* const data, const size_t size) {
-  validate_arguments(string != NULL);
+  validate_with_errno_return(string != NULL);
   if (likely(size > 0 && size != STRING_SIZE_UNKNOWN))
-    validate_arguments(data != NULL);
+    validate_with_errno_return(data != NULL);
 
   int result = string_init_empty(string);
 
@@ -63,7 +72,7 @@ string_init_with(string_t* string, const char* const data, const size_t size) {
 
 int
 string_init_with_data(string_t* string, const char* const data) {
-  validate_arguments(string != NULL);
+  validate_with_errno_return(string != NULL);
 
   int result = string_init_empty(string);
 
@@ -82,7 +91,7 @@ string_init_with_data(string_t* string, const char* const data) {
 
 int
 string_init_with_size(string_t* string, const size_t size) {
-  validate_arguments(string != NULL);
+  validate_with_errno_return(string != NULL);
 
   int result = string_init_empty(string);
 
@@ -101,7 +110,7 @@ string_init_with_size(string_t* string, const size_t size) {
 
 size_t
 string_size(const string_t* const string) {
-  validate_arguments(string != NULL);
+  validate_with_errno_return(string != NULL);
 
   if (unlikely(string->size == 0))
     return 0; // the string is empty
@@ -114,7 +123,7 @@ string_size(const string_t* const string) {
 
 size_t
 string_length(const string_t* const string) {
-  validate_arguments(string != NULL);
+  validate_with_errno_return(string != NULL);
 
 #ifndef _CPRIME_HAVE_UTF8
   return string_size(string); // ASCII only
@@ -125,7 +134,7 @@ string_length(const string_t* const string) {
 
 int
 string_compare(const string_t* const string1, const string_t* const string2) {
-  validate_arguments(string1 != NULL && string2 != NULL);
+  validate_with_errno_return(string1 != NULL && string2 != NULL);
 
   if (unlikely(string1 == string2))
     return 0;
@@ -135,7 +144,7 @@ string_compare(const string_t* const string1, const string_t* const string2) {
 
 int
 string_equal(const string_t* const string1, const string_t* const string2) {
-  validate_arguments(string1 != NULL && string2 != NULL);
+  validate_with_errno_return(string1 != NULL && string2 != NULL);
 
   if (unlikely(string1 == string2))
     return TRUE;
@@ -148,7 +157,7 @@ string_equal(const string_t* const string1, const string_t* const string2) {
 
 int
 string_is_empty(const string_t* const string) {
-  validate_arguments(string != NULL);
+  validate_with_errno_return(string != NULL);
 
   if (unlikely(string->size == 0 || string->data == NULL))
     return TRUE;
@@ -161,98 +170,98 @@ string_is_empty(const string_t* const string) {
 
 int
 string_is_alnum(const string_t* const string) {
-  validate_arguments(string != NULL);
+  validate_with_errno_return(string != NULL);
 
   return FALSE; // TODO
 }
 
 int
 string_is_alpha(const string_t* const string) {
-  validate_arguments(string != NULL);
+  validate_with_errno_return(string != NULL);
 
   return FALSE; // TODO
 }
 
 int
 string_is_ascii(const string_t* const string) {
-  validate_arguments(string != NULL);
+  validate_with_errno_return(string != NULL);
 
   return FALSE; // TODO
 }
 
 int
 string_is_blank(const string_t* const string) {
-  validate_arguments(string != NULL);
+  validate_with_errno_return(string != NULL);
 
   return FALSE; // TODO
 }
 
 int
 string_is_cntrl(const string_t* const string) {
-  validate_arguments(string != NULL);
+  validate_with_errno_return(string != NULL);
 
   return FALSE; // TODO
 }
 
 int
 string_is_digit(const string_t* const string) {
-  validate_arguments(string != NULL);
+  validate_with_errno_return(string != NULL);
 
   return FALSE; // TODO
 }
 
 int
 string_is_graph(const string_t* const string) {
-  validate_arguments(string != NULL);
+  validate_with_errno_return(string != NULL);
 
   return FALSE; // TODO
 }
 
 int
 string_is_lower(const string_t* const string) {
-  validate_arguments(string != NULL);
+  validate_with_errno_return(string != NULL);
 
   return FALSE; // TODO
 }
 
 int
 string_is_print(const string_t* const string) {
-  validate_arguments(string != NULL);
+  validate_with_errno_return(string != NULL);
 
   return FALSE; // TODO
 }
 
 int
 string_is_punct(const string_t* const string) {
-  validate_arguments(string != NULL);
+  validate_with_errno_return(string != NULL);
 
   return FALSE; // TODO
 }
 
 int
 string_is_space(const string_t* const string) {
-  validate_arguments(string != NULL);
+  validate_with_errno_return(string != NULL);
 
   return FALSE; // TODO
 }
 
 int
 string_is_upper(const string_t* const string) {
-  validate_arguments(string != NULL);
+  validate_with_errno_return(string != NULL);
 
   return FALSE; // TODO
 }
 
 int
 string_is_xdigit(const string_t* const string) {
-  validate_arguments(string != NULL);
+  validate_with_errno_return(string != NULL);
 
   return FALSE; // TODO
 }
 
 int
 string_has_prefix(const string_t* const string, const char* const prefix) {
-  validate_arguments(string != NULL && prefix != NULL);
+  validate_with_errno_return(string != NULL && prefix != NULL);
 
   if (unlikely(string_is_empty(string) == TRUE))
     return FALSE; // empty strings don't have prefixes
@@ -268,7 +277,7 @@ string_has_prefix(const string_t* const string, const char* const prefix) {
 
 int
 string_has_suffix(const string_t* const string, const char* const suffix) {
-  validate_arguments(string != NULL && suffix != NULL);
+  validate_with_errno_return(string != NULL && suffix != NULL);
 
   if (unlikely(string_is_empty(string) == TRUE))
     return FALSE; // empty strings don't have suffixes
@@ -284,7 +293,7 @@ string_has_suffix(const string_t* const string, const char* const suffix) {
 
 int
 string_clear(string_t* string) {
-  validate_arguments(string != NULL);
+  validate_with_errno_return(string != NULL);
 
   if (likely(string->data != NULL)) {
     free(string->data);
