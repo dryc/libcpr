@@ -27,6 +27,9 @@ extern "C" {
 #define min(a, b) ((a) < (b) ? (a) : (b))
 #endif
 
+#define validate_arguments(expr) \
+  if (unlikely(!(expr))) return -EINVAL;
+
 #ifdef __cplusplus
 }
 #endif
