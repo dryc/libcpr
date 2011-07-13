@@ -1,8 +1,21 @@
 /* This is free and unencumbered software released into the public domain. */
 
 #include "build.h"
+#include <stdlib.h>  /* for calloc() */
 #include <string.h>  /* for strlen(), strcmp() */
 #include <strings.h>
+
+string_t*
+string_allocate(const size_t size) {
+  string_t* string = calloc(1, sizeof(string_t));
+
+  if (likely(size > 0 && size != STRING_SIZE_UNKNOWN)) {
+    string->data = calloc(size, sizeof(byte_t));
+  }
+  string->size = size;
+
+  return string;
+}
 
 size_t
 string_size(const string_t* const string) {
