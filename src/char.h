@@ -19,6 +19,8 @@ extern int char_hash(const char_t chr);
 extern int char_equal(const char_t chr1, const char_t chr2);
 extern int char_compare(const char_t chr1, const char_t chr2);
 
+extern int char_is_zero(const char_t chr);
+
 extern int char_is_alnum(const char_t chr);
 extern int char_is_alpha(const char_t chr);
 extern int char_is_ascii(const char_t chr);

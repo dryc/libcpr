@@ -21,6 +21,11 @@ char_compare(const char_t chr1, const char_t chr2) {
 }
 
 int
+char_is_zero(const char_t chr) {
+  return unlikely(chr == 0) ? TRUE : FALSE;
+}
+
+int
 char_is_alnum(const char_t chr) {
   return likely(isalnum(chr) != 0) ? TRUE : FALSE;
 }
