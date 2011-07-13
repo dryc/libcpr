@@ -68,7 +68,13 @@ int
 string_is_empty(const string_t* const string) {
   validate_arguments(string != NULL);
 
-  return unlikely(string_length(string) == 0) ? TRUE : FALSE;
+  if (unlikely(string->size == 0 || string->data == NULL))
+    return TRUE;
+
+  if (unlikely(*(string->data) == '\0'))
+    return TRUE;
+
+  return FALSE;
 }
 
 int
