@@ -5,8 +5,22 @@
 #include <stdlib.h> /* for calloc() */
 
 char_t*
-char_allocate() {
+char_alloc_empty() {
   return calloc(1, sizeof(char_t));
+}
+
+char_t*
+char_alloc_with(const char_t val) {
+  char_t* ptr = char_alloc_empty();
+  if (likely(ptr != NULL))
+    *ptr = val;
+  return ptr;
+}
+
+char_t*
+char_clone(const char_t* const ptr) {
+  validate_with_null_return(ptr != NULL);
+  return char_alloc_with(*ptr);
 }
 
 int

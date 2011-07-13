@@ -15,7 +15,10 @@ extern "C" {
 
 typedef uint32_t char_t;
 
-extern char_t* char_allocate();
+extern char_t* char_alloc_empty();
+extern char_t* char_alloc_with(const char_t val);
+
+extern char_t* char_clone(const char_t* const ptr);
 
 extern int char_hash(const char_t chr);
 extern int char_equal(const char_t chr1, const char_t chr2);
