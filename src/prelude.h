@@ -7,10 +7,8 @@
 extern "C" {
 #endif
 
-//#include <stdlib.h>
-//#include <stdint.h>
-//#include <string.h>
-//#include <strings.h>
+#include <errno.h>  /* for the system error constants, e.g. EINVAL */
+#include <stddef.h> /* for NULL, size_t, wchar_t, ptrdiff_t, and offsetof() */
 
 /* branch prediction hints */
 #ifndef likely
