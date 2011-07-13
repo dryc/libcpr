@@ -11,6 +11,8 @@ extern "C" {
 
 typedef uint32_t char_t;
 
+extern int char_hash(const char_t chr);
+
 #ifdef __cplusplus
 }
 #endif
