@@ -7,6 +7,11 @@
 extern "C" {
 #endif
 
+#include <unistd.h> /* for ssize_t */
+
+extern int posix_close(const int fd);
+extern ssize_t posix_write(const int fd, const void* buf, const size_t count);
+
 #ifdef __cplusplus
 }
 #endif
