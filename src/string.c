@@ -1,8 +1,16 @@
 /* This is free and unencumbered software released into the public domain. */
 
 #include "build.h"
-#include <string.h>
+#include <string.h>  /* for strlen(), strcmp() */
 #include <strings.h>
+
+int
+string_empty(const string_t* const string) {
+  if (unlikely(string == NULL))
+    return -EINVAL;
+
+  return unlikely(string_length(string) == 0) ? TRUE : FALSE;
+}
 
 size_t
 string_size(const string_t* const string) {
@@ -41,7 +49,7 @@ string_equal(const string_t* const string1, const string_t* const string2) {
   if (likely(string1->size != string2->size))
     return FALSE;
 
-  return (strcmp(string1->data, string2->data) == 0);
+  return unlikely(strcmp(string1->data, string2->data) == 0) ? TRUE : FALSE;
 }
 
 int

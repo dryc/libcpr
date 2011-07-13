@@ -19,6 +19,8 @@ typedef struct {
   size_t size;
 } string_t;
 
+extern int string_empty(const string_t* const string);
+
 extern size_t string_size(const string_t* const string);
 extern size_t string_length(const string_t* const string);
 
