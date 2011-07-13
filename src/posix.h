@@ -8,9 +8,12 @@ extern "C" {
 #endif
 
 #include <unistd.h> /* for ssize_t */
+#include <poll.h>   /* for pollfd, nfds_t */
 
 extern int posix_close(const int fd);
 extern ssize_t posix_write(const int fd, const void* buf, const size_t count);
+
+extern int posix_poll(struct pollfd fds[], const nfds_t nfds, const int timeout);
 
 #ifdef __cplusplus
 }
