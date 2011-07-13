@@ -1,7 +1,13 @@
 /* This is free and unencumbered software released into the public domain. */
 
 #include "build.h"
-#include <ctype.h> /* for isascii(), etc. */
+#include <ctype.h>  /* for isascii(), etc. */
+#include <stdlib.h> /* for calloc() */
+
+char_t*
+char_allocate() {
+  return calloc(1, sizeof(char_t));
+}
 
 int
 char_hash(const char_t chr) {
@@ -9,15 +15,15 @@ char_hash(const char_t chr) {
 }
 
 int
-char_equal(const char_t chr1, const char_t chr2) {
-  return unlikely(chr1 == chr2) ? TRUE : FALSE;
-}
-
-int
 char_compare(const char_t chr1, const char_t chr2) {
   if (unlikely(chr1 == chr2))
     return 0;
   return likely(chr1 > chr2) ? 1 : -1;
+}
+
+int
+char_equal(const char_t chr1, const char_t chr2) {
+  return unlikely(chr1 == chr2) ? TRUE : FALSE;
 }
 
 int

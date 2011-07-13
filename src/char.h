@@ -15,6 +15,8 @@ extern "C" {
 
 typedef uint32_t char_t;
 
+extern char_t* char_allocate();
+
 extern int char_hash(const char_t chr);
 extern int char_equal(const char_t chr1, const char_t chr2);
 extern int char_compare(const char_t chr1, const char_t chr2);
