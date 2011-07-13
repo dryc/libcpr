@@ -8,10 +8,12 @@ extern "C" {
 #endif
 
 #include <stdint.h> /* for uint8_t */
+#include <unistd.h> /* for uuid_t on Darwin */
 
-typedef struct {
-  uint8_t data[16];
-} uuid_t;
+#ifndef _UUID_T
+#define _UUID_T
+typedef uint8_t uuid_t[16];
+#endif /* _UUID_T */
 
 #ifdef __cplusplus
 }
