@@ -1,11 +1,32 @@
 /* This is free and unencumbered software released into the public domain. */
 
 #include "build.h"
-#include <stdlib.h> /* for calloc(), free() */
+#include <stdlib.h> /* for calloc(), free(), malloc() */
 
 string_t*
-string_allocate(const size_t size) {
-  string_t* string = calloc(1, sizeof(string_t));
+string_alloc_empty() {
+  string_t* string = malloc(sizeof(string_t));
+  string_init_empty(string);
+  return string;
+}
+
+string_t*
+string_alloc_with(const char* const data, const size_t size) {
+  string_t* string = malloc(sizeof(string_t));
+  string_init_with(string, data, size);
+  return string;
+}
+
+string_t*
+string_alloc_with_data(const char* const data) {
+  string_t* string = malloc(sizeof(string_t));
+  string_init_with_data(string, data);
+  return string;
+}
+
+string_t*
+string_alloc_with_size(const size_t size) {
+  string_t* string = malloc(sizeof(string_t));
   string_init_with_size(string, size);
   return string;
 }
