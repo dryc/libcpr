@@ -21,6 +21,8 @@ typedef struct {
 
 extern list_t* list_allocate();
 
+extern int list_is_empty(const list_t* const list);
+
 #ifdef __cplusplus
 }
 #endif

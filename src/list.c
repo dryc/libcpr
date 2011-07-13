@@ -7,3 +7,8 @@ list_t*
 list_allocate() {
   return calloc(1, sizeof(list_t));
 }
+
+int
+list_is_empty(const list_t* const list) {
+  return unlikely(list->first == NULL) ? TRUE : FALSE;
+}
