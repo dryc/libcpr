@@ -13,6 +13,10 @@ typedef struct {
   pthread_mutex_t id;
 } mutex_t;
 
+extern mutex_t* mutex_alloc();
+
+extern int mutex_init(mutex_t* mutex);
+
 #ifdef __cplusplus
 }
 #endif
