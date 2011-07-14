@@ -7,6 +7,9 @@
 extern "C" {
 #endif
 
+/* private headers for the build process only */
+#include "config.h"
+
 /* public prelude included from <cprime.h> */
 #include "prelude.h"
 
@@ -31,9 +34,6 @@ extern "C" {
 #include "uri.h"
 #include "uuid.h"
 #include "vector.h"
-
-/* private headers for the build process only */
-#include "config.h"
 
 /* optional headers not included by <cprime.h> */
 #include "memory.h"
