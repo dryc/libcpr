@@ -20,3 +20,21 @@ mutex_init(mutex_t* mutex) {
 
   return likely(rc == 0) ? 0 : -(errno = rc);
 }
+
+int
+mutex_lock(mutex_t* mutex) {
+  validate_with_errno_return(mutex != NULL);
+
+  const int rc = pthread_mutex_lock(&mutex->id);
+
+  return likely(rc == 0) ? 0 : -(errno = rc);
+}
+
+int
+mutex_unlock(mutex_t* mutex) {
+  validate_with_errno_return(mutex != NULL);
+
+  const int rc = pthread_mutex_unlock(&mutex->id);
+
+  return likely(rc == 0) ? 0 : -(errno = rc);
+}

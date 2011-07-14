@@ -17,6 +17,9 @@ extern mutex_t* mutex_alloc();
 
 extern int mutex_init(mutex_t* mutex);
 
+extern int mutex_lock(mutex_t* mutex);
+extern int mutex_unlock(mutex_t* mutex);
+
 #ifdef __cplusplus
 }
 #endif
