@@ -15,30 +15,30 @@ extern "C" {
 #define STRING_SIZE_MIN     0
 
 typedef struct {
-  char* data;
+  byte_t* data;
   size_t size;
 } string_t;
 
 extern string_t* string_alloc();
 
-extern string_t* string_construct_with(const char* const data, const size_t size);
+extern string_t* string_construct_with(const byte_t* const data, const size_t size);
 extern string_t* string_construct_with_size(const size_t size);
-extern string_t* string_construct_with_data(const char* const data);
+extern string_t* string_construct_with_data(const byte_t* const data);
 
 extern string_t* string_clone(const string_t* const string);
 
 #define string_init1(string) string_init_empty(string)
 #define string_init2(string, arg1) \
   DISPATCH_BEGIN(arg1) \
-    DISPATCH(string_init_with_data, string, char*,  arg1, NULL) \
+    DISPATCH(string_init_with_data, string, byte_t*, arg1, NULL) \
     DISPATCH(string_init_with_size, string, size_t, arg1, 0) \
   DISPATCH_END
 #define string_init(...) \
   CONCAT(string_init, ARITY(__VA_ARGS__))(__VA_ARGS__)
 
 extern int string_init_empty(string_t* string);
-extern int string_init_with(string_t* string, const char* const data, const size_t size);
-extern int string_init_with_data(string_t* string, const char* const data);
+extern int string_init_with(string_t* string, const byte_t* const data, const size_t size);
+extern int string_init_with_data(string_t* string, const byte_t* const data);
 extern int string_init_with_size(string_t* string, const size_t size);
 
 extern size_t string_size(const string_t* const string);
@@ -63,10 +63,14 @@ extern int string_is_space(const string_t* const string);
 extern int string_is_upper(const string_t* const string);
 extern int string_is_xdigit(const string_t* const string);
 
-extern int string_has_prefix(const string_t* const string, const char* const prefix);
-extern int string_has_suffix(const string_t* const string, const char* const suffix);
+extern int string_has_prefix(const string_t* const string, const byte_t* const prefix);
+extern int string_has_suffix(const string_t* const string, const byte_t* const suffix);
 
 extern int string_clear(string_t* string);
+
+extern int string_append_string(string_t* string, const string_t* const restrict suffix);
+extern int string_append_char(string_t* string, const char_t suffix);
+extern int string_append_bytes(string_t* string, const byte_t* const restrict suffix, const int count);
 
 #ifdef __cplusplus
 }
