@@ -7,18 +7,23 @@
 extern "C" {
 #endif
 
+#ifdef HAVE_UNISTD_H
 #include <unistd.h>  /* for ssize_t */
-#include <poll.h>    /* for pollfd, nfds_t */
-#include <pthread.h> /* for pthread_t, pthread_attr_t */
-
 extern int posix_close(const int fd);
 extern ssize_t posix_write(const int fd, const void* buf, const size_t count);
+#endif /* HAVE_UNISTD_H */
 
+#ifdef HAVE_POLL_H
+#include <poll.h>    /* for pollfd, nfds_t */
 extern int posix_poll(struct pollfd fds[], const nfds_t nfds, const int timeout);
+#endif /* HAVE_POLL_H */
 
+#ifdef HAVE_PTHREAD_H
+#include <pthread.h> /* for pthread_t, pthread_attr_t */
 extern int posix_pthread_create(pthread_t* restrict thread,
                                 const pthread_attr_t* restrict attr,
                                 void* (*start_routine)(void*), void* restrict arg);
+#endif /* HAVE_PTHREAD_H */
 
 #ifdef HAVE_MQUEUE_H
 #include <mqueue.h> /* for mqd_t */
