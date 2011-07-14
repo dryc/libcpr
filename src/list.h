@@ -19,7 +19,7 @@ typedef struct {
   size_t length;
 } list_t;
 
-extern list_t* list_alloc_empty();
+extern list_t* list_alloc();
 
 extern int list_is_empty(const list_t* const list);
 

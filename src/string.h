@@ -19,10 +19,11 @@ typedef struct {
   size_t size;
 } string_t;
 
-extern string_t* string_alloc_empty();
-extern string_t* string_alloc_with(const char* const data, const size_t size);
-extern string_t* string_alloc_with_size(const size_t size);
-extern string_t* string_alloc_with_data(const char* const data);
+extern string_t* string_alloc();
+
+extern string_t* string_construct_with(const char* const data, const size_t size);
+extern string_t* string_construct_with_size(const size_t size);
+extern string_t* string_construct_with_data(const char* const data);
 
 extern string_t* string_clone(const string_t* const string);
 

@@ -4,28 +4,28 @@
 #include <stdlib.h> /* for calloc(), free(), malloc() */
 
 string_t*
-string_alloc_empty() {
+string_alloc() {
   string_t* string = malloc(sizeof(string_t));
   string_init_empty(string);
   return string;
 }
 
 string_t*
-string_alloc_with(const char* const data, const size_t size) {
+string_construct_with(const char* const data, const size_t size) {
   string_t* string = malloc(sizeof(string_t));
   string_init_with(string, data, size);
   return string;
 }
 
 string_t*
-string_alloc_with_data(const char* const data) {
+string_construct_with_data(const char* const data) {
   string_t* string = malloc(sizeof(string_t));
   string_init_with_data(string, data);
   return string;
 }
 
 string_t*
-string_alloc_with_size(const size_t size) {
+string_construct_with_size(const size_t size) {
   string_t* string = malloc(sizeof(string_t));
   string_init_with_size(string, size);
   return string;
@@ -37,7 +37,7 @@ string_clone(const string_t* const string) {
   if (likely(string->size > 0 && string->size != STRING_SIZE_UNKNOWN))
     validate_with_null_return(string->data != NULL);
 
-  return string_alloc_with(string->data, string->size);
+  return string_construct_with(string->data, string->size);
 }
 
 int
