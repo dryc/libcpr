@@ -26,6 +26,14 @@ extern string_t* string_alloc_with_data(const char* const data);
 
 extern string_t* string_clone(const string_t* const string);
 
+#define string_init0(string) string_init_empty(string)
+#define string_init1(string, arg1) \
+  __dispatch_begin(arg1) \
+    __dispatch(string_init_with_data, string, char*,  arg1, NULL) \
+    __dispatch(string_init_with_size, string, size_t, arg1, 0) \
+  __dispatch_end
+#define string_init string_init1
+
 extern int string_init_empty(string_t* string);
 extern int string_init_with(string_t* string, const char* const data, const size_t size);
 extern int string_init_with_data(string_t* string, const char* const data);
