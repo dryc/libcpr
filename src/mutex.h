@@ -9,9 +9,18 @@ extern "C" {
 
 #include <pthread.h> /* for pthread_mutex_t */
 
-typedef struct {
+typedef struct mutex_t {
   pthread_mutex_t id;
 } mutex_t;
+
+typedef struct mutex_interface_t {
+  mutex_t* (*alloc)();
+  int (*init)(mutex_t* mutex);
+  int (*lock)(mutex_t* mutex);
+  int (*unlock)(mutex_t* mutex);
+} mutex_interface_t;
+
+extern const mutex_interface_t mutex;
 
 extern mutex_t* mutex_alloc();
 

@@ -3,6 +3,13 @@
 #include "build.h"
 #include <stdlib.h> /* for calloc(), free(), malloc() */
 
+const mutex_interface_t mutex = {
+  .alloc  = mutex_alloc,
+  .init   = mutex_init,
+  .lock   = mutex_lock,
+  .unlock = mutex_unlock,
+};
+
 mutex_t*
 mutex_alloc() {
   mutex_t* mutex = malloc(sizeof(mutex_t));
