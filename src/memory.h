@@ -13,9 +13,11 @@ extern "C" {
 #  define bcopy   __builtin_bcopy
 #  define bzero   __builtin_bzero
 #  define strcmp  __builtin_strcmp
+#  define strcpy  __builtin_strcpy
 #  define strdup  __builtin_strdup
 #  define strlen  __builtin_strlen
 #  define strncmp __builtin_strncmp
+#  define strncpy __builtin_strncpy
 #  define strndup __builtin_strndup
 #
 #else /* !__GNUC__ */
