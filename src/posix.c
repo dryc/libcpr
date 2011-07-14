@@ -5,6 +5,10 @@
 #include <poll.h>    /* for poll() */
 #include <pthread.h> /* for pthread_create() */
 
+#ifdef HAVE_MQUEUE_H
+#  include <mqueue.h>  /* for mq_send(), mq_receive() */
+#endif
+
 int
 posix_close(const int fd) {
   int result = 0;
@@ -64,3 +68,37 @@ posix_pthread_create(pthread_t* restrict thread, const pthread_attr_t* restrict 
   }
   return result;
 }
+
+#ifdef mq_send
+mqd_t
+posix_mq_send(mqd_t mqdes, const char* msg_ptr, size_t msg_len, unsigned int msg_prio) {
+  mqd_t result = 0;
+  while (unlikely((result = mq_send(mqdes, msg_ptr, msg_len, msg_prio)) == -1)) {
+    switch (errno) {
+      case EINTR:
+      case EAGAIN:
+        continue; // retry the syscall
+      default:
+        break;
+    }
+  }
+  return result;
+}
+#endif /* mq_send */
+
+#ifdef mq_receive
+ssize_t
+posix_mq_receive(mqd_t mqdes, char* msg_ptr, size_t msg_len, unsigned int* msg_prio) {
+  ssize_t result = 0;
+  while (unlikely((result = mq_receive(mqdes, msg_ptr, msg_len, msg_prio)) == -1)) {
+    switch (errno) {
+      case EINTR:
+      case EAGAIN:
+        continue; // retry the syscall
+      default:
+        break;
+    }
+  }
+  return result;
+}
+#endif /* mq_receive */

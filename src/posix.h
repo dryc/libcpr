@@ -20,6 +20,14 @@ extern int posix_pthread_create(pthread_t* restrict thread,
                                 const pthread_attr_t* restrict attr,
                                 void* (*start_routine)(void*), void* restrict arg);
 
+#ifdef HAVE_MQUEUE_H
+#include <mqueue.h> /* for mqd_t */
+extern mqd_t posix_mq_send(mqd_t mqdes, const char* msg_ptr,
+                           size_t msg_len, unsigned int msg_prio);
+extern ssize_t posix_mq_receive(mqd_t mqdes, char* msg_ptr,
+                                size_t msg_len, unsigned int* msg_prio);
+#endif /* HAVE_MQUEUE_H */
+
 #ifdef __cplusplus
 }
 #endif
