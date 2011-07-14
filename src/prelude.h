@@ -38,6 +38,10 @@ extern "C" {
   if (unlikely(!(expr))) return -(errno = EINVAL);
 #define validate_with_null_return(expr) \
   if (unlikely(!(expr))) return errno = EINVAL, NULL;
+#define validate_with_false_return(expr) \
+  if (unlikely(!(expr))) return errno = EINVAL, FALSE;
+#define validate_with_void_return(expr) \
+  if (unlikely(!(expr))) return;
 
 /* helpers for defining overloaded constructor macros */
 #define DISPATCH_BEGIN(expr) \
