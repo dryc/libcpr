@@ -10,6 +10,10 @@ extern "C" {
 #include <errno.h>  /* for the system error constants, e.g. EINVAL */
 #include <stddef.h> /* for NULL, size_t, wchar_t, ptrdiff_t, and offsetof() */
 
+/* for checking return values */
+#define failed(expr)    (expr < 0)
+#define succeeded(expr) (expr >= 0)
+
 /* for branch prediction hints */
 #ifndef likely
 #  define likely(x)   __builtin_expect(!!(x), 1) // `x` is likely to evaluate to TRUE
