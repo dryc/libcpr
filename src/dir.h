@@ -11,8 +11,8 @@ extern "C" {
 
 typedef struct {
   char path[PATH_MAX];
-  DIR* dir;
-  struct dirent* dirent;
+  DIR* stream;
+  struct dirent* entry;
 } dir_t;
 
 extern int dir_init_empty(dir_t* dir);
@@ -25,6 +25,9 @@ extern int dir_init_with_path(dir_t* dir, const char* const path);
   DISPATCH_END
 #define dir_init(...) \
   CONCAT(dir_init, ARITY(__VA_ARGS__))(__VA_ARGS__)
+
+extern int dir_open(dir_t* dir);
+extern int dir_close(dir_t* dir);
 
 #ifdef __cplusplus
 }
