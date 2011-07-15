@@ -14,7 +14,17 @@ thread_init(thread_t* thread) {
   validate_with_errno_return(thread != NULL);
 
   bzero(thread, sizeof(thread_t));
-  pthread_attr_init(&thread->attr);
 
-  return 0;
+  const int rc = pthread_attr_init(&thread->attr);
+
+  return likely(rc == 0) ? 0 : -(errno = rc);
+}
+
+int
+thread_join(thread_t* thread) {
+  validate_with_errno_return(thread != NULL);
+
+  const int rc = pthread_join(thread->id, &thread->value);
+
+  return likely(rc == 0) ? 0 : -(errno = rc);
 }

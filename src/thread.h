@@ -12,11 +12,14 @@ extern "C" {
 typedef struct thread_t {
   pthread_t id;
   pthread_attr_t attr;
+  void* value;
 } thread_t;
 
 extern thread_t* thread_alloc();
 
 extern int thread_init(thread_t* thread);
+
+extern int thread_join(thread_t* thread);
 
 #ifdef __cplusplus
 }
