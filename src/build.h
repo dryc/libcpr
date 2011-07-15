@@ -13,17 +13,20 @@ extern "C" {
 /* public prelude included from <cprime.h> */
 #include "prelude.h"
 
-/* public headers included from <cprime.h> */
-#include "atomic.h"
+/* public headers included from <cprime.h> (specific order) */
 #include "bool.h"
 #include "byte.h"
 #include "char.h"
+#include "pair.h"
+#include "list.h"
+
+/* public headers included from <cprime.h> (alphabetic order) */
+#include "atomic.h"
 #include "closure.h"
 #include "decimal.h"
 #include "dir.h"
 #include "file.h"
 #include "integer.h"
-#include "list.h"
 #include "map.h"
 #include "mutex.h"
 #include "posix.h"

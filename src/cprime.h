@@ -9,16 +9,18 @@ extern "C" {
 
 #include <cprime/prelude.h>
 
-#include <cprime/atomic.h>
 #include <cprime/bool.h>
 #include <cprime/byte.h>
 #include <cprime/char.h>
+#include <cprime/pair.h>
+#include <cprime/list.h>
+
+#include <cprime/atomic.h>
 #include <cprime/closure.h>
 #include <cprime/decimal.h>
 #include <cprime/dir.h>
 #include <cprime/file.h>
 #include <cprime/integer.h>
-#include <cprime/list.h>
 #include <cprime/map.h>
 #include <cprime/mutex.h>
 #include <cprime/posix.h>

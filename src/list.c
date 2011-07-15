@@ -32,18 +32,17 @@ int
 list_prepend_ptr(list_t* list, const void* const ptr) {
   validate_with_errno_return(list != NULL);
 
-  list_element_t* const element = malloc(sizeof(list_element_t));
-  element->head = (void*)ptr;
-  element->tail = list->first;
+  pair_t* const pair = pair_alloc();
+  pair_init_with(pair, (void*)ptr, list->first);
 
-  return list_prepend_element(list, element);
+  return list_prepend_pair(list, pair);
 }
 
 int
-list_prepend_element(list_t* list, const list_element_t* const element) {
+list_prepend_pair(list_t* list, const pair_t* const pair) {
   validate_with_errno_return(list != NULL);
 
-  list->first = (list_element_t*)element;
+  list->first = (pair_t*)pair;
   list->length += 1;
 
   return list->length;
