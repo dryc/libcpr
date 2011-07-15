@@ -23,13 +23,20 @@ extern "C" {
 #  define unlikely(x) x
 #endif /* __GNUC__ */
 
-#ifndef max
+/* maximum and minimum value macros */
+#ifdef __GNUC__
+#  define max(a, b) ({          \
+          typeof(a) _a = (a);   \
+          typeof(b) _b = (b);   \
+          _a > _b ? _a : _b; })
+#  define min(a, b) ({          \
+          typeof(a) _a = (a);   \
+          typeof(b) _b = (b);   \
+          _a < _b ? _a : _b; })
+#else
 #  define max(a, b) ((a) > (b) ? (a) : (b))
-#endif /* max */
-
-#ifndef min
 #  define min(a, b) ((a) < (b) ? (a) : (b))
-#endif /* min */
+#endif /* __GNUC__ */
 
 #define choose            __builtin_choose_expr
 #define typep(expr, type) __builtin_types_compatible_p(typeof(expr), type)
