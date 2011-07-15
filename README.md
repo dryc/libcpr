@@ -4,6 +4,14 @@ libcprime
 A modern, sane, and minimalistic standard library supplement for the
 venerable C programming language.
 
+Installation
+------------
+
+    $ autoreconf --install --force
+    $ ./configure
+    $ make
+    $ sudo make install
+
 License
 -------
 
