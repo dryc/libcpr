@@ -34,6 +34,8 @@ extern "C" {
 
 extern const char* const cprime_version_string;
 
+#define __cprime 1
+
 #ifdef __cplusplus
 }
 #endif
