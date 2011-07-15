@@ -18,7 +18,11 @@ extern list_t* list_alloc();
 
 #define LIST_INIT {.first = NULL, .length = 0}
 
+extern int list_length(const list_t* const list);
+
 extern int list_is_empty(const list_t* const list);
+
+extern int list_clear(list_t* list);
 
 extern int list_prepend_bool(list_t* list, const bool_t value);
 extern int list_prepend_byte(list_t* list, const byte_t value);

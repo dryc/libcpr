@@ -8,8 +8,8 @@ extern "C" {
 #endif
 
 typedef struct pair_t {
-  void* head;
   struct pair_t* tail;
+  void* head;
 } pair_t;
 
 extern pair_t* pair_alloc();

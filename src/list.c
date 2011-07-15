@@ -9,22 +9,57 @@ list_alloc() {
 }
 
 int
+list_length(const list_t* const list) {
+  validate_with_errno_return(list != NULL);
+
+  return list->length;
+}
+
+int
 list_is_empty(const list_t* const list) {
+  validate_with_errno_return(list != NULL);
+
   return unlikely(list->first == NULL) ? TRUE : FALSE;
 }
 
 int
+list_clear(list_t* list) {
+  validate_with_errno_return(list != NULL);
+
+  if (likely(list->length > 0)) {
+    pair_t* pair = list->first;
+
+    list->first = NULL;
+    list->length = 0;
+
+    while (likely(pair != NULL)) {
+      pair_t* tail = pair->tail;
+      free(pair);
+      pair = tail;
+    }
+  }
+
+  return 0;
+}
+
+int
 list_prepend_bool(list_t* list, const bool_t value) {
+  validate_with_errno_return(list != NULL);
+
   return list_prepend_ptr(list, (void*)((intptr_t)value));
 }
 
 int
 list_prepend_byte(list_t* list, const byte_t value) {
+  validate_with_errno_return(list != NULL);
+
   return list_prepend_ptr(list, (void*)((uintptr_t)value));
 }
 
 int
 list_prepend_char(list_t* list, const char_t value) {
+  validate_with_errno_return(list != NULL);
+
   return list_prepend_ptr(list, (void*)((uintptr_t)value));
 }
 
