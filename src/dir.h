@@ -8,6 +8,7 @@ extern "C" {
 #endif
 
 #include <dirent.h> /* for DIR, dirent */
+#include <limits.h> /* for PATH_MAX */
 
 #define DIRENT_SIZE \
   offsetof(struct dirent, d_name) + \
