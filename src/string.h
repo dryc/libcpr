@@ -45,6 +45,7 @@ extern int string_init_with_size(string_t* string, const size_t size);
 
 extern size_t string_size(const string_t* const string);
 extern size_t string_length(const string_t* const string);
+extern int string_hash(const string_t* const string);
 
 extern int string_equal(const string_t* const string1, const string_t* const string2);
 extern int string_compare(const string_t* const string1, const string_t* const string2);

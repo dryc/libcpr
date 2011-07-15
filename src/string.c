@@ -142,6 +142,21 @@ string_length(const string_t* const string) {
 }
 
 int
+string_hash(const string_t* const string) {
+  validate_with_errno_return(string != NULL);
+
+  if (unlikely(string->data == NULL))
+    return 0; // the string is empty
+
+  uint32_t hash = 5381;
+  const int8_t* data = (int8_t*)string->data;
+  while (likely(*data != '\0')) {
+    hash = ((hash << 5) + hash) + *data++; // hash * 33 + c
+  }
+  return (hash & INT32_MAX);
+}
+
+int
 string_compare(const string_t* const string1, const string_t* const string2) {
   validate_with_errno_return(string1 != NULL && string2 != NULL);
 
