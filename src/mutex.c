@@ -1,7 +1,6 @@
 /* This is free and unencumbered software released into the public domain. */
 
 #include "build.h"
-#include <stdlib.h> /* for calloc(), free(), malloc() */
 
 const mutex_interface_t mutex = {
   .alloc  = mutex_alloc,

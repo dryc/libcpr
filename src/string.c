@@ -1,7 +1,6 @@
 /* This is free and unencumbered software released into the public domain. */
 
 #include "build.h"
-#include <stdlib.h> /* for calloc(), free(), malloc() */
 
 string_t*
 string_alloc() {

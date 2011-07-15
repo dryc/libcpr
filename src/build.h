@@ -42,6 +42,9 @@ extern "C" {
 #include "memory.h"
 #include "utf8.h"
 
+/* standardy library headers */
+#include <stdlib.h> /* for calloc(), free(), malloc() */
+
 #ifdef __cplusplus
 }
 #endif

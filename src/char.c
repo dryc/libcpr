@@ -1,8 +1,7 @@
 /* This is free and unencumbered software released into the public domain. */
 
 #include "build.h"
-#include <ctype.h>  /* for isascii(), etc. */
-#include <stdlib.h> /* for calloc() */
+#include <ctype.h> /* for isascii(), etc. */
 
 char_t*
 char_alloc() {

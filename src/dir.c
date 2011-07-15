@@ -1,7 +1,6 @@
 /* This is free and unencumbered software released into the public domain. */
 
 #include "build.h"
-#include <stdlib.h> /* for calloc(), free(), malloc() */
 
 int
 dir_init_empty(dir_t* dir) {
