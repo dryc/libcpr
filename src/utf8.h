@@ -36,6 +36,9 @@ extern "C" {
   }                                                    \
 }
 
+#define UTF8_SKIP_CHAR(p)                              \
+  (typeof(p))((p) + utf8_skip_table[*((byte_t*)(p))])
+
 extern const byte_t const utf8_skip_table[256];
 
 #ifdef __cplusplus
