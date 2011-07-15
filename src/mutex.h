@@ -24,6 +24,8 @@ extern const mutex_interface_t mutex;
 
 extern mutex_t* mutex_alloc();
 
+#define MUTEX_INIT PTHREAD_MUTEX_INITIALIZER
+
 extern int mutex_init(mutex_t* mutex);
 
 extern int mutex_lock(mutex_t* mutex);

@@ -21,6 +21,8 @@ extern const uuid_t uuid_zero;
 
 extern uuid_t* uuid_alloc();
 
+#define UUID_INIT {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+
 extern int uuid_init(uuid_t* uuid);
 
 extern int uuid_is_zero(const uuid_t* const uuid);

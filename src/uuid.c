@@ -3,9 +3,7 @@
 #include "build.h"
 #include <stdlib.h> /* for calloc(), free(), malloc() */
 
-const uuid_t uuid_zero = {
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-};
+const uuid_t uuid_zero = UUID_INIT;
 
 uuid_t*
 uuid_alloc() {

@@ -21,6 +21,8 @@ extern char_t* char_construct(const char_t val);
 
 extern char_t* char_clone(const char_t* const ptr);
 
+#define CHAR_INIT (0)
+
 extern int char_hash(const char_t chr);
 extern int char_equal(const char_t chr1, const char_t chr2);
 extern int char_compare(const char_t chr1, const char_t chr2);

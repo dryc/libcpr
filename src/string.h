@@ -27,6 +27,8 @@ extern string_t* string_construct_with_data(const byte_t* const data);
 
 extern string_t* string_clone(const string_t* const string);
 
+#define STRING_INIT(sz) {.size = sz, .data = choose(sz == 0, NULL, alloca(sz + 1))}
+
 #define string_init1(string) string_init_empty(string)
 #define string_init2(string, arg1) \
   DISPATCH_BEGIN(arg1) \

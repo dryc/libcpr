@@ -19,8 +19,7 @@ typedef struct dir_t {
   char path[PATH_MAX];
 } dir_t;
 
-extern int dir_init_empty(dir_t* dir);
-extern int dir_init_with_path(dir_t* dir, const char* const path);
+#define DIR_INIT {.stream = NULL, .entry = NULL, .path = '\0'}
 
 #define dir_init1(dir) dir_init_empty(dir)
 #define dir_init2(dir, arg1) \
@@ -29,6 +28,9 @@ extern int dir_init_with_path(dir_t* dir, const char* const path);
   DISPATCH_END(dir_init_with_path, dir)
 #define dir_init(...) \
   CONCAT(dir_init, ARITY(__VA_ARGS__))(__VA_ARGS__)
+
+extern int dir_init_empty(dir_t* dir);
+extern int dir_init_with_path(dir_t* dir, const char* const path);
 
 extern int dir_open(dir_t* dir);
 extern int dir_close(dir_t* dir);
