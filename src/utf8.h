@@ -9,6 +9,12 @@ extern "C" {
 
 #include <stdint.h> /* for uint8_t */
 
+#define UTF8_LENGTH(c) (                               \
+  (c < 0x00080) ? 1 :                                  \
+  (c < 0x00800) ? 2 :                                  \
+  (c < 0x10000) ? 3 : 4                                \
+)
+
 #define UTF8_ENCODE(c, output) {                       \
   if (likely(c < 0x00080)) {                           \
     *output++ = (uint8_t)(c & 0xFF);                   \
