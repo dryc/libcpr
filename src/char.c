@@ -109,3 +109,16 @@ int
 char_is_xdigit(const char_t chr) {
   return likely(isxdigit(chr) != 0) ? TRUE : FALSE;
 }
+
+int
+char_encode(const char_t input, byte_t* output) {
+  validate_with_errno_return(input <= 0x10FFFF);
+  validate_with_errno_return(output != NULL);
+
+  const byte_t* const start = output;
+  UTF8_ENCODE(input, output);
+  const byte_t* const end = output;
+
+  const int size = (end - start);
+  return size; // in bytes
+}

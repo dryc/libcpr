@@ -10,7 +10,7 @@ extern "C" {
 #include <stdint.h> /* for uint32_t, UINT32_MAX */
 
 #define CHAR_EOF (UINT32_MAX)
-#define CHAR_MAX (UINT32_MAX-1)
+#define CHAR_MAX (0x10FFFF)
 #define CHAR_MIN (0)
 
 typedef uint32_t char_t;
@@ -42,6 +42,8 @@ extern int char_is_punct(const char_t chr);
 extern int char_is_space(const char_t chr);
 extern int char_is_upper(const char_t chr);
 extern int char_is_xdigit(const char_t chr);
+
+extern int char_encode(const char_t input, byte_t* output);
 
 #ifdef __cplusplus
 }
