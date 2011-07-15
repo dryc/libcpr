@@ -1,6 +1,7 @@
 /* This is free and unencumbered software released into the public domain. */
 
 #include "build.h"
+#include <stdlib.h> /* for calloc(), free(), malloc() */
 
 int
 dir_init_empty(dir_t* dir) {
@@ -27,8 +28,13 @@ dir_open(dir_t* dir) {
   validate_with_errno_return(dir != NULL);
 
   dir->stream = opendir(dir->path);
+  if (unlikely(dir->stream == NULL)) {
+    return -errno;
+  }
 
-  return likely(dir->stream != NULL) ? 0 : -errno;
+  dir->entry = malloc(DIRENT_SIZE);
+
+  return 0;
 }
 
 int
@@ -36,6 +42,11 @@ dir_close(dir_t* dir) {
   validate_with_errno_return(dir != NULL);
 
   int result = 0;
+
+  if (likely(dir->entry != NULL)) {
+    free(dir->entry);
+    dir->entry = NULL;
+  }
 
   if (likely(dir->stream != NULL)) {
     if (unlikely(closedir(dir->stream) == -1)) {
@@ -45,4 +56,14 @@ dir_close(dir_t* dir) {
   }
 
   return result;
+}
+
+int
+dir_read(dir_t* dir) {
+  validate_with_errno_return(dir != NULL);
+
+  struct dirent* result = NULL;
+  const int error = readdir_r(dir->stream, dir->entry, &result);
+
+  return likely(error == 0) ? (result != NULL) : -error;
 }
