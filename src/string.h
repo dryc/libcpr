@@ -32,7 +32,7 @@ extern string_t* string_clone(const string_t* const string);
   DISPATCH_BEGIN(arg1) \
     DISPATCH(string_init_with_data, string, byte_t*, arg1, NULL) \
     DISPATCH(string_init_with_size, string, size_t, arg1, 0) \
-  DISPATCH_END
+  DISPATCH_END(string_init_with_data, string)
 #define string_init(...) \
   CONCAT(string_init, ARITY(__VA_ARGS__))(__VA_ARGS__)
 

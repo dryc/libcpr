@@ -52,8 +52,8 @@ extern "C" {
     else if (typep(argument, type)) \
       function(object, choose(typep(argument, type), \
                               __dispatch_value, default_value));
-#define DISPATCH_END \
-    else abort(); \
+#define DISPATCH_END(function, object) \
+    else function(object, __dispatch_value); \
   } while (0);
 
 /* helpers for token concatenation in macros */

@@ -26,7 +26,7 @@ extern int dir_init_with_path(dir_t* dir, const char* const path);
 #define dir_init2(dir, arg1) \
   DISPATCH_BEGIN(arg1) \
     DISPATCH(dir_init_with_path, dir, char*, arg1, NULL) \
-  DISPATCH_END
+  DISPATCH_END(dir_init_with_path, dir)
 #define dir_init(...) \
   CONCAT(dir_init, ARITY(__VA_ARGS__))(__VA_ARGS__)
 
