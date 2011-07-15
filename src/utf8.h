@@ -36,6 +36,8 @@ extern "C" {
   }                                                    \
 }
 
+extern const byte_t const utf8_skip_table[256];
+
 #ifdef __cplusplus
 }
 #endif

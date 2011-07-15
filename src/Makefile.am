@@ -24,6 +24,7 @@ libcprime_la_SOURCES = cprime.c \
   symbol.c \
   thread.c \
   uri.c \
+  utf8.c \
   uuid.c \
   vector.c
 
