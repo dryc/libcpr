@@ -7,11 +7,16 @@
 extern "C" {
 #endif
 
-#include <pthread.h> /* for pthread_t */
+#include <pthread.h> /* for pthread_t, pthread_attr_t */
 
-typedef struct {
+typedef struct thread_t {
   pthread_t id;
+  pthread_attr_t attr;
 } thread_t;
+
+extern thread_t* thread_alloc();
+
+extern int thread_init(thread_t* thread);
 
 #ifdef __cplusplus
 }
