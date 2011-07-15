@@ -4,7 +4,7 @@ AM_LDFLAGS      = -rdynamic
 LDADD           = libcprime.la
 lib_LTLIBRARIES = libcprime.la
 
-libcprime_la_LIBADD  = -lrt
+libcprime_la_LIBADD  = -lrt -lpthread
 libcprime_la_SOURCES = cprime.c \
   atomic.c \
   bool.c \
