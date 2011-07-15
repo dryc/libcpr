@@ -125,11 +125,20 @@ size_t
 string_length(const string_t* const string) {
   validate_with_errno_return(string != NULL);
 
-#ifndef _CPRIME_HAVE_UTF8
+  if (unlikely(string->data == NULL))
+    return 0; // the string is empty
+
+#if 0
   return string_size(string); // ASCII only
 #else
-#error UTF-8 support for string_length() has not yet been implemented.
-#endif /* !_CPRIME_HAVE_UTF8 */
+  size_t length = 0;
+  const byte_t* data = string->data;
+  while (likely(*data != '\0')) {
+    length++;
+    data = UTF8_SKIP_CHAR(data);
+  }
+  return length;
+#endif
 }
 
 int
