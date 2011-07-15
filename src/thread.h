@@ -18,6 +18,9 @@ typedef struct thread_t {
 extern thread_t* thread_alloc();
 
 extern int thread_init(thread_t* thread);
+extern int thread_init_self(thread_t* thread);
+
+extern bool thread_is_self(thread_t* thread);
 
 extern int thread_join(thread_t* thread);
 

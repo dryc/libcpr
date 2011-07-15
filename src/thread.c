@@ -21,6 +21,24 @@ thread_init(thread_t* thread) {
 }
 
 int
+thread_init_self(thread_t* thread) {
+  const int result = thread_init(thread);
+
+  if (likely(result == 0)) {
+    thread->id = pthread_self();
+  }
+
+  return result;
+}
+
+bool
+thread_is_self(thread_t* thread) {
+  validate_with_false_return(thread != NULL);
+
+  return unlikely(pthread_equal(thread->id, pthread_self()) != 0) ? TRUE : FALSE;
+}
+
+int
 thread_join(thread_t* thread) {
   validate_with_errno_return(thread != NULL);
 
