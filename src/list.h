@@ -25,6 +25,12 @@ extern list_t* list_alloc();
 
 extern int list_is_empty(const list_t* const list);
 
+extern int list_prepend_bool(list_t* list, const bool_t value);
+extern int list_prepend_byte(list_t* list, const byte_t value);
+extern int list_prepend_char(list_t* list, const char_t value);
+extern int list_prepend_ptr(list_t* list, const void* const ptr);
+extern int list_prepend_element(list_t* list, const list_element_t* const element);
+
 #ifdef __cplusplus
 }
 #endif
