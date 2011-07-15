@@ -15,12 +15,13 @@ extern "C" {
 #define succeeded(expr) (expr >= 0)
 
 /* for branch prediction hints */
-#ifndef likely
+#ifdef __GNUC__
 #  define likely(x)   __builtin_expect(!!(x), 1) // `x` is likely to evaluate to TRUE
-#endif /* likely */
-#ifndef unlikely
 #  define unlikely(x) __builtin_expect(!!(x), 0) // `x` is unlikely to evaluate to TRUE
-#endif /* unlikely */
+#else
+#  define likely(x)   x
+#  define unlikely(x) x
+#endif /* __GNUC__ */
 
 #ifndef max
 #  define max(a, b) ((a) > (b) ? (a) : (b))
