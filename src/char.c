@@ -41,6 +41,16 @@ char_equal(const char_t chr1, const char_t chr2) {
 }
 
 int
+char_validate(const char_t chr) {
+  return char_is_valid(chr);
+}
+
+int
+char_is_valid(const char_t chr) {
+  return likely(chr <= CHAR_MAX) ? TRUE : FALSE;
+}
+
+int
 char_is_zero(const char_t chr) {
   return unlikely(chr == 0) ? TRUE : FALSE;
 }

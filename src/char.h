@@ -26,7 +26,9 @@ extern char_t* char_clone(const char_t* const ptr);
 extern int char_hash(const char_t chr);
 extern int char_equal(const char_t chr1, const char_t chr2);
 extern int char_compare(const char_t chr1, const char_t chr2);
+extern int char_validate(const char_t chr);
 
+extern int char_is_valid(const char_t chr);
 extern int char_is_zero(const char_t chr);
 
 extern int char_is_alnum(const char_t chr);
