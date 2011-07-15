@@ -51,5 +51,6 @@ pkginclude_HEADERS = \
   symbol.h \
   thread.h \
   uri.h \
+  utf8.h \
   uuid.h \
   vector.h

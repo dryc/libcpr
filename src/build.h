@@ -40,6 +40,7 @@ extern "C" {
 
 /* optional headers not included by <cprime.h> */
 #include "memory.h"
+#include "utf8.h"
 
 #ifdef __cplusplus
 }
