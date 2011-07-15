@@ -32,8 +32,7 @@ int
 list_prepend_ptr(list_t* list, const void* const ptr) {
   validate_with_errno_return(list != NULL);
 
-  pair_t* const pair = pair_alloc();
-  pair_init_with(pair, (void*)ptr, list->first);
+  pair_t* const pair = pair_construct((void*)ptr, list->first);
 
   return list_prepend_pair(list, pair);
 }

@@ -1,11 +1,18 @@
 /* This is free and unencumbered software released into the public domain. */
 
 #include "build.h"
-#include <stdlib.h> /* for calloc() */
+#include <stdlib.h> /* for calloc(), free(), malloc() */
 
 pair_t*
 pair_alloc() {
   return calloc(1, sizeof(pair_t));
+}
+
+pair_t*
+pair_construct_with(const void* const head, const pair_t* const tail) {
+  pair_t* pair = malloc(sizeof(pair_t));
+  pair_init_with(pair, head, tail);
+  return pair;
 }
 
 int
