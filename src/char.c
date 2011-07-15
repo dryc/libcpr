@@ -120,6 +120,19 @@ char_is_xdigit(const char_t chr) {
   return likely(isxdigit(chr) != 0) ? TRUE : FALSE;
 }
 
+string_t*
+char_to_string(const char_t chr) {
+  validate_with_null_return(chr <= 0x10FFFF);
+
+  string_t* string = string_construct_with_size(UTF8_LENGTH(chr));
+
+  if (likely(string != NULL)) {
+    UTF8_ENCODE(chr, string->data);
+  }
+
+  return string;
+}
+
 int
 char_encode(const char_t input, byte_t* output) {
   validate_with_errno_return(input <= 0x10FFFF);

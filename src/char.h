@@ -45,6 +45,8 @@ extern int char_is_space(const char_t chr);
 extern int char_is_upper(const char_t chr);
 extern int char_is_xdigit(const char_t chr);
 
+extern struct string_t* char_to_string(const char_t chr);
+
 extern int char_encode(const char_t input, byte_t* output);
 
 #ifdef __cplusplus

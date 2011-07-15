@@ -14,7 +14,7 @@ extern "C" {
 #define STRING_SIZE_MAX     (SIZE_MAX-1)
 #define STRING_SIZE_MIN     0
 
-typedef struct {
+typedef struct string_t {
   byte_t* data;
   size_t size;
 } string_t;
