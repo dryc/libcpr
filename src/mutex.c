@@ -50,7 +50,7 @@ mutex_dispose(mutex_t* mutex) {
   bzero(mutex, sizeof(mutex_t));
 #endif
 
-  return 0;
+  return likely(rc == 0) ? 0 : -(errno = rc);
 }
 
 int

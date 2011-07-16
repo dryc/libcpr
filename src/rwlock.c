@@ -40,5 +40,5 @@ rwlock_dispose(rwlock_t* rwlock) {
   bzero(rwlock, sizeof(rwlock_t));
 #endif
 
-  return 0;
+  return likely(rc == 0) ? 0 : -(errno = rc);
 }
