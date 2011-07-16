@@ -1,4 +1,4 @@
-AM_CFLAGS       = -pedantic -fPIC -DPIC -pipe
+AM_CFLAGS       = -Wall -Wextra -Werror -pedantic -fPIC -DPIC -pipe
 AM_CPPFLAGS     = -D_GNU_SOURCE -D_REENTRANT
 AM_LDFLAGS      = -rdynamic
 LDADD           = libcprime.la
