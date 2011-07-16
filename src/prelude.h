@@ -10,6 +10,16 @@ extern "C" {
 #include <errno.h>  /* for the system error constants, e.g. EINVAL */
 #include <stddef.h> /* for NULL, size_t, wchar_t, ptrdiff_t, and offsetof() */
 
+#ifdef __GNUC__
+#  ifdef __GNUC_PATCHLEVEL__
+#    define __GNUC_VERSION__ \
+            (__GNUC__ * 10000 + __GNUC_MINOR__ * 100 + __GNUC_PATCHLEVEL__)
+#  else
+#    define __GNUC_VERSION__ \
+            (__GNUC__ * 10000 + __GNUC_MINOR__ * 100)
+#  endif
+#endif
+
 /* for the `__func__` identifier in pre-C99 compilers */
 #if __STDC_VERSION__ < 199901L
 #  if __GNUC__ >= 2
