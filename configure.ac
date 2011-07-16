@@ -9,12 +9,11 @@ AC_CONFIG_MACRO_DIR([etc/aclocal])
 
 AM_INIT_AUTOMAKE([foreign -Wall -Werror dist-bzip2])
 AM_SILENT_RULES([yes])
-LT_INIT
 
 dnl Checks for programs:
+LT_INIT
 AC_PROG_CC
 AC_PROG_CC_C99
-AC_CANONICAL_HOST
 
 dnl Checks for libraries:
 # POSIX threads support:
@@ -36,12 +35,25 @@ AC_CHECK_HEADERS_ONCE([dirent.h errno.h iconv.h libgen.h mqueue.h poll.h
 # GNU header files:
 AC_CHECK_HEADERS_ONCE([execinfo.h])
 
+dnl Checks for types:
+
+dnl Checks for structures:
+
+dnl Checks for compiler characteristics:
+AC_CANONICAL_HOST
+
 dnl Checks for library functions:
 AC_FUNC_ALLOCA
+AC_FUNC_FORK
+AC_FUNC_FSEEKO
 AC_FUNC_MALLOC
-AC_FUNC_REALLOC
 AC_FUNC_MMAP
+AC_FUNC_REALLOC
 AC_FUNC_STRERROR_R
+
+dnl Checks for system services:
+AC_SYS_LARGEFILE
+AC_SYS_LONG_FILE_NAMES
 
 AC_CONFIG_FILES([Makefile src/Makefile doc/Makefile])
 AC_CONFIG_FILES([src/cprime.h])
