@@ -5,7 +5,12 @@ dnl
 dnl This is free and unencumbered software released into the public domain.
 AC_PREREQ([2.60])
 
-AC_INIT([C′], [0.0.0],
+m4_define([VERSION_MAJOR], 0)
+m4_define([VERSION_MINOR], 0)
+m4_define([VERSION_PATCH], 0)
+m4_define([VERSION_STRING], [VERSION_MAJOR.VERSION_MINOR.VERSION_PATCH])
+
+AC_INIT([C′], [VERSION_STRING],
   [libcprime@googlegroups.com], [cprime],
   [https://github.com/bendiken/libcprime])
 
@@ -58,11 +63,15 @@ AC_FUNC_MALLOC
 AC_FUNC_MMAP
 AC_FUNC_REALLOC
 AC_FUNC_STRERROR_R
+AC_CHECK_FUNCS([backtrace])
 
 dnl Checks for system services:
 AC_SYS_LARGEFILE
 AC_SYS_LONG_FILE_NAMES
 
 AC_CONFIG_FILES([Makefile src/Makefile doc/Makefile])
+AC_SUBST([PACKAGE_VERSION_MAJOR], ["VERSION_MAJOR"])
+AC_SUBST([PACKAGE_VERSION_MINOR], ["VERSION_MINOR"])
+AC_SUBST([PACKAGE_VERSION_PATCH], ["VERSION_PATCH"])
 AC_CONFIG_FILES([src/cprime.h])
 AC_OUTPUT

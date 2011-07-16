@@ -7,6 +7,11 @@
 extern "C" {
 #endif
 
+#define CPRIME_VERSION_STRING "@PACKAGE_VERSION@"
+#define CPRIME_VERSION_MAJOR  @PACKAGE_VERSION_MAJOR@
+#define CPRIME_VERSION_MINOR  @PACKAGE_VERSION_MINOR@
+#define CPRIME_VERSION_PATCH  @PACKAGE_VERSION_PATCH@
+
 #include <cprime/prelude.h>
 
 #include <cprime/bool.h>
