@@ -18,8 +18,9 @@ AC_PROG_CC_C99
 dnl Checks for libraries:
 # POSIX threads support:
 AC_CHECK_HEADERS([pthread.h],
-  AC_SEARCH_LIBS([pthread_create], [pthread]),
-  AC_MSG_ERROR([*** Header file pthread.h not found ***]))
+  AC_SEARCH_LIBS([pthread_create], [pthread], [],
+    AC_MSG_ERROR([*** POSIX thread support library libpthread not found ***])),
+  AC_MSG_ERROR([*** POSIX thread support header file pthread.h not found ***]))
 
 dnl Checks for header files:
 # C89 header files:
