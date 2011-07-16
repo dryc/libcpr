@@ -31,7 +31,7 @@ typedef struct dir_t {
   CONCAT(dir_init, ARITY(__VA_ARGS__))(__VA_ARGS__)
 
 extern int dir_init_empty(dir_t* dir);
-extern int dir_init_with_path(dir_t* dir, const char* const path);
+extern int dir_init_with_path(dir_t* dir, const char* const restrict path);
 
 extern int dir_open(dir_t* dir);
 extern int dir_close(dir_t* dir);

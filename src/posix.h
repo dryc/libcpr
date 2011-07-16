@@ -20,9 +20,9 @@ extern int posix_poll(struct pollfd fds[], const nfds_t nfds, const int timeout)
 
 #ifdef HAVE_PTHREAD_H
 #include <pthread.h> /* for pthread_t, pthread_attr_t */
-extern int posix_pthread_create(pthread_t* thread,
-                                const pthread_attr_t* attr,
-                                void* (*start_routine)(void*), void* arg);
+extern int posix_pthread_create(pthread_t* restrict thread,
+                                const pthread_attr_t* restrict attr,
+                                void* (*start_routine)(void*), void* restrict arg);
 #endif /* HAVE_PTHREAD_H */
 
 #ifdef HAVE_MQUEUE_H

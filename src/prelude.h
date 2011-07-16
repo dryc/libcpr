@@ -10,11 +10,7 @@ extern "C" {
 #include <errno.h>  /* for the system error constants, e.g. EINVAL */
 #include <stddef.h> /* for NULL, size_t, wchar_t, ptrdiff_t, and offsetof() */
 
-/* for checking return values */
-#define failed(expr)    (expr < 0)
-#define succeeded(expr) (expr >= 0)
-
-/* for pre-C99 support for the __func__ macro */
+/* for the `__func__` identifier in pre-C99 compilers */
 #if __STDC_VERSION__ < 199901L
 #  if __GNUC__ >= 2
 #    define __func__ __FUNCTION__
@@ -22,6 +18,19 @@ extern "C" {
 #    define __func__ "<unknown>"
 #  endif
 #endif
+
+/* for the `restrict` keyword in pre-C99 compilers */
+#if __STDC_VERSION__ < 199901L
+#  ifdef __GNUC__ >= 4 // FIXME
+#    define restrict __restrict__
+#  else
+#    define restrict
+#  endif
+#endif
+
+/* for checking return values */
+#define failed(expr)    (expr < 0)
+#define succeeded(expr) (expr >= 0)
 
 /* for branch prediction hints */
 #ifdef __GNUC__

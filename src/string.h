@@ -71,9 +71,9 @@ extern int string_has_suffix(const string_t* const string, const byte_t* const s
 
 extern int string_clear(string_t* string);
 
-extern int string_append_string(string_t* string, const string_t* const suffix);
+extern int string_append_string(string_t* string, const string_t* const restrict suffix);
 extern int string_append_char(string_t* string, const char_t suffix);
-extern int string_append_bytes(string_t* string, const byte_t* const suffix, const int count);
+extern int string_append_bytes(string_t* string, const byte_t* const restrict suffix, const int count);
 
 #ifdef __cplusplus
 }
