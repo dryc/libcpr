@@ -26,6 +26,7 @@ extern "C" {
 #include <cprime/posix.h>
 #include <cprime/process.h>
 #include <cprime/queue.h>
+#include <cprime/rwlock.h>
 #include <cprime/string.h>
 #include <cprime/symbol.h>
 #include <cprime/thread.h>

@@ -21,6 +21,7 @@ libcprime_la_SOURCES = cprime.c \
   posix.c \
   process.c \
   queue.c \
+  rwlock.c \
   string.c \
   symbol.c \
   thread.c \
@@ -50,6 +51,7 @@ pkginclude_HEADERS = \
   prelude.h \
   process.h \
   queue.h \
+  rwlock.h \
   string.h \
   symbol.h \
   thread.h \

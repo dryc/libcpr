@@ -31,7 +31,9 @@ int
 mutex_init(mutex_t* mutex) {
   validate_with_errno_return(mutex != NULL);
 
+#ifndef NDEBUG
   bzero(mutex, sizeof(mutex_t));
+#endif
 
   const int rc = pthread_mutex_init(&mutex->id, NULL);
 
