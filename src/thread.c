@@ -23,13 +23,18 @@ thread_init(thread_t* thread) {
 
 int
 thread_init_self(thread_t* thread) {
-  const int result = thread_init(thread);
+  validate_with_errno_return(thread != NULL);
 
-  if (likely(result == 0)) {
-    thread->id = pthread_self();
-  }
+  bzero(thread, sizeof(thread_t));
 
-  return result;
+  thread->id = pthread_self();
+#ifdef __linux__
+  const int rc = pthread_getattr_np(thread->id, &thread->attr);
+#else
+  const int rc = 0;
+#endif
+
+  return likely(rc == 0) ? 0 : -(errno = rc);
 }
 
 bool
