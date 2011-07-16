@@ -3,10 +3,13 @@
 #include "build.h"
 
 const mutex_interface_t mutex = {
-  .alloc  = mutex_alloc,
-  .init   = mutex_init,
-  .lock   = mutex_lock,
-  .unlock = mutex_unlock,
+  .alloc        = mutex_alloc,
+  .free         = mutex_free,
+  .init         = mutex_init,
+  .dispose      = mutex_dispose,
+  .lock         = mutex_lock,
+  .lock_or_fail = mutex_lock_or_fail,
+  .unlock       = mutex_unlock,
 };
 
 mutex_t*
@@ -53,6 +56,15 @@ mutex_lock(mutex_t* mutex) {
   validate_with_errno_return(mutex != NULL);
 
   const int rc = pthread_mutex_lock(&mutex->id);
+
+  return likely(rc == 0) ? 0 : -(errno = rc);
+}
+
+int
+mutex_lock_or_fail(mutex_t* mutex) {
+  validate_with_errno_return(mutex != NULL);
+
+  const int rc = pthread_mutex_trylock(&mutex->id);
 
   return likely(rc == 0) ? 0 : -(errno = rc);
 }

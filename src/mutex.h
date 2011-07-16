@@ -15,8 +15,11 @@ typedef struct mutex_t {
 
 typedef struct mutex_interface_t {
   mutex_t* (*alloc)();
+  void (*free)();
   int (*init)(mutex_t* mutex);
+  int (*dispose)(mutex_t* mutex);
   int (*lock)(mutex_t* mutex);
+  int (*lock_or_fail)(mutex_t* mutex);
   int (*unlock)(mutex_t* mutex);
 } mutex_interface_t;
 
@@ -40,6 +43,7 @@ extern int mutex_init(mutex_t* mutex);
 extern int mutex_dispose(mutex_t* mutex);
 
 extern int mutex_lock(mutex_t* mutex);
+extern int mutex_lock_or_fail(mutex_t* mutex);
 extern int mutex_unlock(mutex_t* mutex);
 
 #ifdef __cplusplus
