@@ -9,6 +9,10 @@ extern "C" {
 
 #include <unistd.h> /* for pid_t */
 
+#ifdef __linux__
+#include <sched.h>  /* for cpu_set_t */
+#endif
+
 typedef struct process_t {
   pid_t id;
   int status;
@@ -22,6 +26,12 @@ extern int process_init_self(process_t* process);
 extern bool process_is_self(process_t* process);
 
 extern int process_set_priority(process_t* process, const int priority);
+
+#ifdef __linux__
+extern int process_set_affinity(process_t* process, const cpu_set_t* restrict mask);
+#else
+extern int process_set_affinity(process_t* process, const void* restrict mask);
+#endif
 
 extern int process_kill(process_t* process, const int signal);
 extern int process_wait(process_t* process);

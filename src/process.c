@@ -5,6 +5,10 @@
 #include <sys/resource.h> /* for setpriority() */
 #include <sys/wait.h>     /* for waitpid() */
 
+#ifdef __linux__
+#include <sched.h>        /* for sched_setaffinity() */
+#endif
+
 process_t*
 process_alloc() {
   process_t* process = malloc(sizeof(process_t));
@@ -50,10 +54,28 @@ process_set_priority(process_t* process, const int priority) {
 }
 
 int
-process_kill(process_t* process, const int signal) {
-  validate_with_errno_return(process != NULL);
+#ifdef __linux__
+process_set_affinity(process_t* process, const cpu_set_t* restrict mask) {
+  validate_with_errno_return(mask != NULL);
 
-  const int rc = kill(process->id, signal);
+  const int pid = likely(process != NULL) ? process->id : 0;
+  const int rc = sched_setaffinity(pid, sizeof(cpu_set_t), (cpu_set_t*)mask);
+
+  return likely(rc == 0) ? 0 : -errno;
+#else
+process_set_affinity(process_t* process, const void* restrict mask) {
+  validate_with_errno_return(mask != NULL);
+
+  return -(errno = ENOTSUP); // operation not supported
+#endif /* __linux__ */
+}
+
+int
+process_kill(process_t* process, const int signal) {
+  validate_with_errno_return(signal >= 0);
+
+  const int pid = likely(process != NULL) ? process->id : getpid();
+  const int rc = kill(pid, signal);
 
   return likely(rc == 0) ? 0 : -errno;
 }
