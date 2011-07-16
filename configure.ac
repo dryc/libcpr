@@ -54,6 +54,9 @@ dnl Checks for structures:
 
 dnl Checks for compiler characteristics:
 AC_CANONICAL_HOST
+AC_C_BIGENDIAN
+AC_C_INLINE
+AC_C_RESTRICT
 
 dnl Checks for library functions:
 AC_FUNC_ALLOCA
