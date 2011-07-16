@@ -148,7 +148,7 @@ string_length(const string_t* const string) {
   if (unlikely(string->data == NULL))
     return 0; // the string is empty
 
-#if 0
+#ifndef ENABLE_UNICODE
   return string_size(string); // ASCII only
 #else
   size_t length = 0;
@@ -158,7 +158,7 @@ string_length(const string_t* const string) {
     data = UTF8_SKIP_CHAR(data);
   }
   return length;
-#endif
+#endif /* ENABLE_UNICODE */
 }
 
 int
@@ -360,7 +360,14 @@ int
 string_append_char(string_t* string, const char_t suffix) {
   validate_with_errno_return(string != NULL && suffix > 0);
 
-  const byte_t bytes[2] = {suffix, '\0'}; // FIXME: UTF-8 support
+#ifndef ENABLE_UNICODE
+  validate_with_errno_return(suffix < 0x80);
+  const byte_t bytes[2] = {suffix, '\0'}; // ASCII only
+#else
+  validate_with_errno_return(suffix < 0x10FFFF);
+  const byte_t bytes[2] = {suffix, '\0'}; // TODO: UTF-8 support
+#endif /* ENABLE_UNICODE */
+
   return string_append_bytes(string, bytes, sizeof(bytes) - 1);
 }
 

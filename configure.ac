@@ -27,12 +27,26 @@ LT_INIT
 AC_PROG_CC
 AC_PROG_CC_C99
 
+dnl Checks for configuration options:
+AC_ARG_ENABLE([threads],
+  [AS_HELP_STRING([--disable-threads], [omit support for threads])])
+AS_IF([test "x$enable_threads" != "xno"], [
+  AC_DEFINE([ENABLE_THREADS], 1, [Define to enable POSIX threads support.])
+])
+AC_ARG_ENABLE([unicode],
+  [AS_HELP_STRING([--disable-unicode], [omit support for Unicode strings])])
+AS_IF([test "x$enable_unicode" != "xno"], [
+  AC_DEFINE([ENABLE_UNICODE], 1, [Define to enable Unicode string support.])
+])
+
 dnl Checks for libraries:
+AS_IF([test "x$enable_threads" != "xno"], [
 # POSIX threads support:
-AC_CHECK_HEADERS([pthread.h],
-  AC_SEARCH_LIBS([pthread_create], [pthread], [],
-    AC_MSG_ERROR([*** POSIX thread support library libpthread not found ***])),
-  AC_MSG_ERROR([*** POSIX thread support header file pthread.h not found ***]))
+  AC_CHECK_HEADERS([pthread.h],
+    AC_SEARCH_LIBS([pthread_create], [pthread], [],
+      AC_MSG_ERROR([*** POSIX thread support library libpthread not found ***])),
+    AC_MSG_ERROR([*** POSIX thread support header file pthread.h not found ***]))
+])
 
 dnl Checks for header files:
 # C89 header files:

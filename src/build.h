@@ -28,23 +28,29 @@ extern "C" {
 #include "file.h"
 #include "integer.h"
 #include "map.h"
-#include "mutex.h"
 #include "posix.h"
 #include "process.h"
 #include "queue.h"
-#include "rwlock.h"
 #include "string.h"
 #include "symbol.h"
-#include "thread.h"
 #include "uri.h"
 #include "uuid.h"
 #include "vector.h"
 
+/* public headers included from <cprime.h> (thread support) */
+#ifdef ENABLE_THREADS
+#include "mutex.h"
+#include "rwlock.h"
+#include "thread.h"
+#endif
+
 /* optional headers not included by <cprime.h> */
 #include "memory.h"
+#ifdef ENABLE_UNICODE
 #include "utf8.h"
+#endif
 
-/* standardy library headers */
+/* standard library headers */
 #include <stdlib.h> /* for calloc(), free(), malloc() */
 
 #ifdef __cplusplus
