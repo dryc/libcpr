@@ -13,7 +13,10 @@ typedef struct thread_t {
   pthread_t id;
   pthread_attr_t attr;
   void* value;
+  void* user_data;
 } thread_t;
+
+typedef void* (*thread_execute_t)(thread_t* thread);
 
 extern thread_t* thread_alloc();
 
@@ -22,6 +25,7 @@ extern int thread_init_self(thread_t* thread);
 
 extern bool thread_is_self(thread_t* thread);
 
+extern int thread_start(thread_t* thread, const thread_execute_t function);
 extern int thread_detach(thread_t* thread);
 extern int thread_join(thread_t* thread);
 extern int thread_cancel(thread_t* thread);

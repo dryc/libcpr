@@ -42,6 +42,16 @@ thread_is_self(thread_t* thread) {
 }
 
 int
+thread_start(thread_t* thread, const thread_execute_t function) {
+  validate_with_false_return(thread != NULL && function != NULL);
+
+  const int rc = pthread_create(&thread->id, &thread->attr,
+    (void*(*)(void*))function, thread);
+
+  return likely(rc == 0) ? 0 : -(errno = rc);
+}
+
+int
 thread_detach(thread_t* thread) {
   const pthread_t thread_id =
     likely(thread != NULL) ? thread->id : pthread_self();
