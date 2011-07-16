@@ -42,6 +42,16 @@ thread_is_self(thread_t* thread) {
 }
 
 int
+thread_detach(thread_t* thread) {
+  const pthread_t thread_id =
+    likely(thread != NULL) ? thread->id : pthread_self();
+
+  const int rc = pthread_detach(thread_id);
+
+  return likely(rc == 0) ? 0 : -(errno = rc);
+}
+
+int
 thread_join(thread_t* thread) {
   validate_with_errno_return(thread != NULL);
 

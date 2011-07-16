@@ -22,6 +22,7 @@ extern int thread_init_self(thread_t* thread);
 
 extern bool thread_is_self(thread_t* thread);
 
+extern int thread_detach(thread_t* thread);
 extern int thread_join(thread_t* thread);
 extern int thread_cancel(thread_t* thread);
 extern int thread_kill(thread_t* thread, const int signal);
