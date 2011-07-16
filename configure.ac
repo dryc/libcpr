@@ -1,6 +1,13 @@
-AC_INIT([C′], [0.0.0], [libcprime@googlegroups.com], [cprime],
-  [https://github.com/bendiken/libcprime])
+dnl configure.ac                                        -*- Autoconf -*-
+dnl
+dnl Process this file with autoconf to produce a configure script.
+dnl
+dnl This is free and unencumbered software released into the public domain.
 AC_PREREQ([2.60])
+
+AC_INIT([C′], [0.0.0],
+  [libcprime@googlegroups.com], [cprime],
+  [https://github.com/bendiken/libcprime])
 
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_SRCDIR([src/cprime.h.in])
