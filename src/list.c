@@ -33,7 +33,7 @@ list_clear(list_t* list) {
 
     while (likely(pair != NULL)) {
       pair_t* tail = pair->tail;
-      free(pair);
+      pair_free(pair);
       pair = tail;
     }
   }

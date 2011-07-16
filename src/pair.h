@@ -13,6 +13,7 @@ typedef struct pair_t {
 } pair_t;
 
 extern pair_t* pair_alloc();
+extern void pair_free(pair_t* pair);
 
 #define pair_construct0()               pair_alloc()
 #define pair_construct1(head)           pair_construct_with(head, NULL)
@@ -36,6 +37,8 @@ extern pair_t* pair_construct_with(const void* const head, const pair_t* const t
 
 extern int pair_init_empty(pair_t* pair);
 extern int pair_init_with(pair_t* pair, const void* const head, const pair_t* const tail);
+
+extern int pair_dispose(pair_t* pair);
 
 #ifdef __cplusplus
 }
