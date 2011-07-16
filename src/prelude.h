@@ -14,6 +14,15 @@ extern "C" {
 #define failed(expr)    (expr < 0)
 #define succeeded(expr) (expr >= 0)
 
+/* for pre-C99 support for the __func__ macro */
+#if __STDC_VERSION__ < 199901L
+#  if __GNUC__ >= 2
+#    define __func__ __FUNCTION__
+#  else
+#    define __func__ "<unknown>"
+#  endif
+#endif
+
 /* for branch prediction hints */
 #ifdef __GNUC__
 #  define likely(x)   __builtin_expect(!!(x), 1) // `x` is likely to evaluate to TRUE
