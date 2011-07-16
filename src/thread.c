@@ -1,6 +1,7 @@
 /* This is free and unencumbered software released into the public domain. */
 
 #include "build.h"
+#include <signal.h> /* for pthread_kill() */
 
 thread_t*
 thread_alloc() {
@@ -35,7 +36,9 @@ bool
 thread_is_self(thread_t* thread) {
   validate_with_false_return(thread != NULL);
 
-  return unlikely(pthread_equal(thread->id, pthread_self()) != 0) ? TRUE : FALSE;
+  const int rc = pthread_equal(thread->id, pthread_self());
+
+  return unlikely(rc != 0) ? TRUE : FALSE;
 }
 
 int
@@ -43,6 +46,24 @@ thread_join(thread_t* thread) {
   validate_with_errno_return(thread != NULL);
 
   const int rc = pthread_join(thread->id, &thread->value);
+
+  return likely(rc == 0) ? 0 : -(errno = rc);
+}
+
+int
+thread_cancel(thread_t* thread) {
+  validate_with_errno_return(thread != NULL);
+
+  const int rc = pthread_cancel(thread->id);
+
+  return likely(rc == 0) ? 0 : -(errno = rc);
+}
+
+int
+thread_kill(thread_t* thread, const int signal) {
+  validate_with_errno_return(thread != NULL);
+
+  const int rc = pthread_kill(thread->id, signal);
 
   return likely(rc == 0) ? 0 : -(errno = rc);
 }
