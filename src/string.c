@@ -353,7 +353,7 @@ string_append_string(string_t* string, const string_t* const restrict suffix) {
   validate_with_errno_return(string != NULL && suffix != NULL);
 
   return string_append_bytes(string, suffix->data,
-    unlikely(suffix->size == STRING_SIZE_UNKNOWN) ? -1 : suffix->size);
+    unlikely(suffix->size == STRING_SIZE_UNKNOWN) ? -1 : (int)suffix->size);
 }
 
 int
@@ -376,7 +376,7 @@ string_append_bytes(string_t* string, const byte_t* const restrict suffix, const
   validate_with_errno_return(string != NULL && suffix != NULL && suffix_size >= -1);
 
   const size_t string_sz = string_size(string);
-  const size_t suffix_sz = (suffix_size == -1) ? strlen((char*)suffix) : suffix_size;
+  const size_t suffix_sz = (suffix_size == -1) ? strlen((char*)suffix) : (size_t)suffix_size;
 
   string->data = realloc(string->data, string_sz + suffix_sz + 1);
 
