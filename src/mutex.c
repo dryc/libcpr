@@ -16,6 +16,14 @@ mutex_alloc() {
   return mutex;
 }
 
+void
+mutex_free(mutex_t* mutex) {
+  if (likely(mutex != NULL)) {
+    mutex_dispose(mutex);
+    free(mutex);
+  }
+}
+
 int
 mutex_init(mutex_t* mutex) {
   validate_with_errno_return(mutex != NULL);
@@ -25,6 +33,19 @@ mutex_init(mutex_t* mutex) {
   const int rc = pthread_mutex_init(&mutex->id, NULL);
 
   return likely(rc == 0) ? 0 : -(errno = rc);
+}
+
+int
+mutex_dispose(mutex_t* mutex) {
+  validate_with_errno_return(mutex != NULL);
+
+  const int rc = pthread_mutex_destroy(&mutex->id);
+
+#ifndef NDEBUG
+  bzero(mutex, sizeof(mutex_t));
+#endif
+
+  return 0;
 }
 
 int
