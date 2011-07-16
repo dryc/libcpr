@@ -10,6 +10,14 @@ thread_alloc() {
   return thread;
 }
 
+void
+thread_free(thread_t* thread) {
+  if (likely(thread != NULL)) {
+    thread_dispose(thread);
+    free(thread);
+  }
+}
+
 int
 thread_init(thread_t* thread) {
   validate_with_errno_return(thread != NULL);
@@ -40,6 +48,19 @@ thread_init_with(thread_t* thread, const pthread_t id) {
 int
 thread_init_self(thread_t* thread) {
   return thread_init_with(thread, pthread_self());
+}
+
+int
+thread_dispose(thread_t* thread) {
+  validate_with_errno_return(thread != NULL);
+
+  const int rc = pthread_attr_destroy(&thread->attr);
+
+#ifndef NDEBUG
+  bzero(thread, sizeof(thread_t));
+#endif
+
+  return likely(rc == 0) ? 0 : -(errno = rc);
 }
 
 bool

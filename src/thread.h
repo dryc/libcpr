@@ -23,10 +23,13 @@ typedef struct thread_t {
 typedef void* (*thread_execute_t)(thread_t* thread);
 
 extern thread_t* thread_alloc();
+extern void thread_free(thread_t* thread);
 
 extern int thread_init(thread_t* thread);
 extern int thread_init_with(thread_t* thread, const pthread_t id);
 extern int thread_init_self(thread_t* thread);
+
+extern int thread_dispose(thread_t* thread);
 
 extern bool thread_is_self(thread_t* thread);
 
