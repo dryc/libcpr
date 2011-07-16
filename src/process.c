@@ -17,3 +17,21 @@ process_init(process_t* process) {
 
   return 0;
 }
+
+int
+process_init_self(process_t* process) {
+  const int result = process_init(process);
+
+  if (likely(result == 0)) {
+    process->id = getpid();
+  }
+
+  return result;
+}
+
+bool
+process_is_self(process_t* process) {
+  validate_with_false_return(process != NULL);
+
+  return unlikely(process->id == getpid()) ? TRUE : FALSE;
+}
