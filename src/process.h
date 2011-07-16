@@ -11,6 +11,7 @@ extern "C" {
 
 typedef struct process_t {
   pid_t id;
+  int status;
 } process_t;
 
 extern process_t* process_alloc();
@@ -19,6 +20,9 @@ extern int process_init(process_t* process);
 extern int process_init_self(process_t* process);
 
 extern bool process_is_self(process_t* process);
+
+extern int process_kill(process_t* process, const int signal);
+extern int process_wait(process_t* process);
 
 #ifdef __cplusplus
 }
