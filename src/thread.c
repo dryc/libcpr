@@ -22,12 +22,12 @@ thread_init(thread_t* thread) {
 }
 
 int
-thread_init_self(thread_t* thread) {
+thread_init_with(thread_t* thread, const pthread_t id) {
   validate_with_errno_return(thread != NULL);
 
   bzero(thread, sizeof(thread_t));
 
-  thread->id = pthread_self();
+  thread->id = id;
 #ifdef __linux__
   const int rc = pthread_getattr_np(thread->id, &thread->attr);
 #else
@@ -35,6 +35,11 @@ thread_init_self(thread_t* thread) {
 #endif
 
   return likely(rc == 0) ? 0 : -(errno = rc);
+}
+
+int
+thread_init_self(thread_t* thread) {
+  return thread_init_with(thread, pthread_self());
 }
 
 bool
