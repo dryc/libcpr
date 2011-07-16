@@ -26,14 +26,19 @@ process_init(process_t* process) {
 }
 
 int
-process_init_self(process_t* process) {
+process_init_with(process_t* process, const pid_t id) {
   const int result = process_init(process);
 
   if (likely(result == 0)) {
-    process->id = getpid();
+    process->id = id;
   }
 
   return result;
+}
+
+int
+process_init_self(process_t* process) {
+  return process_init_with(process, getpid());
 }
 
 bool
