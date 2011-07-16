@@ -10,6 +10,19 @@ extern "C" {
 #include <errno.h>  /* for the system error constants, e.g. EINVAL */
 #include <stddef.h> /* for NULL, size_t, wchar_t, ptrdiff_t, and offsetof() */
 
+#ifdef __STDC__
+#  define __STDC_1989__ 1               /* ANSI X3.159-1989    */
+#  ifdef __STDC_VERSION__
+#    define __STDC_1990__ 1             /* ISO/IEC 9899:1990   */
+#    if __STDC_VERSION__ >= 199409L
+#      define __STDC_1994__ 1           /* ISO/IEC 9899-1:1994 */
+#    endif
+#    if __STDC_VERSION__ >= 199901L
+#      define __STDC_1999__ 1           /* ISO/IEC 9899:1999   */
+#    endif
+#  endif
+#endif
+
 #ifdef __GNUC__
 #  ifdef __GNUC_PATCHLEVEL__
 #    define __GNUC_VERSION__ \
@@ -21,7 +34,7 @@ extern "C" {
 #endif
 
 /* for the `__func__` identifier in pre-C99 compilers */
-#if __STDC_VERSION__ < 199901L
+#ifndef __STDC_1999__
 #  if __GNUC__ >= 2
 #    define __func__ __FUNCTION__
 #  else
@@ -30,7 +43,7 @@ extern "C" {
 #endif
 
 /* for the `restrict` keyword in pre-C99 compilers */
-#if __STDC_VERSION__ < 199901L
+#ifndef __STDC_1999__
 #  ifdef __GNUC__ >= 4 // FIXME
 #    define restrict __restrict__
 #  else
