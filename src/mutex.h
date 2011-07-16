@@ -25,7 +25,15 @@ extern const mutex_interface_t mutex;
 extern mutex_t* mutex_alloc();
 extern void mutex_free(mutex_t* mutex);
 
-#define MUTEX_INIT {.id = PTHREAD_MUTEX_INITIALIZER}
+#define MUTEX_INIT            {.id = PTHREAD_MUTEX_INITIALIZER}
+
+#ifdef PTHREAD_RECURSIVE_MUTEX_INITIALIZER_NP /* Linux only */
+#define MUTEX_INIT_RECURSIVE  {.id = PTHREAD_RECURSIVE_MUTEX_INITIALIZER_NP}
+#endif
+
+#ifdef PTHREAD_ERRORCHECK_MUTEX_INITIALIZER_NP /* Linux only */
+#define MUTEX_INIT_ERRORCHECK {.id = PTHREAD_ERRORCHECK_MUTEX_INITIALIZER_NP}
+#endif
 
 extern int mutex_init(mutex_t* mutex);
 
