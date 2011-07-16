@@ -9,6 +9,14 @@ string_alloc() {
   return string;
 }
 
+void
+string_free(string_t* string) {
+  if (likely(string != NULL)) {
+    string_dispose(string);
+    free(string);
+  }
+}
+
 string_t*
 string_construct_with(const byte_t* const data, const size_t size) {
   string_t* string = malloc(sizeof(string_t));
@@ -105,6 +113,19 @@ string_init_with_size(string_t* string, const size_t size) {
   }
 
   return result;
+}
+
+int
+string_dispose(string_t* string) {
+  validate_with_errno_return(string != NULL);
+
+  if (likely(string->data != NULL)) {
+    free(string->data);
+    string->data = NULL;
+  }
+  string->size = 0;
+
+  return 0;
 }
 
 size_t

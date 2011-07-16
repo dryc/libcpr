@@ -20,6 +20,7 @@ typedef struct string_t {
 } string_t;
 
 extern string_t* string_alloc();
+extern void string_free(string_t* string);
 
 extern string_t* string_construct_with(const byte_t* const data, const size_t size);
 extern string_t* string_construct_with_size(const size_t size);
@@ -42,6 +43,8 @@ extern int string_init_empty(string_t* string);
 extern int string_init_with(string_t* string, const byte_t* const data, const size_t size);
 extern int string_init_with_data(string_t* string, const byte_t* const data);
 extern int string_init_with_size(string_t* string, const size_t size);
+
+extern int string_dispose(string_t* string);
 
 extern size_t string_size(const string_t* const string);
 extern size_t string_length(const string_t* const string);
