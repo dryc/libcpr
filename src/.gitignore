@@ -4,3 +4,4 @@
 *.o
 *.la
 *.lo
+cprime.h

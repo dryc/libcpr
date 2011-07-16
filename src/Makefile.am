@@ -1,10 +1,10 @@
-AM_CFLAGS       = -std=gnu99 -pedantic -fPIC -DPIC -pipe
-AM_CPPFLAGS     = -D_GNU_SOURCE -D_REENTRANT -DMT
+AM_CFLAGS       = -pedantic -fPIC -DPIC -pipe
+AM_CPPFLAGS     = -D_GNU_SOURCE -D_REENTRANT
 AM_LDFLAGS      = -rdynamic
 LDADD           = libcprime.la
 lib_LTLIBRARIES = libcprime.la
 
-libcprime_la_LIBADD  = -lrt -lpthread
+libcprime_la_LIBADD  = -lrt
 libcprime_la_SOURCES = cprime.c \
   atomic.c \
   bool.c \
