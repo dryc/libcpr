@@ -30,6 +30,7 @@ extern "C" {
 #include "map.h"
 #include "mutex.h"
 #include "posix.h"
+#include "process.h"
 #include "queue.h"
 #include "string.h"
 #include "symbol.h"

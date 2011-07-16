@@ -24,6 +24,7 @@ extern "C" {
 #include <cprime/map.h>
 #include <cprime/mutex.h>
 #include <cprime/posix.h>
+#include <cprime/process.h>
 #include <cprime/queue.h>
 #include <cprime/string.h>
 #include <cprime/symbol.h>
