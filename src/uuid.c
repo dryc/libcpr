@@ -11,10 +11,31 @@ uuid_alloc() {
   return uuid;
 }
 
+void
+uuid_free(uuid_t* uuid) {
+  if (likely(uuid != NULL)) {
+    uuid_dispose(uuid);
+    free(uuid);
+  }
+}
+
 int
 uuid_init(uuid_t* uuid) {
   validate_with_errno_return(uuid != NULL);
+
   bzero(uuid, sizeof(uuid_t));
+
+  return 0;
+}
+
+int
+uuid_dispose(uuid_t* uuid) {
+  validate_with_errno_return(uuid != NULL);
+
+#ifndef NDEBUG
+  bzero(uuid, sizeof(uuid_t));
+#endif
+
   return 0;
 }
 
