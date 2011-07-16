@@ -21,6 +21,8 @@ extern int process_init_self(process_t* process);
 
 extern bool process_is_self(process_t* process);
 
+extern int process_set_priority(process_t* process, const int priority);
+
 extern int process_kill(process_t* process, const int signal);
 extern int process_wait(process_t* process);
 

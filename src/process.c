@@ -1,8 +1,9 @@
 /* This is free and unencumbered software released into the public domain. */
 
 #include "build.h"
-#include <signal.h>   /* for kill() */
-#include <sys/wait.h> /* for waitpid() */
+#include <signal.h>       /* for kill() */
+#include <sys/resource.h> /* for setpriority() */
+#include <sys/wait.h>     /* for waitpid() */
 
 process_t*
 process_alloc() {
@@ -36,6 +37,16 @@ process_is_self(process_t* process) {
   validate_with_false_return(process != NULL);
 
   return unlikely(process->id == getpid()) ? TRUE : FALSE;
+}
+
+int
+process_set_priority(process_t* process, const int priority) {
+  validate_with_errno_return(priority >= -20 && priority <= 20);
+
+  const int pid = likely(process != NULL) ? process->id : getpid();
+  const int rc = setpriority(PRIO_PROCESS, pid, priority);
+
+  return likely(rc == 0) ? 0 : -errno;
 }
 
 int
