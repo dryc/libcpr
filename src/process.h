@@ -19,10 +19,13 @@ typedef struct process_t {
 } process_t;
 
 extern process_t* process_alloc();
+extern void process_free(process_t* process);
 
 extern int process_init(process_t* process);
 extern int process_init_with(process_t* process, const pid_t id);
 extern int process_init_self(process_t* process);
+
+extern int process_dispose(process_t* process);
 
 extern bool process_is_self(process_t* process);
 

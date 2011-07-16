@@ -16,6 +16,14 @@ process_alloc() {
   return process;
 }
 
+void
+process_free(process_t* process) {
+  if (likely(process != NULL)) {
+    process_dispose(process);
+    free(process);
+  }
+}
+
 int
 process_init(process_t* process) {
   validate_with_errno_return(process != NULL);
@@ -39,6 +47,17 @@ process_init_with(process_t* process, const pid_t id) {
 int
 process_init_self(process_t* process) {
   return process_init_with(process, getpid());
+}
+
+int
+process_dispose(process_t* process) {
+  validate_with_errno_return(process != NULL);
+
+#ifndef NDEBUG
+  bzero(process, sizeof(process_t));
+#endif
+
+  return 0;
 }
 
 bool
