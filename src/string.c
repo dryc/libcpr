@@ -230,7 +230,14 @@ int
 string_is_ascii(const string_t* const string) {
   validate_with_errno_return(string != NULL);
 
-  return FALSE; // TODO
+  const byte_t* data = string->data;
+  byte_t c;
+  while (likely((c = *data) != '\0')) {
+    if (unlikely(!char_is_ascii(c)))
+      return FALSE;
+    data++;
+  }
+  return TRUE;
 }
 
 int
