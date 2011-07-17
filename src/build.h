@@ -38,7 +38,7 @@ extern "C" {
 #include "vector.h"
 
 /* public headers included from <cprime.h> (thread support) */
-#ifdef ENABLE_THREADS
+#ifndef DISABLE_THREADS
 #include "mutex.h"
 #include "rwlock.h"
 #include "thread.h"
@@ -46,7 +46,7 @@ extern "C" {
 
 /* optional headers not included by <cprime.h> */
 #include "memory.h"
-#ifdef ENABLE_UNICODE
+#ifndef DISABLE_UNICODE
 #include "utf8.h"
 #endif
 
