@@ -17,6 +17,7 @@ libcprime_la_SOURCES = cprime.c \
   list.c \
   map.c \
   mutex.c \
+  once.c \
   pair.c \
   posix.c \
   process.c \
@@ -46,6 +47,7 @@ pkginclude_HEADERS = \
   map.h \
   memory.h \
   mutex.h \
+  once.h \
   pair.h \
   posix.h \
   prelude.h \

@@ -40,6 +40,7 @@ extern "C" {
 /* public headers included from <cprime.h> (thread support) */
 #ifndef DISABLE_THREADS
 #include "mutex.h"
+#include "once.h"
 #include "rwlock.h"
 #include "thread.h"
 #endif

@@ -44,7 +44,7 @@ extern "C" {
 
 /* for the `restrict` keyword in pre-C99 compilers */
 #ifndef __STDC_1999__
-#  ifdef __GNUC__ >= 4 // FIXME
+#  if __GNUC_VERSION__ >= 30100 /* GCC 3.1+ */
 #    define restrict __restrict__
 #  else
 #    define restrict

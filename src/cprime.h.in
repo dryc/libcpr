@@ -28,6 +28,7 @@ extern "C" {
 #include <cprime/integer.h>
 #include <cprime/map.h>
 #include <cprime/mutex.h>
+#include <cprime/once.h>
 #include <cprime/posix.h>
 #include <cprime/process.h>
 #include <cprime/queue.h>
