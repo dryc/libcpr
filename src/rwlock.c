@@ -42,3 +42,30 @@ rwlock_dispose(rwlock_t* rwlock) {
 
   return likely(rc == 0) ? 0 : -(errno = rc);
 }
+
+int
+rwlock_rdlock(rwlock_t* rwlock) {
+  validate_with_errno_return(rwlock != NULL);
+
+  const int rc = pthread_rwlock_rdlock(&rwlock->id);
+
+  return likely(rc == 0) ? 0 : -(errno = rc);
+}
+
+int
+rwlock_tryrdlock(rwlock_t* rwlock) {
+  validate_with_errno_return(rwlock != NULL);
+
+  const int rc = pthread_rwlock_tryrdlock(&rwlock->id);
+
+  return likely(rc == 0) ? 0 : -(errno = rc);
+}
+
+int
+rwlock_unlock(rwlock_t* rwlock) {
+  validate_with_errno_return(rwlock != NULL);
+
+  const int rc = pthread_rwlock_unlock(&rwlock->id);
+
+  return likely(rc == 0) ? 0 : -(errno = rc);
+}
