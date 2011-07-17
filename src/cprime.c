@@ -4,6 +4,22 @@
 
 const char* const cprime_version_string = PACKAGE_VERSION;
 
+const char* const cprime_feature_names[] = {
+  "base",
+#ifndef NDEBUG
+  "debug",
+#endif
+#ifndef DISABLE_THREADS
+  "threads",
+#endif
+#ifndef DISABLE_UNICODE
+  "unicode",
+#endif
+};
+
+const unsigned int cprime_feature_count =
+  sizeof(cprime_feature_names) / sizeof(cprime_feature_names[0]);
+
 const char* const cprime_module_names[] = {
   "atomic",
   "bool",
