@@ -30,7 +30,7 @@ thread_init(thread_t* thread) {
 }
 
 int
-thread_init_with(thread_t* thread, const pthread_t id) {
+thread_init_with_id(thread_t* thread, const pthread_t id) {
   validate_with_errno_return(thread != NULL);
 
   bzero(thread, sizeof(thread_t));
@@ -47,7 +47,7 @@ thread_init_with(thread_t* thread, const pthread_t id) {
 
 int
 thread_init_self(thread_t* thread) {
-  return thread_init_with(thread, pthread_self());
+  return thread_init_with_id(thread, pthread_self());
 }
 
 int
