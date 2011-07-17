@@ -115,7 +115,7 @@ thread_set_affinity(thread_t* thread, const cpu_set_t* restrict mask) {
 thread_set_affinity(thread_t* thread, const void* restrict mask) {
   validate_with_errno_return(mask != NULL);
 
-  return -(errno = ENOTSUP); // operation not supported
+  return (void)thread, -(errno = ENOTSUP); // operation not supported
 #endif /* __linux__ */
 }
 

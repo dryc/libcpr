@@ -98,7 +98,7 @@ process_set_affinity(process_t* process, const cpu_set_t* restrict mask) {
 process_set_affinity(process_t* process, const void* restrict mask) {
   validate_with_errno_return(mask != NULL);
 
-  return -(errno = ENOTSUP); // operation not supported
+  return (void)process, -(errno = ENOTSUP); // operation not supported
 #endif /* __linux__ */
 }
 
