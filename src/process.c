@@ -71,8 +71,12 @@ int
 process_set_priority(process_t* process, const int priority) {
   validate_with_errno_return(priority >= -20 && priority <= 20);
 
+#ifdef HAVE_SETPRIORITY
   const int pid = likely(process != NULL) ? process->id : getpid();
   const int rc = setpriority(PRIO_PROCESS, pid, priority);
+#else
+  const int rc = ENOTSUP; // operation not supported
+#endif
 
   return likely(rc == 0) ? 0 : -errno;
 }
@@ -82,8 +86,12 @@ int
 process_set_affinity(process_t* process, const cpu_set_t* restrict mask) {
   validate_with_errno_return(mask != NULL);
 
+#ifdef HAVE_SCHED_SETAFFINITY
   const int pid = likely(process != NULL) ? process->id : 0;
   const int rc = sched_setaffinity(pid, sizeof(cpu_set_t), (cpu_set_t*)mask);
+#else
+  const int rc = ENOTSUP; // operation not supported
+#endif
 
   return likely(rc == 0) ? 0 : -errno;
 #else
@@ -98,8 +106,12 @@ int
 process_kill(process_t* process, const int signal) {
   validate_with_errno_return(signal >= 0);
 
+#ifdef HAVE_KILL
   const int pid = likely(process != NULL) ? process->id : getpid();
   const int rc = kill(pid, signal);
+#else
+  const int rc = ENOTSUP; // operation not supported
+#endif
 
   return likely(rc == 0) ? 0 : -errno;
 }
@@ -108,7 +120,11 @@ int
 process_wait(process_t* process) {
   validate_with_errno_return(process != NULL);
 
+#ifdef HAVE_WAITPID
   const int rc = waitpid(process->id, &process->status, 0);
+#else
+  const int rc = ENOTSUP; // operation not supported
+#endif
 
   return likely(rc >= 0) ? process->status : -errno;
 }
