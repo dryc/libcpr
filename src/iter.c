@@ -27,14 +27,18 @@ iter_init(iter_t* iter) {
 }
 
 int
-iter_init_with(iter_t* iter, const iter_interface_t* methods, const void* user_data) {
+iter_init_with(iter_t* iter, const iter_interface_t* restrict methods, const void* restrict user_data) {
   validate_with_errno_return(methods != NULL);
 
-  const int result = iter_init(iter);
+  int result = iter_init(iter);
 
   if (succeeded(result)) {
     iter->methods   = (iter_interface_t*)methods;
     iter->user_data = (void*)user_data;
+
+    if (likely(methods->init != NULL)) {
+      result = methods->init(iter);
+    }
   }
 
   return result;
@@ -42,15 +46,32 @@ iter_init_with(iter_t* iter, const iter_interface_t* methods, const void* user_d
 
 int
 iter_dispose(iter_t* iter) {
-  validate_with_errno_return(iter != NULL);
+  validate_with_errno_return(iter != NULL && iter->methods != NULL);
 
   const iter_interface_t* const methods = iter->methods;
-  const int result = likely(methods != NULL && methods->dispose != NULL) ?
+
+  const int result = likely(methods->dispose != NULL) ?
     methods->dispose(iter) : 0;
 
 #ifndef NDEBUG
   bzero(iter, sizeof(iter_t));
 #endif
+
+  return result;
+}
+
+bool
+iter_next(iter_t* iter) {
+  validate_with_false_return(iter != NULL && iter->methods != NULL);
+
+  const iter_interface_t* const methods = iter->methods;
+
+  const int result = likely(methods->next != NULL) ?
+    methods->next(iter) : FALSE;
+
+  if (likely(result == TRUE)) {
+    iter->position++;
+  }
 
   return result;
 }

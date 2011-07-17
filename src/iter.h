@@ -8,22 +8,30 @@ extern "C" {
 #endif
 
 typedef struct iter_interface_t {
+  bool (*next)(void* iter);
+  int (*init)(void* iter);
   int (*dispose)(void* iter);
 } iter_interface_t;
 
 typedef struct iter_t {
   iter_interface_t* methods;
   void* user_data;
-  int position;
+  unsigned int position;
 } iter_t;
 
 extern iter_t* iter_alloc();
 extern void iter_free(iter_t* iter);
 
+#define ITER_INIT(methods, user_data) {methods, user_data, 0}
+
 extern int iter_init(iter_t* iter);
-extern int iter_init_with(iter_t* iter, const iter_interface_t* methods, const void* user_data);
+extern int iter_init_with(iter_t* iter,
+                          const iter_interface_t* restrict methods,
+                          const void* restrict user_data);
 
 extern int iter_dispose(iter_t* iter);
+
+extern bool iter_next(iter_t* iter);
 
 #ifdef __cplusplus
 }
