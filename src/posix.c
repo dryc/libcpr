@@ -69,6 +69,7 @@ posix_poll(struct pollfd fds[], const nfds_t nfds, const int timeout) {
 #endif /* HAVE_POLL_H */
 
 #ifdef HAVE_PTHREAD_H
+#ifdef HAVE_PTHREAD_CREATE
 int
 posix_pthread_create(pthread_t* restrict thread, const pthread_attr_t* restrict attr,
                void* (*start_routine)(void*), void* restrict arg) {
@@ -84,6 +85,7 @@ posix_pthread_create(pthread_t* restrict thread, const pthread_attr_t* restrict 
   }
   return result;
 }
+#endif /* HAVE_PTHREAD_CREATE */
 #endif /* HAVE_PTHREAD_H */
 
 #ifdef HAVE_MQUEUE_H

@@ -35,7 +35,11 @@ mutex_init(mutex_t* mutex) {
   bzero(mutex, sizeof(mutex_t));
 #endif
 
+#ifdef HAVE_PTHREAD_MUTEX_INIT
   const int rc = pthread_mutex_init(&mutex->id, NULL);
+#else
+  const int rc = ENOTSUP; // operation not supported
+#endif
 
   return likely(rc == 0) ? 0 : -(errno = rc);
 }
@@ -44,7 +48,11 @@ int
 mutex_dispose(mutex_t* mutex) {
   validate_with_errno_return(mutex != NULL);
 
+#ifdef HAVE_PTHREAD_MUTEX_DESTROY
   const int rc = pthread_mutex_destroy(&mutex->id);
+#else
+  const int rc = ENOTSUP; // operation not supported
+#endif
 
 #ifndef NDEBUG
   bzero(mutex, sizeof(mutex_t));
@@ -57,7 +65,11 @@ int
 mutex_lock(mutex_t* mutex) {
   validate_with_errno_return(mutex != NULL);
 
+#ifdef HAVE_PTHREAD_MUTEX_LOCK
   const int rc = pthread_mutex_lock(&mutex->id);
+#else
+  const int rc = ENOTSUP; // operation not supported
+#endif
 
   return likely(rc == 0) ? 0 : -(errno = rc);
 }
@@ -66,7 +78,11 @@ int
 mutex_trylock(mutex_t* mutex) {
   validate_with_errno_return(mutex != NULL);
 
+#ifdef HAVE_PTHREAD_MUTEX_TRYLOCK
   const int rc = pthread_mutex_trylock(&mutex->id);
+#else
+  const int rc = ENOTSUP; // operation not supported
+#endif
 
   return likely(rc == 0) ? 0 : -(errno = rc);
 }
@@ -75,7 +91,11 @@ int
 mutex_unlock(mutex_t* mutex) {
   validate_with_errno_return(mutex != NULL);
 
+#ifdef HAVE_PTHREAD_MUTEX_UNLOCK
   const int rc = pthread_mutex_unlock(&mutex->id);
+#else
+  const int rc = ENOTSUP; // operation not supported
+#endif
 
   return likely(rc == 0) ? 0 : -(errno = rc);
 }

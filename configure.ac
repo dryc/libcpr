@@ -58,7 +58,7 @@ AC_HEADER_STDBOOL
 AC_CHECK_HEADERS_ONCE([stdatomic.h threads.h uchar.h])
 # POSIX header files:
 AC_CHECK_HEADERS_ONCE([dirent.h errno.h iconv.h libgen.h mqueue.h poll.h
-                       pthread.h sched.h syslog.h])
+                       sched.h syslog.h])
 # GNU header files:
 AC_CHECK_HEADERS_ONCE([execinfo.h])
 
@@ -80,7 +80,39 @@ AC_FUNC_MALLOC
 AC_FUNC_MMAP
 AC_FUNC_REALLOC
 AC_FUNC_STRERROR_R
-AC_CHECK_FUNCS([backtrace])
+AC_CHECK_FUNCS_ONCE([backtrace])
+AS_IF([test "x$enable_threads" != "xno"], [
+# POSIX threads support:
+  AC_CHECK_FUNCS_ONCE([
+    pthread_attr_destroy
+    pthread_attr_init
+    pthread_cancel
+    pthread_create
+    pthread_detach
+    pthread_equal
+    pthread_join
+    pthread_kill
+    pthread_mutex_destroy
+    pthread_mutex_init
+    pthread_mutex_lock
+    pthread_mutex_trylock
+    pthread_mutex_unlock
+    pthread_once
+    pthread_rwlock_destroy
+    pthread_rwlock_init
+    pthread_rwlock_rdlock
+    pthread_rwlock_tryrdlock
+    pthread_rwlock_trywrlock
+    pthread_rwlock_unlock
+    pthread_rwlock_wrlock
+    pthread_self
+  ])
+# POSIX threads support (Linux only):
+  AC_CHECK_FUNCS_ONCE([
+    pthread_getattr_np
+    pthread_setaffinity_np
+  ])
+])
 
 dnl Checks for system services:
 AC_SYS_LARGEFILE
