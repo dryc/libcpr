@@ -52,8 +52,8 @@ extern "C" {
 #endif
 
 /* for checking return values */
-#define failed(expr)    (expr < 0)
-#define succeeded(expr) (expr >= 0)
+#define failed(expr)    unlikely(expr < 0)
+#define succeeded(expr) likely(expr >= 0)
 
 /* for branch prediction hints */
 #ifdef __GNUC__
