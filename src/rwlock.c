@@ -62,6 +62,24 @@ rwlock_tryrdlock(rwlock_t* rwlock) {
 }
 
 int
+rwlock_wrlock(rwlock_t* rwlock) {
+  validate_with_errno_return(rwlock != NULL);
+
+  const int rc = pthread_rwlock_wrlock(&rwlock->id);
+
+  return likely(rc == 0) ? 0 : -(errno = rc);
+}
+
+int
+rwlock_trywrlock(rwlock_t* rwlock) {
+  validate_with_errno_return(rwlock != NULL);
+
+  const int rc = pthread_rwlock_trywrlock(&rwlock->id);
+
+  return likely(rc == 0) ? 0 : -(errno = rc);
+}
+
+int
 rwlock_unlock(rwlock_t* rwlock) {
   validate_with_errno_return(rwlock != NULL);
 

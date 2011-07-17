@@ -25,6 +25,9 @@ extern int rwlock_dispose(rwlock_t* rwlock);
 extern int rwlock_rdlock(rwlock_t* rwlock);
 extern int rwlock_tryrdlock(rwlock_t* rwlock);
 
+extern int rwlock_wrlock(rwlock_t* rwlock);
+extern int rwlock_trywrlock(rwlock_t* rwlock);
+
 extern int rwlock_unlock(rwlock_t* rwlock);
 
 #ifdef __cplusplus
