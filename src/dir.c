@@ -26,7 +26,12 @@ int
 dir_open(dir_t* dir) {
   validate_with_errno_return(dir != NULL);
 
+#ifdef HAVE_OPENDIR
   dir->stream = opendir(dir->path);
+#else
+  return -(errno = ENOTSUP); // operation not supported
+#endif
+
   if (unlikely(dir->stream == NULL)) {
     return -errno;
   }
@@ -48,9 +53,13 @@ dir_close(dir_t* dir) {
   }
 
   if (likely(dir->stream != NULL)) {
+#ifdef HAVE_CLOSEDIR
     if (unlikely(closedir(dir->stream) == -1)) {
       result = -errno;
     }
+#else
+    result = -(errno = ENOTSUP); // operation not supported
+#endif
     dir->stream = NULL;
   }
 
@@ -62,7 +71,11 @@ dir_read(dir_t* dir) {
   validate_with_errno_return(dir != NULL);
 
   struct dirent* result = NULL;
-  const int error = readdir_r(dir->stream, dir->entry, &result);
+#ifdef HAVE_READDIR_R
+  const int rc = readdir_r(dir->stream, dir->entry, &result);
+#else
+  const int rc = ENOTSUP; // operation not supported
+#endif
 
-  return likely(error == 0) ? (result != NULL) : -error;
+  return likely(rc == 0) ? (result != NULL) : -(errno = rc);
 }

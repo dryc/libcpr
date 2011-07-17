@@ -81,6 +81,12 @@ AC_FUNC_MMAP
 AC_FUNC_REALLOC
 AC_FUNC_STRERROR_R
 AC_CHECK_FUNCS_ONCE([backtrace])
+# POSIX directory access:
+AC_CHECK_FUNCS_ONCE([
+  closedir
+  opendir
+  readdir_r
+])
 # POSIX process control:
 AC_CHECK_FUNCS_ONCE([
   getpid
