@@ -41,6 +41,8 @@ extern "C" {
 #include <cprime/vector.h>
 
 extern const char* const cprime_version_string;
+extern const char* const cprime_module_names[];
+extern const unsigned int cprime_module_count;
 
 #define __cprime 1
 
