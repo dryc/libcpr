@@ -46,6 +46,17 @@ thread_init_with_id(thread_t* thread, const pthread_t id) {
 }
 
 int
+thread_init_with_user_data(thread_t* thread, const void* user_data) {
+  int result = thread_init(thread);
+
+  if (succeeded(result)) {
+    thread->user_data = (void*)user_data;
+  }
+
+  return result;
+}
+
+int
 thread_init_self(thread_t* thread) {
   return thread_init_with_id(thread, pthread_self());
 }

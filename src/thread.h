@@ -27,6 +27,7 @@ extern void thread_free(thread_t* thread);
 
 extern int thread_init(thread_t* thread);
 extern int thread_init_with_id(thread_t* thread, const pthread_t id);
+extern int thread_init_with_user_data(thread_t* thread, const void* user_data);
 extern int thread_init_self(thread_t* thread);
 
 extern int thread_dispose(thread_t* thread);
