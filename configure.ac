@@ -47,6 +47,8 @@ AS_IF([test "x$enable_threads" != "xno"], [
       AC_MSG_ERROR([*** POSIX thread support library libpthread not found ***])),
     AC_MSG_ERROR([*** POSIX thread support header file pthread.h not found ***]))
 ])
+# POSIX message queues:
+AC_CHECK_HEADERS([mqueue.h], AC_SEARCH_LIBS([mq_send], [rt]))
 
 dnl Checks for header files:
 # C89 header files:
