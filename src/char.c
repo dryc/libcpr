@@ -121,6 +121,15 @@ char_is_xdigit(const char_t chr) {
 
 string_t*
 char_to_string(const char_t chr) {
+#ifdef DISABLE_UNICODE
+  validate_with_null_return(chr <= 0x7F); // ASCII only
+
+  string_t* string = string_construct_with_size(1);
+
+  if (likely(string != NULL)) {
+    *(string->data) = chr;
+  }
+#else
   validate_with_null_return(chr <= 0x10FFFF);
 
   string_t* string = string_construct_with_size(UTF8_LENGTH(chr));
@@ -128,19 +137,28 @@ char_to_string(const char_t chr) {
   if (likely(string != NULL)) {
     UTF8_ENCODE(chr, string->data);
   }
+#endif /* DISABLE_UNICODE */
 
   return string;
 }
 
 int
 char_encode(const char_t input, byte_t* output) {
-  validate_with_errno_return(input <= 0x10FFFF);
   validate_with_errno_return(output != NULL);
+
+#ifdef DISABLE_UNICODE
+  validate_with_errno_return(input <= 0x7F); // ASCII only
+
+  *output++ = input;
+  const int size = 1;
+#else
+  validate_with_errno_return(input <= 0x10FFFF);
 
   const byte_t* const start = output;
   UTF8_ENCODE(input, output);
   const byte_t* const end = output;
-
   const int size = (end - start);
+#endif /* DISABLE_UNICODE */
+
   return size; // in bytes
 }
