@@ -63,6 +63,14 @@ AC_CHECK_HEADERS_ONCE([dirent.h errno.h iconv.h libgen.h mqueue.h poll.h
 AC_CHECK_HEADERS_ONCE([execinfo.h])
 
 dnl Checks for types:
+AC_CHECK_TYPES([cpu_set_t], [], [], [[#include <sched.h>]])
+AS_IF([test "x$enable_threads" != "xno"], [
+# POSIX threads support:
+  AC_CHECK_TYPES([pthread_t, pthread_attr_t],
+    [], [], [[#include <pthread.h>]])
+  AC_CHECK_TYPES([pthread_mutex_t, pthread_once_t, pthread_rwlock_t],
+    [], [], [[#include <pthread.h>]])
+])
 
 dnl Checks for structures:
 
@@ -97,35 +105,35 @@ AC_CHECK_FUNCS_ONCE([
 ])
 AS_IF([test "x$enable_threads" != "xno"], [
 # POSIX threads support:
-AC_CHECK_FUNCS_ONCE([
-  pthread_attr_destroy
-  pthread_attr_init
-  pthread_cancel
-  pthread_create
-  pthread_detach
-  pthread_equal
-  pthread_join
-  pthread_kill
-  pthread_mutex_destroy
-  pthread_mutex_init
-  pthread_mutex_lock
-  pthread_mutex_trylock
-  pthread_mutex_unlock
-  pthread_once
-  pthread_rwlock_destroy
-  pthread_rwlock_init
-  pthread_rwlock_rdlock
-  pthread_rwlock_tryrdlock
-  pthread_rwlock_trywrlock
-  pthread_rwlock_unlock
-  pthread_rwlock_wrlock
-  pthread_self
-])
+  AC_CHECK_FUNCS_ONCE([
+    pthread_attr_destroy
+    pthread_attr_init
+    pthread_cancel
+    pthread_create
+    pthread_detach
+    pthread_equal
+    pthread_join
+    pthread_kill
+    pthread_mutex_destroy
+    pthread_mutex_init
+    pthread_mutex_lock
+    pthread_mutex_trylock
+    pthread_mutex_unlock
+    pthread_once
+    pthread_rwlock_destroy
+    pthread_rwlock_init
+    pthread_rwlock_rdlock
+    pthread_rwlock_tryrdlock
+    pthread_rwlock_trywrlock
+    pthread_rwlock_unlock
+    pthread_rwlock_wrlock
+    pthread_self
+  ])
 # POSIX threads support (Linux only):
-AC_CHECK_FUNCS_ONCE([
-  pthread_getattr_np
-  pthread_setaffinity_np
-])
+  AC_CHECK_FUNCS_ONCE([
+    pthread_getattr_np
+    pthread_setaffinity_np
+  ])
 ])
 
 dnl Checks for system services:
