@@ -2,6 +2,8 @@
 
 #include "build.h"
 
+/* List API */
+
 list_t*
 list_alloc() {
   return calloc(1, sizeof(list_t));
@@ -79,4 +81,23 @@ list_prepend_pair(list_t* list, const pair_t* const pair) {
   list->length += 1;
 
   return list->length;
+}
+
+/* List Iterator API */
+
+const iter_interface_t list_iter_interface = {
+  .next = (iter_next_t)list_iter_next,
+};
+
+int
+list_iter_next(list_iter_t* iter) {
+  validate_with_errno_return(iter != NULL);
+
+  if (likely(iter->element != NULL)) {
+    iter->current = iter->element->head;
+    iter->element = iter->element->tail;
+    return TRUE;
+  }
+
+  return FALSE;
 }

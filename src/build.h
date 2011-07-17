@@ -18,6 +18,7 @@ extern "C" {
 #include "byte.h"
 #include "char.h"
 #include "pair.h"
+#include "iter.h"
 #include "list.h"
 
 /* public headers included from <cprime.h> (alphabetic order) */
@@ -27,7 +28,6 @@ extern "C" {
 #include "dir.h"
 #include "file.h"
 #include "integer.h"
-#include "iter.h"
 #include "map.h"
 #include "posix.h"
 #include "process.h"

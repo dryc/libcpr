@@ -7,14 +7,16 @@
 extern "C" {
 #endif
 
+typedef bool (*iter_next_t)(void* iter);
+
 typedef struct iter_interface_t {
-  bool (*next)(void* iter);
+  iter_next_t next;
   int (*init)(void* iter);
   int (*dispose)(void* iter);
 } iter_interface_t;
 
 typedef struct iter_t {
-  iter_interface_t* methods;
+  const iter_interface_t* methods;
   void* user_data;
   unsigned int position;
 } iter_t;
@@ -31,7 +33,7 @@ extern int iter_init_with(iter_t* iter,
 
 extern int iter_dispose(iter_t* iter);
 
-extern bool iter_next(iter_t* iter);
+extern bool iter_next(void* iter);
 
 #ifdef __cplusplus
 }

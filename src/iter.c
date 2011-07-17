@@ -61,7 +61,8 @@ iter_dispose(iter_t* iter) {
 }
 
 bool
-iter_next(iter_t* iter) {
+iter_next(void* iter_) {
+  iter_t* iter = iter_;
   validate_with_false_return(iter != NULL && iter->methods != NULL);
 
   const iter_interface_t* const methods = iter->methods;
