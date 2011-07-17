@@ -14,6 +14,7 @@ libcprime_la_SOURCES = cprime.c \
   dir.c \
   file.c \
   integer.c \
+  iter.c \
   list.c \
   map.c \
   mutex.c \
@@ -43,6 +44,7 @@ pkginclude_HEADERS = \
   dir.h \
   file.h \
   integer.h \
+  iter.h \
   list.h \
   map.h \
   memory.h \

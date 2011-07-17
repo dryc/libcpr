@@ -26,6 +26,7 @@ extern "C" {
 #include <cprime/dir.h>
 #include <cprime/file.h>
 #include <cprime/integer.h>
+#include <cprime/iter.h>
 #include <cprime/map.h>
 #include <cprime/mutex.h>
 #include <cprime/once.h>

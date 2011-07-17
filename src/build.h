@@ -27,6 +27,7 @@ extern "C" {
 #include "dir.h"
 #include "file.h"
 #include "integer.h"
+#include "iter.h"
 #include "map.h"
 #include "posix.h"
 #include "process.h"

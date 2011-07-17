@@ -30,6 +30,7 @@ const char* const cprime_module_names[] = {
   "dir",
   "file",
   "integer",
+  "iter",
   "list",
   "map",
 #ifndef DISABLE_THREADS
