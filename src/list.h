@@ -30,6 +30,8 @@ extern int list_prepend_char(list_t* list, const char_t value);
 extern int list_prepend_ptr(list_t* list, const void* const ptr);
 extern int list_prepend_pair(list_t* list, const pair_t* const pair);
 
+#define list_prepend(list, ptr) list_prepend_ptr(list, ptr)
+
 #ifdef __cplusplus
 }
 #endif
