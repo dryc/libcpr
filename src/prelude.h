@@ -11,8 +11,10 @@ extern "C" {
 #  define _GNU_SOURCE
 #endif
 
-#include <errno.h>  /* for the system error constants, e.g. EINVAL */
-#include <stddef.h> /* for NULL, size_t, wchar_t, ptrdiff_t, and offsetof() */
+#include <errno.h>   /* for the system error constants, e.g. EINVAL */
+#include <stdbool.h> /* for bool */
+#include <stddef.h>  /* for NULL, size_t, wchar_t, ptrdiff_t, and offsetof() */
+#include <stdint.h>  /* for uint32_t */
 
 #ifdef __STDC__
 #  define __STDC_1989__ 1               /* ANSI X3.159-1989    */
@@ -151,6 +153,18 @@ extern "C" {
 #    define PATH_MAX 4096
 #  endif
 #endif /* PATH_MAX */
+
+/* the function prototype for deallocation functions, e.g. free() */
+typedef void (*free_func_t)(void*);
+
+/* the function prototype for hash functions */
+typedef uint32_t (*hash_func_t)(const void*);
+
+/* the function prototype for comparison functions, e.g. strcmp() */
+typedef int (*compare_func_t)(const void*, const void*);
+
+/* the function prototype for equality functions */
+typedef bool (*equal_func_t)(const void*, const void*);
 
 #ifdef __cplusplus
 }
