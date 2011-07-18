@@ -131,6 +131,23 @@ extern "C" {
         19, 18, 17, 16, 15, 14, 13, 12, 11, 10, \
          9,  8,  7,  6,  5,  4,  3,  2,  1,  0
 
+#ifdef _POSIX_VERSION
+#  include <limits.h>    /* for PATH_MAX */
+#else
+#  include <sys/param.h> /* for MAXPATHLEN */
+#endif /* _POSIX_VERSION */
+
+/* ensure that PATH_MAX is always defined */
+#ifndef PATH_MAX
+#  if defined(_POSIX_VERSION)
+#    define PATH_MAX _POSIX_PATH_MAX
+#  elif defined(MAXPATHLEN)
+#    define PATH_MAX MAXPATHLEN
+#  else
+#    define PATH_MAX 4096
+#  endif
+#endif /* PATH_MAX */
+
 #ifdef __cplusplus
 }
 #endif
