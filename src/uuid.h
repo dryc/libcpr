@@ -17,17 +17,39 @@ extern "C" {
 typedef uint8_t uuid_t[16];
 #endif /* _UUID_T */
 
+/**
+ * The canonical all-zeroes UUID.
+ */
 extern const uuid_t uuid_zero;
 
+/**
+ * Allocates heap memory for a new UUID.
+ */
 extern uuid_t* uuid_alloc();
+
+/**
+ * Releases the heap memory used by a UUID.
+ */
 extern void uuid_free(uuid_t* uuid);
 
+/**
+ * Initializes a stack-allocated UUID.
+ */
 #define UUID_INIT {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
 
+/**
+ * Initializes a UUID.
+ */
 extern int uuid_init(uuid_t* uuid);
 
+/**
+ * Disposes of a UUID.
+ */
 extern int uuid_dispose(uuid_t* uuid);
 
+/**
+ * Returns `TRUE` if a UUID contains all zeroes.
+ */
 extern int uuid_is_zero(const uuid_t* const uuid);
 
 #ifdef __cplusplus

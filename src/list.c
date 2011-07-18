@@ -105,7 +105,6 @@ list_reverse(list_t* list) {
   return 0;
 }
 
-
 /* List Iterator API */
 
 const iter_interface_t list_iter_interface = {
