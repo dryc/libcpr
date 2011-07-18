@@ -46,7 +46,11 @@ char_validate(const char_t chr) {
 
 int
 char_is_valid(const char_t chr) {
-  return likely(chr <= CHAR_MAX) ? TRUE : FALSE;
+#ifdef DISABLE_UNICODE
+  return likely(chr <= CHAR_MAX_ASCII) ? TRUE : FALSE;
+#else
+  return likely(chr <= CHAR_MAX_UCS) ? TRUE : FALSE;
+#endif
 }
 
 int
@@ -122,7 +126,7 @@ char_is_xdigit(const char_t chr) {
 string_t*
 char_to_string(const char_t chr) {
 #ifdef DISABLE_UNICODE
-  validate_with_null_return(chr <= 0x7F); // ASCII only
+  validate_with_null_return(chr <= CHAR_MAX_ASCII);
 
   string_t* string = string_construct_with_size(1);
 
@@ -130,7 +134,7 @@ char_to_string(const char_t chr) {
     *(string->data) = chr;
   }
 #else
-  validate_with_null_return(chr <= 0x10FFFF);
+  validate_with_null_return(chr <= CHAR_MAX_UCS);
 
   string_t* string = string_construct_with_size(UTF8_LENGTH(chr));
 
@@ -147,12 +151,12 @@ char_encode(const char_t input, byte_t* output) {
   validate_with_errno_return(output != NULL);
 
 #ifdef DISABLE_UNICODE
-  validate_with_errno_return(input <= 0x7F); // ASCII only
+  validate_with_errno_return(input <= CHAR_MAX_ASCII);
 
   *output++ = input;
   const int size = 1;
 #else
-  validate_with_errno_return(input <= 0x10FFFF);
+  validate_with_errno_return(input <= CHAR_MAX_UCS);
 
   const byte_t* const start = output;
   UTF8_ENCODE(input, output);

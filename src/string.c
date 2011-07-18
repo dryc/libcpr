@@ -368,10 +368,10 @@ string_append_char(string_t* string, const char_t suffix) {
   validate_with_errno_return(string != NULL && suffix > 0);
 
 #ifdef DISABLE_UNICODE
-  validate_with_errno_return(suffix < 0x80);
+  validate_with_errno_return(suffix <= CHAR_MAX_ASCII);
   const byte_t bytes[2] = {suffix, '\0'}; // ASCII only
 #else
-  validate_with_errno_return(suffix < 0x10FFFF);
+  validate_with_errno_return(suffix <= CHAR_MAX_UCS);
   const byte_t bytes[2] = {suffix, '\0'}; // TODO: UTF-8 support
 #endif /* DISABLE_UNICODE */
 
