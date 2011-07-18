@@ -7,6 +7,10 @@
 extern "C" {
 #endif
 
+#ifndef _GNU_SOURCE
+#  define _GNU_SOURCE
+#endif
+
 #include <errno.h>  /* for the system error constants, e.g. EINVAL */
 #include <stddef.h> /* for NULL, size_t, wchar_t, ptrdiff_t, and offsetof() */
 
