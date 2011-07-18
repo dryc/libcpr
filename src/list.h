@@ -11,6 +11,8 @@ extern "C" {
 
 /* List API */
 
+#define LIST_SENTINEL NULL
+
 typedef struct list_t {
   pair_t* first;
   size_t length;
@@ -18,7 +20,7 @@ typedef struct list_t {
 
 extern list_t* list_alloc();
 
-#define LIST_INIT {.first = NULL, .length = 0}
+#define LIST_INIT {.first = LIST_SENTINEL, .length = 0}
 
 extern int list_length(const list_t* const list);
 
@@ -33,6 +35,8 @@ extern int list_prepend_byte(list_t* list, const byte_t value);
 extern int list_prepend_char(list_t* list, const char_t value);
 extern int list_prepend_ptr(list_t* list, const void* const ptr);
 extern int list_prepend_pair(list_t* list, const pair_t* const pair);
+
+extern int list_reverse(list_t* list);
 
 /* List Iterator API */
 

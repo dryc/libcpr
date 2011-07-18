@@ -20,7 +20,7 @@ int
 list_is_empty(const list_t* const list) {
   validate_with_errno_return(list != NULL);
 
-  return unlikely(list->first == NULL) ? TRUE : FALSE;
+  return unlikely(list->first == LIST_SENTINEL) ? TRUE : FALSE;
 }
 
 int
@@ -30,10 +30,10 @@ list_clear(list_t* list) {
   if (likely(list->length > 0)) {
     pair_t* pair = list->first;
 
-    list->first = NULL;
+    list->first = LIST_SENTINEL;
     list->length = 0;
 
-    while (likely(pair != NULL)) {
+    while (likely(pair != LIST_SENTINEL)) {
       pair_t* tail = pair->tail;
       pair_free(pair);
       pair = tail;
@@ -82,6 +82,29 @@ list_prepend_pair(list_t* list, const pair_t* const pair) {
 
   return list->length;
 }
+
+int
+list_reverse(list_t* list) {
+  validate_with_errno_return(list != NULL);
+
+  if (unlikely(list->length < 2))
+    return 0; // nothing to do
+
+  pair_t* prev = LIST_SENTINEL;
+  {
+    pair_t* pair = list->first;
+    while (likely(pair != LIST_SENTINEL)) {
+      pair_t* next = pair->tail;
+      pair->tail = prev;
+      prev = pair;
+      pair = next;
+    }
+  }
+  list->first = prev;
+
+  return 0;
+}
+
 
 /* List Iterator API */
 
