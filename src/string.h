@@ -7,6 +7,7 @@
 extern "C" {
 #endif
 
+#include <alloca.h> /* for alloca() */
 #include <stddef.h> /* for size_t */
 #include <stdint.h> /* for SIZE_MAX */
 
