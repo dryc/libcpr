@@ -101,11 +101,27 @@ thread_is_self(thread_t* thread) {
 int
 #ifdef __linux__
 thread_set_affinity(thread_t* thread, const cpu_set_t* restrict mask) {
-  validate_with_errno_return(mask != NULL);
-
 #ifdef HAVE_PTHREAD_SETAFFINITY_NP
   const pthread_t tid = likely(thread != NULL) ? thread->id : pthread_self();
-  const int rc = pthread_setaffinity_np(tid, sizeof(cpu_set_t), (cpu_set_t*)mask);
+  int rc = 0;
+
+  // Reset the thread's CPU affinity to enable it to run on all CPUs:
+  if (unlikely(mask == NULL)) {
+    const long cpu_count = sysconf(_SC_NPROCESSORS_ONLN);
+    assert(cpu_count >= 1);
+
+    cpu_set_t cpu_mask;
+    CPU_ZERO(&cpu_mask);
+    for (int i = 0; i < cpu_count; i++)
+      CPU_SET(i, &cpu_mask);
+
+    rc = pthread_setaffinity_np(tid, sizeof(cpu_set_t), &cpu_mask);
+  }
+
+  // Set the thread's CPU affinity to the given bitmask:
+  else {
+    rc = pthread_setaffinity_np(tid, sizeof(cpu_set_t), (cpu_set_t*)mask);
+  }
 #else
   const int rc = ENOTSUP; // operation not supported
 #endif
