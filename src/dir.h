@@ -19,7 +19,7 @@ typedef struct dir_t {
   char path[PATH_MAX];
 } dir_t;
 
-#define DIR_INIT {.stream = NULL, .entry = NULL, .path = '\0'}
+#define DIR_INIT {.stream = NULL, .entry = NULL, .path = "\0"}
 
 #define dir_init1(dir) dir_init_empty(dir)
 #define dir_init2(dir, arg1) \
