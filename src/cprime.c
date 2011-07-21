@@ -15,10 +15,11 @@ const char* const cprime_feature_names[] = {
 #ifndef DISABLE_UNICODE
   "unicode",
 #endif
+  NULL
 };
 
 const unsigned int cprime_feature_count =
-  sizeof(cprime_feature_names) / sizeof(cprime_feature_names[0]);
+  (sizeof(cprime_feature_names) / sizeof(cprime_feature_names[0])) - 1;
 
 const char* const cprime_module_names[] = {
   "atomic",
@@ -55,7 +56,8 @@ const char* const cprime_module_names[] = {
 #endif
   "uuid",
   "vector",
+  NULL
 };
 
 const unsigned int cprime_module_count =
-  sizeof(cprime_module_names) / sizeof(cprime_module_names[0]);
+  (sizeof(cprime_module_names) / sizeof(cprime_module_names[0])) - 1;
