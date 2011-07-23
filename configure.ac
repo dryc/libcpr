@@ -23,13 +23,14 @@ AC_CONFIG_AUX_DIR([etc/aclocal])
 AC_CONFIG_MACRO_DIR([etc/aclocal])
 
 dnl Configure Automake:
-AM_INIT_AUTOMAKE([foreign -Wall -Werror dist-bzip2])
+AM_INIT_AUTOMAKE([foreign -Wall -Werror dist-bzip2 subdir-objects])
 AM_SILENT_RULES([yes])
 
 dnl Check for programs:
 LT_INIT
 AC_PROG_CC
 AC_PROG_CC_C99
+AM_PROG_CC_C_O
 
 dnl Check for configuration options:
 AC_ARG_ENABLE([threads],
