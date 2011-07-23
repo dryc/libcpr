@@ -33,6 +33,11 @@ extern uuid_t* uuid_alloc();
 extern void uuid_free(uuid_t* uuid);
 
 /**
+ * Constructs a heap copy of a UUID.
+ */
+extern uuid_t* uuid_clone(const uuid_t* uuid);
+
+/**
  * Initializes a stack-allocated UUID.
  */
 #define UUID_INIT {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}

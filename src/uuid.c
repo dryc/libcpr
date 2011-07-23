@@ -19,6 +19,17 @@ uuid_free(uuid_t* uuid) {
   }
 }
 
+uuid_t*
+uuid_clone(const uuid_t* uuid) {
+  validate_with_null_return(uuid != NULL);
+
+  uuid_t* copy = malloc(sizeof(uuid_t));
+  if (likely(copy != NULL)) {
+    bcopy(uuid, copy, sizeof(uuid_t));
+  }
+  return copy;
+}
+
 int
 uuid_init(uuid_t* uuid) {
   validate_with_errno_return(uuid != NULL);
