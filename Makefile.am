@@ -1,3 +1,3 @@
-SUBDIRS         = src doc
+SUBDIRS         = src #doc
 EXTRA_DIST      = AUTHORS CREDITS README UNLICENSE VERSION
 ACLOCAL_AMFLAGS = -I etc/aclocal
