@@ -19,6 +19,7 @@ Installation
     $ ./configure
     $ make
     $ sudo make install
+    $ sudo ldconfig             # on Linux
 
 License
 -------
