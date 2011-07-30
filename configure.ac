@@ -91,9 +91,7 @@ dnl Check for library functions:
 AC_FUNC_ALLOCA
 AC_FUNC_FORK
 AC_FUNC_FSEEKO
-AC_FUNC_MALLOC
 AC_FUNC_MMAP
-AC_FUNC_REALLOC
 AC_FUNC_STRERROR_R
 AC_CHECK_FUNCS_ONCE([backtrace])
 # POSIX directory access:
