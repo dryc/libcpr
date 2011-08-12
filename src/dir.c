@@ -1,6 +1,9 @@
 /* This is free and unencumbered software released into the public domain. */
 
 #include "build.h"
+#include <fcntl.h>    /* for the AT_* constants */
+#include <stdio.h>    /* for snprintf() */
+#include <sys/stat.h> /* for fstatat() */
 
 int
 dir_init_empty(dir_t* dir) {
@@ -81,4 +84,43 @@ dir_read(dir_t* dir) {
 #endif
 
   return likely(rc == 0) ? (result != NULL) : -(errno = rc);
+}
+
+long
+dir_size(dir_t* dir) {
+  validate_with_errno_return(dir != NULL);
+  long result = 0;
+
+  // Open the directory stream:
+  DIR* stream = opendir(dir->path);
+  if (unlikely(stream == NULL)) {
+    return -errno;
+  }
+
+  // Iterate over every directory entry:
+  struct dirent* entry = NULL;
+  while ((entry = readdir(stream)) != NULL) {
+    if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0)
+      continue;
+
+    struct stat st;
+#ifdef __linux__
+    if (unlikely(fstatat(dirfd(stream), entry->d_name, &st, AT_SYMLINK_NOFOLLOW) == -1)) {
+      return -errno;
+    }
+#else
+    char path[PATH_MAX];
+    snprintf(path, sizeof(path), "%s/%s", dir->path, entry->d_name);
+    if (unlikely(lstat(path, &st) == -1)) {
+      return -errno;
+    }
+#endif
+
+    result += st.st_size;
+  }
+
+  // Close the directory stream:
+  closedir(stream), stream = NULL;
+
+  return result;
 }

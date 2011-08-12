@@ -37,6 +37,8 @@ extern int dir_close(dir_t* dir);
 
 extern int dir_read(dir_t* dir);
 
+extern long dir_size(dir_t* dir);
+
 #ifdef __cplusplus
 }
 #endif
