@@ -25,6 +25,9 @@ dir_init_with_path(dir_t* dir, const char* const restrict path) {
 int
 dir_open(dir_t* dir) {
   validate_with_errno_return(dir != NULL);
+  if (unlikely(dir->stream != NULL)) {
+    return 0; // already opened
+  }
 
 #ifdef HAVE_OPENDIR
   dir->stream = opendir(dir->path);
