@@ -89,7 +89,6 @@ dir_read(dir_t* dir) {
 long
 dir_size(dir_t* dir) {
   validate_with_errno_return(dir != NULL);
-  long result = 0;
 
   // Open the directory stream:
   DIR* stream = opendir(dir->path);
@@ -97,13 +96,26 @@ dir_size(dir_t* dir) {
     return -errno;
   }
 
+  // Obtain the file descriptor for the directory stream:
+  const int fd = dirfd(stream);
+  if (unlikely(fd == -1)) {
+    return -errno;
+  }
+
+  // Obtain the size of the directory itself:
+  struct stat st;
+  if (unlikely(fstat(fd, &st))) {
+    return -errno;
+  }
+  long result = st.st_size;
+
   // Iterate over every directory entry:
   struct dirent* entry = NULL;
   while ((entry = readdir(stream)) != NULL) {
     if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0)
       continue;
 
-    struct stat st;
+    // Obtain the size of the current directory entry:
 #ifdef __linux__
     if (unlikely(fstatat(dirfd(stream), entry->d_name, &st, AT_SYMLINK_NOFOLLOW) == -1)) {
       return -errno;
