@@ -1,6 +1,7 @@
 /* This is free and unencumbered software released into the public domain. */
 
 #include "build.h"
+#include <inttypes.h> /* for strtoimax() */
 
 string_t*
 string_alloc() {
@@ -381,4 +382,14 @@ string_append_bytes(string_t* string, const char* const restrict suffix, const i
   string->data[string_sz + suffix_sz] = '\0'; // terminate with null sentinel byte
 
   return suffix_sz;
+}
+
+int
+string_to_intmax(const string_t* restrict string, intmax_t* const restrict result) {
+  validate_with_errno_return(string != NULL && !string_is_empty(string));
+  validate_with_errno_return(result != NULL);
+
+  errno = 0;
+  *result = strtoimax(string->data, NULL, 10);
+  return -errno;
 }
