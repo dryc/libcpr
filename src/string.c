@@ -212,18 +212,28 @@ string_is_empty(const string_t* const string) {
   return FALSE;
 }
 
+static inline int
+string_is(const string_t* const string, int (*predicate)(const char_t chr)) {
+  validate_with_errno_return(string != NULL && predicate != NULL);
+
+  const size_t size = string_size(string);
+  for (size_t pos = 0; pos < size; pos++) {
+    if (unlikely(predicate(string->data[pos]) != TRUE)) {
+      return FALSE;
+    }
+  } // FIXME: for UTF-8
+
+  return TRUE;
+}
+
 int
 string_is_alnum(const string_t* const string) {
-  validate_with_errno_return(string != NULL);
-
-  return FALSE; // TODO
+  return string_is(string, char_is_alnum);
 }
 
 int
 string_is_alpha(const string_t* const string) {
-  validate_with_errno_return(string != NULL);
-
-  return FALSE; // TODO
+  return string_is(string, char_is_alpha);
 }
 
 int
@@ -242,72 +252,52 @@ string_is_ascii(const string_t* const string) {
 
 int
 string_is_blank(const string_t* const string) {
-  validate_with_errno_return(string != NULL);
-
-  return FALSE; // TODO
+  return string_is(string, char_is_blank);
 }
 
 int
 string_is_cntrl(const string_t* const string) {
-  validate_with_errno_return(string != NULL);
-
-  return FALSE; // TODO
+  return string_is(string, char_is_cntrl);
 }
 
 int
 string_is_digit(const string_t* const string) {
-  validate_with_errno_return(string != NULL);
-
-  return FALSE; // TODO
+  return string_is(string, char_is_digit);
 }
 
 int
 string_is_graph(const string_t* const string) {
-  validate_with_errno_return(string != NULL);
-
-  return FALSE; // TODO
+  return string_is(string, char_is_graph);
 }
 
 int
 string_is_lower(const string_t* const string) {
-  validate_with_errno_return(string != NULL);
-
-  return FALSE; // TODO
+  return string_is(string, char_is_lower);
 }
 
 int
 string_is_print(const string_t* const string) {
-  validate_with_errno_return(string != NULL);
-
-  return FALSE; // TODO
+  return string_is(string, char_is_print);
 }
 
 int
 string_is_punct(const string_t* const string) {
-  validate_with_errno_return(string != NULL);
-
-  return FALSE; // TODO
+  return string_is(string, char_is_punct);
 }
 
 int
 string_is_space(const string_t* const string) {
-  validate_with_errno_return(string != NULL);
-
-  return FALSE; // TODO
+  return string_is(string, char_is_space);
 }
 
 int
 string_is_upper(const string_t* const string) {
-  validate_with_errno_return(string != NULL);
-
-  return FALSE; // TODO
+  return string_is(string, char_is_upper);
 }
 
 int
 string_is_xdigit(const string_t* const string) {
-  validate_with_errno_return(string != NULL);
-
-  return FALSE; // TODO
+  return string_is(string, char_is_xdigit);
 }
 
 int
