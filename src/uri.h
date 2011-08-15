@@ -7,6 +7,9 @@
 extern "C" {
 #endif
 
+/* @see http://tools.ietf.org/html/rfc3986#appendix-B */
+#define URI_PATTERN "^(([^:/?#]+):)(//([^/?#]*))?([^?#]*)(\\?([^#]*))?(#(.*))?$"
+
 typedef struct {
   char* string;
 } uri_t;
