@@ -18,14 +18,14 @@ string_free(string_t* string) {
 }
 
 string_t*
-string_construct_with(const byte_t* const data, const size_t size) {
+string_construct_with(const char* const data, const size_t size) {
   string_t* string = malloc(sizeof(string_t));
   string_init_with(string, data, size);
   return string;
 }
 
 string_t*
-string_construct_with_data(const byte_t* const data) {
+string_construct_with_data(const char* const data) {
   string_t* string = malloc(sizeof(string_t));
   string_init_with_data(string, data);
   return string;
@@ -57,7 +57,7 @@ string_init_empty(string_t* string) {
 }
 
 int
-string_init_with(string_t* string, const byte_t* const data, const size_t size) {
+string_init_with(string_t* string, const char* const data, const size_t size) {
   validate_with_errno_return(string != NULL);
   if (likely(size > 0 && size != STRING_SIZE_UNKNOWN))
     validate_with_errno_return(data != NULL);
@@ -66,8 +66,8 @@ string_init_with(string_t* string, const byte_t* const data, const size_t size) 
 
   if (likely(data != NULL && *data != '\0' && size > 0)) {
     // Copy the given string contents, up to the specified byte length:
-    const size_t size2 = unlikely(size == STRING_SIZE_UNKNOWN) ? strlen((char*)data) : size;
-    string->data = (byte_t*)strndup((char*)data, size2);
+    const size_t size2 = unlikely(size == STRING_SIZE_UNKNOWN) ? strlen(data) : size;
+    string->data = strndup(data, size2);
     string->size = size2;
 
     if (unlikely(string->data == NULL))
@@ -78,7 +78,7 @@ string_init_with(string_t* string, const byte_t* const data, const size_t size) 
 }
 
 int
-string_init_with_data(string_t* string, const byte_t* const data) {
+string_init_with_data(string_t* string, const char* const data) {
   validate_with_errno_return(string != NULL);
 
   int result = string_init_empty(string);
@@ -86,8 +86,8 @@ string_init_with_data(string_t* string, const byte_t* const data) {
   if (likely(data != NULL && *data != '\0')) {
     // Copy the given string contents, also determining and memoizing the
     // byte length in order to speed up subsequent operations on the string:
-    string->data = (byte_t*)strdup((char*)data);
-    string->size = strlen((char*)data); // TODO: avoid traversing the input twice.
+    string->data = strdup(data);
+    string->size = strlen(data); // TODO: avoid traversing the input twice.
 
     if (unlikely(string->data == NULL))
       result = -errno; // insufficient memory (ENOMEM)
@@ -105,7 +105,7 @@ string_init_with_size(string_t* string, const size_t size) {
   if (likely(size > 0 && size != STRING_SIZE_UNKNOWN)) {
     // Allocate sufficient memory for the string contents, including an
     // extra byte for the terminating null sentinel:
-    string->data = calloc(size + 1, sizeof(byte_t));
+    string->data = calloc(size + 1, sizeof(char));
     string->size = size;
 
     if (unlikely(string->data == NULL))
@@ -138,7 +138,7 @@ string_size(const string_t* const string) {
   if (likely(string->size != STRING_SIZE_UNKNOWN))
     return string->size;
 
-  return strlen((char*)string->data);
+  return strlen(string->data);
 }
 
 size_t
@@ -152,7 +152,7 @@ string_length(const string_t* const string) {
   return string_size(string); // ASCII only
 #else
   size_t length = 0;
-  const byte_t* data = string->data;
+  const char* data = string->data;
   while (likely(*data != '\0')) {
     length++;
     data = UTF8_SKIP_CHAR(data);
@@ -183,7 +183,7 @@ string_compare(const string_t* const string1, const string_t* const string2) {
   if (unlikely(string1 == string2))
     return 0;
 
-  return strcmp((char*)string1->data, (char*)string2->data);
+  return strcmp(string1->data, string2->data);
 }
 
 int
@@ -196,7 +196,7 @@ string_equal(const string_t* const string1, const string_t* const string2) {
   if (likely(string1->size != string2->size))
     return FALSE;
 
-  return unlikely(strcmp((char*)string1->data, (char*)string2->data) == 0) ? TRUE : FALSE;
+  return unlikely(strcmp(string1->data, string2->data) == 0) ? TRUE : FALSE;
 }
 
 int
@@ -240,8 +240,8 @@ int
 string_is_ascii(const string_t* const string) {
   validate_with_errno_return(string != NULL);
 
-  const byte_t* data = string->data;
-  byte_t c;
+  const char* data = string->data;
+  char c;
   while (likely((c = *data) != '\0')) {
     if (unlikely(!char_is_ascii(c)))
       return FALSE;
@@ -301,35 +301,35 @@ string_is_xdigit(const string_t* const string) {
 }
 
 int
-string_has_prefix(const string_t* const string, const byte_t* const prefix) {
+string_has_prefix(const string_t* const string, const char* const prefix) {
   validate_with_errno_return(string != NULL && prefix != NULL);
 
   if (unlikely(string_is_empty(string) == TRUE))
     return FALSE; // empty strings don't have prefixes
 
   const size_t string_sz = string_size(string);
-  const size_t prefix_sz = strlen((char*)prefix);
+  const size_t prefix_sz = strlen(prefix);
   if (unlikely(string_sz < prefix_sz))
     return FALSE; // a string can't contain a prefix longer than itself
 
-  const byte_t* string_data = string->data;
-  return unlikely(strncmp((char*)string_data, (char*)prefix, prefix_sz) == 0) ? TRUE : FALSE;
+  const char* string_data = string->data;
+  return unlikely(strncmp(string_data, prefix, prefix_sz) == 0) ? TRUE : FALSE;
 }
 
 int
-string_has_suffix(const string_t* const string, const byte_t* const suffix) {
+string_has_suffix(const string_t* const string, const char* const suffix) {
   validate_with_errno_return(string != NULL && suffix != NULL);
 
   if (unlikely(string_is_empty(string) == TRUE))
     return FALSE; // empty strings don't have suffixes
 
   const size_t string_sz = string_size(string);
-  const size_t suffix_sz = strlen((char*)suffix);
+  const size_t suffix_sz = strlen(suffix);
   if (unlikely(string_sz < suffix_sz))
     return FALSE; // a string can't contain a suffix longer than itself
 
-  const byte_t* string_data = string->data + string_sz - suffix_sz; // FIXME: UTF-8 support
-  return unlikely(strncmp((char*)string_data, (char*)suffix, suffix_sz) == 0) ? TRUE : FALSE;
+  const char* string_data = string->data + string_sz - suffix_sz; // FIXME: UTF-8 support
+  return unlikely(strncmp(string_data, suffix, suffix_sz) == 0) ? TRUE : FALSE;
 }
 
 int
@@ -359,21 +359,21 @@ string_append_char(string_t* string, const char_t suffix) {
 
 #ifdef DISABLE_UNICODE
   validate_with_errno_return(suffix <= CHAR_MAX_ASCII);
-  const byte_t bytes[2] = {suffix, '\0'}; // ASCII only
+  const char bytes[2] = {suffix, '\0'}; // ASCII only
 #else
   validate_with_errno_return(suffix <= CHAR_MAX_UCS);
-  const byte_t bytes[2] = {suffix, '\0'}; // TODO: UTF-8 support
+  const char bytes[2] = {suffix, '\0'}; // TODO: UTF-8 support
 #endif /* DISABLE_UNICODE */
 
   return string_append_bytes(string, bytes, sizeof(bytes) - 1);
 }
 
 int
-string_append_bytes(string_t* string, const byte_t* const restrict suffix, const int suffix_size) {
+string_append_bytes(string_t* string, const char* const restrict suffix, const int suffix_size) {
   validate_with_errno_return(string != NULL && suffix != NULL && suffix_size >= -1);
 
   const size_t string_sz = string_size(string);
-  const size_t suffix_sz = (suffix_size == -1) ? strlen((char*)suffix) : (size_t)suffix_size;
+  const size_t suffix_sz = (suffix_size == -1) ? strlen(suffix) : (size_t)suffix_size;
 
   string->data = realloc(string->data, string_sz + suffix_sz + 1);
 
