@@ -32,6 +32,7 @@ extern "C" {
 #include "posix.h"
 #include "process.h"
 #include "queue.h"
+#include "str.h"
 #include "string.h"
 #include "symbol.h"
 #include "uri.h"

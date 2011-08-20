@@ -34,6 +34,7 @@ extern "C" {
 #include <cprime/process.h>
 #include <cprime/queue.h>
 #include <cprime/rwlock.h>
+#include <cprime/str.h>
 #include <cprime/string.h>
 #include <cprime/symbol.h>
 #include <cprime/thread.h>
