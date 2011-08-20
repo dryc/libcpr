@@ -5,7 +5,7 @@
 
 long
 str_size(const char* const restrict str) {
-  validate_with_errno_return(str != NULL);
+  validate_with_zero_return(str != NULL);
 
   if (unlikely(*str == '\0'))
     return 0; // the string is empty
@@ -15,7 +15,7 @@ str_size(const char* const restrict str) {
 
 long
 str_length(const char* const restrict str) {
-  validate_with_errno_return(str != NULL);
+  validate_with_zero_return(str != NULL);
 
   if (unlikely(*str == '\0'))
     return 0; // the string is empty
@@ -60,10 +60,10 @@ str_equal(const char* const str1, const char* const str2) {
 }
 
 bool
-str_contains(const char* const restrict str, const char* const restrict substr) {
-  validate_with_false_return(str != NULL && substr != NULL);
-
-  return unlikely(strstr(str, substr) != NULL) ? TRUE : FALSE;
+str_is_empty(const char* const restrict str) {
+  if (unlikely(str == NULL))
+    return errno = EINVAL, TRUE;
+  return unlikely(*str == '\0') ? TRUE : FALSE;
 }
 
 bool
@@ -92,4 +92,11 @@ str_has_suffix(const char* const restrict str, const char* const restrict suffix
   }
 
   return unlikely(strcmp(str + string_size - suffix_size, suffix) == 0) ? TRUE : FALSE;
+}
+
+bool
+str_contains(const char* const restrict str, const char* const restrict substr) {
+  validate_with_false_return(str != NULL && substr != NULL);
+
+  return unlikely(strstr(str, substr) != NULL) ? TRUE : FALSE;
 }
