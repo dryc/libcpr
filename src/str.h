@@ -9,6 +9,10 @@ extern "C" {
 
 #include <stdbool.h> /* for bool */
 
+extern bool str_contains(
+  const char* restrict str,
+  const char* restrict substr);
+
 extern bool str_has_prefix(
   const char* restrict str,
   const char* restrict prefix);

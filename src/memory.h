@@ -19,6 +19,7 @@ extern "C" {
 #  define strncmp __builtin_strncmp
 #  define strncpy __builtin_strncpy
 #  define strndup __builtin_strndup
+#  define strstr  __builtin_strstr
 #
 #else /* !__GNUC__ */
 #
