@@ -129,8 +129,8 @@ string_dispose(string_t* string) {
   return 0;
 }
 
-size_t
-string_size(const string_t* const string) {
+long
+string_size(const string_t* const restrict string) {
   validate_with_errno_return(string != NULL);
 
   if (unlikely(string->size == 0))
@@ -139,31 +139,21 @@ string_size(const string_t* const string) {
   if (likely(string->size != STRING_SIZE_UNKNOWN))
     return string->size;
 
-  return strlen(string->data);
+  return str_size(string->data);
 }
 
-size_t
-string_length(const string_t* const string) {
+long
+string_length(const string_t* const restrict string) {
   validate_with_errno_return(string != NULL);
 
   if (unlikely(string->data == NULL))
     return 0; // the string is empty
 
-#ifdef DISABLE_UNICODE
-  return string_size(string); // ASCII only
-#else
-  size_t length = 0;
-  const char* data = string->data;
-  while (likely(*data != '\0')) {
-    length++;
-    data = UTF8_SKIP_CHAR(data);
-  }
-  return length;
-#endif /* DISABLE_UNICODE */
+  return str_length(string->data);
 }
 
 int
-string_hash(const string_t* const string) {
+string_hash(const string_t* const restrict string) {
   validate_with_errno_return(string != NULL);
 
   if (unlikely(string->data == NULL))

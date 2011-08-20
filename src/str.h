@@ -9,27 +9,23 @@ extern "C" {
 
 #include <stdbool.h> /* for bool */
 
-extern int str_compare(
-  const char* str1,
-  const char* str2);
+extern long str_size(const char* restrict str);
 
-extern bool str_equal(
-  const char* str1,
-  const char* str2);
+extern long str_length(const char* restrict str);
 
-extern int str_hash(
-  const char* restrict str);
+extern int str_hash(const char* restrict str);
 
-extern bool str_contains(
-  const char* restrict str,
+extern int str_compare(const char* str1, const char* str2);
+
+extern bool str_equal(const char* str1, const char* str2);
+
+extern bool str_contains(const char* restrict str,
   const char* restrict substr);
 
-extern bool str_has_prefix(
-  const char* restrict str,
+extern bool str_has_prefix(const char* restrict str,
   const char* restrict prefix);
 
-extern bool str_has_suffix(
-  const char* restrict str,
+extern bool str_has_suffix(const char* restrict str,
   const char* restrict suffix);
 
 #ifdef __cplusplus

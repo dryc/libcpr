@@ -3,22 +3,38 @@
 #include "build.h"
 #include <string.h> /* for strlen(), strcmp(), strncmp(), strstr() */
 
-int
-str_compare(const char* str1, const char* str2) {
-  if (unlikely(str1 == str2))
-    return 0;
-  return strcmp(str1, str2);
+long
+str_size(const char* const restrict str) {
+  validate_with_errno_return(str != NULL);
+
+  if (unlikely(*str == '\0'))
+    return 0; // the string is empty
+
+  return strlen(str);
 }
 
-bool
-str_equal(const char* str1, const char* str2) {
-  if (unlikely(str1 == str2))
-    return TRUE;
-  return (strcmp(str1, str2) == 0) ? TRUE : FALSE;
+long
+str_length(const char* const restrict str) {
+  validate_with_errno_return(str != NULL);
+
+  if (unlikely(*str == '\0'))
+    return 0; // the string is empty
+
+#ifdef DISABLE_UNICODE
+  return strlen(str); // ASCII only
+#else
+  long length = 0;
+  const char* data = str;
+  while (likely(*data != '\0')) {
+    length++;
+    data = UTF8_SKIP_CHAR(data);
+  }
+  return length;
+#endif /* DISABLE_UNICODE */
 }
 
 int
-str_hash(const char* restrict str) {
+str_hash(const char* const restrict str) {
   validate_with_errno_return(str != NULL);
 
   uint32_t hash = 5381;
@@ -29,15 +45,29 @@ str_hash(const char* restrict str) {
   return (hash & INT32_MAX);
 }
 
+int
+str_compare(const char* const str1, const char* const str2) {
+  if (unlikely(str1 == str2))
+    return 0;
+  return strcmp(str1, str2);
+}
+
 bool
-str_contains(const char* restrict str, const char* restrict substr) {
+str_equal(const char* const str1, const char* const str2) {
+  if (unlikely(str1 == str2))
+    return TRUE;
+  return (strcmp(str1, str2) == 0) ? TRUE : FALSE;
+}
+
+bool
+str_contains(const char* const restrict str, const char* const restrict substr) {
   validate_with_false_return(str != NULL && substr != NULL);
 
   return unlikely(strstr(str, substr) != NULL) ? TRUE : FALSE;
 }
 
 bool
-str_has_prefix(const char* restrict str, const char* restrict prefix) {
+str_has_prefix(const char* const restrict str, const char* const restrict prefix) {
   validate_with_false_return(str != NULL && prefix != NULL);
 
   const size_t string_size = strlen(str);
@@ -51,7 +81,7 @@ str_has_prefix(const char* restrict str, const char* restrict prefix) {
 }
 
 bool
-str_has_suffix(const char* restrict str, const char* restrict suffix) {
+str_has_suffix(const char* const restrict str, const char* const restrict suffix) {
   validate_with_false_return(str != NULL && suffix != NULL);
 
   const size_t string_size = strlen(str);
