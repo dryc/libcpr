@@ -9,6 +9,14 @@ extern "C" {
 
 #include <stdbool.h> /* for bool */
 
+extern int str_compare(
+  const char* str1,
+  const char* str2);
+
+extern bool str_equal(
+  const char* str1,
+  const char* str2);
+
 extern int str_hash(
   const char* restrict str);
 

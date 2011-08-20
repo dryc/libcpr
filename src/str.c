@@ -4,6 +4,20 @@
 #include <string.h> /* for strlen(), strcmp(), strncmp(), strstr() */
 
 int
+str_compare(const char* str1, const char* str2) {
+  if (unlikely(str1 == str2))
+    return 0;
+  return strcmp(str1, str2);
+}
+
+bool
+str_equal(const char* str1, const char* str2) {
+  if (unlikely(str1 == str2))
+    return TRUE;
+  return (strcmp(str1, str2) == 0) ? TRUE : FALSE;
+}
+
+int
 str_hash(const char* restrict str) {
   validate_with_errno_return(str != NULL);
 
