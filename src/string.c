@@ -169,12 +169,7 @@ string_hash(const string_t* const string) {
   if (unlikely(string->data == NULL))
     return 0; // the string is empty
 
-  uint32_t hash = 5381;
-  const int8_t* data = (int8_t*)string->data;
-  while (likely(*data != '\0')) {
-    hash = ((hash << 5) + hash) + *data++; // hash * 33 + c
-  }
-  return (hash & INT32_MAX);
+  return str_hash(string->data);
 }
 
 int

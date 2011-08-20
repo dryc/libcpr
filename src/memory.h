@@ -75,6 +75,10 @@ extern "C" {
 #    error You must define an strndup() macro for your compiler in src/memory.h.
 #  endif /* strndup */
 #
+#  ifndef strstr
+#    error You must define an strstr() macro for your compiler in src/memory.h.
+#  endif /* strstr */
+#
 #endif /* __GNUC__ */
 
 #ifdef __cplusplus

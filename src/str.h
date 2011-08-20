@@ -9,6 +9,9 @@ extern "C" {
 
 #include <stdbool.h> /* for bool */
 
+extern int str_hash(
+  const char* restrict str);
+
 extern bool str_contains(
   const char* restrict str,
   const char* restrict substr);
