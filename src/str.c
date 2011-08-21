@@ -49,6 +49,7 @@ int
 str_compare(const char* const str1, const char* const str2) {
   if (unlikely(str1 == str2))
     return 0;
+
   return strcmp(str1, str2);
 }
 
@@ -56,6 +57,7 @@ bool
 str_equal(const char* const str1, const char* const str2) {
   if (unlikely(str1 == str2))
     return TRUE;
+
   return (strcmp(str1, str2) == 0) ? TRUE : FALSE;
 }
 
@@ -63,7 +65,118 @@ bool
 str_is_empty(const char* const restrict str) {
   if (unlikely(str == NULL))
     return errno = EINVAL, TRUE;
+
   return unlikely(*str == '\0') ? TRUE : FALSE;
+}
+
+bool
+str_is_ascii(const char* const restrict str) {
+  validate_with_false_return(str != NULL);
+
+  const char* chr = str;
+  while (likely(*chr != '\0')) {
+    if (unlikely(!char_is_ascii(chr[0]))) {
+      return FALSE;
+    }
+  }
+  return TRUE;
+}
+
+bool
+str_is_utf8(const char* const restrict str) {
+  validate_with_false_return(str != NULL);
+
+#ifdef DISABLE_UNICODE
+  return errno = ENOTSUP, FALSE;
+#else
+  const char* chr = str;
+  while (likely(*chr != '\0')) {
+    // TODO: UTF8_DECODE()
+    chr = UTF8_SKIP_CHAR(chr);
+  }
+  return TRUE;
+#endif /* DISABLE_UNICODE */
+}
+
+static inline bool
+str_is(const char* const restrict str, int (*predicate)(const char_t chr)) {
+  validate_with_false_return(str != NULL && predicate != NULL);
+
+  const char* chr = str;
+  while (likely(*chr != '\0')) {
+#ifdef DISABLE_UNICODE
+    if (unlikely(predicate(chr[0]) != TRUE)) {
+      return FALSE;
+    }
+    chr++; // ASCII only
+#else
+    if (unlikely(predicate(chr[0]) != TRUE)) { // TODO: UTF8_DECODE()
+      return FALSE;
+    }
+    chr = UTF8_SKIP_CHAR(chr);
+#endif /* DISABLE_UNICODE */
+  }
+  return TRUE;
+}
+
+bool
+str_is_alnum(const char* const restrict str) {
+  return str_is(str, char_is_alnum);
+}
+
+bool
+str_is_alpha(const char* const restrict str) {
+  return str_is(str, char_is_alpha);
+}
+
+bool
+str_is_blank(const char* const restrict str) {
+  return str_is(str, char_is_blank);
+}
+
+bool
+str_is_cntrl(const char* const restrict str) {
+  return str_is(str, char_is_cntrl);
+}
+
+bool
+str_is_digit(const char* const restrict str) {
+  return str_is(str, char_is_digit);
+}
+
+bool
+str_is_graph(const char* const restrict str) {
+  return str_is(str, char_is_graph);
+}
+
+bool
+str_is_lower(const char* const restrict str) {
+  return str_is(str, char_is_lower);
+}
+
+bool
+str_is_print(const char* const restrict str) {
+  return str_is(str, char_is_print);
+}
+
+bool
+str_is_punct(const char* const restrict str) {
+  return str_is(str, char_is_punct);
+}
+
+bool
+str_is_space(const char* const restrict str) {
+  return str_is(str, char_is_space);
+}
+
+bool
+str_is_upper(const char* const restrict str) {
+  return str_is(str, char_is_upper);
+}
+
+bool
+str_is_xdigit(const char* const restrict str) {
+  return str_is(str, char_is_xdigit);
 }
 
 bool
