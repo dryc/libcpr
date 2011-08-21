@@ -21,13 +21,13 @@ typedef struct string_t {
 } string_t;
 
 extern string_t* string_alloc();
-extern void string_free(string_t* string);
+extern void string_free(string_t* restrict string);
 
-extern string_t* string_construct_with(const char* const data, const size_t size);
-extern string_t* string_construct_with_size(const size_t size);
-extern string_t* string_construct_with_data(const char* const data);
+extern string_t* string_construct_with(const char* restrict data, size_t size);
+extern string_t* string_construct_with_data(const char* restrict data);
+extern string_t* string_construct_with_size(size_t size);
 
-extern string_t* string_clone(const string_t* const string);
+extern string_t* string_clone(const string_t* restrict string);
 
 #define STRING_INIT(sz) {.size = sz, .data = choose(sz == 0, NULL, alloca(sz + 1))}
 
@@ -40,12 +40,12 @@ extern string_t* string_clone(const string_t* const string);
 #define string_init(...) \
   CONCAT(string_init, ARITY(__VA_ARGS__))(__VA_ARGS__)
 
-extern int string_init_empty(string_t* string);
-extern int string_init_with(string_t* string, const char* const data, const size_t size);
-extern int string_init_with_data(string_t* string, const char* const data);
-extern int string_init_with_size(string_t* string, const size_t size);
+extern int string_init_empty(string_t* restrict string);
+extern int string_init_with(string_t* restrict string, const char* restrict data, size_t size);
+extern int string_init_with_data(string_t* restrict string, const char* restrict data);
+extern int string_init_with_size(string_t* restrict string, size_t size);
 
-extern int string_dispose(string_t* string);
+extern int string_dispose(string_t* restrict string);
 
 extern long string_size(const string_t* restrict string);
 
@@ -53,33 +53,36 @@ extern long string_length(const string_t* restrict string);
 
 extern int string_hash(const string_t* restrict string);
 
-extern int string_equal(const string_t* const string1, const string_t* const string2);
-extern int string_compare(const string_t* const string1, const string_t* const string2);
+extern int string_compare(const string_t* string1, const string_t* string2);
 
-extern int string_is_empty(const string_t* const string);
+extern bool string_equal(const string_t* string1, const string_t* string2);
 
-extern int string_is_alnum(const string_t* const string);
-extern int string_is_alpha(const string_t* const string);
-extern int string_is_ascii(const string_t* const string);
-extern int string_is_blank(const string_t* const string);
-extern int string_is_cntrl(const string_t* const string);
-extern int string_is_digit(const string_t* const string);
-extern int string_is_graph(const string_t* const string);
-extern int string_is_lower(const string_t* const string);
-extern int string_is_print(const string_t* const string);
-extern int string_is_punct(const string_t* const string);
-extern int string_is_space(const string_t* const string);
-extern int string_is_upper(const string_t* const string);
-extern int string_is_xdigit(const string_t* const string);
+extern bool string_is_empty(const string_t* restrict string);
 
-extern int string_has_prefix(const string_t* const string, const char* const prefix);
-extern int string_has_suffix(const string_t* const string, const char* const suffix);
+extern bool string_is_ascii(const string_t* restrict string);
+extern bool string_is_utf8(const string_t* restrict string);
 
-extern int string_clear(string_t* string);
+extern bool string_is_alnum(const string_t* restrict string);
+extern bool string_is_alpha(const string_t* restrict string);
+extern bool string_is_blank(const string_t* restrict string);
+extern bool string_is_cntrl(const string_t* restrict string);
+extern bool string_is_digit(const string_t* restrict string);
+extern bool string_is_graph(const string_t* restrict string);
+extern bool string_is_lower(const string_t* restrict string);
+extern bool string_is_print(const string_t* restrict string);
+extern bool string_is_punct(const string_t* restrict string);
+extern bool string_is_space(const string_t* restrict string);
+extern bool string_is_upper(const string_t* restrict string);
+extern bool string_is_xdigit(const string_t* restrict string);
 
-extern int string_append_string(string_t* string, const string_t* const restrict suffix);
-extern int string_append_char(string_t* string, const char_t suffix);
-extern int string_append_bytes(string_t* string, const char* const restrict suffix, const int count);
+extern bool string_has_prefix(const string_t* restrict string, const char* restrict prefix);
+extern bool string_has_suffix(const string_t* restrict string, const char* restrict suffix);
+
+extern int string_clear(string_t* restrict string);
+
+extern int string_append_string(string_t* restrict string, const string_t* restrict suffix);
+extern int string_append_char(string_t* restrict string, char_t suffix);
+extern int string_append_bytes(string_t* restrict string, const char* restrict suffix, int count);
 
 extern int string_to_intmax(const string_t* restrict string,
   intmax_t* restrict result);
