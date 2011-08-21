@@ -46,6 +46,9 @@ extern bool str_has_suffix(const char* restrict str,
 extern bool str_contains(const char* restrict str,
   const char* restrict substr);
 
+extern bool str_matches(const char* restrict str,
+  const char* restrict pattern);
+
 extern int str_to_intmax(const char* restrict str,
   intmax_t* restrict result);
 

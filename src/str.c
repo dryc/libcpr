@@ -2,6 +2,7 @@
 
 #include "build.h"
 #include <inttypes.h> /* for strtoimax() */
+#include <regex.h>    /* for regex_t, regcomp(), regexec(), regfree() */
 #include <string.h>   /* for strlen(), strcmp(), strncmp(), strstr() */
 
 long
@@ -213,6 +214,31 @@ str_contains(const char* const restrict str, const char* const restrict substr) 
   validate_with_false_return(str != NULL && substr != NULL);
 
   return unlikely(strstr(str, substr) != NULL) ? TRUE : FALSE;
+}
+
+bool
+str_matches(const char* const restrict str, const char* const restrict pattern) {
+  validate_with_false_return(str != NULL && pattern != NULL);
+
+  regex_t regex;
+  {
+    const int rc = regcomp(&regex, pattern, REG_EXTENDED | REG_NOSUB);
+    if (unlikely(rc != 0)) {
+      return errno = EINVAL, FALSE; // invalid pattern
+    }
+  }
+
+  bool result = TRUE;
+  {
+    const int rc = regexec(&regex, str, (size_t)0, NULL, 0);
+    if (unlikely(rc != 0)) {
+      result = FALSE;
+    }
+  }
+
+  regfree(&regex);
+
+  return result;
 }
 
 int
