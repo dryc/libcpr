@@ -37,6 +37,8 @@ extern bool str_is_space(const char* restrict str);
 extern bool str_is_upper(const char* restrict str);
 extern bool str_is_xdigit(const char* restrict str);
 
+extern bool str_is_uuid(const char* restrict str);
+
 extern bool str_has_prefix(const char* restrict str,
   const char* restrict prefix);
 

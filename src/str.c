@@ -181,6 +181,24 @@ str_is_xdigit(const char* const restrict str) {
   return str_is(str, char_is_xdigit);
 }
 
+static regex_t str_is_uuid_regex;
+static once_t  str_is_uuid_once = ONCE_INIT;
+
+static void
+str_is_uuid_init() {
+  const int rc = regcomp(&str_is_uuid_regex, UUID_PATTERN, REG_EXTENDED | REG_NOSUB);
+  assert(rc == 0);
+}
+
+bool
+str_is_uuid(const char* const restrict str) {
+  validate_with_false_return(str != NULL);
+
+  once(&str_is_uuid_once, str_is_uuid_init);
+
+  return (regexec(&str_is_uuid_regex, str, (size_t)0, NULL, 0) == 0) ? TRUE : FALSE;
+}
+
 bool
 str_has_prefix(const char* const restrict str, const char* const restrict prefix) {
   validate_with_false_return(str != NULL && prefix != NULL);

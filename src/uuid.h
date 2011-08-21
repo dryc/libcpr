@@ -17,6 +17,9 @@ extern "C" {
 typedef uint8_t uuid_t[16];
 #endif /* _UUID_T */
 
+/* @see http://en.wikipedia.org/wiki/Universally_unique_identifier */
+#define UUID_PATTERN "^([0-9A-Fa-f]{8})-([0-9A-Fa-f]{4})-([0-9A-Fa-f]{4})-([0-9A-Fa-f]{4})-([0-9A-Fa-f]{12})$"
+
 /**
  * The canonical all-zeroes UUID.
  */
