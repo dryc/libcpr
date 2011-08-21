@@ -1,7 +1,8 @@
 /* This is free and unencumbered software released into the public domain. */
 
 #include "build.h"
-#include <string.h> /* for strlen(), strcmp(), strncmp(), strstr() */
+#include <inttypes.h> /* for strtoimax() */
+#include <string.h>   /* for strlen(), strcmp(), strncmp(), strstr() */
 
 long
 str_size(const char* const restrict str) {
@@ -212,4 +213,14 @@ str_contains(const char* const restrict str, const char* const restrict substr) 
   validate_with_false_return(str != NULL && substr != NULL);
 
   return unlikely(strstr(str, substr) != NULL) ? TRUE : FALSE;
+}
+
+int
+str_to_intmax(const char* const restrict str, intmax_t* const restrict result) {
+  validate_with_errno_return(str != NULL && *str != '\0');
+  validate_with_errno_return(result != NULL);
+
+  errno = 0;
+  *result = strtoimax(str, NULL, 10);
+  return -errno;
 }
