@@ -27,9 +27,10 @@ posix_close(const int fd) {
       case EINTR:
         continue; // retry the syscall
       default:
-        break;
+        goto done;
     }
   }
+done:
   return result;
 }
 #endif /* HAVE_UNISTD_H */
@@ -44,9 +45,10 @@ posix_write(const int fd, const void* buf, const size_t count) {
       case EAGAIN:
         continue; // retry the syscall
       default:
-        break;
+        goto done;
     }
   }
+done:
   return result;
 }
 #endif /* HAVE_UNISTD_H */
@@ -61,9 +63,10 @@ posix_poll(struct pollfd fds[], const nfds_t nfds, const int timeout) {
       case EAGAIN:
         continue; // retry the syscall
       default:
-        break;
+        goto done;
     }
   }
+done:
   return result;
 }
 #endif /* HAVE_POLL_H */
@@ -80,9 +83,10 @@ posix_pthread_create(pthread_t* restrict thread, const pthread_attr_t* restrict 
         // TODO: invoke the warning handler callback function.
         continue; // retry the syscall
       default:
-        break;
+        goto done;
     }
   }
+done:
   return result;
 }
 #endif /* HAVE_PTHREAD_CREATE */
@@ -98,9 +102,10 @@ posix_mq_send(mqd_t mqdes, const char* msg_ptr, size_t msg_len, unsigned int msg
       case EAGAIN:
         continue; // retry the syscall
       default:
-        break;
+        goto done;
     }
   }
+done:
   return result;
 }
 #endif /* HAVE_MQUEUE_H */
@@ -115,9 +120,10 @@ posix_mq_receive(mqd_t mqdes, char* msg_ptr, size_t msg_len, unsigned int* msg_p
       case EAGAIN:
         continue; // retry the syscall
       default:
-        break;
+        goto done;
     }
   }
+done:
   return result;
 }
 #endif /* HAVE_MQUEUE_H */
