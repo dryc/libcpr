@@ -15,6 +15,7 @@
 #endif /* HAVE_PTHREAD_H */
 
 #ifdef HAVE_MQUEUE_H
+#  include <time.h>    /* for struct timespec */
 #  include <mqueue.h>  /* for mq_send(), mq_receive() */
 #endif /* HAVE_MQUEUE_H */
 
@@ -111,10 +112,46 @@ done:
 #endif /* HAVE_MQUEUE_H */
 
 #ifdef HAVE_MQUEUE_H
+mqd_t
+posix_mq_timedsend(mqd_t mqdes, const char* msg_ptr, size_t msg_len, unsigned int msg_prio, const struct timespec* abs_timeout) {
+  mqd_t result = 0;
+  while (unlikely((result = mq_timedsend(mqdes, msg_ptr, msg_len, msg_prio, abs_timeout)) == -1)) {
+    switch (errno) {
+      case EINTR:
+      case EAGAIN:
+        continue; // retry the syscall
+      default:
+        goto done;
+    }
+  }
+done:
+  return result;
+}
+#endif /* HAVE_MQUEUE_H */
+
+#ifdef HAVE_MQUEUE_H
 ssize_t
 posix_mq_receive(mqd_t mqdes, char* msg_ptr, size_t msg_len, unsigned int* msg_prio) {
   ssize_t result = 0;
   while (unlikely((result = mq_receive(mqdes, msg_ptr, msg_len, msg_prio)) == -1)) {
+    switch (errno) {
+      case EINTR:
+      case EAGAIN:
+        continue; // retry the syscall
+      default:
+        goto done;
+    }
+  }
+done:
+  return result;
+}
+#endif /* HAVE_MQUEUE_H */
+
+#ifdef HAVE_MQUEUE_H
+ssize_t
+posix_mq_timedreceive(mqd_t mqdes, char* msg_ptr, size_t msg_len, unsigned int* msg_prio, const struct timespec* abs_timeout) {
+  ssize_t result = 0;
+  while (unlikely((result = mq_timedreceive(mqdes, msg_ptr, msg_len, msg_prio, abs_timeout)) == -1)) {
     switch (errno) {
       case EINTR:
       case EAGAIN:
