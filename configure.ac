@@ -94,6 +94,10 @@ AC_FUNC_FSEEKO
 AC_FUNC_MMAP
 AC_FUNC_STRERROR_R
 AC_CHECK_FUNCS_ONCE([backtrace])
+# GNU extensions:
+AC_CHECK_FUNCS_ONCE([
+  strndup
+])
 # POSIX directory access:
 AC_CHECK_FUNCS_ONCE([
   closedir

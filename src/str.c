@@ -5,6 +5,26 @@
 #include <regex.h>    /* for regex_t, regcomp(), regexec(), regfree() */
 #include <string.h>   /* for strlen(), strcmp(), strncmp(), strstr() */
 
+char*
+str_dup(const char* const restrict str) {
+  validate_with_null_return(str != NULL);
+
+  return strdup(str);
+}
+
+char*
+str_ndup(const char* const restrict str, const size_t size) {
+  validate_with_null_return(str != NULL);
+
+#ifdef HAVE_STRNDUP
+  return strndup(str, size);
+#else
+  char* const restrict str2 = malloc(size + 1);
+  bcopy(str, str2, size), str2[size] = '\0';
+  return str2;
+#endif
+}
+
 long
 str_size(const char* const restrict str) {
   validate_with_zero_return(str != NULL);

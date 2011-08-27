@@ -8,6 +8,12 @@ extern "C" {
 #endif
 
 #include <stdbool.h> /* for bool */
+#include <stddef.h>  /* for size_t */
+
+extern char* str_dup(const char* restrict str);
+
+extern char* str_ndup(const char* restrict str,
+  size_t size);
 
 extern long str_size(const char* restrict str);
 
