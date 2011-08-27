@@ -57,6 +57,9 @@ extern bool str_contains(const char* restrict str,
 extern bool str_matches(const char* restrict str,
   const char* restrict pattern);
 
+extern int str_to_int(const char* restrict str);
+extern long str_to_long(const char* restrict str);
+
 extern int str_to_intmax(const char* restrict str,
   intmax_t* restrict result);
 

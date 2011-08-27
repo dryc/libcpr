@@ -3,6 +3,7 @@
 #include "build.h"
 #include <inttypes.h> /* for strtoimax() */
 #include <regex.h>    /* for regex_t, regcomp(), regexec(), regfree() */
+#include <stdlib.h>   /* for atoi(), atol() */
 #include <string.h>   /* for strlen(), strcmp(), strncmp(), strstr() */
 
 char*
@@ -277,6 +278,20 @@ str_matches(const char* const restrict str, const char* const restrict pattern) 
   regfree(&regex);
 
   return result;
+}
+
+int
+str_to_int(const char* const restrict str) {
+  validate_with_zero_return(str != NULL && *str != '\0');
+
+  return atoi(str);
+}
+
+long
+str_to_long(const char* const restrict str) {
+  validate_with_zero_return(str != NULL && *str != '\0');
+
+  return atol(str);
 }
 
 int
