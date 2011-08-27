@@ -376,6 +376,15 @@ string_append_bytes(string_t* const restrict string, const char* const restrict 
   return suffix_sz;
 }
 
+char*
+string_to_str(const string_t* const restrict string) {
+  validate_with_null_return(string != NULL);
+
+  return (string->size == STRING_SIZE_UNKNOWN) ?
+    strdup(string->data) :
+    strndup(string->data, string->size);
+}
+
 int
 string_to_intmax(const string_t* const restrict string, intmax_t* const restrict result) {
   validate_with_errno_return(string != NULL && !string_is_empty(string));

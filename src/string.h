@@ -84,6 +84,8 @@ extern int string_append_string(string_t* restrict string, const string_t* restr
 extern int string_append_char(string_t* restrict string, char_t suffix);
 extern int string_append_bytes(string_t* restrict string, const char* restrict suffix, int count);
 
+extern char* string_to_str(const string_t* restrict string);
+
 extern int string_to_intmax(const string_t* restrict string,
   intmax_t* restrict result);
 
