@@ -29,6 +29,7 @@ const char* const cprime_module_names[] = {
   "closure",
   "decimal",
   "dir",
+  "error",
   "file",
   "integer",
   "iter",
@@ -45,6 +46,7 @@ const char* const cprime_module_names[] = {
 #ifndef DISABLE_THREADS
   "rwlock",
 #endif
+  "str",
   "string",
   "symbol",
 #ifndef DISABLE_THREADS
@@ -61,3 +63,27 @@ const char* const cprime_module_names[] = {
 
 const unsigned int cprime_module_count =
   (sizeof(cprime_module_names) / sizeof(cprime_module_names[0])) - 1;
+
+bool
+cprime_has_feature(const char* const restrict name) {
+  validate_with_false_return(name != NULL);
+
+  for (unsigned int i = 0; i < cprime_feature_count; i++) {
+    if (unlikely(str_equal(cprime_feature_names[i], name))) {
+      return TRUE;
+    }
+  }
+  return FALSE;
+}
+
+bool
+cprime_has_module(const char* const restrict name) {
+  validate_with_false_return(name != NULL);
+
+  for (unsigned int i = 0; i < cprime_module_count; i++) {
+    if (unlikely(str_equal(cprime_module_names[i], name))) {
+      return TRUE;
+    }
+  }
+  return FALSE;
+}

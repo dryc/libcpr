@@ -48,6 +48,9 @@ extern const unsigned int cprime_feature_count;
 extern const char* const cprime_module_names[];
 extern const unsigned int cprime_module_count;
 
+extern bool cprime_has_feature(const char* name);
+extern bool cprime_has_module(const char* name);
+
 #define __cprime 1
 
 #ifdef __cplusplus
