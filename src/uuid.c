@@ -53,5 +53,6 @@ uuid_dispose(uuid_t* uuid) {
 int
 uuid_is_zero(const uuid_t* const uuid) {
   validate_with_errno_return(uuid != NULL);
+
   return unlikely(bcmp(uuid, &uuid_zero, sizeof(uuid_t)) == 0) ? TRUE : FALSE;
 }

@@ -14,7 +14,9 @@ extern "C" {
 #ifndef _UUID_T
 #define _UUID_T
 #include <stdint.h> /* for uint8_t */
-typedef uint8_t uuid_t[16];
+typedef struct uuid_t {
+  uint8_t data[16];
+} uuid_t;
 #endif /* _UUID_T */
 
 /* @see http://en.wikipedia.org/wiki/Universally_unique_identifier */
@@ -43,7 +45,7 @@ extern uuid_t* uuid_clone(const uuid_t* uuid);
 /**
  * Initializes a stack-allocated UUID.
  */
-#define UUID_INIT {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+#define UUID_INIT {.data = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}}
 
 /**
  * Initializes a UUID.
@@ -58,7 +60,7 @@ extern int uuid_dispose(uuid_t* uuid);
 /**
  * Returns `TRUE` if a UUID contains all zeroes.
  */
-extern int uuid_is_zero(const uuid_t* const uuid);
+extern int uuid_is_zero(const uuid_t* uuid);
 
 #ifdef __cplusplus
 }
