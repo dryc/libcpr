@@ -17,8 +17,16 @@ extern "C" {
 #ifndef _UUID_T
 #define _UUID_T
 #include <stdint.h> /* for uint8_t */
-typedef struct uuid_t {
+typedef union uuid_t {
   uint8_t data[UUID_SIZE];
+  struct {
+    uint32_t time_low;
+    uint16_t time_mid;
+    uint16_t time_hi_and_version;
+    uint8_t  clock_seq_hi_and_reserved;
+    uint8_t  clock_seq_low;
+    uint8_t  node[6];
+  } layout;
 } uuid_t;
 #endif /* _UUID_T */
 
