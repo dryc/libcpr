@@ -15,6 +15,8 @@ extern char* str_dup(const char* restrict str);
 extern char* str_ndup(const char* restrict str,
   size_t size);
 
+extern char* str_format(const char* restrict fmt, ...);
+
 extern long str_size(const char* restrict str);
 
 extern long str_length(const char* restrict str);

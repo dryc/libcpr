@@ -3,6 +3,8 @@
 #include "build.h"
 #include <inttypes.h> /* for strtoimax() */
 #include <regex.h>    /* for regex_t, regcomp(), regexec(), regfree() */
+#include <stdarg.h>   /* for va_list, va_start(), va_end() */
+#include <stdio.h>    /* for vasprintf() */
 #include <stdlib.h>   /* for atoi(), atol(), strtod(), strtof() */
 #include <string.h>   /* for strlen(), strcmp(), strncmp(), strstr() */
 
@@ -23,7 +25,28 @@ str_ndup(const char* const restrict str, const size_t size) {
   char* const restrict str2 = malloc(size + 1);
   bcopy(str, str2, size), str2[size] = '\0';
   return str2;
-#endif
+#endif /* HAVE_STRNDUP */
+}
+
+char*
+str_format(const char* const restrict fmt, ...) {
+  validate_with_null_return(fmt != NULL);
+
+#ifndef HAVE_VASPRINTF
+  return (errno = ENOTSUP), NULL; // operation not supported
+#else
+  char* result = NULL;
+  va_list args;
+  va_start(args, fmt);
+  {
+    const int rc = vasprintf(&result, fmt, args);
+    if (unlikely(rc == -1)) {
+      return (errno = ENOMEM), NULL;
+    }
+  }
+  va_end(args);
+  return result;
+#endif /* HAVE_VASPRINTF */
 }
 
 long

@@ -97,6 +97,7 @@ AC_CHECK_FUNCS_ONCE([backtrace])
 # GNU extensions:
 AC_CHECK_FUNCS_ONCE([
   strndup
+  vasprintf
 ])
 # POSIX directory access:
 AC_CHECK_FUNCS_ONCE([
