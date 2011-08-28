@@ -7,6 +7,8 @@
 extern "C" {
 #endif
 
+#include <stddef.h> /* for size_t */
+
 #ifdef HAVE_UNISTD_H
 #include <unistd.h> /* for uuid_t on Darwin */
 #endif /* HAVE_UNISTD_H */
@@ -82,6 +84,10 @@ extern int uuid_clear(uuid_t* uuid);
 
 extern int uuid_copy(const uuid_t* restrict uuid,
   uuid_t* restrict copy);
+
+extern int uuid_serialize(const uuid_t* restrict uuid,
+  char* restrict buffer,
+  size_t buffer_size);
 
 #ifdef __cplusplus
 }

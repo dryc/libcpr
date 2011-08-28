@@ -1,6 +1,7 @@
 /* This is free and unencumbered software released into the public domain. */
 
 #include "build.h"
+#include <stdio.h> /* for snprintf() */
 
 const uuid_t uuid_null = UUID_INIT;
 
@@ -86,4 +87,25 @@ uuid_copy(const uuid_t* const restrict uuid, uuid_t* const restrict copy) {
   bcopy(uuid, copy, sizeof(uuid_t));
 
   return 0;
+}
+
+int
+uuid_serialize(const uuid_t* const restrict uuid, char* const restrict buffer, const size_t buffer_size) {
+  validate_with_errno_return(uuid != NULL && buffer != NULL);
+
+  if (unlikely(buffer_size < UUID_LENGTH + 1))
+    return -(errno = EOVERFLOW); // buffer overflow
+
+  return snprintf(buffer, buffer_size, UUID_FORMAT,
+    uuid->layout.time_low,
+    uuid->layout.time_mid,
+    uuid->layout.time_hi_and_version,
+    uuid->layout.clock_seq_hi_and_reserved,
+    uuid->layout.clock_seq_low,
+    uuid->layout.node[0],
+    uuid->layout.node[1],
+    uuid->layout.node[2],
+    uuid->layout.node[3],
+    uuid->layout.node[4],
+    uuid->layout.node[5]);
 }
