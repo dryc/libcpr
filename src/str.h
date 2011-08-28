@@ -59,9 +59,7 @@ extern bool str_matches(const char* restrict str,
 
 extern int str_to_int(const char* restrict str);
 extern long str_to_long(const char* restrict str);
-
-extern int str_to_intmax(const char* restrict str,
-  intmax_t* restrict result);
+extern intmax_t str_to_intmax(const char* restrict str);
 
 #ifdef __cplusplus
 }

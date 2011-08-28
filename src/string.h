@@ -86,8 +86,7 @@ extern int string_append_bytes(string_t* restrict string, const char* restrict s
 
 extern char* string_to_str(const string_t* restrict string);
 
-extern int string_to_intmax(const string_t* restrict string,
-  intmax_t* restrict result);
+extern intmax_t string_to_intmax(const string_t* restrict string);
 
 #ifdef __cplusplus
 }

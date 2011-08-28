@@ -385,12 +385,9 @@ string_to_str(const string_t* const restrict string) {
     strndup(string->data, string->size);
 }
 
-int
-string_to_intmax(const string_t* const restrict string, intmax_t* const restrict result) {
+intmax_t
+string_to_intmax(const string_t* const restrict string) {
   validate_with_errno_return(string != NULL && !string_is_empty(string));
-  validate_with_errno_return(result != NULL);
 
-  errno = 0;
-  *result = strtoimax(string->data, NULL, 10);
-  return -errno;
+  return strtoimax(string->data, NULL, 10);
 }

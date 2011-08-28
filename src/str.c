@@ -294,12 +294,9 @@ str_to_long(const char* const restrict str) {
   return atol(str);
 }
 
-int
-str_to_intmax(const char* const restrict str, intmax_t* const restrict result) {
+intmax_t
+str_to_intmax(const char* const restrict str) {
   validate_with_errno_return(str != NULL && *str != '\0');
-  validate_with_errno_return(result != NULL);
 
-  errno = 0;
-  *result = strtoimax(str, NULL, 10);
-  return -errno;
+  return strtoimax(str, NULL, 10);
 }
