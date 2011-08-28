@@ -12,6 +12,7 @@ extern "C" {
 #  define bcmp    __builtin_bcmp
 #  define bcopy   __builtin_bcopy
 #  define bzero   __builtin_bzero
+#  define memcmp  __builtin_memcmp
 #  define strcmp  __builtin_strcmp
 #  define strcpy  __builtin_strcpy
 #  define strdup  __builtin_strdup
@@ -52,8 +53,12 @@ extern "C" {
 #  endif /* bzero */
 #
 #  ifdef HAVE_STRING_H
-#    include <string.h>  /* for strcmp(), strdup(), strlen(), strncmp(), strndup() */
+#    include <string.h>  /* for memcmp(), strcmp(), strdup(), strlen(), strncmp(), strndup() */
 #  endif /* HAVE_STRING_H */
+#
+#  ifndef memcmp
+#    error You must define an memcmp() macro for your compiler in src/memory.h.
+#  endif /* memcmp */
 #
 #  ifndef strcmp
 #    error You must define an strcmp() macro for your compiler in src/memory.h.

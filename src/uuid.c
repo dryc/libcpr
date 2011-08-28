@@ -1,8 +1,9 @@
 /* This is free and unencumbered software released into the public domain. */
 
 #include "build.h"
-#include <arpa/inet.h> /* for htonl(), htons() */
+#include <arpa/inet.h> /* for htonl(), htons(), ntohl(), ntohs() */
 #include <stdio.h>     /* for FILE*, snprintf() */
+#include <string.h>    /* for memcmp() */
 
 const uuid_t uuid_null = UUID_INIT;
 
@@ -55,6 +56,36 @@ uuid_hash(uuid_t* const uuid) {
   char buffer[UUID_LENGTH + 1];
   uuid_serialize(uuid, buffer, sizeof(buffer));
   return str_hash(buffer);
+}
+
+int
+uuid_compare(const uuid_t* const uuid1, const uuid_t* const uuid2) {
+  validate_with_errno_return(uuid1 != NULL && uuid2 != NULL);
+
+  if (unlikely(uuid1 == uuid2))
+    return 0;
+
+  if (uuid1->layout.time_low != uuid2->layout.time_low) {
+    return (ntohl(uuid1->layout.time_low) < ntohl(uuid2->layout.time_low)) ? -1 : 1;
+  }
+
+  if (uuid1->layout.time_mid != uuid2->layout.time_mid) {
+    return (ntohs(uuid1->layout.time_mid) < ntohs(uuid2->layout.time_mid)) ? -1 : 1;
+  }
+
+  if (uuid1->layout.time_hi_and_version != uuid2->layout.time_hi_and_version) {
+    return (ntohs(uuid1->layout.time_hi_and_version) < ntohs(uuid2->layout.time_hi_and_version)) ? -1 : 1;
+  }
+
+  if (uuid1->layout.clock_seq_hi_and_reserved != uuid2->layout.clock_seq_hi_and_reserved) {
+    return (uuid1->layout.clock_seq_hi_and_reserved < uuid2->layout.clock_seq_hi_and_reserved) ? -1 : 1;
+  }
+
+  if (uuid1->layout.clock_seq_low != uuid2->layout.clock_seq_low) {
+    return (uuid1->layout.clock_seq_low < uuid2->layout.clock_seq_low) ? -1 : 1;
+  }
+
+  return memcmp(uuid1->layout.node, uuid2->layout.node, 6);
 }
 
 bool
