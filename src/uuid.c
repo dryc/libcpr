@@ -12,7 +12,7 @@ uuid_alloc() {
 }
 
 void
-uuid_free(uuid_t* uuid) {
+uuid_free(uuid_t* const uuid) {
   if (likely(uuid != NULL)) {
     uuid_dispose(uuid);
     free(uuid);
@@ -20,7 +20,7 @@ uuid_free(uuid_t* uuid) {
 }
 
 uuid_t*
-uuid_clone(const uuid_t* uuid) {
+uuid_clone(const uuid_t* const uuid) {
   validate_with_null_return(uuid != NULL);
 
   uuid_t* copy = malloc(sizeof(uuid_t));
@@ -31,16 +31,12 @@ uuid_clone(const uuid_t* uuid) {
 }
 
 int
-uuid_init(uuid_t* uuid) {
-  validate_with_errno_return(uuid != NULL);
-
-  bzero(uuid, sizeof(uuid_t));
-
-  return 0;
+uuid_init(uuid_t* const uuid) {
+  return uuid_clear(uuid);
 }
 
 int
-uuid_dispose(uuid_t* uuid) {
+uuid_dispose(uuid_t* const uuid) {
   validate_with_errno_return(uuid != NULL);
 
 #ifndef NDEBUG
@@ -65,4 +61,13 @@ uuid_is_null(const uuid_t* const uuid) {
   validate_with_errno_return(uuid != NULL);
 
   return unlikely(bcmp(uuid, &uuid_null, sizeof(uuid_t)) == 0) ? TRUE : FALSE;
+}
+
+int
+uuid_clear(uuid_t* const uuid) {
+  validate_with_errno_return(uuid != NULL);
+
+  bzero(uuid, sizeof(uuid_t));
+
+  return 0;
 }

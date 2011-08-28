@@ -64,6 +64,8 @@ extern bool uuid_equal(const uuid_t* uuid1, const uuid_t* uuid2);
  */
 extern int uuid_is_null(const uuid_t* uuid);
 
+extern int uuid_clear(uuid_t* uuid);
+
 #ifdef __cplusplus
 }
 #endif
