@@ -11,15 +11,19 @@ extern "C" {
 #include <unistd.h> /* for uuid_t on Darwin */
 #endif /* HAVE_UNISTD_H */
 
+#define UUID_SIZE    16 /* bytes */
+#define UUID_LENGTH  36 /* characters */
+
 #ifndef _UUID_T
 #define _UUID_T
 #include <stdint.h> /* for uint8_t */
 typedef struct uuid_t {
-  uint8_t data[16];
+  uint8_t data[UUID_SIZE];
 } uuid_t;
 #endif /* _UUID_T */
 
 /* @see http://en.wikipedia.org/wiki/Universally_unique_identifier */
+#define UUID_FORMAT  "%08x-%04x-%04x-%02x%02x-%02x%02x%02x%02x%02x%02x"
 #define UUID_PATTERN "^([0-9A-Fa-f]{8})-([0-9A-Fa-f]{4})-([0-9A-Fa-f]{4})-([0-9A-Fa-f]{4})-([0-9A-Fa-f]{12})$"
 
 /**
