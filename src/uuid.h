@@ -25,7 +25,7 @@ typedef struct uuid_t {
 /**
  * The canonical all-zeroes UUID.
  */
-extern const uuid_t uuid_zero;
+extern const uuid_t uuid_null;
 
 /**
  * Allocates heap memory for a new UUID.
@@ -60,7 +60,7 @@ extern int uuid_dispose(uuid_t* uuid);
 /**
  * Returns `TRUE` if a UUID contains all zeroes.
  */
-extern int uuid_is_zero(const uuid_t* uuid);
+extern int uuid_is_null(const uuid_t* uuid);
 
 #ifdef __cplusplus
 }

@@ -2,7 +2,7 @@
 
 #include "build.h"
 
-const uuid_t uuid_zero = UUID_INIT;
+const uuid_t uuid_null = UUID_INIT;
 
 uuid_t*
 uuid_alloc() {
@@ -51,8 +51,8 @@ uuid_dispose(uuid_t* uuid) {
 }
 
 int
-uuid_is_zero(const uuid_t* const uuid) {
+uuid_is_null(const uuid_t* const uuid) {
   validate_with_errno_return(uuid != NULL);
 
-  return unlikely(bcmp(uuid, &uuid_zero, sizeof(uuid_t)) == 0) ? TRUE : FALSE;
+  return unlikely(bcmp(uuid, &uuid_null, sizeof(uuid_t)) == 0) ? TRUE : FALSE;
 }
