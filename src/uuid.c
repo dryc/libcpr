@@ -64,6 +64,13 @@ uuid_is_null(const uuid_t* const uuid) {
 }
 
 int
+uuid_version(const uuid_t* const uuid) {
+  validate_with_errno_return(uuid != NULL);
+
+  return ((uuid->layout.time_hi_and_version & 0xF000) >> 12);
+}
+
+int
 uuid_clear(uuid_t* const uuid) {
   validate_with_errno_return(uuid != NULL);
 
