@@ -93,6 +93,8 @@ str_hash(const char* const restrict str) {
 
 int
 str_compare(const char* const str1, const char* const str2) {
+  validate_with_errno_return(str1 != NULL && str2 != NULL);
+
   if (unlikely(str1 == str2))
     return 0;
 
@@ -101,6 +103,8 @@ str_compare(const char* const str1, const char* const str2) {
 
 bool
 str_equal(const char* const str1, const char* const str2) {
+  validate_with_false_return(str1 != NULL && str2 != NULL);
+
   if (unlikely(str1 == str2))
     return TRUE;
 
