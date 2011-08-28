@@ -123,9 +123,9 @@ bool
 str_is_ascii(const char* const restrict str) {
   validate_with_false_return(str != NULL);
 
-  const char* chr = str;
+  const byte_t* chr = (byte_t*)str;
   while (likely(*chr != '\0')) {
-    if (unlikely(!char_is_ascii(chr[0]))) {
+    if (unlikely(!CHAR_IS_ASCII(chr[0]))) {
       return FALSE;
     }
   }

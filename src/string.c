@@ -202,10 +202,10 @@ bool
 string_is_ascii(const string_t* const restrict string) {
   validate_with_false_return(string != NULL);
 
-  const char* data = string->data;
-  char c;
+  const byte_t* data = (byte_t*)string->data;
+  byte_t c;
   while (likely((c = *data) != '\0')) {
-    if (unlikely(!char_is_ascii(c)))
+    if (unlikely(!CHAR_IS_ASCII(c)))
       return FALSE;
     data++;
   }
