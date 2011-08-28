@@ -47,6 +47,15 @@ uuid_dispose(uuid_t* const uuid) {
   return 0;
 }
 
+int
+uuid_hash(uuid_t* const uuid) {
+  validate_with_zero_return(uuid != NULL);
+
+  char buffer[UUID_LENGTH + 1];
+  uuid_serialize(uuid, buffer, sizeof(buffer));
+  return str_hash(buffer);
+}
+
 bool
 uuid_equal(const uuid_t* const uuid1, const uuid_t* const uuid2) {
   validate_with_false_return(uuid1 != NULL && uuid2 != NULL);
