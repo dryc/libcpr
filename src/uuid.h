@@ -8,6 +8,7 @@ extern "C" {
 #endif
 
 #include <stddef.h> /* for size_t */
+#include <stdio.h>  /* for FILE* */
 
 #ifdef HAVE_UNISTD_H
 #include <unistd.h> /* for uuid_t on Darwin */
@@ -88,6 +89,9 @@ extern int uuid_copy(const uuid_t* restrict uuid,
 extern int uuid_serialize(const uuid_t* restrict uuid,
   char* restrict buffer,
   size_t buffer_size);
+
+extern int uuid_print(const uuid_t* restrict uuid,
+  FILE* restrict stream);
 
 #ifdef __cplusplus
 }

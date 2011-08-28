@@ -1,7 +1,7 @@
 /* This is free and unencumbered software released into the public domain. */
 
 #include "build.h"
-#include <stdio.h> /* for snprintf() */
+#include <stdio.h> /* for FILE*, snprintf() */
 
 const uuid_t uuid_null = UUID_INIT;
 
@@ -108,4 +108,13 @@ uuid_serialize(const uuid_t* const restrict uuid, char* const restrict buffer, c
     uuid->layout.node[3],
     uuid->layout.node[4],
     uuid->layout.node[5]);
+}
+
+int
+uuid_print(const uuid_t* const restrict uuid, FILE* const restrict stream) {
+  validate_with_errno_return(uuid != NULL && stream != NULL);
+
+  char buffer[UUID_LENGTH + 1];
+  const int rc = uuid_serialize(uuid, buffer, sizeof(buffer));
+  return unlikely(fputs(buffer, stream) == EOF) ? -errno : rc;
 }
