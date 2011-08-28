@@ -128,6 +128,7 @@ str_is_ascii(const char* const restrict str) {
     if (unlikely(!CHAR_IS_ASCII(chr[0]))) {
       return FALSE;
     }
+    chr++;
   }
   return TRUE;
 }
