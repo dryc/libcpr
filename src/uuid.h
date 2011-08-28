@@ -66,6 +66,9 @@ extern int uuid_is_null(const uuid_t* uuid);
 
 extern int uuid_clear(uuid_t* uuid);
 
+extern int uuid_copy(const uuid_t* restrict uuid,
+  uuid_t* restrict copy);
+
 #ifdef __cplusplus
 }
 #endif

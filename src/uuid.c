@@ -25,7 +25,7 @@ uuid_clone(const uuid_t* const uuid) {
 
   uuid_t* copy = malloc(sizeof(uuid_t));
   if (likely(copy != NULL)) {
-    bcopy(uuid, copy, sizeof(uuid_t));
+    uuid_copy(uuid, copy);
   }
   return copy;
 }
@@ -68,6 +68,15 @@ uuid_clear(uuid_t* const uuid) {
   validate_with_errno_return(uuid != NULL);
 
   bzero(uuid, sizeof(uuid_t));
+
+  return 0;
+}
+
+int
+uuid_copy(const uuid_t* const restrict uuid, uuid_t* const restrict copy) {
+  validate_with_errno_return(uuid != NULL && copy != NULL);
+
+  bcopy(uuid, copy, sizeof(uuid_t));
 
   return 0;
 }
