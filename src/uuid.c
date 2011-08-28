@@ -50,6 +50,16 @@ uuid_dispose(uuid_t* uuid) {
   return 0;
 }
 
+bool
+uuid_equal(const uuid_t* const uuid1, const uuid_t* const uuid2) {
+  validate_with_false_return(uuid1 != NULL && uuid2 != NULL);
+
+  if (unlikely(uuid1 == uuid2))
+    return TRUE;
+
+  return unlikely(bcmp(uuid1, uuid2, sizeof(uuid_t)) == 0) ? TRUE : FALSE;
+}
+
 int
 uuid_is_null(const uuid_t* const uuid) {
   validate_with_errno_return(uuid != NULL);
