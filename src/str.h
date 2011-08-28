@@ -60,6 +60,8 @@ extern bool str_matches(const char* restrict str,
 extern int str_to_int(const char* restrict str);
 extern long str_to_long(const char* restrict str);
 extern intmax_t str_to_intmax(const char* restrict str);
+extern float str_to_float(const char* restrict str);
+extern double str_to_double(const char* restrict str);
 
 #ifdef __cplusplus
 }

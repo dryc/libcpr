@@ -3,7 +3,7 @@
 #include "build.h"
 #include <inttypes.h> /* for strtoimax() */
 #include <regex.h>    /* for regex_t, regcomp(), regexec(), regfree() */
-#include <stdlib.h>   /* for atoi(), atol() */
+#include <stdlib.h>   /* for atoi(), atol(), strtod(), strtof() */
 #include <string.h>   /* for strlen(), strcmp(), strncmp(), strstr() */
 
 char*
@@ -299,4 +299,18 @@ str_to_intmax(const char* const restrict str) {
   validate_with_errno_return(str != NULL && *str != '\0');
 
   return strtoimax(str, NULL, 10);
+}
+
+float
+str_to_float(const char* const restrict str) {
+  validate_with_errno_return(str != NULL && *str != '\0');
+
+  return strtof(str, NULL);
+}
+
+double
+str_to_double(const char* const restrict str) {
+  validate_with_errno_return(str != NULL && *str != '\0');
+
+  return strtod(str, NULL);
 }
