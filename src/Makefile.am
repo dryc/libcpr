@@ -5,6 +5,7 @@ LDADD           = libcprime.la
 lib_LTLIBRARIES = libcprime.la
 
 libcprime_la_SOURCES = cprime.c \
+  ascii.c \
   atomic.c \
   bool.c \
   char.c \
@@ -35,6 +36,7 @@ libcprime_la_SOURCES = cprime.c \
 include_HEADERS = cprime.h
 
 pkginclude_HEADERS = \
+  ascii.h \
   atomic.h \
   bool.h \
   byte.h \

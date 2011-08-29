@@ -5,7 +5,7 @@
 const char* const cprime_version_string = PACKAGE_VERSION;
 
 const char* const cprime_feature_names[] = {
-  "base",
+  "ascii",
 #ifndef NDEBUG
   "debug",
 #endif
@@ -22,6 +22,7 @@ const unsigned int cprime_feature_count =
   (sizeof(cprime_feature_names) / sizeof(cprime_feature_names[0])) - 1;
 
 const char* const cprime_module_names[] = {
+  "ascii",
   "atomic",
   "bool",
   "byte",
