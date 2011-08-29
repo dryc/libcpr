@@ -8,7 +8,9 @@ extern "C" {
 #endif
 
 /* private headers for the build process only */
+#ifdef HAVE_CONFIG_H
 #include "config.h"
+#endif
 
 /* public prelude included from <cprime.h> */
 #include "prelude.h"
