@@ -79,16 +79,16 @@ str_length(const char* const restrict str) {
 #endif /* DISABLE_UNICODE */
 }
 
-int
+hash_t
 str_hash(const char* const restrict str) {
-  validate_with_errno_return(str != NULL);
+  validate_with_zero_return(str != NULL);
 
-  uint32_t hash = 5381;
+  hash_t hash = 5381;
   const int8_t* data = (int8_t*)str;
   while (likely(*data != '\0')) {
     hash = ((hash << 5) + hash) + *data++; // hash * 33 + c
   }
-  return (hash & INT32_MAX);
+  return hash;
 }
 
 int

@@ -22,9 +22,9 @@ char_clone(const char_t* const ptr) {
   return char_construct(*ptr);
 }
 
-int
+hash_t
 char_hash(const char_t chr) {
-  return (int)chr;
+  return uint32_hash(chr);
 }
 
 int

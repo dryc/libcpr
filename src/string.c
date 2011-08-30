@@ -152,9 +152,9 @@ string_length(const string_t* const restrict string) {
   return str_length(string->data);
 }
 
-int
+hash_t
 string_hash(const string_t* const restrict string) {
-  validate_with_errno_return(string != NULL);
+  validate_with_zero_return(string != NULL);
 
   if (unlikely(string->data == NULL))
     return 0; // the string is empty

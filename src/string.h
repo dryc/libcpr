@@ -51,7 +51,7 @@ extern long string_size(const string_t* restrict string);
 
 extern long string_length(const string_t* restrict string);
 
-extern int string_hash(const string_t* restrict string);
+extern hash_t string_hash(const string_t* restrict string);
 
 extern int string_compare(const string_t* string1, const string_t* string2);
 

@@ -21,7 +21,7 @@ extern long str_size(const char* restrict str);
 
 extern long str_length(const char* restrict str);
 
-extern int str_hash(const char* restrict str);
+extern hash_t str_hash(const char* restrict str);
 
 extern int str_compare(const char* str1, const char* str2);
 

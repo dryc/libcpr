@@ -49,7 +49,7 @@ uuid_dispose(uuid_t* const uuid) {
   return 0;
 }
 
-int
+hash_t
 uuid_hash(uuid_t* const uuid) {
   validate_with_zero_return(uuid != NULL);
 

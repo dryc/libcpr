@@ -72,7 +72,7 @@ extern int uuid_init(uuid_t* uuid);
  */
 extern int uuid_dispose(uuid_t* uuid);
 
-extern int uuid_hash(uuid_t* uuid);
+extern hash_t uuid_hash(uuid_t* uuid);
 
 extern int uuid_compare(const uuid_t* uuid1, const uuid_t* uuid2);
 
