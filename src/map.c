@@ -18,3 +18,10 @@ map_init(map_t* const restrict map,
 
   return 0;
 }
+
+bool
+map_is_empty(map_t* const map) {
+  validate_with_false_return(map != NULL);
+
+  return unlikely(map->root == NULL) ? TRUE : FALSE;
+}

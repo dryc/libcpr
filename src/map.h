@@ -7,6 +7,8 @@
 extern "C" {
 #endif
 
+#include <stdbool.h> /* for bool */
+
 typedef struct map_t {
   void* root;
   hash_func_t hash_func;
@@ -23,6 +25,11 @@ extern int map_init(map_t* restrict map,
   compare_func_t compare_func,
   free_func_t free_key_func,
   free_func_t free_value_func);
+
+/**
+ * Returns `TRUE` if the map contains no key-value pairs.
+ */
+extern bool map_is_empty(map_t* map);
 
 #ifdef __cplusplus
 }
