@@ -15,6 +15,15 @@ typedef struct map_t {
   free_func_t free_value_func;
 } map_t;
 
+/**
+ * Initializes a map.
+ */
+extern int map_init(map_t* restrict map,
+  hash_func_t hash_func,
+  compare_func_t compare_func,
+  free_func_t free_key_func,
+  free_func_t free_value_func);
+
 #ifdef __cplusplus
 }
 #endif
