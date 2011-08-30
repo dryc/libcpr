@@ -7,11 +7,12 @@
 extern "C" {
 #endif
 
-#include <stddef.h> /* for size_t */
-
-typedef struct {
-  void* data;
-  size_t count;
+typedef struct map_t {
+  void* root;
+  hash_func_t hash_func;
+  compare_func_t compare_func;
+  free_func_t free_key_func;
+  free_func_t free_value_func;
 } map_t;
 
 #ifdef __cplusplus
