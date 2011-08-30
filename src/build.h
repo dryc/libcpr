@@ -59,7 +59,6 @@ extern "C" {
 
 /* standard library headers */
 #include <assert.h> /* for assert() */
-#include <stdlib.h> /* for calloc(), free(), malloc() */
 
 #ifdef __cplusplus
 }

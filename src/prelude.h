@@ -15,6 +15,7 @@ extern "C" {
 #include <stdbool.h> /* for bool */
 #include <stddef.h>  /* for NULL, size_t, wchar_t, ptrdiff_t, and offsetof() */
 #include <stdint.h>  /* for uint32_t */
+#include <stdlib.h>  /* for calloc(), free(), malloc(), realloc() */
 
 #ifdef __STDC__
 #  define __STDC_1989__ 1               /* ANSI X3.159-1989    */
