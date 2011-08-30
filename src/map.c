@@ -1,6 +1,8 @@
 /* This is free and unencumbered software released into the public domain. */
 
 #include "build.h"
+#include "map/int_map.h"
+#include "map/hash_map.h"
 
 int
 map_init(map_t* const restrict map,
@@ -24,4 +26,44 @@ map_is_empty(map_t* const map) {
   validate_with_false_return(map != NULL);
 
   return unlikely(map->root == NULL) ? TRUE : FALSE;
+}
+
+long
+map_count(map_t* const restrict map, const void* const restrict key) {
+  validate_with_zero_return(map != NULL);
+
+  (void)key;
+  return (errno = ENOTSUP), 0; // TODO
+}
+
+bool
+map_lookup(map_t* const restrict map, const void* const restrict key,
+                                      void** const restrict value) {
+  validate_with_false_return(map != NULL && key != NULL);
+
+  (void)value;
+  return (errno = ENOTSUP), FALSE; // TODO
+}
+
+int
+map_clear(map_t* const restrict map) {
+  validate_with_errno_return(map != NULL);
+
+  return -(errno = ENOTSUP); // TODO
+}
+
+int
+map_insert(map_t* const restrict map, const void* const restrict key,
+                                      const void* const restrict value) {
+  validate_with_errno_return(map != NULL && key != NULL);
+
+  (void)value;
+  return -(errno = ENOTSUP); // TODO
+}
+
+int
+map_remove(map_t* const restrict map, const void* const restrict key) {
+  validate_with_errno_return(map != NULL && key != NULL);
+
+  return -(errno = ENOTSUP); // TODO
 }
