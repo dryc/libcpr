@@ -20,6 +20,7 @@ extern "C" {
 typedef struct list_t {
   pair_t* first;
   size_t length;
+  free_func_t free_func;
 } list_t;
 
 /**
@@ -30,7 +31,7 @@ extern list_t* list_alloc();
 /**
  * Initializes a stack-allocated list.
  */
-#define LIST_INIT {.first = LIST_SENTINEL, .length = 0}
+#define LIST_INIT {.first = LIST_SENTINEL, .length = 0, .free_func = free}
 
 /**
  * Returns the length of a list.

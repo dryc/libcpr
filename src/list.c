@@ -30,12 +30,18 @@ list_clear(list_t* list) {
   if (likely(list->length > 0)) {
     pair_t* pair = list->first;
 
-    list->first = LIST_SENTINEL;
+    list->first  = LIST_SENTINEL;
     list->length = 0;
 
     while (likely(pair != LIST_SENTINEL)) {
-      pair_t* tail = pair->tail;
+      pair_t* const tail = pair->tail;
+
+      if (likely(pair->head != NULL && list->free_func != NULL)) {
+        list->free_func(pair->head);
+        pair->head = NULL;
+      }
       pair_free(pair);
+
       pair = tail;
     }
   }
