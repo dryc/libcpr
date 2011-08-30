@@ -16,6 +16,7 @@ extern "C" {
 #include "prelude.h"
 
 /* public headers included from <cprime.h> (specific order) */
+#include "hash.h"
 #include "bool.h"
 #include "byte.h"
 #include "char.h"

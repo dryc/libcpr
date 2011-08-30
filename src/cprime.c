@@ -32,6 +32,7 @@ const char* const cprime_module_names[] = {
   "dir",
   "error",
   "file",
+  "hash",
   "integer",
   "iter",
   "list",

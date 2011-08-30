@@ -13,6 +13,7 @@ libcprime_la_SOURCES = cprime.c \
   decimal.c \
   dir.c \
   file.c \
+  hash.c \
   integer.c \
   iter.c \
   list.c \
@@ -45,6 +46,7 @@ pkginclude_HEADERS = \
   decimal.h \
   dir.h \
   file.h \
+  hash.h \
   integer.h \
   iter.h \
   list.h \

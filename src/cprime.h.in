@@ -14,6 +14,7 @@ extern "C" {
 
 #include <cprime/prelude.h>
 
+#include <cprime/hash.h>
 #include <cprime/bool.h>
 #include <cprime/byte.h>
 #include <cprime/char.h>
