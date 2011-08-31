@@ -18,11 +18,21 @@ set_free(set_t* const set) {
 }
 
 int
-set_init(set_t* const restrict set, const set_vtable_t* const restrict vtable) {
+set_init(set_t* const restrict set, const set_vtable_t* restrict vtable, ...) {
   validate_with_errno_return(set != NULL);
 
-  (void)vtable;
-  return -(errno = ENOTSUP); // TODO
+  bzero(set, sizeof(set_t));
+  set->vtable = vtable = (vtable != NULL) ? vtable : NULL; // TODO
+
+  if (likely(vtable->init != NULL)) {
+    va_list args;
+    va_start(args, vtable);
+    const int rc = vtable->init(set, args);
+    va_end(args);
+    return rc;
+  }
+
+  return 0;
 }
 
 bool
