@@ -39,7 +39,12 @@ extern list_t* list_alloc();
 extern int list_init(list_t* list);
 
 /**
- * Returns `TRUE` if a list is empty.
+ * Removes all elements from a list.
+ */
+extern int list_clear(list_t* list);
+
+/**
+ * Checks whether a list contains any elements.
  */
 extern bool list_is_empty(const list_t* list);
 
@@ -49,26 +54,27 @@ extern bool list_is_empty(const list_t* list);
 extern long list_length(const list_t* list);
 
 /**
- * ...
+ * Counts occurrences of a given element in a list.
  */
 extern long list_count(const list_t* restrict list,
-  const void* restrict ptr);
+  const void* restrict elt);
 
 /**
- * Removes all elements from a list.
+ * Checks whether a list contains a given element.
  */
-extern int list_clear(list_t* list);
+extern bool list_lookup(const list_t* restrict set,
+  const void* restrict elt);
 
 /**
- * Prepends an element to a list.
+ * Prepends a given element to a list.
  */
 #define list_prepend(list, ptr) list_prepend_ptr(list, ptr)
 
 extern int list_prepend_bool(list_t* list, bool_t value);
 extern int list_prepend_byte(list_t* list, byte_t value);
 extern int list_prepend_char(list_t* list, char_t value);
-extern int list_prepend_ptr(list_t* list, const void* ptr);
-extern int list_prepend_pair(list_t* list, const pair_t* pair);
+extern int list_prepend_ptr(list_t* restrict list, const void* restrict ptr);
+extern int list_prepend_pair(list_t* restrict list, const pair_t* restrict pair);
 
 /**
  * Reverses a list.

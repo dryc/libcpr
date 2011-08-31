@@ -20,43 +20,6 @@ list_init(list_t* const list) {
   return 0;
 }
 
-bool
-list_is_empty(const list_t* const list) {
-  validate_with_true_return(list != NULL);
-
-  return unlikely(list->first == LIST_SENTINEL) ? TRUE : FALSE;
-}
-
-long
-list_length(const list_t* const list) {
-  validate_with_zero_return(list != NULL);
-
-  return list->length;
-}
-
-long
-list_count(const list_t* const restrict list, const void* const restrict ptr) {
-  validate_with_zero_return(list != NULL);
-
-  if (unlikely(ptr == NULL))
-    return list->length;
-
-  if (unlikely(list->length == 0))
-    return 0;
-
-  long count = 0;
-
-  const pair_t* pair = list->first;
-  while (likely(pair != LIST_SENTINEL)) {
-    if (unlikely(pair->head == ptr)) {
-      count++;
-    }
-    pair = pair->tail;
-  }
-
-  return count;
-}
-
 int
 list_clear(list_t* list) {
   validate_with_errno_return(list != NULL);
@@ -83,38 +46,90 @@ list_clear(list_t* list) {
   return 0;
 }
 
+bool
+list_is_empty(const list_t* const list) {
+  validate_with_true_return(list != NULL);
+
+  return unlikely(list->first == LIST_SENTINEL) ? TRUE : FALSE;
+}
+
+long
+list_length(const list_t* const list) {
+  validate_with_zero_return(list != NULL);
+
+  return list->length;
+}
+
+long
+list_count(const list_t* const restrict list, const void* const restrict elt) {
+  validate_with_zero_return(list != NULL);
+
+  if (unlikely(list->length == 0))
+    return 0;
+
+  long count = 0;
+
+  const pair_t* pair = list->first;
+  while (likely(pair != LIST_SENTINEL)) {
+    if (unlikely(pair->head == elt)) { // TODO: list->compare_func(pair->head, elt)
+      count++;
+    }
+    pair = pair->tail;
+  }
+
+  return count;
+}
+
+bool
+list_lookup(const list_t* const restrict list, const void* const restrict elt) {
+  validate_with_false_return(list != NULL);
+
+  if (unlikely(list->length == 0))
+    return FALSE;
+
+  const pair_t* pair = list->first;
+  while (likely(pair != LIST_SENTINEL)) {
+    if (unlikely(pair->head == elt)) { // TODO: list->compare_func(pair->head, elt)
+      return TRUE;
+    }
+    pair = pair->tail;
+  }
+
+  return FALSE;
+}
+
 int
-list_prepend_bool(list_t* list, const bool_t value) {
+list_prepend_bool(list_t* const list, const bool_t value) {
   validate_with_errno_return(list != NULL);
 
   return list_prepend_ptr(list, (void*)((intptr_t)value));
 }
 
 int
-list_prepend_byte(list_t* list, const byte_t value) {
+list_prepend_byte(list_t* const list, const byte_t value) {
   validate_with_errno_return(list != NULL);
 
   return list_prepend_ptr(list, (void*)((uintptr_t)value));
 }
 
 int
-list_prepend_char(list_t* list, const char_t value) {
+list_prepend_char(list_t* const list, const char_t value) {
   validate_with_errno_return(list != NULL);
 
   return list_prepend_ptr(list, (void*)((uintptr_t)value));
 }
 
 int
-list_prepend_ptr(list_t* list, const void* const ptr) {
+list_prepend_ptr(list_t* const restrict list, const void* const restrict ptr) {
   validate_with_errno_return(list != NULL);
 
-  pair_t* const pair = pair_construct((void*)ptr, list->first);
+  pair_t* const restrict pair = pair_construct((void*)ptr, list->first);
 
   return list_prepend_pair(list, pair);
 }
 
 int
-list_prepend_pair(list_t* list, const pair_t* const pair) {
+list_prepend_pair(list_t* const restrict list, const pair_t* const restrict pair) {
   validate_with_errno_return(list != NULL);
 
   list->first = (pair_t*)pair;
@@ -124,10 +139,10 @@ list_prepend_pair(list_t* list, const pair_t* const pair) {
 }
 
 int
-list_reverse(list_t* list) {
+list_reverse(list_t* const list) {
   validate_with_errno_return(list != NULL);
 
-  if (unlikely(list->length < 2))
+  if (unlikely(list->length <= 1))
     return 0; // nothing to do
 
   pair_t* prev = LIST_SENTINEL;
