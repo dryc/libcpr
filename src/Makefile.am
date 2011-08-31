@@ -25,6 +25,7 @@ libcprime_la_SOURCES = cprime.c \
   process.c \
   queue.c \
   rwlock.c \
+  set.c \
   str.c \
   string.c \
   symbol.c \
@@ -60,6 +61,7 @@ pkginclude_HEADERS = \
   process.h \
   queue.h \
   rwlock.h \
+  set.h \
   str.h \
   string.h \
   symbol.h \
