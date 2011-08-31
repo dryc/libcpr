@@ -8,7 +8,7 @@ extern "C" {
 #endif
 
 static int
-listset_init(set_t* const set, va_list args) {
+listset_init(listset_t* const set, va_list args) {
   (void)args;
   set->instance = list_alloc();
   if (unlikely(set->instance == NULL)) {
@@ -18,7 +18,7 @@ listset_init(set_t* const set, va_list args) {
 }
 
 static int
-listset_reset(set_t* const set) {
+listset_reset(listset_t* const set) {
   if (likely(set->instance != NULL)) {
     list_free(set->instance);
     set->instance = NULL;
@@ -27,37 +27,37 @@ listset_reset(set_t* const set) {
 }
 
 static int
-listset_clear(set_t* const set) {
+listset_clear(listset_t* const set) {
   return list_clear(set->instance);
 }
 
 static long
-listset_count(set_t* const restrict set, const void* const restrict elt) {
+listset_count(listset_t* const restrict set, const void* const restrict elt) {
   return likely(elt == NULL) ?
     list_length(set->instance) :
     (unlikely(list_lookup(set->instance, elt) == TRUE) ? 1 : 0);
 }
 
 static bool
-listset_lookup(set_t* const restrict set, const void* const restrict elt) {
+listset_lookup(listset_t* const restrict set, const void* const restrict elt) {
   return list_lookup(set->instance, elt);
 }
 
 static int
-listset_insert(set_t* const restrict set, const void* const restrict elt) {
+listset_insert(listset_t* const restrict set, const void* const restrict elt) {
   (void)set, (void)elt;
   return -(errno = ENOTSUP); // TODO
 }
 
 static int
-listset_remove(set_t* const restrict set, const void* const restrict elt) {
+listset_remove(listset_t* const restrict set, const void* const restrict elt) {
   (void)set, (void)elt;
   return -(errno = ENOTSUP); // TODO
 }
 
 static int
-listset_replace(set_t* const restrict set, const void* const restrict elt1,
-                                           const void* const restrict elt2) {
+listset_replace(listset_t* const restrict set, const void* const restrict elt1,
+                                               const void* const restrict elt2) {
   (void)set, (void)elt1, (void)elt2;
   return -(errno = ENOTSUP); // TODO
 }

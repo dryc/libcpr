@@ -8,50 +8,50 @@ extern "C" {
 #endif
 
 static int
-treeset_init(set_t* const set, va_list args) {
+treeset_init(treeset_t* const set, va_list args) {
   (void)set, (void)args;
   return -(errno = ENOTSUP); // TODO
 }
 
 static int
-treeset_reset(set_t* const set) {
+treeset_reset(treeset_t* const set) {
   (void)set;
   return -(errno = ENOTSUP); // TODO
 }
 
 static int
-treeset_clear(set_t* const set) {
+treeset_clear(treeset_t* const set) {
   (void)set;
   return -(errno = ENOTSUP); // TODO
 }
 
 static long
-treeset_count(set_t* const restrict set, const void* const restrict elt) {
+treeset_count(treeset_t* const restrict set, const void* const restrict elt) {
   (void)set, (void)elt;
   return (errno = ENOTSUP), 0; // TODO
 }
 
 static bool
-treeset_lookup(set_t* const restrict set, const void* const restrict elt) {
+treeset_lookup(treeset_t* const restrict set, const void* const restrict elt) {
   (void)set, (void)elt;
   return (errno = ENOTSUP), FALSE; // TODO
 }
 
 static int
-treeset_insert(set_t* const restrict set, const void* const restrict elt) {
+treeset_insert(treeset_t* const restrict set, const void* const restrict elt) {
   (void)set, (void)elt;
   return -(errno = ENOTSUP); // TODO
 }
 
 static int
-treeset_remove(set_t* const restrict set, const void* const restrict elt) {
+treeset_remove(treeset_t* const restrict set, const void* const restrict elt) {
   (void)set, (void)elt;
   return -(errno = ENOTSUP); // TODO
 }
 
 static int
-treeset_replace(set_t* const restrict set, const void* const restrict elt1,
-                                           const void* const restrict elt2) {
+treeset_replace(treeset_t* const restrict set, const void* const restrict elt1,
+                                               const void* const restrict elt2) {
   (void)set, (void)elt1, (void)elt2;
   return -(errno = ENOTSUP); // TODO
 }

@@ -22,6 +22,11 @@ typedef struct set_t {
   free_func_t free_func;
 } set_t;
 
+typedef set_t listset_t;
+typedef set_t vectorset_t;
+typedef set_t treeset_t;
+typedef set_t hashset_t;
+
 /**
  * Represents a set's virtual dispatch table.
  *
