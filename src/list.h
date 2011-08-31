@@ -29,6 +29,11 @@ typedef struct list_t {
 extern list_t* list_alloc();
 
 /**
+ * Releases the heap memory used by a list.
+ */
+extern void list_free(list_t* list);
+
+/**
  * Initializes a stack-allocated list.
  */
 #define LIST_INIT {.first = LIST_SENTINEL, .length = 0, .free_func = free}
@@ -37,6 +42,11 @@ extern list_t* list_alloc();
  * Initializes a heap-allocated list.
  */
 extern int list_init(list_t* list);
+
+/**
+ * Resets a list back to an uninitialized state.
+ */
+extern int list_reset(list_t* list);
 
 /**
  * Removes all elements from a list.

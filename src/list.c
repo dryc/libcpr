@@ -7,6 +7,13 @@ list_alloc() {
   return calloc(1, sizeof(list_t));
 }
 
+void
+list_free(list_t* const list) {
+  validate_with_void_return(list != NULL);
+  list_reset(list);
+  free(list);
+}
+
 int
 list_init(list_t* const list) {
   validate_with_errno_return(list != NULL);
@@ -21,7 +28,12 @@ list_init(list_t* const list) {
 }
 
 int
-list_clear(list_t* list) {
+list_reset(list_t* const list) {
+  return list_clear(list);
+}
+
+int
+list_clear(list_t* const list) {
   validate_with_errno_return(list != NULL);
 
   if (likely(list->length > 0)) {

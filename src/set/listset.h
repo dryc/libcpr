@@ -11,17 +11,16 @@ static int
 listset_init(set_t* const set, va_list args) {
   (void)args;
   set->instance = list_alloc();
-  if (likely(set->instance != NULL)) {
-    return list_init(set->instance);
+  if (unlikely(set->instance == NULL)) {
+    return -errno;
   }
-  return -errno;
+  return list_init(set->instance);
 }
 
 static int
 listset_reset(set_t* const set) {
   if (likely(set->instance != NULL)) {
-    list_clear(set->instance);
-    free(set->instance);
+    list_free(set->instance);
     set->instance = NULL;
   }
   return 0;
