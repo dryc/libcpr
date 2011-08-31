@@ -96,6 +96,8 @@ extern "C" {
   if (unlikely(!(expr))) return errno = EINVAL, NULL;
 #define validate_with_false_return(expr) \
   if (unlikely(!(expr))) return errno = EINVAL, FALSE;
+#define validate_with_true_return(expr) \
+  if (unlikely(!(expr))) return errno = EINVAL, TRUE;
 #define validate_with_zero_return(expr) \
   if (unlikely(!(expr))) return errno = EINVAL, 0;
 #define validate_with_void_return(expr) \
