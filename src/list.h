@@ -39,14 +39,20 @@ extern list_t* list_alloc();
 extern int list_init(list_t* list);
 
 /**
- * Returns the length of a list.
- */
-extern int list_length(const list_t* const list);
-
-/**
  * Returns `TRUE` if a list is empty.
  */
-extern int list_is_empty(const list_t* const list);
+extern bool list_is_empty(const list_t* list);
+
+/**
+ * Returns the length of a list.
+ */
+extern long list_length(const list_t* list);
+
+/**
+ * ...
+ */
+extern long list_count(const list_t* restrict list,
+  const void* restrict ptr);
 
 /**
  * Removes all elements from a list.
@@ -58,11 +64,11 @@ extern int list_clear(list_t* list);
  */
 #define list_prepend(list, ptr) list_prepend_ptr(list, ptr)
 
-extern int list_prepend_bool(list_t* list, const bool_t value);
-extern int list_prepend_byte(list_t* list, const byte_t value);
-extern int list_prepend_char(list_t* list, const char_t value);
-extern int list_prepend_ptr(list_t* list, const void* const ptr);
-extern int list_prepend_pair(list_t* list, const pair_t* const pair);
+extern int list_prepend_bool(list_t* list, bool_t value);
+extern int list_prepend_byte(list_t* list, byte_t value);
+extern int list_prepend_char(list_t* list, char_t value);
+extern int list_prepend_ptr(list_t* list, const void* ptr);
+extern int list_prepend_pair(list_t* list, const pair_t* pair);
 
 /**
  * Reverses a list.

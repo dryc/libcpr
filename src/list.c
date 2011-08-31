@@ -2,8 +2,6 @@
 
 #include "build.h"
 
-/* List API */
-
 list_t*
 list_alloc() {
   return calloc(1, sizeof(list_t));
@@ -22,18 +20,41 @@ list_init(list_t* const list) {
   return 0;
 }
 
-int
+bool
+list_is_empty(const list_t* const list) {
+  validate_with_true_return(list != NULL);
+
+  return unlikely(list->first == LIST_SENTINEL) ? TRUE : FALSE;
+}
+
+long
 list_length(const list_t* const list) {
-  validate_with_errno_return(list != NULL);
+  validate_with_zero_return(list != NULL);
 
   return list->length;
 }
 
-int
-list_is_empty(const list_t* const list) {
-  validate_with_errno_return(list != NULL);
+long
+list_count(const list_t* const restrict list, const void* const restrict ptr) {
+  validate_with_zero_return(list != NULL);
 
-  return unlikely(list->first == LIST_SENTINEL) ? TRUE : FALSE;
+  if (unlikely(ptr == NULL))
+    return list->length;
+
+  if (unlikely(list->length == 0))
+    return 0;
+
+  long count = 0;
+
+  const pair_t* pair = list->first;
+  while (likely(pair != LIST_SENTINEL)) {
+    if (unlikely(pair->head == ptr)) {
+      count++;
+    }
+    pair = pair->tail;
+  }
+
+  return count;
 }
 
 int

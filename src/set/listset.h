@@ -36,13 +36,12 @@ static long
 listset_count(set_t* const restrict set, const void* const restrict elt) {
   return likely(elt == NULL) ?
     list_length(set->instance) :
-    ((errno = ENOTSUP), 0); // TODO: list_count(set->instance, elt);
+    list_count(set->instance, elt);
 }
 
 static bool
 listset_lookup(set_t* const restrict set, const void* const restrict elt) {
-  (void)set, (void)elt;
-  return (errno = ENOTSUP), FALSE; // TODO: (list_count(set->instance, elt) > 0);
+  return (list_count(set->instance, elt) > 0) ? TRUE : FALSE;
 }
 
 static int
