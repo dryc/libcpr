@@ -39,7 +39,7 @@ bool
 set_is_empty(const set_t* const set) {
   validate_with_true_return(set != NULL);
 
-  return (errno = ENOTSUP), TRUE; // TODO
+  return unlikely(set->instance == NULL) ? TRUE : FALSE;
 }
 
 int
