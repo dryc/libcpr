@@ -8,14 +8,13 @@
 
 set_t*
 set_alloc() {
-  return (errno = ENOTSUP), NULL; // TODO
+  return calloc(1, sizeof(set_t));
 }
 
 void
 set_free(set_t* const set) {
   validate_with_void_return(set != NULL);
-
-  (errno = ENOTSUP); // TODO
+  free(set);
 }
 
 int
