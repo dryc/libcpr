@@ -12,6 +12,7 @@ extern "C" {
 #endif
 
 #include <errno.h>   /* for the system error constants, e.g. EINVAL */
+#include <stdarg.h>  /* for va_list */
 #include <stdbool.h> /* for bool */
 #include <stddef.h>  /* for NULL, size_t, wchar_t, ptrdiff_t, and offsetof() */
 #include <stdint.h>  /* for uint32_t */
