@@ -10,6 +10,19 @@ list_alloc() {
 }
 
 int
+list_init(list_t* const list) {
+  validate_with_errno_return(list != NULL);
+
+  bzero(list, sizeof(list_t));
+
+  list->first     = LIST_SENTINEL;
+  list->length    = 0;
+  list->free_func = free;
+
+  return 0;
+}
+
+int
 list_length(const list_t* const list) {
   validate_with_errno_return(list != NULL);
 

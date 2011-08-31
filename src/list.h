@@ -34,6 +34,11 @@ extern list_t* list_alloc();
 #define LIST_INIT {.first = LIST_SENTINEL, .length = 0, .free_func = free}
 
 /**
+ * Initializes a heap-allocated list.
+ */
+extern int list_init(list_t* list);
+
+/**
  * Returns the length of a list.
  */
 extern int list_length(const list_t* const list);
