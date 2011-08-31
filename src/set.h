@@ -42,6 +42,11 @@ typedef struct set_vtable_t {
                                       const void* restrict elt2);
 } set_vtable_t;
 
+extern const set_vtable_t listset;
+extern const set_vtable_t vectorset;
+extern const set_vtable_t treeset;
+extern const set_vtable_t hashset;
+
 /**
  * Allocates heap memory for a new set.
  */

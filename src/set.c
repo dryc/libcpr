@@ -46,36 +46,60 @@ int
 set_clear(set_t* const set) {
   validate_with_errno_return(set != NULL);
 
-  return -(errno = ENOTSUP); // TODO
+  const set_vtable_t* const vtable = set->vtable;
+  if (likely(vtable->clear != NULL)) {
+    return vtable->clear(set);
+  }
+
+  return -(errno = ENOTSUP); // operation not supported
 }
 
 long
 set_count(set_t* const restrict set, const void* const restrict elt) {
   validate_with_zero_return(set != NULL);
 
-  (void)elt;
-  return (errno = ENOTSUP), 0; // TODO
+  const set_vtable_t* const vtable = set->vtable;
+  if (likely(vtable->count != NULL)) {
+    return vtable->count(set, elt);
+  }
+
+  return (errno = ENOTSUP), 0; // operation not supported
 }
 
 bool
 set_lookup(set_t* const restrict set, const void* const restrict elt) {
   validate_with_false_return(set != NULL && elt != NULL);
 
-  return (errno = ENOTSUP), FALSE; // TODO
+  const set_vtable_t* const vtable = set->vtable;
+  if (likely(vtable->lookup != NULL)) {
+    return vtable->lookup(set, elt);
+  }
+
+  return (errno = ENOTSUP), FALSE; // operation not supported
 }
 
 int
 set_insert(set_t* const restrict set, const void* const restrict elt) {
   validate_with_errno_return(set != NULL && elt != NULL);
 
-  return -(errno = ENOTSUP); // TODO
+  const set_vtable_t* const vtable = set->vtable;
+  if (likely(vtable->insert != NULL)) {
+    return vtable->insert(set, elt);
+  }
+
+  return -(errno = ENOTSUP); // operation not supported
 }
 
 int
 set_remove(set_t* const restrict set, const void* const restrict elt) {
   validate_with_errno_return(set != NULL && elt != NULL);
 
-  return -(errno = ENOTSUP); // TODO
+  const set_vtable_t* const vtable = set->vtable;
+  if (likely(vtable->remove != NULL)) {
+    return vtable->remove(set, elt);
+  }
+
+  return -(errno = ENOTSUP); // operation not supported
 }
 
 int
@@ -83,6 +107,10 @@ set_replace(set_t* const restrict set, const void* const restrict elt1,
                                        const void* const restrict elt2) {
   validate_with_errno_return(set != NULL && elt1 != NULL);
 
-  (void)elt2;
-  return -(errno = ENOTSUP); // TODO
+  const set_vtable_t* const vtable = set->vtable;
+  if (likely(vtable->replace != NULL)) {
+    return vtable->replace(set, elt1, elt2);
+  }
+
+  return -(errno = ENOTSUP); // operation not supported
 }
