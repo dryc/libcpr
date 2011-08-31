@@ -9,26 +9,40 @@ extern "C" {
 
 static int
 listset_init(set_t* const set, va_list args) {
-  (void)set, (void)args;
-  return -(errno = ENOTSUP); // TODO
+  (void)args;
+  set->instance = list_alloc();
+  if (likely(set->instance != NULL)) {
+    return list_init(set->instance);
+  }
+  return -errno;
+}
+
+static int
+listset_reset(set_t* const set) {
+  if (likely(set->instance != NULL)) {
+    list_clear(set->instance);
+    free(set->instance);
+    set->instance = NULL;
+  }
+  return 0;
 }
 
 static int
 listset_clear(set_t* const set) {
-  (void)set;
-  return -(errno = ENOTSUP); // TODO
+  return list_clear(set->instance);
 }
 
 static long
 listset_count(set_t* const restrict set, const void* const restrict elt) {
-  (void)set, (void)elt;
-  return (errno = ENOTSUP), 0; // TODO
+  return likely(elt == NULL) ?
+    list_length(set->instance) :
+    ((errno = ENOTSUP), 0); // TODO: list_count(set->instance, elt);
 }
 
 static bool
 listset_lookup(set_t* const restrict set, const void* const restrict elt) {
   (void)set, (void)elt;
-  return (errno = ENOTSUP), FALSE; // TODO
+  return (errno = ENOTSUP), FALSE; // TODO: (list_count(set->instance, elt) > 0);
 }
 
 static int
@@ -55,6 +69,7 @@ const set_vtable_t listset = {
   .name    = "listset",
   .options = 0,
   .init    = listset_init,
+  .reset   = listset_reset,
   .clear   = listset_clear,
   .count   = listset_count,
   .lookup  = listset_lookup,

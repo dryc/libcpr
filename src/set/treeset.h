@@ -14,6 +14,12 @@ treeset_init(set_t* const set, va_list args) {
 }
 
 static int
+treeset_reset(set_t* const set) {
+  (void)set;
+  return -(errno = ENOTSUP); // TODO
+}
+
+static int
 treeset_clear(set_t* const set) {
   (void)set;
   return -(errno = ENOTSUP); // TODO
@@ -55,6 +61,7 @@ const set_vtable_t treeset = {
   .name    = "treeset",
   .options = 0,
   .init    = treeset_init,
+  .reset   = treeset_reset,
   .clear   = treeset_clear,
   .count   = treeset_count,
   .lookup  = treeset_lookup,

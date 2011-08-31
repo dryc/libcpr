@@ -14,6 +14,12 @@ hashset_init(set_t* const set, va_list args) {
 }
 
 static int
+hashset_reset(set_t* const set) {
+  (void)set;
+  return -(errno = ENOTSUP); // TODO
+}
+
+static int
 hashset_clear(set_t* const set) {
   (void)set;
   return -(errno = ENOTSUP); // TODO
@@ -55,6 +61,7 @@ const set_vtable_t hashset = {
   .name    = "hashset",
   .options = 0,
   .init    = hashset_init,
+  .reset   = hashset_reset,
   .clear   = hashset_clear,
   .count   = hashset_count,
   .lookup  = hashset_lookup,

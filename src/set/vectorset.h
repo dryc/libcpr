@@ -14,6 +14,12 @@ vectorset_init(set_t* const set, va_list args) {
 }
 
 static int
+vectorset_reset(set_t* const set) {
+  (void)set;
+  return -(errno = ENOTSUP); // TODO
+}
+
+static int
 vectorset_clear(set_t* const set) {
   (void)set;
   return -(errno = ENOTSUP); // TODO
@@ -55,6 +61,7 @@ const set_vtable_t vectorset = {
   .name    = "vectorset",
   .options = 0,
   .init    = vectorset_init,
+  .reset   = vectorset_reset,
   .clear   = vectorset_clear,
   .count   = vectorset_count,
   .lookup  = vectorset_lookup,
