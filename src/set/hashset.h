@@ -9,9 +9,11 @@ extern "C" {
 
 #include <stddef.h> /* for size_t */
 
+#define HASHSET_CAPACITY_MIN 4
+
 typedef struct hashset_entry_t {
+  const void* elt;
   hash_t hash;
-  void* elt;
 } hashset_entry_t;
 
 typedef struct hashset_table_t {
@@ -20,13 +22,20 @@ typedef struct hashset_table_t {
   hashset_entry_t entries[];
 } hashset_table_t;
 
+static inline long
+hashset_size(size_t capacity) {
+  return sizeof(hashset_table_t) + (capacity * sizeof(hashset_entry_t));
+}
+
 static int
 hashset_init(hashset_t* const set, va_list args) {
   (void)args;
-  set->instance = calloc(1, sizeof(hashset_table_t));
-  if (is_null(set->instance)) {
+  hashset_table_t* const table = calloc(1, hashset_size(HASHSET_CAPACITY_MIN));
+  if (is_null(table)) {
     return -errno;
   }
+  table->capacity = HASHSET_CAPACITY_MIN;
+  set->instance = table;
   return 0;
 }
 
@@ -42,37 +51,74 @@ hashset_reset(hashset_t* const set) {
 static int
 hashset_clear(hashset_t* const set) {
   hashset_table_t* const old_table = set->instance;
-  hashset_table_t* const new_table = calloc(1, sizeof(hashset_table_t));
+
+  hashset_table_t* const new_table = calloc(1, hashset_size(HASHSET_CAPACITY_MIN));
+  new_table->capacity = HASHSET_CAPACITY_MIN;
+
   set->instance = new_table;
   free(old_table);
-  return 0;
-}
 
-static long
-hashset_count(hashset_t* const restrict set,
-              const void* const restrict elt) {
-  (void)set, (void)elt;
-  return (errno = ENOTSUP), 0; // TODO
+  return 0;
 }
 
 static bool
 hashset_lookup(hashset_t* const restrict set,
                const void* const restrict elt) {
-  (void)set, (void)elt;
-  return (errno = ENOTSUP), FALSE; // TODO
+  hashset_table_t* const table = set->instance;
+  assert(table != NULL);
+
+  const hash_t hash = set->hash_func(elt);
+  const compare_func_t compare = set->compare_func;
+  assert(compare != NULL);
+
+  hash_t index = hash & (table->capacity - 1);
+  while (index < table->capacity) {
+    const hashset_entry_t* const entry = &table->entries[index];
+
+    if (is_null(entry->elt)) {
+      return FALSE; // element not found in set
+    }
+
+    if (entry->elt == elt || (entry->hash == hash && compare(entry->elt, elt) == 0)) {
+      return TRUE;  // element found
+    }
+
+    index++; // reprobe linearly
+  }
+
+  return FALSE; // element not found in set
+}
+
+static long
+hashset_count(hashset_t* const restrict set,
+              const void* const restrict elt) {
+  hashset_table_t* const table = set->instance;
+  assert(table != NULL);
+
+  if (is_null(elt)) {
+    return table->count;
+  }
+
+  return (hashset_lookup(set, elt) == TRUE) ? 1 : 0;
 }
 
 static int
 hashset_insert(hashset_t* const restrict set,
                const void* const restrict elt) {
-  (void)set, (void)elt;
+  hashset_table_t* const table = set->instance;
+  assert(table != NULL);
+
+  (void)table, (void)set, (void)elt;
   return -(errno = ENOTSUP); // TODO
 }
 
 static int
 hashset_remove(hashset_t* const restrict set,
                const void* const restrict elt) {
-  (void)set, (void)elt;
+  hashset_table_t* const table = set->instance;
+  assert(table != NULL);
+
+  (void)table, (void)set, (void)elt;
   return -(errno = ENOTSUP); // TODO
 }
 
@@ -80,7 +126,10 @@ static int
 hashset_replace(hashset_t* const restrict set,
                 const void* const restrict elt1,
                 const void* const restrict elt2) {
-  (void)set, (void)elt1, (void)elt2;
+  hashset_table_t* const table = set->instance;
+  assert(table != NULL);
+
+  (void)table, (void)set, (void)elt1, (void)elt2;
   return -(errno = ENOTSUP); // TODO
 }
 
