@@ -8,8 +8,11 @@ extern "C" {
 #endif
 
 static int
-hashset_init(hashset_t* const set, va_list args) {
-  (void)set, (void)args;
+hashset_init(hashset_t* const restrict set,
+             const compare_func_t compare_func,
+             const free_func_t free_func,
+             va_list args) {
+  (void)set, (void)compare_func, (void)free_func, (void)args;
   return -(errno = ENOTSUP); // TODO
 }
 
@@ -26,32 +29,37 @@ hashset_clear(hashset_t* const set) {
 }
 
 static long
-hashset_count(hashset_t* const restrict set, const void* const restrict elt) {
+hashset_count(hashset_t* const restrict set,
+              const void* const restrict elt) {
   (void)set, (void)elt;
   return (errno = ENOTSUP), 0; // TODO
 }
 
 static bool
-hashset_lookup(hashset_t* const restrict set, const void* const restrict elt) {
+hashset_lookup(hashset_t* const restrict set,
+               const void* const restrict elt) {
   (void)set, (void)elt;
   return (errno = ENOTSUP), FALSE; // TODO
 }
 
 static int
-hashset_insert(hashset_t* const restrict set, const void* const restrict elt) {
+hashset_insert(hashset_t* const restrict set,
+               const void* const restrict elt) {
   (void)set, (void)elt;
   return -(errno = ENOTSUP); // TODO
 }
 
 static int
-hashset_remove(hashset_t* const restrict set, const void* const restrict elt) {
+hashset_remove(hashset_t* const restrict set,
+               const void* const restrict elt) {
   (void)set, (void)elt;
   return -(errno = ENOTSUP); // TODO
 }
 
 static int
-hashset_replace(hashset_t* const restrict set, const void* const restrict elt1,
-                                               const void* const restrict elt2) {
+hashset_replace(hashset_t* const restrict set,
+                const void* const restrict elt1,
+                const void* const restrict elt2) {
   (void)set, (void)elt1, (void)elt2;
   return -(errno = ENOTSUP); // TODO
 }

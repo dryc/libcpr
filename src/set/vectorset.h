@@ -8,8 +8,11 @@ extern "C" {
 #endif
 
 static int
-vectorset_init(vectorset_t* const set, va_list args) {
-  (void)set, (void)args;
+vectorset_init(vectorset_t* const restrict set,
+               const compare_func_t compare_func,
+               const free_func_t free_func,
+               va_list args) {
+  (void)set, (void)compare_func, (void)free_func, (void)args;
   return -(errno = ENOTSUP); // TODO
 }
 
@@ -26,32 +29,37 @@ vectorset_clear(vectorset_t* const set) {
 }
 
 static long
-vectorset_count(vectorset_t* const restrict set, const void* const restrict elt) {
+vectorset_count(vectorset_t* const restrict set,
+                const void* const restrict elt) {
   (void)set, (void)elt;
   return (errno = ENOTSUP), 0; // TODO
 }
 
 static bool
-vectorset_lookup(vectorset_t* const restrict set, const void* const restrict elt) {
+vectorset_lookup(vectorset_t* const restrict set,
+                 const void* const restrict elt) {
   (void)set, (void)elt;
   return (errno = ENOTSUP), FALSE; // TODO
 }
 
 static int
-vectorset_insert(vectorset_t* const restrict set, const void* const restrict elt) {
+vectorset_insert(vectorset_t* const restrict set,
+                 const void* const restrict elt) {
   (void)set, (void)elt;
   return -(errno = ENOTSUP); // TODO
 }
 
 static int
-vectorset_remove(vectorset_t* const restrict set, const void* const restrict elt) {
+vectorset_remove(vectorset_t* const restrict set,
+                 const void* const restrict elt) {
   (void)set, (void)elt;
   return -(errno = ENOTSUP); // TODO
 }
 
 static int
-vectorset_replace(vectorset_t* const restrict set, const void* const restrict elt1,
-                                                   const void* const restrict elt2) {
+vectorset_replace(vectorset_t* const restrict set,
+                  const void* const restrict elt1,
+                  const void* const restrict elt2) {
   (void)set, (void)elt1, (void)elt2;
   return -(errno = ENOTSUP); // TODO
 }

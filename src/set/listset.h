@@ -8,13 +8,16 @@ extern "C" {
 #endif
 
 static int
-listset_init(listset_t* const set, va_list args) {
+listset_init(listset_t* const restrict set,
+             const compare_func_t compare_func,
+             const free_func_t free_func,
+             va_list args) {
   (void)args;
   set->instance = list_alloc();
   if (unlikely(set->instance == NULL)) {
     return -errno;
   }
-  return list_init(set->instance);
+  return list_init_with(set->instance, compare_func, free_func);
 }
 
 static int
@@ -32,19 +35,22 @@ listset_clear(listset_t* const set) {
 }
 
 static long
-listset_count(listset_t* const restrict set, const void* const restrict elt) {
+listset_count(listset_t* const restrict set,
+              const void* const restrict elt) {
   return likely(elt == NULL) ?
     list_length(set->instance) :
     (unlikely(list_lookup(set->instance, elt) == TRUE) ? 1 : 0);
 }
 
 static bool
-listset_lookup(listset_t* const restrict set, const void* const restrict elt) {
+listset_lookup(listset_t* const restrict set,
+               const void* const restrict elt) {
   return list_lookup(set->instance, elt);
 }
 
 static int
-listset_insert(listset_t* const restrict set, const void* const restrict elt) {
+listset_insert(listset_t* const restrict set,
+               const void* const restrict elt) {
   if (unlikely(list_lookup(set->instance, elt) == TRUE)) {
     return FALSE; // the set already contains the element
   }
@@ -52,14 +58,16 @@ listset_insert(listset_t* const restrict set, const void* const restrict elt) {
 }
 
 static int
-listset_remove(listset_t* const restrict set, const void* const restrict elt) {
+listset_remove(listset_t* const restrict set,
+               const void* const restrict elt) {
   (void)set, (void)elt;
   return -(errno = ENOTSUP); // TODO
 }
 
 static int
-listset_replace(listset_t* const restrict set, const void* const restrict elt1,
-                                               const void* const restrict elt2) {
+listset_replace(listset_t* const restrict set,
+                const void* const restrict elt1,
+                const void* const restrict elt2) {
   (void)set, (void)elt1, (void)elt2;
   return -(errno = ENOTSUP); // TODO
 }

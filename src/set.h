@@ -36,16 +36,29 @@ typedef struct set_vtable_t {
   const struct set_vtable_t* super;
   const char* const restrict name;
   const unsigned int options;
-  int (*init)(set_t* set, va_list args);
+  int (*init)(set_t* restrict set,
+    const compare_func_t compare_func,
+    const free_func_t free_func,
+    va_list args);
   int (*reset)(set_t* set);
   int (*clear)(set_t* set);
-  long (*count)(set_t* restrict set, const void* restrict elt);
-  bool (*lookup)(set_t* restrict set, const void* restrict elt);
-  int (*insert)(set_t* restrict set, const void* restrict elt);
-  int (*remove)(set_t* restrict set, const void* restrict elt);
-  int (*replace)(set_t* restrict set, const void* restrict elt1,
-                                      const void* restrict elt2);
+  long (*count)(set_t* restrict set,
+    const void* restrict elt);
+  bool (*lookup)(set_t* restrict set,
+    const void* restrict elt);
+  int (*insert)(set_t* restrict set,
+    const void* restrict elt);
+  int (*remove)(set_t* restrict set,
+    const void* restrict elt);
+  int (*replace)(set_t* restrict set,
+    const void* restrict elt1,
+    const void* restrict elt2);
 } set_vtable_t;
+
+#define VECTORSET (&vectorset)
+#define LISTSET   (&listset)
+#define TREESET   (&treeset)
+#define HASHSET   (&hashset)
 
 extern const set_vtable_t vectorset;
 extern const set_vtable_t listset;
@@ -66,7 +79,9 @@ extern void set_free(set_t* set);
  * Initializes a set.
  */
 extern int set_init(set_t* restrict set,
-  const set_vtable_t* restrict vtable, ...);
+  const set_vtable_t* restrict vtable,
+  const compare_func_t compare_func,
+  const free_func_t free_func, ...);
 
 /**
  * Resets a set back to an uninitialized state.
