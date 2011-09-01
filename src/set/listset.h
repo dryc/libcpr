@@ -45,8 +45,10 @@ listset_lookup(listset_t* const restrict set, const void* const restrict elt) {
 
 static int
 listset_insert(listset_t* const restrict set, const void* const restrict elt) {
-  (void)set, (void)elt;
-  return -(errno = ENOTSUP); // TODO
+  if (unlikely(list_lookup(set->instance, elt) == TRUE)) {
+    return FALSE; // the set already contains the element
+  }
+  return succeeded(list_prepend(set->instance, elt)) ? TRUE : -errno;
 }
 
 static int
