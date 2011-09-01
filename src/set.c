@@ -1,8 +1,8 @@
 /* This is free and unencumbered software released into the public domain. */
 
 #include "build.h"
-#include "set/listset.h"
 #include "set/vectorset.h"
+#include "set/listset.h"
 #include "set/treeset.h"
 #include "set/hashset.h"
 
@@ -14,6 +14,7 @@ set_alloc() {
 void
 set_free(set_t* const set) {
   validate_with_void_return(set != NULL);
+  set_reset(set);
   free(set);
 }
 
@@ -35,11 +36,16 @@ set_init(set_t* const restrict set, const set_vtable_t* restrict vtable, ...) {
   return 0;
 }
 
-bool
-set_is_empty(const set_t* const set) {
-  validate_with_true_return(set != NULL);
+int
+set_reset(set_t* const set) {
+  validate_with_errno_return(set != NULL);
 
-  return unlikely(set->instance == NULL) ? TRUE : FALSE;
+  const set_vtable_t* const vtable = set->vtable;
+  if (likely(vtable->reset != NULL)) {
+    return vtable->reset(set);
+  }
+
+  return 0;
 }
 
 int
@@ -52,6 +58,13 @@ set_clear(set_t* const set) {
   }
 
   return -(errno = ENOTSUP); // operation not supported
+}
+
+bool
+set_is_empty(const set_t* const set) {
+  validate_with_true_return(set != NULL);
+
+  return unlikely(set->instance == NULL) ? TRUE : FALSE;
 }
 
 long

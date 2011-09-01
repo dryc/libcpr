@@ -22,8 +22,8 @@ typedef struct set_t {
   free_func_t free_func;
 } set_t;
 
-typedef set_t listset_t;
 typedef set_t vectorset_t;
+typedef set_t listset_t;
 typedef set_t treeset_t;
 typedef set_t hashset_t;
 
@@ -47,8 +47,8 @@ typedef struct set_vtable_t {
                                       const void* restrict elt2);
 } set_vtable_t;
 
-extern const set_vtable_t listset;
 extern const set_vtable_t vectorset;
+extern const set_vtable_t listset;
 extern const set_vtable_t treeset;
 extern const set_vtable_t hashset;
 
@@ -69,14 +69,19 @@ extern int set_init(set_t* restrict set,
   const set_vtable_t* restrict vtable, ...);
 
 /**
- * Checks whether a set contains any elements.
+ * Resets a set back to an uninitialized state.
  */
-extern bool set_is_empty(const set_t* set);
+extern int set_reset(set_t* set);
 
 /**
  * Removes all elements from a set.
  */
 extern int set_clear(set_t* set);
+
+/**
+ * Checks whether a set contains any elements.
+ */
+extern bool set_is_empty(const set_t* set);
 
 /**
  * Returns the cardinality of a set.
