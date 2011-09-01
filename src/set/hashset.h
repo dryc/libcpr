@@ -7,22 +7,45 @@
 extern "C" {
 #endif
 
+#include <stddef.h> /* for size_t */
+
+typedef struct hashset_entry_t {
+  hash_t hash;
+  void* elt;
+} hashset_entry_t;
+
+typedef struct hashset_table_t {
+  size_t capacity;
+  size_t count;
+  hashset_entry_t entries[];
+} hashset_table_t;
+
 static int
 hashset_init(hashset_t* const set, va_list args) {
-  (void)set, (void)args;
-  return -(errno = ENOTSUP); // TODO
+  (void)args;
+  set->instance = calloc(1, sizeof(hashset_table_t));
+  if (is_null(set->instance)) {
+    return -errno;
+  }
+  return 0;
 }
 
 static int
 hashset_reset(hashset_t* const set) {
-  (void)set;
-  return -(errno = ENOTSUP); // TODO
+  if (is_nonnull(set->instance)) {
+    free(set->instance);
+    set->instance = NULL;
+  }
+  return 0;
 }
 
 static int
 hashset_clear(hashset_t* const set) {
-  (void)set;
-  return -(errno = ENOTSUP); // TODO
+  hashset_table_t* const old_table = set->instance;
+  hashset_table_t* const new_table = calloc(1, sizeof(hashset_table_t));
+  set->instance = new_table;
+  free(old_table);
+  return 0;
 }
 
 static long
