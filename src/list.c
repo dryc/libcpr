@@ -88,9 +88,10 @@ list_count(const list_t* const restrict list, const void* const restrict elt) {
 
   long count = 0;
 
+  const compare_func_t compare = list->compare_func;
   const pair_t* pair = list->first;
   while (likely(pair != LIST_SENTINEL)) {
-    if (unlikely(pair->head == elt)) { // TODO: list->compare_func(pair->head, elt)
+    if (unlikely(pair->head == elt || (compare && compare(pair->head, elt) == 0))) {
       count++;
     }
     pair = pair->tail;
@@ -106,9 +107,10 @@ list_lookup(const list_t* const restrict list, const void* const restrict elt) {
   if (unlikely(list->length == 0))
     return FALSE;
 
+  const compare_func_t compare = list->compare_func;
   const pair_t* pair = list->first;
   while (likely(pair != LIST_SENTINEL)) {
-    if (unlikely(pair->head == elt)) { // TODO: list->compare_func(pair->head, elt)
+    if (unlikely(pair->head == elt || (compare && compare(pair->head, elt) == 0))) {
       return TRUE;
     }
     pair = pair->tail;
