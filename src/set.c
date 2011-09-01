@@ -64,7 +64,7 @@ bool
 set_is_empty(const set_t* const set) {
   validate_with_true_return(set != NULL);
 
-  return unlikely(set->instance == NULL) ? TRUE : FALSE;
+  return unlikely(set->instance == NULL || set_count((set_t*)set, NULL) == 0);
 }
 
 long
