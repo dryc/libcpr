@@ -36,16 +36,29 @@ typedef struct map_vtable_t {
   const struct map_vtable_t* super;
   const char* const restrict name;
   const unsigned int options;
-  int (*init)(map_t* map, va_list args);
+  int (*init)(map_t* restrict map,
+    const hash_func_t hash_func,
+    const compare_func_t compare_func,
+    const free_func_t free_key_func,    
+    const free_func_t free_value_func,
+    va_list args);
   int (*reset)(map_t* map);
   int (*clear)(map_t* map);
-  long (*count)(map_t* restrict map, const void* restrict key);
-  bool (*lookup)(map_t* restrict map, const void* restrict key,
-                                      void** restrict value);
-  int (*insert)(map_t* restrict map, const void* restrict key,
-                                     const void* restrict value);
-  int (*remove)(map_t* restrict map, const void* restrict key);
+  long (*count)(map_t* restrict map,
+    const void* restrict key);
+  bool (*lookup)(map_t* restrict map,
+    const void* restrict key,
+    void** restrict value);
+  int (*insert)(map_t* restrict map,
+    const void* restrict key,
+    const void* restrict value);
+  int (*remove)(map_t* restrict map,
+    const void* restrict key);
 } map_vtable_t;
+
+#define LISTMAP (&listmap)
+#define TREEMAP (&treemap)
+#define HASHMAP (&hashmap)
 
 extern const map_vtable_t listmap;
 extern const map_vtable_t treemap;
@@ -65,7 +78,11 @@ extern void map_free(map_t* map);
  * Initializes a map.
  */
 extern int map_init(map_t* restrict map,
-  const map_vtable_t* restrict vtable, ...);
+  const map_vtable_t* restrict vtable,
+  const hash_func_t hash_func,
+  const compare_func_t compare_func,
+  const free_func_t free_key_func,
+  const free_func_t free_value_func, ...);
 
 /**
  * Resets a map back to an uninitialized state.

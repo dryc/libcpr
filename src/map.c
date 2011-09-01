@@ -18,16 +18,28 @@ map_free(map_t* const map) {
 }
 
 int
-map_init(map_t* const restrict map, const map_vtable_t* restrict vtable, ...) {
+map_init(map_t* const restrict map,
+         const map_vtable_t* restrict vtable,
+         const hash_func_t hash_func,
+         const compare_func_t compare_func,
+         const free_func_t free_key_func,
+         const free_func_t free_value_func, ...) {
   validate_with_errno_return(map != NULL);
 
   bzero(map, sizeof(map_t));
-  map->vtable = vtable = (vtable != NULL) ? vtable : NULL; // TODO
+
+  map->vtable          = vtable = (vtable != NULL) ? vtable : LISTMAP;
+  map->hash_func       = hash_func;
+  map->compare_func    = compare_func;
+  map->free_key_func   = free_key_func;
+  map->free_value_func = free_value_func;
 
   if (likely(vtable->init != NULL)) {
     va_list args;
-    va_start(args, vtable);
-    const int rc = vtable->init(map, args);
+    va_start(args, free_value_func);
+    const int rc = vtable->init(map,
+      hash_func, compare_func,
+      free_key_func, free_value_func, args);
     va_end(args);
     return rc;
   }

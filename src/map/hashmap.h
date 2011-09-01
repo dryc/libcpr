@@ -8,8 +8,14 @@ extern "C" {
 #endif
 
 static int
-hashmap_init(hashmap_t* const map, va_list args) {
-  (void)map, (void)args;
+hashmap_init(hashmap_t* const restrict map,
+             const hash_func_t hash_func,
+             const compare_func_t compare_func,
+             const free_func_t free_key_func,
+             const free_func_t free_value_func,
+             va_list args) {
+  (void)map, (void)hash_func, (void)compare_func,
+  (void)free_key_func, (void)free_value_func, (void)args;
   return -(errno = ENOTSUP); // TODO
 }
 
@@ -26,27 +32,31 @@ hashmap_clear(hashmap_t* const map) {
 }
 
 static long
-hashmap_count(hashmap_t* const restrict map, const void* const restrict key) {
+hashmap_count(hashmap_t* const restrict map,
+              const void* const restrict key) {
   (void)map, (void)key;
   return (errno = ENOTSUP), 0; // TODO
 }
 
 static bool
-hashmap_lookup(hashmap_t* const restrict map, const void* const restrict key,
-                                              void** const restrict value) {
+hashmap_lookup(hashmap_t* const restrict map,
+               const void* const restrict key,
+               void** const restrict value) {
   (void)map, (void)key, (void)value;
   return (errno = ENOTSUP), FALSE; // TODO
 }
 
 static int
-hashmap_insert(hashmap_t* const restrict map, const void* const restrict key,
-                                              const void* const restrict value) {
+hashmap_insert(hashmap_t* const restrict map,
+               const void* const restrict key,
+               const void* const restrict value) {
   (void)map, (void)key, (void)value;
   return -(errno = ENOTSUP); // TODO
 }
 
 static int
-hashmap_remove(hashmap_t* const restrict map, const void* const restrict key) {
+hashmap_remove(hashmap_t* const restrict map,
+               const void* const restrict key) {
   (void)map, (void)key;
   return -(errno = ENOTSUP); // TODO
 }

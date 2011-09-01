@@ -8,8 +8,14 @@ extern "C" {
 #endif
 
 static int
-treemap_init(treemap_t* const map, va_list args) {
-  (void)map, (void)args;
+treemap_init(treemap_t* const restrict map,
+             const hash_func_t hash_func,
+             const compare_func_t compare_func,
+             const free_func_t free_key_func,
+             const free_func_t free_value_func,
+             va_list args) {
+  (void)map, (void)hash_func, (void)compare_func,
+  (void)free_key_func, (void)free_value_func, (void)args;
   return -(errno = ENOTSUP); // TODO
 }
 
@@ -26,27 +32,31 @@ treemap_clear(treemap_t* const map) {
 }
 
 static long
-treemap_count(treemap_t* const restrict map, const void* const restrict key) {
+treemap_count(treemap_t* const restrict map,
+              const void* const restrict key) {
   (void)map, (void)key;
   return (errno = ENOTSUP), 0; // TODO
 }
 
 static bool
-treemap_lookup(treemap_t* const restrict map, const void* const restrict key,
-                                              void** const restrict value) {
+treemap_lookup(treemap_t* const restrict map,
+               const void* const restrict key,
+               void** const restrict value) {
   (void)map, (void)key, (void)value;
   return (errno = ENOTSUP), FALSE; // TODO
 }
 
 static int
-treemap_insert(treemap_t* const restrict map, const void* const restrict key,
-                                              const void* const restrict value) {
+treemap_insert(treemap_t* const restrict map,
+               const void* const restrict key,
+               const void* const restrict value) {
   (void)map, (void)key, (void)value;
   return -(errno = ENOTSUP); // TODO
 }
 
 static int
-treemap_remove(treemap_t* const restrict map, const void* const restrict key) {
+treemap_remove(treemap_t* const restrict map,
+               const void* const restrict key) {
   (void)map, (void)key;
   return -(errno = ENOTSUP); // TODO
 }
