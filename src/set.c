@@ -20,7 +20,8 @@ set_free(set_t* const set) {
 
 int
 set_init(set_t* const restrict set,
-         const set_vtable_t* restrict vtable, 
+         const set_vtable_t* restrict vtable,
+         const hash_func_t hash_func,
          const compare_func_t compare_func,
          const free_func_t free_func, ...) {
   validate_with_errno_return(set != NULL);
@@ -28,13 +29,15 @@ set_init(set_t* const restrict set,
   bzero(set, sizeof(set_t));
 
   set->vtable       = vtable = (vtable != NULL) ? vtable : LISTSET;
+  set->hash_func    = hash_func;
   set->compare_func = compare_func;
   set->free_func    = free_func;
 
   if (likely(vtable->init != NULL)) {
     va_list args;
     va_start(args, free_func);
-    const int rc = vtable->init(set, compare_func, free_func, args);
+    const int rc = vtable->init(set,
+      hash_func, compare_func, free_func, args);
     va_end(args);
     return rc;
   }

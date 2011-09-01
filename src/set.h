@@ -37,6 +37,7 @@ typedef struct set_vtable_t {
   const char* const restrict name;
   const unsigned int options;
   int (*init)(set_t* restrict set,
+    const hash_func_t hash_func,
     const compare_func_t compare_func,
     const free_func_t free_func,
     va_list args);
@@ -80,6 +81,7 @@ extern void set_free(set_t* set);
  */
 extern int set_init(set_t* restrict set,
   const set_vtable_t* restrict vtable,
+  const hash_func_t hash_func,
   const compare_func_t compare_func,
   const free_func_t free_func, ...);
 

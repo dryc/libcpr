@@ -9,10 +9,12 @@ extern "C" {
 
 static int
 treeset_init(treeset_t* const restrict set,
+             const hash_func_t hash_func,
              const compare_func_t compare_func,
              const free_func_t free_func,
              va_list args) {
-  (void)set, (void)compare_func, (void)free_func, (void)args;
+  (void)set, (void)hash_func, (void)compare_func,
+  (void)free_func, (void)args;
   return -(errno = ENOTSUP); // TODO
 }
 

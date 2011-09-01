@@ -9,10 +9,11 @@ extern "C" {
 
 static int
 listset_init(listset_t* const restrict set,
+             const hash_func_t hash_func,
              const compare_func_t compare_func,
              const free_func_t free_func,
              va_list args) {
-  (void)args;
+  (void)hash_func, (void)args;
   set->instance = list_alloc();
   if (unlikely(set->instance == NULL)) {
     return -errno;
