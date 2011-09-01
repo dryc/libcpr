@@ -16,13 +16,20 @@ list_free(list_t* const list) {
 
 int
 list_init(list_t* const list) {
+  return list_init_with(list, NULL, free);
+}
+
+int
+list_init_with(list_t* const restrict list, const compare_func_t compare_func,
+                                            const free_func_t free_func) {
   validate_with_errno_return(list != NULL);
 
   bzero(list, sizeof(list_t));
 
-  list->first     = LIST_SENTINEL;
-  list->length    = 0;
-  list->free_func = free;
+  list->first        = LIST_SENTINEL;
+  list->length       = 0;
+  list->compare_func = compare_func;
+  list->free_func    = free_func;
 
   return 0;
 }

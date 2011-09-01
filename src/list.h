@@ -20,6 +20,7 @@ extern "C" {
 typedef struct list_t {
   pair_t* first;
   size_t length;
+  compare_func_t compare_func;
   free_func_t free_func;
 } list_t;
 
@@ -42,6 +43,13 @@ extern void list_free(list_t* list);
  * Initializes a heap-allocated list.
  */
 extern int list_init(list_t* list);
+
+/**
+ * Initializes a heap-allocated list with the given options.
+ */
+extern int list_init_with(list_t* restrict list,
+  compare_func_t compare_func,
+  free_func_t free_func);
 
 /**
  * Resets a list back to an uninitialized state.
