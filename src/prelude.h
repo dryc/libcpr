@@ -65,6 +65,8 @@ extern "C" {
 
 #define is_null(expr)    unlikely((expr) == NULL)
 #define is_nonnull(expr) likely((expr) != NULL)
+#define is_false(expr)   unlikely((expr) == FALSE)
+#define is_true(expr)    likely((expr) == TRUE)
 
 /* for branch prediction hints */
 #ifdef __GNUC__
