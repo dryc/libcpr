@@ -37,9 +37,7 @@ map_init(map_t* const restrict map,
   if (likely(vtable->init != NULL)) {
     va_list args;
     va_start(args, free_value_func);
-    const int rc = vtable->init(map,
-      hash_func, compare_func,
-      free_key_func, free_value_func, args);
+    const int rc = vtable->init(map, args);
     va_end(args);
     return rc;
   }

@@ -8,14 +8,8 @@ extern "C" {
 #endif
 
 static int
-hashmap_init(hashmap_t* const restrict map,
-             const hash_func_t hash_func,
-             const compare_func_t compare_func,
-             const free_func_t free_key_func,
-             const free_func_t free_value_func,
-             va_list args) {
-  (void)map, (void)hash_func, (void)compare_func,
-  (void)free_key_func, (void)free_value_func, (void)args;
+hashmap_init(hashmap_t* const map, va_list args) {
+  (void)map, (void)args;
   return -(errno = ENOTSUP); // TODO
 }
 

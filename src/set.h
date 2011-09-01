@@ -36,11 +36,7 @@ typedef struct set_vtable_t {
   const struct set_vtable_t* super;
   const char* const restrict name;
   const unsigned int options;
-  int (*init)(set_t* restrict set,
-    const hash_func_t hash_func,
-    const compare_func_t compare_func,
-    const free_func_t free_func,
-    va_list args);
+  int (*init)(set_t* set, va_list args);
   int (*reset)(set_t* set);
   int (*clear)(set_t* set);
   long (*count)(set_t* restrict set,

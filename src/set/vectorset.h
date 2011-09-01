@@ -8,13 +8,8 @@ extern "C" {
 #endif
 
 static int
-vectorset_init(vectorset_t* const restrict set,
-               const hash_func_t hash_func,
-               const compare_func_t compare_func,
-               const free_func_t free_func,
-               va_list args) {
-  (void)set, (void)hash_func, (void)compare_func,
-  (void)free_func, (void)args;
+vectorset_init(vectorset_t* const set, va_list args) {
+  (void)set, (void)args;
   return -(errno = ENOTSUP); // TODO
 }
 

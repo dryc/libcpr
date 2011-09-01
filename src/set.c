@@ -36,8 +36,7 @@ set_init(set_t* const restrict set,
   if (likely(vtable->init != NULL)) {
     va_list args;
     va_start(args, free_func);
-    const int rc = vtable->init(set,
-      hash_func, compare_func, free_func, args);
+    const int rc = vtable->init(set, args);
     va_end(args);
     return rc;
   }

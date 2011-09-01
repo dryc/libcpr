@@ -8,18 +8,13 @@ extern "C" {
 #endif
 
 static int
-listmap_init(listmap_t* const restrict map,
-             const hash_func_t hash_func,
-             const compare_func_t compare_func,
-             const free_func_t free_key_func,
-             const free_func_t free_value_func,
-             va_list args) {
-  (void)hash_func, (void)free_key_func, (void)free_value_func, (void)args;
+listmap_init(listmap_t* const map, va_list args) {
+  (void)args;
   map->instance = list_alloc();
   if (unlikely(map->instance == NULL)) {
     return -errno;
   }
-  return list_init_with(map->instance, compare_func, free);
+  return list_init_with(map->instance, map->compare_func, free);
 }
 
 static int

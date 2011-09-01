@@ -8,17 +8,13 @@ extern "C" {
 #endif
 
 static int
-listset_init(listset_t* const restrict set,
-             const hash_func_t hash_func,
-             const compare_func_t compare_func,
-             const free_func_t free_func,
-             va_list args) {
-  (void)hash_func, (void)args;
+listset_init(listset_t* const set, va_list args) {
+  (void)args;
   set->instance = list_alloc();
   if (unlikely(set->instance == NULL)) {
     return -errno;
   }
-  return list_init_with(set->instance, compare_func, free_func);
+  return list_init_with(set->instance, set->compare_func, set->free_func);
 }
 
 static int

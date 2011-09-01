@@ -36,12 +36,7 @@ typedef struct map_vtable_t {
   const struct map_vtable_t* super;
   const char* const restrict name;
   const unsigned int options;
-  int (*init)(map_t* restrict map,
-    const hash_func_t hash_func,
-    const compare_func_t compare_func,
-    const free_func_t free_key_func,    
-    const free_func_t free_value_func,
-    va_list args);
+  int (*init)(map_t* map, va_list args);
   int (*reset)(map_t* map);
   int (*clear)(map_t* map);
   long (*count)(map_t* restrict map,
