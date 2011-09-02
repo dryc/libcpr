@@ -30,3 +30,19 @@ uint64_hash(uint64_t n) {
   n ^= (n >> 22);
   return (hash_t)n;
 }
+
+hash_t
+ptr_hash(const void* const ptr) {
+  if (sizeof(void*) == sizeof(uint64_t))
+    return uint64_hash((uintptr_t)ptr);
+  if (sizeof(void*) == sizeof(uint32_t))
+    return uint32_hash((uintptr_t)ptr);
+  return uint64_hash((uintptr_t)ptr);
+}
+
+int
+ptr_compare(const void* const ptr1, const void* const ptr2) {
+  if (unlikely(ptr1 == ptr2))
+    return 0;
+  return ((uintptr_t)ptr1 < (uintptr_t)ptr2) ? -1 : 1;
+}

@@ -24,6 +24,12 @@ extern hash_t uint32_hash(uint32_t n);
  */
 extern hash_t uint64_hash(uint64_t n);
 
+/**
+ * Calculates a hash code for the given pointer.
+ */
+extern hash_t ptr_hash(const void* ptr);
+extern int ptr_compare(const void* ptr1, const void* ptr2);
+
 #ifdef __cplusplus
 }
 #endif
