@@ -47,6 +47,10 @@ seq_reset(seq_t* const seq) {
     return vtable->reset(seq);
   }
 
+#ifndef NDEBUG
+  bzero(seq, sizeof(seq_t));
+#endif
+
   return 0;
 }
 
@@ -156,8 +160,8 @@ seq_reverse(seq_t* const seq) {
 
 int
 seq_sort(seq_t* const seq, const seq_sort_type_t how) {
-  validate_with_zero_return(is_nonnull(seq));
-  validate_with_zero_return(how > SEQ_SORT_NONE);
+  validate_with_errno_return(is_nonnull(seq));
+  validate_with_errno_return(how > SEQ_SORT_NONE);
 
   const seq_vtable_t* const vtable = seq->vtable;
   if (is_nonnull(vtable->sort)) {

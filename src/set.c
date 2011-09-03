@@ -53,6 +53,10 @@ set_reset(set_t* const set) {
     return vtable->reset(set);
   }
 
+#ifndef NDEBUG
+  bzero(set, sizeof(set_t));
+#endif
+
   return 0;
 }
 

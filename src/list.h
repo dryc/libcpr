@@ -7,22 +7,19 @@
 extern "C" {
 #endif
 
-#include <stddef.h> /* for size_t */
-
 /**
  * The canonical end-of-list sentinel value.
  */
 #define LIST_SENTINEL NULL
 
 /**
- * Represents a singly-linked list.
+ * Represents a singly-linked list sequence.
  */
-typedef struct list_t {
-  pair_t* first;
-  size_t length;
-  compare_func_t compare_func;
-  free_func_t free_func;
-} list_t;
+typedef seq_t list_t;
+
+#define LIST (&list_vtable)
+
+extern const seq_vtable_t list_vtable;
 
 /**
  * Allocates heap memory for a new list.
@@ -37,7 +34,7 @@ extern void list_free(list_t* list);
 /**
  * Initializes a stack-allocated list.
  */
-#define LIST_INIT {.first = LIST_SENTINEL, .length = 0, .free_func = free}
+#define LIST_INIT {.vtable = &list_vtable, .data = LIST_SENTINEL, .length = 0, .free_func = free}
 
 /**
  * Initializes a heap-allocated list.
@@ -69,18 +66,18 @@ extern bool list_is_empty(const list_t* list);
 /**
  * Returns the length of a list.
  */
-extern long list_length(const list_t* list);
+extern long list_length(list_t* list);
 
 /**
  * Counts occurrences of a given element in a list.
  */
-extern long list_count(const list_t* restrict list,
+extern long list_count(list_t* restrict list,
   const void* restrict elt);
 
 /**
  * Checks whether a list contains a given element.
  */
-extern bool list_lookup(const list_t* restrict set,
+extern bool list_lookup(list_t* restrict set,
   const void* restrict elt);
 
 /**
@@ -115,7 +112,7 @@ extern const iter_interface_t list_iter_interface;
  */
 #define LIST_ITER_INIT(list) {                        \
   .iter    = ITER_INIT(&list_iter_interface, (list)), \
-  .element = (list)->first,                           \
+  .element = (list)->data,                            \
   .current = NULL,                                    \
 }
 

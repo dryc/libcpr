@@ -54,6 +54,10 @@ map_reset(map_t* const map) {
     return vtable->reset(map);
   }
 
+#ifndef NDEBUG
+  bzero(map, sizeof(map_t));
+#endif
+
   return 0;
 }
 
