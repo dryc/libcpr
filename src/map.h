@@ -15,7 +15,7 @@ extern "C" {
  * @see http://en.wikipedia.org/wiki/Associative_array
  */
 typedef struct map_t {
-  const struct map_vtable_t* vtable;
+  const struct map_vtable_t* restrict vtable;
   void* instance;
   hash_func_t hash_func;
   compare_func_t compare_func;
@@ -33,7 +33,7 @@ typedef map_t hashmap_t;
  * @see http://en.wikipedia.org/wiki/Virtual_method_table
  */
 typedef struct map_vtable_t {
-  const struct map_vtable_t* super;
+  const struct map_vtable_t* restrict super;
   const char* const restrict name;
   const unsigned int options;
   int (*init)(map_t* map, va_list args);

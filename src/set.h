@@ -15,7 +15,7 @@ extern "C" {
  * @see http://en.wikipedia.org/wiki/Set_(computer_science)
  */
 typedef struct set_t {
-  const struct set_vtable_t* vtable;
+  const struct set_vtable_t* restrict vtable;
   void* instance;
   hash_func_t hash_func;
   compare_func_t compare_func;
@@ -33,7 +33,7 @@ typedef set_t hashset_t;
  * @see http://en.wikipedia.org/wiki/Virtual_method_table
  */
 typedef struct set_vtable_t {
-  const struct set_vtable_t* super;
+  const struct set_vtable_t* restrict super;
   const char* const restrict name;
   const unsigned int options;
   int (*init)(set_t* set, va_list args);
