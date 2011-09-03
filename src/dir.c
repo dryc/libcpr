@@ -78,6 +78,8 @@ dir_read(dir_t* dir) {
 
   struct dirent* result = NULL;
 #ifdef HAVE_READDIR_R
+  assert(dir->stream != NULL);
+  assert(dir->entry != NULL);
   const int rc = readdir_r(dir->stream, dir->entry, &result);
 #else
   const int rc = ENOTSUP; // operation not supported
