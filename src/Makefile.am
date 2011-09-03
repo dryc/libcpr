@@ -68,6 +68,7 @@ pkginclude_HEADERS = \
   string.h \
   symbol.h \
   thread.h \
+  unsafe.h \
   uri.h \
   utf8.h \
   uuid.h \
