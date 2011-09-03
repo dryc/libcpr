@@ -20,6 +20,7 @@ extern "C" {
 #include <cprime/char.h>
 #include <cprime/pair.h>
 #include <cprime/iter.h>
+#include <cprime/seq.h>
 #include <cprime/list.h>
 
 #include <cprime/atomic.h>

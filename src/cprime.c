@@ -48,6 +48,7 @@ const char* const cprime_module_names[] = {
 #ifndef DISABLE_THREADS
   "rwlock",
 #endif
+  "seq",
   "set",
   "str",
   "string",

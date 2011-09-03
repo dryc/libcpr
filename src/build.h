@@ -22,6 +22,7 @@ extern "C" {
 #include "char.h"
 #include "pair.h"
 #include "iter.h"
+#include "seq.h"
 #include "list.h"
 
 /* public headers included from <cprime.h> (alphabetic order) */
