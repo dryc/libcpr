@@ -7,6 +7,13 @@
 extern "C" {
 #endif
 
+/* <cprime/box.h> */
+#define box_size(b)             (((box_t*)b)->vtable->size)
+#define box_clear(b)            (((box_t*)b)->vtable->clear(b))
+#define box_hash(b)             (((box_t*)b)->vtable->hash(b))
+#define box_compare(b1, b2)     (((box_t*)b1)->vtable->compare(b1, b2))
+#define box_equal(b1, b2)       (((box_t*)b1)->vtable->compare(b1, b2) == 0)
+
 /* <cprime/map.h> */
 #define map_clear(s)            (((map_t*)s)->vtable->clear(s))
 #define map_count(s, k)         (((map_t*)s)->vtable->count(s, k))

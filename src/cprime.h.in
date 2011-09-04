@@ -24,6 +24,7 @@ extern "C" {
 #include <cprime/list.h>
 
 #include <cprime/atomic.h>
+#include <cprime/box.h>
 #include <cprime/closure.h>
 #include <cprime/decimal.h>
 #include <cprime/dir.h>

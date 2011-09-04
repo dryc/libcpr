@@ -8,6 +8,7 @@ libcprime_la_SOURCES = cprime.c \
   ascii.c \
   atomic.c \
   bool.c \
+  box.c \
   char.c \
   closure.c \
   decimal.c \
@@ -42,6 +43,7 @@ pkginclude_HEADERS = \
   ascii.h \
   atomic.h \
   bool.h \
+  box.h \
   byte.h \
   char.h \
   closure.h \

@@ -25,6 +25,7 @@ const char* const cprime_module_names[] = {
   "ascii",
   "atomic",
   "bool",
+  "box",
   "byte",
   "char",
   "closure",
