@@ -17,14 +17,15 @@ libcprime_la_SOURCES = cprime.c \
   integer.c \
   iter.c \
   list.c \
+  lock/mutex.c \
+  lock/rwlock.c \
+  lock/spinlock.c \
   map.c \
-  mutex.c \
   once.c \
   pair.c \
   posix.c \
   process.c \
   queue.c \
-  rwlock.c \
   seq.c \
   set.c \
   str.c \
@@ -38,7 +39,7 @@ libcprime_la_SOURCES = cprime.c \
 
 include_HEADERS = cprime.h
 
-pkginclude_HEADERS = \
+nobase_pkginclude_HEADERS = \
   ascii.h \
   atom.h \
   bool.h \
@@ -53,16 +54,17 @@ pkginclude_HEADERS = \
   integer.h \
   iter.h \
   list.h \
+  lock/mutex.h \
+  lock/rwlock.h \
+  lock/spinlock.h \
   map.h \
   memory.h \
-  mutex.h \
   once.h \
   pair.h \
   posix.h \
   prelude.h \
   process.h \
   queue.h \
-  rwlock.h \
   seq.h \
   set.h \
   str.h \

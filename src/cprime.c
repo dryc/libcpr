@@ -51,6 +51,9 @@ const char* const cprime_module_names[] = {
 #endif
   "seq",
   "set",
+#ifndef DISABLE_THREADS
+  "spinlock",
+#endif
   "str",
   "string",
   "symbol",

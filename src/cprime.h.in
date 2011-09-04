@@ -30,13 +30,14 @@ extern "C" {
 #include <cprime/dir.h>
 #include <cprime/file.h>
 #include <cprime/integer.h>
+#include <cprime/lock/mutex.h>
+#include <cprime/lock/rwlock.h>
+#include <cprime/lock/spinlock.h>
 #include <cprime/map.h>
-#include <cprime/mutex.h>
 #include <cprime/once.h>
 #include <cprime/posix.h>
 #include <cprime/process.h>
 #include <cprime/queue.h>
-#include <cprime/rwlock.h>
 #include <cprime/set.h>
 #include <cprime/str.h>
 #include <cprime/string.h>

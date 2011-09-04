@@ -73,9 +73,11 @@ dnl Check for types:
 AC_CHECK_TYPES([cpu_set_t], [], [], [[#include <sched.h>]])
 AS_IF([test "x$enable_threads" != "xno"], [
 # POSIX threads support:
-  AC_CHECK_TYPES([pthread_t, pthread_attr_t],
+  AC_CHECK_TYPES(
+    [pthread_t, pthread_attr_t],
     [], [], [[#include <pthread.h>]])
-  AC_CHECK_TYPES([pthread_mutex_t, pthread_once_t, pthread_rwlock_t],
+  AC_CHECK_TYPES(
+    [pthread_mutex_t, pthread_once_t, pthread_rwlock_t, pthread_spinlock_t],
     [], [], [[#include <pthread.h>]])
 ])
 
@@ -138,6 +140,11 @@ AS_IF([test "x$enable_threads" != "xno"], [
     pthread_rwlock_unlock
     pthread_rwlock_wrlock
     pthread_self
+    pthread_spin_destroy
+    pthread_spin_init
+    pthread_spin_lock
+    pthread_spin_trylock
+    pthread_spin_unlock
   ])
 # POSIX threads support (Linux only):
   AC_CHECK_FUNCS_ONCE([
