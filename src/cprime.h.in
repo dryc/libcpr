@@ -23,7 +23,7 @@ extern "C" {
 #include <cprime/seq.h>
 #include <cprime/list.h>
 
-#include <cprime/atomic.h>
+#include <cprime/atom.h>
 #include <cprime/box.h>
 #include <cprime/closure.h>
 #include <cprime/decimal.h>

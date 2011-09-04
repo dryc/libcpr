@@ -6,7 +6,6 @@ lib_LTLIBRARIES = libcprime.la
 
 libcprime_la_SOURCES = cprime.c \
   ascii.c \
-  atomic.c \
   bool.c \
   box.c \
   char.c \
@@ -41,7 +40,7 @@ include_HEADERS = cprime.h
 
 pkginclude_HEADERS = \
   ascii.h \
-  atomic.h \
+  atom.h \
   bool.h \
   box.h \
   byte.h \

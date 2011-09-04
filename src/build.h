@@ -26,7 +26,7 @@ extern "C" {
 #include "list.h"
 
 /* public headers included from <cprime.h> (alphabetic order) */
-#include "atomic.h"
+#include "atom.h"
 #include "box.h"
 #include "closure.h"
 #include "decimal.h"

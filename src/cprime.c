@@ -23,7 +23,7 @@ const unsigned int cprime_feature_count =
 
 const char* const cprime_module_names[] = {
   "ascii",
-  "atomic",
+  "atom",
   "bool",
   "box",
   "byte",
