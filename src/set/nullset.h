@@ -29,7 +29,7 @@ static long
 nullset_count(nullset_t* const restrict set,
               const void* const restrict elt) {
   (void)set, (void)elt;
-  return 0; // set is empty
+  return 0; // the set is empty
 }
 
 static bool

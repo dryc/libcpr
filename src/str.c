@@ -96,7 +96,7 @@ str_compare(const char* const str1, const char* const str2) {
   validate_with_errno_return(str1 != NULL && str2 != NULL);
 
   if (unlikely(str1 == str2))
-    return 0;
+    return COMPARE_EQ;
 
   return strcmp(str1, str2);
 }

@@ -23,7 +23,7 @@ listset_reset(listset_t* const set) {
     list_free(set->instance);
     set->instance = NULL;
   }
-  return 0;
+  return SUCCESS;
 }
 
 static int

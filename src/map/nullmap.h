@@ -29,7 +29,7 @@ static long
 nullmap_count(nullmap_t* const restrict map,
               const void* const restrict key) {
   (void)map, (void)key;
-  return 0; // map is empty
+  return 0; // the map is empty
 }
 
 static bool

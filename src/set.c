@@ -42,7 +42,7 @@ set_init(set_t* const restrict set,
     return rc;
   }
 
-  return 0;
+  return SUCCESS;
 }
 
 int
@@ -58,7 +58,7 @@ set_reset(set_t* const set) {
   bzero(set, sizeof(set_t));
 #endif
 
-  return 0;
+  return SUCCESS;
 }
 
 int

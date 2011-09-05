@@ -30,8 +30,8 @@ char_hash(const char_t chr) {
 int
 char_compare(const char_t chr1, const char_t chr2) {
   if (unlikely(chr1 == chr2))
-    return 0;
-  return likely(chr1 > chr2) ? 1 : -1;
+    return COMPARE_EQ;
+  return (chr1 < chr2) ? COMPARE_LT : COMPARE_GT;
 }
 
 int

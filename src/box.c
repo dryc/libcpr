@@ -35,7 +35,7 @@ box_init(box_t* const restrict box,
     return rc;
   }
 
-  return 0;
+  return SUCCESS;
 }
 
 int
@@ -51,7 +51,7 @@ box_reset(box_t* const box) {
   bzero(box, sizeof(box_t));
 #endif
 
-  return 0;
+  return SUCCESS;
 }
 
 int
@@ -67,7 +67,7 @@ box_clear(box_t* const box) {
   // all-zeroes bit string representation, which is typically the case:
   bzero(&box->value, sizeof(&box->value));
 
-  return 0;
+  return SUCCESS;
 }
 
 long
@@ -95,7 +95,7 @@ box_compare(const box_t* const box1, const box_t* const box2) {
   validate_with_errno_return(is_nonnull(box1) && is_nonnull(box2));
 
   if (unlikely(box1 == box2))
-    return 0;
+    return COMPARE_EQ;
 
   const box_vtable_t* const vtable = box1->vtable;
   if (is_nonnull(vtable->compare)) {

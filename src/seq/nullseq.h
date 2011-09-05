@@ -29,7 +29,7 @@ static long
 nullseq_count(nullseq_t* const restrict seq,
               const void* const restrict elt) {
   (void)seq, (void)elt;
-  return 0; // sequence is empty
+  return 0; // the sequence is empty
 }
 
 static bool

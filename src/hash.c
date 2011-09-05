@@ -43,6 +43,6 @@ ptr_hash(const void* const ptr) {
 int
 ptr_compare(const void* const ptr1, const void* const ptr2) {
   if (unlikely(ptr1 == ptr2))
-    return 0;
-  return ((uintptr_t)ptr1 < (uintptr_t)ptr2) ? -1 : 1;
+    return COMPARE_EQ;
+  return ((uintptr_t)ptr1 < (uintptr_t)ptr2) ? COMPARE_LT : COMPARE_GT;
 }

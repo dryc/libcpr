@@ -23,7 +23,7 @@ iter_init(iter_t* iter) {
 
   bzero(iter, sizeof(iter_t));
 
-  return 0;
+  return SUCCESS;
 }
 
 int

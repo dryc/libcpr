@@ -36,7 +36,7 @@ hashset_init(hashset_t* const set, va_list args) {
   }
   table->capacity = HASHSET_CAPACITY_MIN;
   set->instance = table;
-  return 0;
+  return SUCCESS;
 }
 
 static int
@@ -45,7 +45,7 @@ hashset_reset(hashset_t* const set) {
     free(set->instance);
     set->instance = NULL;
   }
-  return 0;
+  return SUCCESS;
 }
 
 static int
@@ -58,7 +58,7 @@ hashset_clear(hashset_t* const set) {
   set->instance = new_table;
   free(old_table);
 
-  return 0;
+  return SUCCESS;
 }
 
 static bool

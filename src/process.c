@@ -30,7 +30,7 @@ process_init(process_t* process) {
 
   bzero(process, sizeof(process_t));
 
-  return 0;
+  return SUCCESS;
 }
 
 int
@@ -57,7 +57,7 @@ process_dispose(process_t* process) {
   bzero(process, sizeof(process_t));
 #endif
 
-  return 0;
+  return SUCCESS;
 }
 
 bool

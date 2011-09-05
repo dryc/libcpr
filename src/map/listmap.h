@@ -23,7 +23,7 @@ listmap_reset(listmap_t* const map) {
     list_free(map->instance);
     map->instance = NULL;
   }
-  return 0;
+  return SUCCESS;
 }
 
 static int

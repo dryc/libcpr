@@ -11,7 +11,7 @@ dir_init_empty(dir_t* dir) {
 
   bzero(dir, sizeof(dir_t));
 
-  return 0;
+  return SUCCESS;
 }
 
 int
@@ -29,7 +29,7 @@ int
 dir_open(dir_t* dir) {
   validate_with_errno_return(dir != NULL);
   if (unlikely(dir->stream != NULL)) {
-    return 0; // already opened
+    return SUCCESS; // already opened
   }
 
 #ifdef HAVE_OPENDIR
@@ -44,14 +44,14 @@ dir_open(dir_t* dir) {
 
   dir->entry = malloc(DIRENT_SIZE);
 
-  return 0;
+  return SUCCESS;
 }
 
 int
 dir_close(dir_t* dir) {
   validate_with_errno_return(dir != NULL);
 
-  int result = 0;
+  int result = SUCCESS;
 
   if (likely(dir->entry != NULL)) {
     free(dir->entry);

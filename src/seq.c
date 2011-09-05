@@ -36,7 +36,7 @@ seq_init(seq_t* const restrict seq,
     return rc;
   }
 
-  return 0;
+  return SUCCESS;
 }
 
 int
@@ -52,7 +52,7 @@ seq_reset(seq_t* const seq) {
   bzero(seq, sizeof(seq_t));
 #endif
 
-  return 0;
+  return SUCCESS;
 }
 
 int

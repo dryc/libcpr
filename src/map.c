@@ -43,7 +43,7 @@ map_init(map_t* const restrict map,
     return rc;
   }
 
-  return 0;
+  return SUCCESS;
 }
 
 int
@@ -59,7 +59,7 @@ map_reset(map_t* const map) {
   bzero(map, sizeof(map_t));
 #endif
 
-  return 0;
+  return SUCCESS;
 }
 
 int

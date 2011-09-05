@@ -23,7 +23,7 @@ vector_init_empty(vector_t* vector) {
 
   bzero(vector, sizeof(vector_t));
 
-  return 0;
+  return SUCCESS;
 }
 
 int
@@ -52,5 +52,5 @@ vector_dispose(vector_t* vector) {
   vector->capacity     = 0;
   vector->count        = 0;
 
-  return 0;
+  return SUCCESS;
 }

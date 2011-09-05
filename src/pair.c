@@ -28,7 +28,7 @@ pair_init_empty(pair_t* pair) {
 
   bzero(pair, sizeof(pair_t));
 
-  return 0;
+  return SUCCESS;
 }
 
 int
@@ -50,5 +50,5 @@ pair_dispose(pair_t* pair) {
   pair->head = NULL;
   pair->tail = NULL;
 
-  return 0;
+  return SUCCESS;
 }

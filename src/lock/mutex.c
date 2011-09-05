@@ -41,7 +41,7 @@ mutex_init(mutex_t* mutex) {
   const int rc = ENOTSUP; // operation not supported
 #endif
 
-  return likely(rc == 0) ? 0 : -(errno = rc);
+  return likely(rc == 0) ? SUCCESS : -(errno = rc);
 }
 
 int
@@ -58,7 +58,7 @@ mutex_dispose(mutex_t* mutex) {
   bzero(mutex, sizeof(mutex_t));
 #endif
 
-  return likely(rc == 0) ? 0 : -(errno = rc);
+  return likely(rc == 0) ? SUCCESS : -(errno = rc);
 }
 
 int
@@ -71,7 +71,7 @@ mutex_lock(mutex_t* mutex) {
   const int rc = ENOTSUP; // operation not supported
 #endif
 
-  return likely(rc == 0) ? 0 : -(errno = rc);
+  return likely(rc == 0) ? SUCCESS : -(errno = rc);
 }
 
 int
@@ -84,7 +84,7 @@ mutex_trylock(mutex_t* mutex) {
   const int rc = ENOTSUP; // operation not supported
 #endif
 
-  return likely(rc == 0) ? 0 : -(errno = rc);
+  return likely(rc == 0) ? SUCCESS : -(errno = rc);
 }
 
 int
@@ -97,5 +97,5 @@ mutex_unlock(mutex_t* mutex) {
   const int rc = ENOTSUP; // operation not supported
 #endif
 
-  return likely(rc == 0) ? 0 : -(errno = rc);
+  return likely(rc == 0) ? SUCCESS : -(errno = rc);
 }

@@ -54,7 +54,7 @@ string_init_empty(string_t* restrict string) {
 
   bzero(string, sizeof(string_t));
 
-  return 0;
+  return SUCCESS;
 }
 
 int
@@ -126,7 +126,7 @@ string_dispose(string_t* const restrict string) {
   }
   string->size = 0;
 
-  return 0;
+  return SUCCESS;
 }
 
 long
@@ -167,7 +167,7 @@ string_compare(const string_t* const string1, const string_t* const string2) {
   validate_with_errno_return(string1 != NULL && string2 != NULL);
 
   if (unlikely(string1 == string2))
-    return 0;
+    return COMPARE_EQ;
 
   return strcmp(string1->data, string2->data);
 }
@@ -335,7 +335,7 @@ string_clear(string_t* const restrict string) {
   }
   string->size = 0;
 
-  return 0;
+  return SUCCESS;
 }
 
 int

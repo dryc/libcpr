@@ -46,7 +46,7 @@ uuid_dispose(uuid_t* const uuid) {
   bzero(uuid, sizeof(uuid_t));
 #endif
 
-  return 0;
+  return SUCCESS;
 }
 
 hash_t
@@ -63,26 +63,31 @@ uuid_compare(const uuid_t* const uuid1, const uuid_t* const uuid2) {
   validate_with_errno_return(uuid1 != NULL && uuid2 != NULL);
 
   if (unlikely(uuid1 == uuid2))
-    return 0;
+    return COMPARE_EQ;
 
   if (uuid1->layout.time_low != uuid2->layout.time_low) {
-    return (ntohl(uuid1->layout.time_low) < ntohl(uuid2->layout.time_low)) ? -1 : 1;
+    return (ntohl(uuid1->layout.time_low) < ntohl(uuid2->layout.time_low)) ?
+      COMPARE_LT : COMPARE_GT;
   }
 
   if (uuid1->layout.time_mid != uuid2->layout.time_mid) {
-    return (ntohs(uuid1->layout.time_mid) < ntohs(uuid2->layout.time_mid)) ? -1 : 1;
+    return (ntohs(uuid1->layout.time_mid) < ntohs(uuid2->layout.time_mid)) ?
+      COMPARE_LT : COMPARE_GT;
   }
 
   if (uuid1->layout.time_hi_and_version != uuid2->layout.time_hi_and_version) {
-    return (ntohs(uuid1->layout.time_hi_and_version) < ntohs(uuid2->layout.time_hi_and_version)) ? -1 : 1;
+    return (ntohs(uuid1->layout.time_hi_and_version) < ntohs(uuid2->layout.time_hi_and_version)) ?
+      COMPARE_LT : COMPARE_GT;
   }
 
   if (uuid1->layout.clock_seq_hi_and_reserved != uuid2->layout.clock_seq_hi_and_reserved) {
-    return (uuid1->layout.clock_seq_hi_and_reserved < uuid2->layout.clock_seq_hi_and_reserved) ? -1 : 1;
+    return (uuid1->layout.clock_seq_hi_and_reserved < uuid2->layout.clock_seq_hi_and_reserved) ?
+      COMPARE_LT : COMPARE_GT;
   }
 
   if (uuid1->layout.clock_seq_low != uuid2->layout.clock_seq_low) {
-    return (uuid1->layout.clock_seq_low < uuid2->layout.clock_seq_low) ? -1 : 1;
+    return (uuid1->layout.clock_seq_low < uuid2->layout.clock_seq_low) ?
+      COMPARE_LT : COMPARE_GT;
   }
 
   return memcmp(uuid1->layout.node, uuid2->layout.node, 6);
@@ -118,7 +123,7 @@ uuid_clear(uuid_t* const uuid) {
 
   bzero(uuid, sizeof(uuid_t));
 
-  return 0;
+  return SUCCESS;
 }
 
 int
@@ -127,7 +132,7 @@ uuid_copy(const uuid_t* const restrict uuid, uuid_t* const restrict copy) {
 
   bcopy(uuid, copy, sizeof(uuid_t));
 
-  return 0;
+  return SUCCESS;
 }
 
 int

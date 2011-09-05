@@ -54,7 +54,7 @@ list_clear(list_t* const list) {
     }
   }
 
-  return 0;
+  return SUCCESS;
 }
 
 bool
@@ -76,14 +76,14 @@ list_count(list_t* const restrict list, const void* const restrict elt) {
   validate_with_zero_return(is_nonnull(list));
 
   if (unlikely(list->length == 0))
-    return 0;
+    return 0; // the list is empty
 
   long count = 0;
 
   const compare_func_t compare = list->compare_func;
   const pair_t* pair = list->data;
   while (likely(pair != LIST_SENTINEL)) {
-    if (unlikely(pair->head == elt || (compare && compare(pair->head, elt) == 0))) {
+    if (unlikely(pair->head == elt || (compare && compare(pair->head, elt) == COMPARE_EQ))) {
       count++;
     }
     pair = pair->tail;
@@ -102,7 +102,7 @@ list_lookup(list_t* const restrict list, const void* const restrict elt) {
   const compare_func_t compare = list->compare_func;
   const pair_t* pair = list->data;
   while (likely(pair != LIST_SENTINEL)) {
-    if (unlikely(pair->head == elt || (compare && compare(pair->head, elt) == 0))) {
+    if (unlikely(pair->head == elt || (compare && compare(pair->head, elt) == COMPARE_EQ))) {
       return TRUE;
     }
     pair = pair->tail;
@@ -186,7 +186,7 @@ list_reverse(list_t* const list) {
   validate_with_errno_return(is_nonnull(list));
 
   if (unlikely(list->length <= 1))
-    return 0; // nothing to do
+    return SUCCESS; // nothing to do
 
   pair_t* prev = LIST_SENTINEL;
   {
@@ -200,7 +200,7 @@ list_reverse(list_t* const list) {
   }
   list->data = prev;
 
-  return 0;
+  return SUCCESS;
 }
 
 int
