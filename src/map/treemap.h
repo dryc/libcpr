@@ -55,10 +55,9 @@ treemap_remove(treemap_t* const restrict map,
   return FAILURE(ENOTSUP); // TODO
 }
 
-const map_vtable_t treemap = {
+const map_vtable_t treemap_vtable = {
   .super   = NULL,
   .name    = "treemap",
-  .options = 0,
   .init    = treemap_init,
   .reset   = treemap_reset,
   .clear   = treemap_clear,

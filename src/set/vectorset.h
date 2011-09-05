@@ -61,10 +61,9 @@ vectorset_replace(vectorset_t* const restrict set,
   return FAILURE(ENOTSUP); // TODO
 }
 
-const set_vtable_t vectorset = {
+const set_vtable_t vectorset_vtable = {
   .super   = NULL,
   .name    = "vectorset",
-  .options = 0,
   .init    = vectorset_init,
   .reset   = vectorset_reset,
   .clear   = vectorset_clear,

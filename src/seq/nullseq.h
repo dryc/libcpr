@@ -64,7 +64,7 @@ nullseq_replace(nullseq_t* const restrict seq,
 /**
  * The canonical immutable empty sequence.
  */
-const seq_vtable_t nullseq = {
+const seq_vtable_t nullseq_vtable = {
   .super   = NULL,
   .name    = "nullseq",
   .init    = nullseq_init,

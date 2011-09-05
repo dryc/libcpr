@@ -69,10 +69,9 @@ listset_replace(listset_t* const restrict set,
   return FAILURE(ENOTSUP); // TODO
 }
 
-const set_vtable_t listset = {
+const set_vtable_t listset_vtable = {
   .super   = NULL,
   .name    = "listset",
-  .options = 0,
   .init    = listset_init,
   .reset   = listset_reset,
   .clear   = listset_clear,

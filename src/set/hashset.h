@@ -133,10 +133,9 @@ hashset_replace(hashset_t* const restrict set,
   return FAILURE(ENOTSUP); // TODO
 }
 
-const set_vtable_t hashset = {
+const set_vtable_t hashset_vtable = {
   .super   = NULL,
   .name    = "hashset",
-  .options = 0,
   .init    = hashset_init,
   .reset   = hashset_reset,
   .clear   = hashset_clear,

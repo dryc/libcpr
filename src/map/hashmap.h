@@ -55,10 +55,9 @@ hashmap_remove(hashmap_t* const restrict map,
   return FAILURE(ENOTSUP); // TODO
 }
 
-const map_vtable_t hashmap = {
+const map_vtable_t hashmap_vtable = {
   .super   = NULL,
   .name    = "hashmap",
-  .options = 0,
   .init    = hashmap_init,
   .reset   = hashmap_reset,
   .clear   = hashmap_clear,

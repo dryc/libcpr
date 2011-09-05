@@ -61,10 +61,9 @@ listmap_remove(listmap_t* const restrict map,
   return FAILURE(ENOTSUP); // TODO
 }
 
-const map_vtable_t listmap = {
+const map_vtable_t listmap_vtable = {
   .super   = NULL,
   .name    = "listmap",
-  .options = 0,
   .init    = listmap_init,
   .reset   = listmap_reset,
   .clear   = listmap_clear,

@@ -61,10 +61,9 @@ treeset_replace(treeset_t* const restrict set,
   return FAILURE(ENOTSUP); // TODO
 }
 
-const set_vtable_t treeset = {
+const set_vtable_t treeset_vtable = {
   .super   = NULL,
   .name    = "treeset",
-  .options = 0,
   .init    = treeset_init,
   .reset   = treeset_reset,
   .clear   = treeset_clear,

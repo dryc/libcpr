@@ -214,7 +214,6 @@ list_sort(list_t* const list, const seq_sort_type_t how) {
 const seq_vtable_t list_vtable = {
   .super   = NULL,
   .name    = "list",
-  .options = 0,
   .init    = NULL,
   .reset   = list_reset,
   .clear   = list_clear,

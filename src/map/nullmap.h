@@ -61,7 +61,7 @@ nullmap_remove(nullmap_t* const restrict map,
 /**
  * The canonical immutable empty map.
  */
-const map_vtable_t nullmap = {
+const map_vtable_t nullmap_vtable = {
   .super   = NULL,
   .name    = "nullmap",
   .init    = nullmap_init,

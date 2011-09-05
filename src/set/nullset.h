@@ -64,7 +64,7 @@ nullset_replace(nullset_t* const restrict set,
 /**
  * The canonical immutable empty set.
  */
-const set_vtable_t nullset = {
+const set_vtable_t nullset_vtable = {
   .super   = NULL,
   .name    = "nullset",
   .init    = nullset_init,
