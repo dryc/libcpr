@@ -1,6 +1,7 @@
 /* This is free and unencumbered software released into the public domain. */
 
 #include "build.h"
+#include "set/nullset.h"
 #include "set/vectorset.h"
 #include "set/listset.h"
 #include "set/treeset.h"

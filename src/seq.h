@@ -23,6 +23,8 @@ typedef struct seq_t {
   free_func_t free_func;
 } seq_t;
 
+typedef seq_t nullseq_t;
+
 /**
  * Defines a sequence's sort order, for use with `seq_sort()`.
  */
@@ -59,6 +61,10 @@ typedef struct seq_vtable_t {
   int (*reverse)(seq_t* seq);
   int (*sort)(seq_t* seq, seq_sort_type_t how);
 } seq_vtable_t;
+
+#define NULLSEQ (&nullseq_vtable)
+
+extern const seq_vtable_t nullseq_vtable;
 
 /**
  * Allocates heap memory for a new sequence.

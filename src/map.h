@@ -23,6 +23,7 @@ typedef struct map_t {
   free_func_t free_value_func;
 } map_t;
 
+typedef map_t nullmap_t;
 typedef map_t listmap_t;
 typedef map_t treemap_t;
 typedef map_t hashmap_t;
@@ -51,13 +52,15 @@ typedef struct map_vtable_t {
     const void* restrict key);
 } map_vtable_t;
 
-#define LISTMAP (&listmap)
-#define TREEMAP (&treemap)
-#define HASHMAP (&hashmap)
+#define NULLMAP (&nullmap_vtable)
+#define LISTMAP (&listmap_vtable)
+#define TREEMAP (&treemap_vtable)
+#define HASHMAP (&hashmap_vtable)
 
-extern const map_vtable_t listmap;
-extern const map_vtable_t treemap;
-extern const map_vtable_t hashmap;
+extern const map_vtable_t nullmap_vtable;
+extern const map_vtable_t listmap_vtable;
+extern const map_vtable_t treemap_vtable;
+extern const map_vtable_t hashmap_vtable;
 
 /**
  * Allocates heap memory for a new map.

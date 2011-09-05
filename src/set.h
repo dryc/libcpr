@@ -22,6 +22,7 @@ typedef struct set_t {
   free_func_t free_func;
 } set_t;
 
+typedef set_t nullset_t;
 typedef set_t vectorset_t;
 typedef set_t listset_t;
 typedef set_t treeset_t;
@@ -52,15 +53,17 @@ typedef struct set_vtable_t {
     const void* restrict elt2);
 } set_vtable_t;
 
-#define VECTORSET (&vectorset)
-#define LISTSET   (&listset)
-#define TREESET   (&treeset)
-#define HASHSET   (&hashset)
+#define NULLSET   (&nullset_vtable)
+#define VECTORSET (&vectorset_vtable)
+#define LISTSET   (&listset_vtable)
+#define TREESET   (&treeset_vtable)
+#define HASHSET   (&hashset_vtable)
 
-extern const set_vtable_t vectorset;
-extern const set_vtable_t listset;
-extern const set_vtable_t treeset;
-extern const set_vtable_t hashset;
+extern const set_vtable_t nullset_vtable;
+extern const set_vtable_t vectorset_vtable;
+extern const set_vtable_t listset_vtable;
+extern const set_vtable_t treeset_vtable;
+extern const set_vtable_t hashset_vtable;
 
 /**
  * Allocates heap memory for a new set.

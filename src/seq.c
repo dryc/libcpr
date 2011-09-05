@@ -1,6 +1,7 @@
 /* This is free and unencumbered software released into the public domain. */
 
 #include "build.h"
+#include "seq/nullseq.h"
 
 seq_t*
 seq_alloc() {

@@ -1,6 +1,7 @@
 /* This is free and unencumbered software released into the public domain. */
 
 #include "build.h"
+#include "map/nullmap.h"
 #include "map/listmap.h"
 #include "map/treemap.h"
 #include "map/hashmap.h"
