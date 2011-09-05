@@ -62,6 +62,13 @@ extern "C" {
 /* for errno return values */
 #define SUCCESS                 0
 
+/* for comparator return values */
+typedef enum compare_t {
+  COMPARE_LT = -1,
+  COMPARE_EQ = 0,
+  COMPARE_GT = 1,
+} compare_t;
+
 /* for checking return values */
 #define failed(expr)            unlikely((expr) < SUCCESS)
 #define succeeded(expr)         likely((expr) >= SUCCESS)
