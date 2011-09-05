@@ -12,6 +12,7 @@ extern "C" {
 #define CHAR_EOF         (UINT32_MAX)
 #define CHAR_MAX_ASCII   (0x7F)
 #define CHAR_MAX_UCS     (0x10FFFF)
+#define CHAR_NUL         ('\0')
 
 #define CHAR_IS_ASCII(c) (c <= CHAR_MAX_ASCII)
 #define CHAR_IS_UCS(c)   (c <= 0x10FFFF)
