@@ -59,16 +59,19 @@ extern "C" {
 #  endif
 #endif
 
-/* for checking return values */
-#define failed(expr)     unlikely((expr) < 0)
-#define succeeded(expr)  likely((expr) >= 0)
+/* for errno return values */
+#define SUCCESS                 0
 
-#define is_null(expr)    unlikely((expr) == NULL)
-#define is_nonnull(expr) likely((expr) != NULL)
-#define is_false(expr)   unlikely((expr) == FALSE)
-#define is_true(expr)    likely((expr) == TRUE)
-#define is_zero(expr)    unlikely((expr) == 0)
-#define is_nonzero(expr) likely((expr) != 0)
+/* for checking return values */
+#define failed(expr)            unlikely((expr) < SUCCESS)
+#define succeeded(expr)         likely((expr) >= SUCCESS)
+
+#define is_null(expr)           unlikely((expr) == NULL)
+#define is_nonnull(expr)        likely((expr) != NULL)
+#define is_false(expr)          unlikely((expr) == FALSE)
+#define is_true(expr)           likely((expr) == TRUE)
+#define is_zero(expr)           unlikely((expr) == 0)
+#define is_nonzero(expr)        likely((expr) != 0)
 
 /* for branch prediction hints */
 #ifdef __GNUC__
