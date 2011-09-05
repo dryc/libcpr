@@ -140,7 +140,7 @@ uuid_serialize(const uuid_t* const restrict uuid, char* const restrict buffer, c
   validate_with_errno_return(uuid != NULL && buffer != NULL);
 
   if (unlikely(buffer_size < UUID_LENGTH + 1))
-    return -(errno = EOVERFLOW); // buffer overflow
+    return FAILURE(EOVERFLOW); // buffer overflow
 
   return snprintf(buffer, buffer_size, UUID_FORMAT,
     htonl(uuid->layout.time_low),
@@ -162,5 +162,5 @@ uuid_print(const uuid_t* const restrict uuid, FILE* const restrict stream) {
 
   char buffer[UUID_LENGTH + 1];
   const int rc = uuid_serialize(uuid, buffer, sizeof(buffer));
-  return unlikely(fputs(buffer, stream) == EOF) ? -errno : rc;
+  return unlikely(fputs(buffer, stream) == EOF) ? FAILURE(errno) : rc;
 }

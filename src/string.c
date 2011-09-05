@@ -72,7 +72,7 @@ string_init_with(string_t* const restrict string, const char* const restrict dat
     string->size = size2;
 
     if (unlikely(string->data == NULL))
-      result = -errno; // insufficient memory (ENOMEM)
+      result = FAILURE(errno); // insufficient memory (ENOMEM)
   }
 
   return result;
@@ -91,7 +91,7 @@ string_init_with_data(string_t* const restrict string, const char* const restric
     string->size = strlen(data); // TODO: avoid traversing the input twice.
 
     if (unlikely(string->data == NULL))
-      result = -errno; // insufficient memory (ENOMEM)
+      result = FAILURE(errno); // insufficient memory (ENOMEM)
   }
 
   return result;
@@ -110,7 +110,7 @@ string_init_with_size(string_t* const restrict string, const size_t size) {
     string->size = size;
 
     if (unlikely(string->data == NULL))
-      result = -errno; // insufficient memory (ENOMEM)
+      result = FAILURE(errno); // insufficient memory (ENOMEM)
   }
 
   return result;

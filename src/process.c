@@ -75,10 +75,10 @@ process_set_priority(process_t* process, const int priority) {
   const int pid = likely(process != NULL) ? process->id : getpid();
   const int rc = setpriority(PRIO_PROCESS, pid, priority);
 #else
-  const int rc = ENOTSUP; // operation not supported
+  const int rc = errno = ENOTSUP; // operation not supported
 #endif
 
-  return likely(rc == 0) ? 0 : -errno;
+  return likely(rc == 0) ? SUCCESS : FAILURE(errno);
 }
 
 int
@@ -90,15 +90,15 @@ process_set_affinity(process_t* process, const cpu_set_t* restrict mask) {
   const int pid = likely(process != NULL) ? process->id : 0;
   const int rc = sched_setaffinity(pid, sizeof(cpu_set_t), (cpu_set_t*)mask);
 #else
-  const int rc = ENOTSUP; // operation not supported
+  const int rc = errno = ENOTSUP; // operation not supported
 #endif
 
-  return likely(rc == 0) ? 0 : -errno;
+  return likely(rc == 0) ? SUCCESS : FAILURE(errno);
 #else
 process_set_affinity(process_t* process, const void* restrict mask) {
   validate_with_errno_return(mask != NULL);
 
-  return (void)process, -(errno = ENOTSUP); // operation not supported
+  return (void)process, FAILURE(ENOTSUP); // operation not supported
 #endif /* __linux__ */
 }
 
@@ -110,10 +110,10 @@ process_kill(process_t* process, const int signal) {
   const int pid = likely(process != NULL) ? process->id : getpid();
   const int rc = kill(pid, signal);
 #else
-  const int rc = ENOTSUP; // operation not supported
+  const int rc = errno = ENOTSUP; // operation not supported
 #endif
 
-  return likely(rc == 0) ? 0 : -errno;
+  return likely(rc == 0) ? SUCCESS : FAILURE(errno);
 }
 
 int
@@ -123,8 +123,8 @@ process_wait(process_t* process) {
 #ifdef HAVE_WAITPID
   const int rc = waitpid(process->id, &process->status, 0);
 #else
-  const int rc = ENOTSUP; // operation not supported
+  const int rc = errno = ENOTSUP; // operation not supported
 #endif
 
-  return likely(rc >= 0) ? process->status : -errno;
+  return likely(rc >= 0) ? process->status : FAILURE(errno);
 }

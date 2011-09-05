@@ -64,7 +64,7 @@ seq_clear(seq_t* const seq) {
     return vtable->clear(seq);
   }
 
-  return -(errno = ENOTSUP); // operation not supported
+  return FAILURE(ENOTSUP); // operation not supported
 }
 
 bool
@@ -83,7 +83,7 @@ seq_length(seq_t* const seq) {
     return vtable->length(seq);
   }
 
-  return (errno = ENOTSUP), 0; // operation not supported
+  return (void)FAILURE(ENOTSUP), 0; // operation not supported
 }
 
 long
@@ -95,7 +95,7 @@ seq_count(seq_t* const restrict seq, const void* const restrict elt) {
     return vtable->count(seq, elt);
   }
 
-  return (errno = ENOTSUP), 0; // operation not supported
+  return (void)FAILURE(ENOTSUP), 0; // operation not supported
 }
 
 bool
@@ -107,7 +107,7 @@ seq_lookup(seq_t* const restrict seq, const void* const restrict elt) {
     return vtable->lookup(seq, elt);
   }
 
-  return (errno = ENOTSUP), FALSE; // operation not supported
+  return (void)FAILURE(ENOTSUP), FALSE; // operation not supported
 }
 
 int
@@ -119,7 +119,7 @@ seq_insert(seq_t* const restrict seq, const void* const restrict elt) {
     return vtable->insert(seq, elt);
   }
 
-  return -(errno = ENOTSUP); // operation not supported
+  return FAILURE(ENOTSUP); // operation not supported
 }
 
 int
@@ -131,7 +131,7 @@ seq_remove(seq_t* const restrict seq, const void* const restrict elt) {
     return vtable->remove(seq, elt);
   }
 
-  return -(errno = ENOTSUP); // operation not supported
+  return FAILURE(ENOTSUP); // operation not supported
 }
 
 int
@@ -144,7 +144,7 @@ seq_replace(seq_t* const restrict seq, const void* const restrict elt1,
     return vtable->replace(seq, elt1, elt2);
   }
 
-  return -(errno = ENOTSUP); // operation not supported
+  return FAILURE(ENOTSUP); // operation not supported
 }
 
 int
@@ -156,7 +156,7 @@ seq_reverse(seq_t* const seq) {
     return vtable->reverse(seq);
   }
 
-  return -(errno = ENOTSUP); // operation not supported
+  return FAILURE(ENOTSUP); // operation not supported
 }
 
 int
@@ -169,5 +169,5 @@ seq_sort(seq_t* const seq, const seq_sort_type_t how) {
     return vtable->sort(seq, how);
   }
 
-  return -(errno = ENOTSUP); // operation not supported
+  return FAILURE(ENOTSUP); // operation not supported
 }

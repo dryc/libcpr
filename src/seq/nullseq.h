@@ -43,14 +43,14 @@ static int
 nullseq_insert(nullseq_t* const restrict seq,
                const void* const restrict elt) {
   (void)seq, (void)elt;
-  return -(errno = ENOTSUP); // operation not supported
+  return FAILURE(ENOTSUP); // operation not supported
 }
 
 static int
 nullseq_remove(nullseq_t* const restrict seq,
                const void* const restrict elt) {
   (void)seq, (void)elt;
-  return -(errno = ENOTSUP); // operation not supported
+  return FAILURE(ENOTSUP); // operation not supported
 }
 
 static int
@@ -58,7 +58,7 @@ nullseq_replace(nullseq_t* const restrict seq,
                 const void* const restrict elt1,
                 const void* const restrict elt2) {
   (void)seq, (void)elt1, (void)elt2;
-  return -(errno = ENOTSUP); // operation not supported
+  return FAILURE(ENOTSUP); // operation not supported
 }
 
 /**

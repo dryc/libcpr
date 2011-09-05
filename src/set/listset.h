@@ -11,8 +11,8 @@ static int
 listset_init(listset_t* const set, va_list args) {
   (void)args;
   set->instance = list_alloc();
-  if (unlikely(set->instance == NULL)) {
-    return -errno;
+  if (is_null(set->instance)) {
+    return -errno; // pass on the error from list_alloc()
   }
   return list_init_with(set->instance, set->compare_func, set->free_func);
 }
@@ -58,7 +58,7 @@ static int
 listset_remove(listset_t* const restrict set,
                const void* const restrict elt) {
   (void)set, (void)elt;
-  return -(errno = ENOTSUP); // TODO
+  return FAILURE(ENOTSUP); // TODO
 }
 
 static int
@@ -66,7 +66,7 @@ listset_replace(listset_t* const restrict set,
                 const void* const restrict elt1,
                 const void* const restrict elt2) {
   (void)set, (void)elt1, (void)elt2;
-  return -(errno = ENOTSUP); // TODO
+  return FAILURE(ENOTSUP); // TODO
 }
 
 const set_vtable_t listset = {

@@ -87,7 +87,7 @@ box_hash(const box_t* const box) {
     return vtable->hash(box);
   }
 
-  return (errno = ENOTSUP), 0;
+  return (void)FAILURE(ENOTSUP), 0;
 }
 
 int
@@ -102,7 +102,7 @@ box_compare(const box_t* const box1, const box_t* const box2) {
     return vtable->compare(box1, box2);
   }
 
-  return -(errno = ENOTSUP);
+  return FAILURE(ENOTSUP);
 }
 
 bool
@@ -117,5 +117,5 @@ box_equal(const box_t* const box1, const box_t* const box2) {
     return (vtable->compare(box1, box2) == 0);
   }
 
-  return (errno = ENOTSUP), FALSE;
+  return (void)FAILURE(ENOTSUP), FALSE;
 }

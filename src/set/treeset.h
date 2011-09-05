@@ -10,47 +10,47 @@ extern "C" {
 static int
 treeset_init(treeset_t* const set, va_list args) {
   (void)set, (void)args;
-  return -(errno = ENOTSUP); // TODO
+  return FAILURE(ENOTSUP); // TODO
 }
 
 static int
 treeset_reset(treeset_t* const set) {
   (void)set;
-  return -(errno = ENOTSUP); // TODO
+  return FAILURE(ENOTSUP); // TODO
 }
 
 static int
 treeset_clear(treeset_t* const set) {
   (void)set;
-  return -(errno = ENOTSUP); // TODO
+  return FAILURE(ENOTSUP); // TODO
 }
 
 static long
 treeset_count(treeset_t* const restrict set,
               const void* const restrict elt) {
   (void)set, (void)elt;
-  return (errno = ENOTSUP), 0; // TODO
+  return (void)FAILURE(ENOTSUP), 0; // TODO
 }
 
 static bool
 treeset_lookup(treeset_t* const restrict set,
                const void* const restrict elt) {
   (void)set, (void)elt;
-  return (errno = ENOTSUP), FALSE; // TODO
+  return (void)FAILURE(ENOTSUP), FALSE; // TODO
 }
 
 static int
 treeset_insert(treeset_t* const restrict set,
                const void* const restrict elt) {
   (void)set, (void)elt;
-  return -(errno = ENOTSUP); // TODO
+  return FAILURE(ENOTSUP); // TODO
 }
 
 static int
 treeset_remove(treeset_t* const restrict set,
                const void* const restrict elt) {
   (void)set, (void)elt;
-  return -(errno = ENOTSUP); // TODO
+  return FAILURE(ENOTSUP); // TODO
 }
 
 static int
@@ -58,7 +58,7 @@ treeset_replace(treeset_t* const restrict set,
                 const void* const restrict elt1,
                 const void* const restrict elt2) {
   (void)set, (void)elt1, (void)elt2;
-  return -(errno = ENOTSUP); // TODO
+  return FAILURE(ENOTSUP); // TODO
 }
 
 const set_vtable_t treeset = {

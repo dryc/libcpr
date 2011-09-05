@@ -32,7 +32,7 @@ hashset_init(hashset_t* const set, va_list args) {
   (void)args;
   hashset_table_t* const table = calloc(1, hashset_size(HASHSET_CAPACITY_MIN));
   if (is_null(table)) {
-    return -errno;
+    return FAILURE(errno);
   }
   table->capacity = HASHSET_CAPACITY_MIN;
   set->instance = table;
@@ -109,7 +109,7 @@ hashset_insert(hashset_t* const restrict set,
   assert(table != NULL);
 
   (void)table, (void)set, (void)elt;
-  return -(errno = ENOTSUP); // TODO
+  return FAILURE(ENOTSUP); // TODO
 }
 
 static int
@@ -119,7 +119,7 @@ hashset_remove(hashset_t* const restrict set,
   assert(table != NULL);
 
   (void)table, (void)set, (void)elt;
-  return -(errno = ENOTSUP); // TODO
+  return FAILURE(ENOTSUP); // TODO
 }
 
 static int
@@ -130,7 +130,7 @@ hashset_replace(hashset_t* const restrict set,
   assert(table != NULL);
 
   (void)table, (void)set, (void)elt1, (void)elt2;
-  return -(errno = ENOTSUP); // TODO
+  return FAILURE(ENOTSUP); // TODO
 }
 
 const set_vtable_t hashset = {

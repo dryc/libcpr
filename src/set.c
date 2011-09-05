@@ -70,7 +70,7 @@ set_clear(set_t* const set) {
     return vtable->clear(set);
   }
 
-  return -(errno = ENOTSUP); // operation not supported
+  return FAILURE(ENOTSUP); // operation not supported
 }
 
 bool
@@ -89,7 +89,7 @@ set_count(set_t* const restrict set, const void* const restrict elt) {
     return vtable->count(set, elt);
   }
 
-  return (errno = ENOTSUP), 0; // operation not supported
+  return (void)FAILURE(ENOTSUP), 0; // operation not supported
 }
 
 bool
@@ -101,7 +101,7 @@ set_lookup(set_t* const restrict set, const void* const restrict elt) {
     return vtable->lookup(set, elt);
   }
 
-  return (errno = ENOTSUP), FALSE; // operation not supported
+  return (void)FAILURE(ENOTSUP), FALSE; // operation not supported
 }
 
 int
@@ -113,7 +113,7 @@ set_insert(set_t* const restrict set, const void* const restrict elt) {
     return vtable->insert(set, elt);
   }
 
-  return -(errno = ENOTSUP); // operation not supported
+  return FAILURE(ENOTSUP); // operation not supported
 }
 
 int
@@ -125,7 +125,7 @@ set_remove(set_t* const restrict set, const void* const restrict elt) {
     return vtable->remove(set, elt);
   }
 
-  return -(errno = ENOTSUP); // operation not supported
+  return FAILURE(ENOTSUP); // operation not supported
 }
 
 int
@@ -138,5 +138,5 @@ set_replace(set_t* const restrict set, const void* const restrict elt1,
     return vtable->replace(set, elt1, elt2);
   }
 
-  return -(errno = ENOTSUP); // operation not supported
+  return FAILURE(ENOTSUP); // operation not supported
 }

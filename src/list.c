@@ -159,7 +159,7 @@ list_insert(list_t* const restrict list,
   validate_with_errno_return(is_nonnull(list));
 
   (void)list, (void)elt;
-  return -(errno = ENOTSUP); // TODO
+  return FAILURE(ENOTSUP); // TODO
 }
 
 int
@@ -168,7 +168,7 @@ list_remove(list_t* const restrict list,
   validate_with_errno_return(is_nonnull(list));
 
   (void)list, (void)elt;
-  return -(errno = ENOTSUP); // TODO
+  return FAILURE(ENOTSUP); // TODO
 }
 
 int
@@ -178,7 +178,7 @@ list_replace(list_t* const restrict list,
   validate_with_errno_return(is_nonnull(list));
 
   (void)list, (void)elt1, (void)elt2;
-  return -(errno = ENOTSUP); // TODO
+  return FAILURE(ENOTSUP); // TODO
 }
 
 int
@@ -208,7 +208,7 @@ list_sort(list_t* const list, const seq_sort_type_t how) {
   validate_with_errno_return(is_nonnull(list));
   validate_with_errno_return(how > SEQ_SORT_NONE);
 
-  return -(errno = ENOTSUP); // TODO
+  return FAILURE(ENOTSUP); // TODO
 }
 
 const seq_vtable_t list_vtable = {

@@ -61,6 +61,7 @@ extern "C" {
 
 /* for errno return values */
 #define SUCCESS                 0
+#define FAILURE(err)            (-(errno = (err)))
 
 /* for comparator return values */
 typedef enum compare_t {
@@ -109,17 +110,17 @@ typedef enum compare_t {
 
 /* for argument validation at function entry points */
 #define validate_with_errno_return(expr) \
-  if (unlikely(!(expr))) return -(errno = EINVAL);
+  if (unlikely(!(expr))) return FAILURE(EINVAL);
 #define validate_with_null_return(expr) \
-  if (unlikely(!(expr))) return errno = EINVAL, NULL;
+  if (unlikely(!(expr))) return (void)FAILURE(EINVAL), NULL;
 #define validate_with_false_return(expr) \
-  if (unlikely(!(expr))) return errno = EINVAL, FALSE;
+  if (unlikely(!(expr))) return (void)FAILURE(EINVAL), FALSE;
 #define validate_with_true_return(expr) \
-  if (unlikely(!(expr))) return errno = EINVAL, TRUE;
+  if (unlikely(!(expr))) return (void)FAILURE(EINVAL), TRUE;
 #define validate_with_zero_return(expr) \
-  if (unlikely(!(expr))) return errno = EINVAL, 0;
+  if (unlikely(!(expr))) return (void)FAILURE(EINVAL), 0;
 #define validate_with_void_return(expr) \
-  if (unlikely(!(expr))) return;
+  if (unlikely(!(expr))) { (void)FAILURE(EINVAL); return; }
 
 /* helpers for defining overloaded constructor macros */
 #define DISPATCH_BEGIN(expr) \

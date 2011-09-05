@@ -35,14 +35,16 @@ dir_open(dir_t* dir) {
 #ifdef HAVE_OPENDIR
   dir->stream = opendir(dir->path);
 #else
-  return -(errno = ENOTSUP); // operation not supported
+  return FAILURE(ENOTSUP); // operation not supported
 #endif
-
-  if (unlikely(dir->stream == NULL)) {
-    return -errno;
+  if (is_null(dir->stream)) {
+    return FAILURE(errno);
   }
 
   dir->entry = malloc(DIRENT_SIZE);
+  if (is_null(dir->entry)) {
+    return FAILURE(ENOMEM); // out of memory
+  }
 
   return SUCCESS;
 }
@@ -61,10 +63,10 @@ dir_close(dir_t* dir) {
   if (likely(dir->stream != NULL)) {
 #ifdef HAVE_CLOSEDIR
     if (unlikely(closedir(dir->stream) == -1)) {
-      result = -errno;
+      result = FAILURE(errno);
     }
 #else
-    result = -(errno = ENOTSUP); // operation not supported
+    result = FAILURE(ENOTSUP); // operation not supported
 #endif
     dir->stream = NULL;
   }
@@ -85,7 +87,7 @@ dir_read(dir_t* dir) {
   const int rc = ENOTSUP; // operation not supported
 #endif
 
-  return likely(rc == 0) ? (result != NULL) : -(errno = rc);
+  return likely(rc == 0) ? (result != NULL) : FAILURE(rc);
 }
 
 long
@@ -95,19 +97,19 @@ dir_size(dir_t* dir) {
   // Open the directory stream:
   DIR* stream = opendir(dir->path);
   if (unlikely(stream == NULL)) {
-    return -errno;
+    return FAILURE(errno);
   }
 
   // Obtain the file descriptor for the directory stream:
   const int fd = dirfd(stream);
   if (unlikely(fd == -1)) {
-    return -errno;
+    return FAILURE(errno);
   }
 
   // Obtain the size of the directory itself:
   struct stat st;
   if (unlikely(fstat(fd, &st))) {
-    return -errno;
+    return FAILURE(errno);
   }
   long result = st.st_size;
 
@@ -120,13 +122,13 @@ dir_size(dir_t* dir) {
     // Obtain the size of the current directory entry:
 #ifdef __linux__
     if (unlikely(fstatat(dirfd(stream), entry->d_name, &st, AT_SYMLINK_NOFOLLOW) == -1)) {
-      return -errno;
+      return FAILURE(errno);
     }
 #else
     char path[PATH_MAX];
     snprintf(path, sizeof(path), "%s/%s", dir->path, entry->d_name);
     if (unlikely(lstat(path, &st) == -1)) {
-      return -errno;
+      return FAILURE(errno);
     }
 #endif
 

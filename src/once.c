@@ -12,5 +12,5 @@ once(once_t* guard, void (*function)(void)) {
   const int rc = ENOTSUP; // operation not supported
 #endif
 
-  return likely(rc == 0) ? 0 : -(errno = rc);
+  return likely(rc == 0) ? SUCCESS : FAILURE(rc);
 }

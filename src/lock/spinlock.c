@@ -33,7 +33,7 @@ spinlock_init(spinlock_t* const spinlock) {
   const int rc = ENOTSUP; // operation not supported
 #endif
 
-  return likely(rc == 0) ? SUCCESS : -(errno = rc);
+  return likely(rc == 0) ? SUCCESS : FAILURE(rc);
 }
 
 int
@@ -50,7 +50,7 @@ spinlock_dispose(spinlock_t* const spinlock) {
   bzero(spinlock, sizeof(spinlock_t));
 #endif
 
-  return likely(rc == 0) ? SUCCESS : -(errno = rc);
+  return likely(rc == 0) ? SUCCESS : FAILURE(rc);
 }
 
 int
@@ -63,7 +63,7 @@ spinlock_lock(spinlock_t* const spinlock) {
   const int rc = ENOTSUP; // operation not supported
 #endif
 
-  return likely(rc == 0) ? SUCCESS : -(errno = rc);
+  return likely(rc == 0) ? SUCCESS : FAILURE(rc);
 }
 
 int
@@ -76,7 +76,7 @@ spinlock_trylock(spinlock_t* const spinlock) {
   const int rc = ENOTSUP; // operation not supported
 #endif
 
-  return likely(rc == 0) ? SUCCESS : -(errno = rc);
+  return likely(rc == 0) ? SUCCESS : FAILURE(rc);
 }
 
 int
@@ -89,5 +89,5 @@ spinlock_unlock(spinlock_t* const spinlock) {
   const int rc = ENOTSUP; // operation not supported
 #endif
 
-  return likely(rc == 0) ? SUCCESS : -(errno = rc);
+  return likely(rc == 0) ? SUCCESS : FAILURE(rc);
 }

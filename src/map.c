@@ -71,7 +71,7 @@ map_clear(map_t* const map) {
     return vtable->clear(map);
   }
 
-  return -(errno = ENOTSUP); // operation not supported
+  return FAILURE(ENOTSUP); // operation not supported
 }
 
 bool
@@ -90,7 +90,7 @@ map_count(map_t* const restrict map, const void* const restrict key) {
     return vtable->count(map, key);
   }
 
-  return (errno = ENOTSUP), 0; // operation not supported
+  return (void)FAILURE(ENOTSUP), 0; // operation not supported
 }
 
 bool
@@ -103,7 +103,7 @@ map_lookup(map_t* const restrict map, const void* const restrict key,
     return vtable->lookup(map, key, value);
   }
 
-  return (errno = ENOTSUP), FALSE; // operation not supported
+  return (void)FAILURE(ENOTSUP), FALSE; // operation not supported
 }
 
 int
@@ -116,7 +116,7 @@ map_insert(map_t* const restrict map, const void* const restrict key,
     return vtable->insert(map, key, value);
   }
 
-  return -(errno = ENOTSUP); // operation not supported
+  return FAILURE(ENOTSUP); // operation not supported
 }
 
 int
@@ -128,5 +128,5 @@ map_remove(map_t* const restrict map, const void* const restrict key) {
     return vtable->remove(map, key);
   }
 
-  return -(errno = ENOTSUP); // operation not supported
+  return FAILURE(ENOTSUP); // operation not supported
 }

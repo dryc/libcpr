@@ -43,14 +43,14 @@ static int
 nullset_insert(nullset_t* const restrict set,
                const void* const restrict elt) {
   (void)set, (void)elt;
-  return -(errno = ENOTSUP); // operation not supported
+  return FAILURE(ENOTSUP); // operation not supported
 }
 
 static int
 nullset_remove(nullset_t* const restrict set,
                const void* const restrict elt) {
   (void)set, (void)elt;
-  return -(errno = ENOTSUP); // operation not supported
+  return FAILURE(ENOTSUP); // operation not supported
 }
 
 static int
@@ -58,7 +58,7 @@ nullset_replace(nullset_t* const restrict set,
                 const void* const restrict elt1,
                 const void* const restrict elt2) {
   (void)set, (void)elt1, (void)elt2;
-  return -(errno = ENOTSUP); // operation not supported
+  return FAILURE(ENOTSUP); // operation not supported
 }
 
 /**

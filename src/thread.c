@@ -33,7 +33,7 @@ thread_init(thread_t* thread) {
   const int rc = 0;
 #endif
 
-  return likely(rc == 0) ? 0 : -(errno = rc);
+  return likely(rc == 0) ? SUCCESS : FAILURE(rc);
 }
 
 int
@@ -49,7 +49,7 @@ thread_init_with_id(thread_t* thread, const pthread_t id) {
   const int rc = 0;
 #endif
 
-  return likely(rc == 0) ? 0 : -(errno = rc);
+  return likely(rc == 0) ? SUCCESS : FAILURE(rc);
 }
 
 int
@@ -82,7 +82,7 @@ thread_dispose(thread_t* thread) {
   bzero(thread, sizeof(thread_t));
 #endif
 
-  return likely(rc == 0) ? 0 : -(errno = rc);
+  return likely(rc == 0) ? SUCCESS : FAILURE(rc);
 }
 
 bool
@@ -126,12 +126,12 @@ thread_set_affinity(thread_t* thread, const cpu_set_t* restrict mask) {
   const int rc = ENOTSUP; // operation not supported
 #endif
 
-  return likely(rc == 0) ? 0 : -(errno = rc);
+  return likely(rc == 0) ? SUCCESS : FAILURE(rc);
 #else
 thread_set_affinity(thread_t* thread, const void* restrict mask) {
   validate_with_errno_return(mask != NULL);
 
-  return (void)thread, -(errno = ENOTSUP); // operation not supported
+  return (void)thread, FAILURE(ENOTSUP); // operation not supported
 #endif /* __linux__ */
 }
 
@@ -146,7 +146,7 @@ thread_start(thread_t* thread, const thread_execute_t function) {
   const int rc = ENOTSUP; // operation not supported
 #endif
 
-  return likely(rc == 0) ? 0 : -(errno = rc);
+  return likely(rc == 0) ? SUCCESS : FAILURE(rc);
 }
 
 int
@@ -158,7 +158,7 @@ thread_detach(thread_t* thread) {
   const int rc = ENOTSUP; // operation not supported
 #endif
 
-  return likely(rc == 0) ? 0 : -(errno = rc);
+  return likely(rc == 0) ? SUCCESS : FAILURE(rc);
 }
 
 int
@@ -171,7 +171,7 @@ thread_join(thread_t* thread) {
   const int rc = ENOTSUP; // operation not supported
 #endif
 
-  return likely(rc == 0) ? 0 : -(errno = rc);
+  return likely(rc == 0) ? SUCCESS : FAILURE(rc);
 }
 
 int
@@ -184,7 +184,7 @@ thread_cancel(thread_t* thread) {
   const int rc = ENOTSUP; // operation not supported
 #endif
 
-  return likely(rc == 0) ? 0 : -(errno = rc);
+  return likely(rc == 0) ? SUCCESS : FAILURE(rc);
 }
 
 int
@@ -198,5 +198,5 @@ thread_kill(thread_t* thread, const int signal) {
   const int rc = ENOTSUP; // operation not supported
 #endif
 
-  return likely(rc == 0) ? 0 : -(errno = rc);
+  return likely(rc == 0) ? SUCCESS : FAILURE(rc);
 }

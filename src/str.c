@@ -33,7 +33,7 @@ str_format(const char* const restrict fmt, ...) {
   validate_with_null_return(fmt != NULL);
 
 #ifndef HAVE_VASPRINTF
-  return (errno = ENOTSUP), NULL; // operation not supported
+  return (void)FAILURE(ENOTSUP), NULL; // operation not supported
 #else
   char* result = NULL;
   va_list args;
@@ -41,7 +41,7 @@ str_format(const char* const restrict fmt, ...) {
   {
     const int rc = vasprintf(&result, fmt, args);
     if (unlikely(rc == -1)) {
-      return (errno = ENOMEM), NULL;
+      return (void)FAILURE(ENOMEM), NULL;
     }
   }
   va_end(args);
@@ -114,7 +114,7 @@ str_equal(const char* const str1, const char* const str2) {
 bool
 str_is_empty(const char* const restrict str) {
   if (unlikely(str == NULL))
-    return errno = EINVAL, TRUE;
+    return (void)FAILURE(EINVAL), TRUE;
 
   return unlikely(*str == '\0') ? TRUE : FALSE;
 }
@@ -138,7 +138,7 @@ str_is_utf8(const char* const restrict str) {
   validate_with_false_return(str != NULL);
 
 #ifdef DISABLE_UNICODE
-  return errno = ENOTSUP, FALSE;
+  return (void)FAILURE(ENOTSUP), FALSE;
 #else
   const char* chr = str;
   while (likely(*chr != '\0')) {
@@ -291,7 +291,7 @@ str_matches(const char* const restrict str, const char* const restrict pattern) 
   {
     const int rc = regcomp(&regex, pattern, REG_EXTENDED | REG_NOSUB);
     if (unlikely(rc != 0)) {
-      return errno = EINVAL, FALSE; // invalid pattern
+      return (void)FAILURE(EINVAL), FALSE; // invalid pattern
     }
   }
 

@@ -48,14 +48,14 @@ nullmap_insert(nullmap_t* const restrict map,
                const void* const restrict key,
                const void* const restrict value) {
   (void)map, (void)key, (void)value;
-  return -(errno = ENOTSUP); // operation not supported
+  return FAILURE(ENOTSUP); // operation not supported
 }
 
 static int
 nullmap_remove(nullmap_t* const restrict map,
                const void* const restrict key) {
   (void)map, (void)key;
-  return -(errno = ENOTSUP); // operation not supported
+  return FAILURE(ENOTSUP); // operation not supported
 }
 
 /**

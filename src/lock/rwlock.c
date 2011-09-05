@@ -31,7 +31,7 @@ rwlock_init(rwlock_t* rwlock) {
   const int rc = ENOTSUP; // operation not supported
 #endif
 
-  return likely(rc == 0) ? SUCCESS : -(errno = rc);
+  return likely(rc == 0) ? SUCCESS : FAILURE(rc);
 }
 
 int
@@ -48,7 +48,7 @@ rwlock_dispose(rwlock_t* rwlock) {
   bzero(rwlock, sizeof(rwlock_t));
 #endif
 
-  return likely(rc == 0) ? SUCCESS : -(errno = rc);
+  return likely(rc == 0) ? SUCCESS : FAILURE(rc);
 }
 
 int
@@ -61,7 +61,7 @@ rwlock_rdlock(rwlock_t* rwlock) {
   const int rc = ENOTSUP; // operation not supported
 #endif
 
-  return likely(rc == 0) ? SUCCESS : -(errno = rc);
+  return likely(rc == 0) ? SUCCESS : FAILURE(rc);
 }
 
 int
@@ -74,7 +74,7 @@ rwlock_tryrdlock(rwlock_t* rwlock) {
   const int rc = ENOTSUP; // operation not supported
 #endif
 
-  return likely(rc == 0) ? SUCCESS : -(errno = rc);
+  return likely(rc == 0) ? SUCCESS : FAILURE(rc);
 }
 
 int
@@ -87,7 +87,7 @@ rwlock_wrlock(rwlock_t* rwlock) {
   const int rc = ENOTSUP; // operation not supported
 #endif
 
-  return likely(rc == 0) ? SUCCESS : -(errno = rc);
+  return likely(rc == 0) ? SUCCESS : FAILURE(rc);
 }
 
 int
@@ -100,7 +100,7 @@ rwlock_trywrlock(rwlock_t* rwlock) {
   const int rc = ENOTSUP; // operation not supported
 #endif
 
-  return likely(rc == 0) ? SUCCESS : -(errno = rc);
+  return likely(rc == 0) ? SUCCESS : FAILURE(rc);
 }
 
 int
@@ -113,5 +113,5 @@ rwlock_unlock(rwlock_t* rwlock) {
   const int rc = ENOTSUP; // operation not supported
 #endif
 
-  return likely(rc == 0) ? SUCCESS : -(errno = rc);
+  return likely(rc == 0) ? SUCCESS : FAILURE(rc);
 }
