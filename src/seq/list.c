@@ -2,6 +2,12 @@
 
 #include "build.h"
 
+const class_t list_class = {
+  .name    = "list",
+  .super   = &seq_class,
+  .vtable  = &list_vtable.base,
+};
+
 list_t*
 list_alloc() {
   return seq_alloc();
@@ -212,8 +218,7 @@ list_sort(list_t* const list, const seq_sort_type_t how) {
 }
 
 const seq_vtable_t list_vtable = {
-  .super   = NULL,
-  .name    = "list",
+  .base    = {.klass = &list_class},
   .init    = NULL,
   .reset   = list_reset,
   .clear   = list_clear,

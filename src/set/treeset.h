@@ -7,6 +7,12 @@
 extern "C" {
 #endif
 
+const class_t treeset_class = {
+  .name    = "treeset",
+  .super   = &set_class,
+  .vtable  = &treeset_vtable.base,
+};
+
 static int
 treeset_init(treeset_t* const set, va_list args) {
   (void)set, (void)args;
@@ -62,8 +68,7 @@ treeset_replace(treeset_t* const restrict set,
 }
 
 const set_vtable_t treeset_vtable = {
-  .super   = NULL,
-  .name    = "treeset",
+  .base    = {.klass = &treeset_class},
   .init    = treeset_init,
   .reset   = treeset_reset,
   .clear   = treeset_clear,

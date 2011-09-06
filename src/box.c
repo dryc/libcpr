@@ -2,6 +2,12 @@
 
 #include "build.h"
 
+const class_t box_class = {
+  .name    = "box",
+  .super   = NULL,
+  .vtable  = NULL, /* abstract class */
+};
+
 box_t*
 box_alloc() {
 #ifdef NDEBUG
@@ -75,7 +81,7 @@ box_size(const box_t* const box) {
   validate_with_zero_return(is_nonnull(box));
 
   const box_vtable_t* const vtable = box->vtable;
-  return vtable->size;
+  return vtable->klass->size;
 }
 
 hash_t
@@ -83,8 +89,8 @@ box_hash(const box_t* const box) {
   validate_with_zero_return(is_nonnull(box));
 
   const box_vtable_t* const vtable = box->vtable;
-  if (is_nonnull(vtable->hash)) {
-    return vtable->hash(box);
+  if (is_nonnull(vtable->hashable.hash)) {
+    return vtable->hashable.hash(box);
   }
 
   return (void)FAILURE(ENOTSUP), 0;
@@ -98,8 +104,8 @@ box_compare(const box_t* const box1, const box_t* const box2) {
     return COMPARE_EQ;
 
   const box_vtable_t* const vtable = box1->vtable;
-  if (is_nonnull(vtable->compare)) {
-    return vtable->compare(box1, box2);
+  if (is_nonnull(vtable->comparable.compare)) {
+    return vtable->comparable.compare(box1, box2);
   }
 
   return FAILURE(ENOTSUP);
@@ -113,8 +119,8 @@ box_equal(const box_t* const box1, const box_t* const box2) {
     return TRUE;
 
   const box_vtable_t* const vtable = box1->vtable;
-  if (is_nonnull(vtable->compare)) {
-    return (vtable->compare(box1, box2) == 0);
+  if (is_nonnull(vtable->comparable.compare)) {
+    return (vtable->comparable.compare(box1, box2) == 0);
   }
 
   return (void)FAILURE(ENOTSUP), FALSE;

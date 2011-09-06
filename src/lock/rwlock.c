@@ -2,6 +2,12 @@
 
 #include "build.h"
 
+const class_t rwlock_class = {
+  .name    = "rwlock",
+  .super   = NULL,
+  .vtable  = NULL, // TODO
+};
+
 rwlock_t*
 rwlock_alloc() {
   rwlock_t* rwlock = malloc(sizeof(rwlock_t));

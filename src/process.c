@@ -9,6 +9,12 @@
 #include <sched.h>        /* for sched_setaffinity() */
 #endif
 
+const class_t process_class = {
+  .name    = "process",
+  .super   = NULL,
+  .vtable  = NULL, // TODO
+};
+
 process_t*
 process_alloc() {
   process_t* process = malloc(sizeof(process_t));

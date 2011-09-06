@@ -16,7 +16,6 @@ libcprime_la_SOURCES = cprime.c \
   hash.c \
   integer.c \
   iter.c \
-  list.c \
   lock/mutex.c \
   lock/rwlock.c \
   lock/spinlock.c \
@@ -27,6 +26,8 @@ libcprime_la_SOURCES = cprime.c \
   process.c \
   queue.c \
   seq.c \
+  seq/list.c \
+  seq/vector.c \
   set.c \
   str.c \
   string.c \
@@ -34,8 +35,7 @@ libcprime_la_SOURCES = cprime.c \
   thread.c \
   uri.c \
   utf8.c \
-  uuid.c \
-  vector.c
+  uuid.c
 
 include_HEADERS = cprime.h
 
@@ -53,7 +53,6 @@ nobase_pkginclude_HEADERS = \
   hash.h \
   integer.h \
   iter.h \
-  list.h \
   lock/mutex.h \
   lock/rwlock.h \
   lock/spinlock.h \
@@ -66,6 +65,8 @@ nobase_pkginclude_HEADERS = \
   process.h \
   queue.h \
   seq.h \
+  seq/list.h \
+  seq/vector.h \
   set.h \
   str.h \
   string.h \
@@ -74,5 +75,4 @@ nobase_pkginclude_HEADERS = \
   unsafe.h \
   uri.h \
   utf8.h \
-  uuid.h \
-  vector.h
+  uuid.h

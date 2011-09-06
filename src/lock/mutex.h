@@ -9,6 +9,8 @@ extern "C" {
 
 #include <pthread.h> /* for pthread_mutex_t */
 
+extern const class_t mutex_class;
+
 typedef struct mutex_t {
   pthread_mutex_t id;
 } mutex_t;

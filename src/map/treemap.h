@@ -7,6 +7,12 @@
 extern "C" {
 #endif
 
+const class_t treemap_class = {
+  .name    = "treemap",
+  .super   = &map_class,
+  .vtable  = &treemap_vtable.base,
+};
+
 static int
 treemap_init(treemap_t* const map, va_list args) {
   (void)map, (void)args;
@@ -56,8 +62,7 @@ treemap_remove(treemap_t* const restrict map,
 }
 
 const map_vtable_t treemap_vtable = {
-  .super   = NULL,
-  .name    = "treemap",
+  .base    = {.klass = &treemap_class},
   .init    = treemap_init,
   .reset   = treemap_reset,
   .clear   = treemap_clear,

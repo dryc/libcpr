@@ -5,6 +5,12 @@
 #include <stdio.h>     /* for FILE*, snprintf() */
 #include <string.h>    /* for memcmp() */
 
+const class_t uuid_class = {
+  .name    = "uuid",
+  .super   = NULL,
+  .vtable  = NULL, // TODO
+};
+
 const uuid_t uuid_null = UUID_INIT;
 
 uuid_t*

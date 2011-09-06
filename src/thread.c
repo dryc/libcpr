@@ -6,6 +6,12 @@
 #include <signal.h> /* for pthread_kill() */
 #endif
 
+const class_t thread_class = {
+  .name    = "thread",
+  .super   = NULL,
+  .vtable  = NULL, // TODO
+};
+
 thread_t*
 thread_alloc() {
   thread_t* thread = malloc(sizeof(thread_t));

@@ -3,6 +3,12 @@
 #include "build.h"
 #include "seq/nullseq.h"
 
+const class_t seq_class = {
+  .name    = "seq",
+  .super   = NULL,
+  .vtable  = NULL, /* abstract class */
+};
+
 seq_t*
 seq_alloc() {
   return calloc(1, sizeof(seq_t));
@@ -17,14 +23,17 @@ seq_free(seq_t* const seq) {
 
 int
 seq_init(seq_t* const restrict seq,
-         const seq_vtable_t* restrict vtable,
+         const class_t* restrict klass,
          const compare_func_t compare_func,
          const free_func_t free_func, ...) {
   validate_with_errno_return(is_nonnull(seq));
 
   bzero(seq, sizeof(seq_t));
 
-  seq->vtable       = vtable = (is_nonnull(vtable) ? vtable : NULL); // FIXME
+  const seq_vtable_t* const vtable = is_nonnull(klass) ?
+    (seq_vtable_t*)klass->vtable : NULL; // FIXME
+
+  seq->vtable       = vtable;
   seq->compare_func = compare_func;
   seq->free_func    = free_func;
 

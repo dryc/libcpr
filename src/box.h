@@ -40,15 +40,13 @@ typedef struct box_t {
  * @see http://en.wikipedia.org/wiki/Virtual_method_table
  */
 typedef struct box_vtable_t {
-  const struct box_vtable_t* restrict super;
-  const char* const restrict name;
-  const unsigned int options;
-  const long size;
+  const struct class_t* restrict klass;
+  const hashable_vtable_t hashable;
+  const comparable_vtable_t comparable;
+  const iterable_vtable_t iterable;
   int (*init)(box_t* box, va_list args);
   int (*reset)(box_t* box);
   int (*clear)(box_t* box);
-  hash_t (*hash)(const box_t* box);
-  int (*compare)(const box_t* box1, const box_t* box2);
 } box_vtable_t;
 
 /**

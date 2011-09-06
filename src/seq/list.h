@@ -7,6 +7,13 @@
 extern "C" {
 #endif
 
+#define LIST (&list_class)
+
+/**
+ * The list class.
+ */
+extern const class_t list_class;
+
 /**
  * The canonical end-of-list sentinel value.
  */
@@ -16,8 +23,6 @@ extern "C" {
  * Represents a singly-linked list sequence.
  */
 typedef seq_t list_t;
-
-#define LIST (&list_vtable)
 
 extern const seq_vtable_t list_vtable;
 

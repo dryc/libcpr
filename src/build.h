@@ -23,7 +23,7 @@ extern "C" {
 #include "pair.h"
 #include "iter.h"
 #include "seq.h"
-#include "list.h"
+#include "seq/list.h"
 
 /* public headers included from <cprime.h> (alphabetic order) */
 #include "atom.h"
@@ -43,7 +43,7 @@ extern "C" {
 #include "symbol.h"
 #include "uri.h"
 #include "uuid.h"
-#include "vector.h"
+#include "seq/vector.h"
 
 /* public headers included from <cprime.h> (thread support) */
 #ifndef DISABLE_THREADS

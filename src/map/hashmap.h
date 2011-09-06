@@ -7,6 +7,12 @@
 extern "C" {
 #endif
 
+const class_t hashmap_class = {
+  .name    = "hashmap",
+  .super   = &map_class,
+  .vtable  = &hashmap_vtable.base,
+};
+
 static int
 hashmap_init(hashmap_t* const map, va_list args) {
   (void)map, (void)args;
@@ -56,8 +62,7 @@ hashmap_remove(hashmap_t* const restrict map,
 }
 
 const map_vtable_t hashmap_vtable = {
-  .super   = NULL,
-  .name    = "hashmap",
+  .base    = {.klass = &hashmap_class},
   .init    = hashmap_init,
   .reset   = hashmap_reset,
   .clear   = hashmap_clear,

@@ -7,6 +7,12 @@
 #include "set/treeset.h"
 #include "set/hashset.h"
 
+const class_t set_class = {
+  .name    = "set",
+  .super   = NULL,
+  .vtable  = NULL, /* abstract class */
+};
+
 set_t*
 set_alloc() {
   return calloc(1, sizeof(set_t));
@@ -21,7 +27,7 @@ set_free(set_t* const set) {
 
 int
 set_init(set_t* const restrict set,
-         const set_vtable_t* restrict vtable,
+         const class_t* restrict klass,
          const hash_func_t hash_func,
          const compare_func_t compare_func,
          const free_func_t free_func, ...) {
@@ -29,7 +35,10 @@ set_init(set_t* const restrict set,
 
   bzero(set, sizeof(set_t));
 
-  set->vtable       = vtable = (is_nonnull(vtable) ? vtable : LISTSET);
+  const set_vtable_t* const vtable = is_nonnull(klass) ?
+    (set_vtable_t*)klass->vtable : &listset_vtable;
+
+  set->vtable       = vtable;
   set->hash_func    = hash_func;
   set->compare_func = compare_func;
   set->free_func    = free_func;

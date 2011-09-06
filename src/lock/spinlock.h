@@ -15,6 +15,8 @@ extern "C" {
 
 #include <pthread.h> /* for pthread_spinlock_t */
 
+extern const class_t spinlock_class;
+
 typedef struct spinlock_t {
   pthread_spinlock_t id;
 } spinlock_t;

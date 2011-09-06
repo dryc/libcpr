@@ -7,6 +7,12 @@
 extern "C" {
 #endif
 
+const class_t listmap_class = {
+  .name    = "listmap",
+  .super   = &map_class,
+  .vtable  = &listmap_vtable.base,
+};
+
 static int
 listmap_init(listmap_t* const map, va_list args) {
   (void)args;
@@ -62,8 +68,7 @@ listmap_remove(listmap_t* const restrict map,
 }
 
 const map_vtable_t listmap_vtable = {
-  .super   = NULL,
-  .name    = "listmap",
+  .base    = {.klass = &listmap_class},
   .init    = listmap_init,
   .reset   = listmap_reset,
   .clear   = listmap_clear,

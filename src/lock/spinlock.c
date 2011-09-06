@@ -2,6 +2,12 @@
 
 #include "build.h"
 
+const class_t spinlock_class = {
+  .name    = "spinlock",
+  .super   = NULL,
+  .vtable  = NULL, // TODO
+};
+
 spinlock_t*
 spinlock_alloc() {
   spinlock_t* spinlock = malloc(sizeof(spinlock_t));

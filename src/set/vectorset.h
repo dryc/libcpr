@@ -7,6 +7,12 @@
 extern "C" {
 #endif
 
+const class_t vectorset_class = {
+  .name    = "vectorset",
+  .super   = &set_class,
+  .vtable  = &vectorset_vtable.base,
+};
+
 static int
 vectorset_init(vectorset_t* const set, va_list args) {
   (void)set, (void)args;
@@ -62,8 +68,7 @@ vectorset_replace(vectorset_t* const restrict set,
 }
 
 const set_vtable_t vectorset_vtable = {
-  .super   = NULL,
-  .name    = "vectorset",
+  .base    = {.klass = &vectorset_class},
   .init    = vectorset_init,
   .reset   = vectorset_reset,
   .clear   = vectorset_clear,

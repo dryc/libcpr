@@ -2,6 +2,12 @@
 
 #include "build.h"
 
+const class_t iter_class = {
+  .name    = "iter",
+  .super   = NULL,
+  .vtable  = NULL, // TODO
+};
+
 iter_t*
 iter_alloc() {
   iter_t* iter = malloc(sizeof(iter_t));

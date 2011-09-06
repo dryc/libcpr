@@ -9,6 +9,22 @@ extern "C" {
 
 #include <stdbool.h> /* for bool */
 
+#define NULLSET   (&nullset_class)
+#define VECTORSET (&vectorset_class)
+#define LISTSET   (&listset_class)
+#define TREESET   (&treeset_class)
+#define HASHSET   (&hashset_class)
+
+/**
+ * The base class for set classes.
+ */
+extern const class_t set_class;
+extern const class_t nullset_class;
+extern const class_t vectorset_class;
+extern const class_t listset_class;
+extern const class_t treeset_class;
+extern const class_t hashset_class;
+
 /**
  * Represents a set.
  *
@@ -34,9 +50,10 @@ typedef set_t hashset_t;
  * @see http://en.wikipedia.org/wiki/Virtual_method_table
  */
 typedef struct set_vtable_t {
-  const struct set_vtable_t* restrict super;
-  const char* const restrict name;
-  const unsigned int options;
+  const vtable_t base;
+  const hashable_vtable_t hashable;
+  const comparable_vtable_t comparable;
+  const iterable_vtable_t iterable;
   int (*init)(set_t* set, va_list args);
   int (*reset)(set_t* set);
   int (*clear)(set_t* set);
@@ -52,12 +69,6 @@ typedef struct set_vtable_t {
     const void* restrict elt1,
     const void* restrict elt2);
 } set_vtable_t;
-
-#define NULLSET   (&nullset_vtable)
-#define VECTORSET (&vectorset_vtable)
-#define LISTSET   (&listset_vtable)
-#define TREESET   (&treeset_vtable)
-#define HASHSET   (&hashset_vtable)
 
 extern const set_vtable_t nullset_vtable;
 extern const set_vtable_t vectorset_vtable;
@@ -79,7 +90,7 @@ extern void set_free(set_t* set);
  * Initializes a set.
  */
 extern int set_init(set_t* restrict set,
-  const set_vtable_t* restrict vtable,
+  const class_t* restrict klass,
   const hash_func_t hash_func,
   const compare_func_t compare_func,
   const free_func_t free_func, ...);

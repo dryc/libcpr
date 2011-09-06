@@ -10,6 +10,14 @@ extern "C" {
 #include <stdbool.h> /* for bool */
 #include <stddef.h>  /* for size_t */
 
+#define NULLSEQ (&nullseq_class)
+
+/**
+ * The base class for sequence classes.
+ */
+extern const class_t seq_class;
+extern const class_t nullseq_class;
+
 /**
  * Represents a sequence.
  *
@@ -40,9 +48,10 @@ typedef enum seq_sort_type_t {
  * @see http://en.wikipedia.org/wiki/Virtual_method_table
  */
 typedef struct seq_vtable_t {
-  const struct seq_vtable_t* restrict super;
-  const char* const restrict name;
-  const unsigned int options;
+  const vtable_t base;
+  const hashable_vtable_t hashable;
+  const comparable_vtable_t comparable;
+  const iterable_vtable_t iterable;
   int (*init)(seq_t* seq, va_list args);
   int (*reset)(seq_t* seq);
   int (*clear)(seq_t* seq);
@@ -62,8 +71,6 @@ typedef struct seq_vtable_t {
   int (*sort)(seq_t* seq, seq_sort_type_t how);
 } seq_vtable_t;
 
-#define NULLSEQ (&nullseq_vtable)
-
 extern const seq_vtable_t nullseq_vtable;
 
 /**
@@ -80,7 +87,7 @@ extern void seq_free(seq_t* seq);
  * Initializes a heap-allocated sequence.
  */
 extern int seq_init(seq_t* restrict seq,
-  const seq_vtable_t* restrict vtable,
+  const class_t* restrict klass,
   const compare_func_t compare_func,
   const free_func_t free_func, ...);
 

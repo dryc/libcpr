@@ -21,7 +21,7 @@ extern "C" {
 #include <cprime/pair.h>
 #include <cprime/iter.h>
 #include <cprime/seq.h>
-#include <cprime/list.h>
+#include <cprime/seq/list.h>
 
 #include <cprime/atom.h>
 #include <cprime/box.h>
@@ -45,7 +45,7 @@ extern "C" {
 #include <cprime/thread.h>
 #include <cprime/uri.h>
 #include <cprime/uuid.h>
-#include <cprime/vector.h>
+#include <cprime/seq/vector.h>
 
 extern const char* const cprime_version_string;
 extern const char* const cprime_feature_names[];

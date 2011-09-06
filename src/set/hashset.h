@@ -9,6 +9,12 @@ extern "C" {
 
 #include <stddef.h> /* for size_t */
 
+const class_t hashset_class = {
+  .name    = "hashset",
+  .super   = &set_class,
+  .vtable  = &hashset_vtable.base,
+};
+
 #define HASHSET_CAPACITY_MIN 4
 
 typedef struct hashset_entry_t {
@@ -134,8 +140,7 @@ hashset_replace(hashset_t* const restrict set,
 }
 
 const set_vtable_t hashset_vtable = {
-  .super   = NULL,
-  .name    = "hashset",
+  .base    = {.klass = &hashset_class},
   .init    = hashset_init,
   .reset   = hashset_reset,
   .clear   = hashset_clear,

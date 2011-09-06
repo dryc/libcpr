@@ -6,6 +6,12 @@
 #include "map/treemap.h"
 #include "map/hashmap.h"
 
+const class_t map_class = {
+  .name    = "map",
+  .super   = NULL,
+  .vtable  = NULL, /* abstract class */
+};
+
 map_t*
 map_alloc() {
   return calloc(1, sizeof(map_t));
@@ -20,7 +26,7 @@ map_free(map_t* const map) {
 
 int
 map_init(map_t* const restrict map,
-         const map_vtable_t* restrict vtable,
+         const class_t* restrict klass,
          const hash_func_t hash_func,
          const compare_func_t compare_func,
          const free_func_t free_key_func,
@@ -29,7 +35,10 @@ map_init(map_t* const restrict map,
 
   bzero(map, sizeof(map_t));
 
-  map->vtable          = vtable = (is_nonnull(vtable) ? vtable : LISTMAP);
+  const map_vtable_t* const vtable = is_nonnull(klass) ?
+    (map_vtable_t*)klass->vtable : &listmap_vtable;
+
+  map->vtable          = vtable;
   map->hash_func       = hash_func;
   map->compare_func    = compare_func;
   map->free_key_func   = free_key_func;

@@ -3,6 +3,12 @@
 #include "build.h"
 #include <inttypes.h> /* for strtoimax() */
 
+const class_t string_class = {
+  .name    = "string",
+  .super   = &seq_class,
+  .vtable  = NULL, // TODO
+};
+
 string_t*
 string_alloc() {
   string_t* string = malloc(sizeof(string_t));

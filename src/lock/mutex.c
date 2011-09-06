@@ -2,6 +2,12 @@
 
 #include "build.h"
 
+const class_t mutex_class = {
+  .name    = "mutex",
+  .super   = NULL,
+  .vtable  = NULL, // TODO
+};
+
 const mutex_interface_t mutex = {
   .alloc   = mutex_alloc,
   .free    = mutex_free,

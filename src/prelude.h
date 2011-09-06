@@ -188,6 +188,35 @@ typedef int (*compare_func_t)(const void*, const void*);
 /* the function prototype for equality functions */
 typedef bool (*equal_func_t)(const void*, const void*);
 
+typedef struct class_t {
+  const struct class_t* const restrict super;
+  const struct vtable_t* const restrict vtable;
+  const char* const restrict name;
+  const long size;
+} class_t;
+
+typedef struct trait_t {
+  const struct vtable_t* const restrict vtable;
+  const char* const restrict name;
+  const long size;
+} trait_t;
+
+typedef struct vtable_t {
+  const struct class_t* const restrict klass;
+} vtable_t;
+
+typedef struct hashable_vtable_t {
+  hash_func_t hash;
+} hashable_vtable_t;
+
+typedef struct comparable_vtable_t {
+  compare_func_t compare;
+} comparable_vtable_t;
+
+typedef struct iterable_vtable_t {
+  bool (*next)(void*);
+} iterable_vtable_t;
+
 #ifdef __cplusplus
 }
 #endif

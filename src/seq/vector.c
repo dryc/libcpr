@@ -2,6 +2,12 @@
 
 #include "build.h"
 
+const class_t vector_class = {
+  .name    = "vector",
+  .super   = NULL,
+  .vtable  = NULL, // TODO
+};
+
 vector_t*
 vector_alloc() {
   vector_t* vector = malloc(sizeof(vector_t));

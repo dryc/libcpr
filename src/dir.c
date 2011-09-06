@@ -5,6 +5,12 @@
 #include <stdio.h>    /* for snprintf() */
 #include <sys/stat.h> /* for fstatat() */
 
+const class_t dir_class = {
+  .name    = "dir",
+  .super   = NULL,
+  .vtable  = NULL, // TODO
+};
+
 int
 dir_init_empty(dir_t* dir) {
   validate_with_errno_return(dir != NULL);

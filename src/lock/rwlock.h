@@ -9,6 +9,8 @@ extern "C" {
 
 #include <pthread.h> /* for pthread_rwlock_t */
 
+extern const class_t rwlock_class;
+
 typedef struct rwlock_t {
   pthread_rwlock_t id;
 } rwlock_t;

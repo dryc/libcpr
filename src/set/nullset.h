@@ -7,6 +7,12 @@
 extern "C" {
 #endif
 
+const class_t nullset_class = {
+  .name    = "nullset",
+  .super   = &set_class,
+  .vtable  = &nullset_vtable.base,
+};
+
 static int
 nullset_init(nullset_t* const set, va_list args) {
   (void)set, (void)args;
@@ -65,8 +71,7 @@ nullset_replace(nullset_t* const restrict set,
  * The canonical immutable empty set.
  */
 const set_vtable_t nullset_vtable = {
-  .super   = NULL,
-  .name    = "nullset",
+  .base    = {.klass = &nullset_class},
   .init    = nullset_init,
   .reset   = nullset_reset,
   .clear   = nullset_clear,

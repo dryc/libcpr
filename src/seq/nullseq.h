@@ -7,6 +7,12 @@
 extern "C" {
 #endif
 
+const class_t nullseq_class = {
+  .name    = "nullseq",
+  .super   = &seq_class,
+  .vtable  = &nullseq_vtable.base,
+};
+
 static int
 nullseq_init(nullseq_t* const seq, va_list args) {
   (void)seq, (void)args;
@@ -65,8 +71,7 @@ nullseq_replace(nullseq_t* const restrict seq,
  * The canonical immutable empty sequence.
  */
 const seq_vtable_t nullseq_vtable = {
-  .super   = NULL,
-  .name    = "nullseq",
+  .base    = {.klass = &nullseq_class},
   .init    = nullseq_init,
   .reset   = nullseq_reset,
   .clear   = nullseq_clear,

@@ -9,6 +9,20 @@ extern "C" {
 
 #include <stdbool.h> /* for bool */
 
+#define NULLMAP (&nullmap_class)
+#define LISTMAP (&listmap_class)
+#define TREEMAP (&treemap_class)
+#define HASHMAP (&hashmap_class)
+
+/**
+ * The base class for map classes.
+ */
+extern const class_t map_class;
+extern const class_t nullmap_class;
+extern const class_t listmap_class;
+extern const class_t treemap_class;
+extern const class_t hashmap_class;
+
 /**
  * Represents a key-value map.
  *
@@ -34,9 +48,10 @@ typedef map_t hashmap_t;
  * @see http://en.wikipedia.org/wiki/Virtual_method_table
  */
 typedef struct map_vtable_t {
-  const struct map_vtable_t* restrict super;
-  const char* const restrict name;
-  const unsigned int options;
+  const vtable_t base;
+  const hashable_vtable_t hashable;
+  const comparable_vtable_t comparable;
+  const iterable_vtable_t iterable;
   int (*init)(map_t* map, va_list args);
   int (*reset)(map_t* map);
   int (*clear)(map_t* map);
@@ -51,11 +66,6 @@ typedef struct map_vtable_t {
   int (*remove)(map_t* restrict map,
     const void* restrict key);
 } map_vtable_t;
-
-#define NULLMAP (&nullmap_vtable)
-#define LISTMAP (&listmap_vtable)
-#define TREEMAP (&treemap_vtable)
-#define HASHMAP (&hashmap_vtable)
 
 extern const map_vtable_t nullmap_vtable;
 extern const map_vtable_t listmap_vtable;
@@ -76,7 +86,7 @@ extern void map_free(map_t* map);
  * Initializes a map.
  */
 extern int map_init(map_t* restrict map,
-  const map_vtable_t* restrict vtable,
+  const class_t* restrict klass,
   const hash_func_t hash_func,
   const compare_func_t compare_func,
   const free_func_t free_key_func,

@@ -7,6 +7,12 @@
 extern "C" {
 #endif
 
+const class_t nullmap_class = {
+  .name    = "nullmap",
+  .super   = &map_class,
+  .vtable  = &nullmap_vtable.base,
+};
+
 static int
 nullmap_init(nullmap_t* const map, va_list args) {
   (void)map, (void)args;
@@ -62,8 +68,7 @@ nullmap_remove(nullmap_t* const restrict map,
  * The canonical immutable empty map.
  */
 const map_vtable_t nullmap_vtable = {
-  .super   = NULL,
-  .name    = "nullmap",
+  .base    = {.klass = &nullmap_class},
   .init    = nullmap_init,
   .reset   = nullmap_reset,
   .clear   = nullmap_clear,

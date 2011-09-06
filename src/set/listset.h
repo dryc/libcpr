@@ -7,6 +7,12 @@
 extern "C" {
 #endif
 
+const class_t listset_class = {
+  .name    = "listset",
+  .super   = &set_class,
+  .vtable  = &listset_vtable.base,
+};
+
 static int
 listset_init(listset_t* const set, va_list args) {
   (void)args;
@@ -70,8 +76,7 @@ listset_replace(listset_t* const restrict set,
 }
 
 const set_vtable_t listset_vtable = {
-  .super   = NULL,
-  .name    = "listset",
+  .base    = {.klass = &listset_class},
   .init    = listset_init,
   .reset   = listset_reset,
   .clear   = listset_clear,
