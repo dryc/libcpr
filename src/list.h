@@ -22,6 +22,11 @@ typedef seq_t list_t;
 extern const seq_vtable_t list_vtable;
 
 /**
+ * Checks whether a given object is a list.
+ */
+#define is_list(obj)  ((obj)->vtable == &list_vtable)
+
+/**
  * Allocates heap memory for a new list.
  */
 extern list_t* list_alloc();
@@ -34,7 +39,12 @@ extern void list_free(list_t* list);
 /**
  * Initializes a stack-allocated list.
  */
-#define LIST_INIT {.vtable = &list_vtable, .data = LIST_SENTINEL, .length = 0, .free_func = free}
+#define LIST_INIT {             \
+    .vtable    = &list_vtable,  \
+    .data      = LIST_SENTINEL, \
+    .length    = 0,             \
+    .free_func = free           \
+  }
 
 /**
  * Initializes a heap-allocated list.
