@@ -1,7 +1,7 @@
 /* This is free and unencumbered software released into the public domain. */
 
-#ifndef _CPRIME_PAIR_H
-#define _CPRIME_PAIR_H
+#ifndef _CPRIME_PAIR_H_
+#define _CPRIME_PAIR_H_
 
 #ifdef __cplusplus
 extern "C" {
@@ -41,7 +41,7 @@ extern int pair_init_with(pair_t* pair, const void* const head, const pair_t* co
 extern int pair_dispose(pair_t* pair);
 
 #ifdef __cplusplus
-}
+} /* extern "C" */
 #endif
 
-#endif /* _CPRIME_PAIR_H */
+#endif /* _CPRIME_PAIR_H_ */

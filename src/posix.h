@@ -1,7 +1,7 @@
 /* This is free and unencumbered software released into the public domain. */
 
-#ifndef _CPRIME_POSIX_H
-#define _CPRIME_POSIX_H
+#ifndef _CPRIME_POSIX_H_
+#define _CPRIME_POSIX_H_
 
 #ifdef __cplusplus
 extern "C" {
@@ -49,7 +49,7 @@ extern ssize_t posix_mq_timedreceive(mqd_t mqdes,
 #endif /* HAVE_MQUEUE_H */
 
 #ifdef __cplusplus
-}
+} /* extern "C" */
 #endif
 
-#endif /* _CPRIME_POSIX_H */
+#endif /* _CPRIME_POSIX_H_ */

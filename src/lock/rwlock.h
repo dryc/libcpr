@@ -1,7 +1,7 @@
 /* This is free and unencumbered software released into the public domain. */
 
-#ifndef _CPRIME_RWLOCK_H
-#define _CPRIME_RWLOCK_H
+#ifndef _CPRIME_RWLOCK_H_
+#define _CPRIME_RWLOCK_H_
 
 #ifdef __cplusplus
 extern "C" {
@@ -33,7 +33,7 @@ extern int rwlock_trywrlock(rwlock_t* rwlock);
 extern int rwlock_unlock(rwlock_t* rwlock);
 
 #ifdef __cplusplus
-}
+} /* extern "C" */
 #endif
 
-#endif /* _CPRIME_RWLOCK_H */
+#endif /* _CPRIME_RWLOCK_H_ */

@@ -1,7 +1,7 @@
 /* This is free and unencumbered software released into the public domain. */
 
-#ifndef _CPRIME_BUILD_H
-#define _CPRIME_BUILD_H
+#ifndef _CPRIME_BUILD_H_
+#define _CPRIME_BUILD_H_
 
 #ifdef __cplusplus
 extern "C" {
@@ -65,7 +65,7 @@ extern "C" {
 #include <assert.h> /* for assert() */
 
 #ifdef __cplusplus
-}
+} /* extern "C" */
 #endif
 
-#endif /* _CPRIME_BUILD_H */
+#endif /* _CPRIME_BUILD_H_ */

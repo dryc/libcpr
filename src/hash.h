@@ -1,7 +1,7 @@
 /* This is free and unencumbered software released into the public domain. */
 
-#ifndef _CPRIME_HASH_H
-#define _CPRIME_HASH_H
+#ifndef _CPRIME_HASH_H_
+#define _CPRIME_HASH_H_
 
 #ifdef __cplusplus
 extern "C" {
@@ -31,7 +31,7 @@ extern hash_t ptr_hash(const void* ptr);
 extern int ptr_compare(const void* ptr1, const void* ptr2);
 
 #ifdef __cplusplus
-}
+} /* extern "C" */
 #endif
 
-#endif /* _CPRIME_HASH_H */
+#endif /* _CPRIME_HASH_H_ */

@@ -1,7 +1,7 @@
 /* This is free and unencumbered software released into the public domain. */
 
-#ifndef _CPRIME_SET_H
-#define _CPRIME_SET_H
+#ifndef _CPRIME_SET_H_
+#define _CPRIME_SET_H_
 
 #ifdef __cplusplus
 extern "C" {
@@ -142,7 +142,7 @@ extern int set_replace(set_t* restrict set,
   const void* restrict elt2);
 
 #ifdef __cplusplus
-}
+} /* extern "C" */
 #endif
 
-#endif /* _CPRIME_SET_H */
+#endif /* _CPRIME_SET_H_ */

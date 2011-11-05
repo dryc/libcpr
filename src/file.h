@@ -1,7 +1,7 @@
 /* This is free and unencumbered software released into the public domain. */
 
-#ifndef _CPRIME_FILE_H
-#define _CPRIME_FILE_H
+#ifndef _CPRIME_FILE_H_
+#define _CPRIME_FILE_H_
 
 #ifdef __cplusplus
 extern "C" {
@@ -13,7 +13,7 @@ typedef struct {
 } file_t;
 
 #ifdef __cplusplus
-}
+} /* extern "C" */
 #endif
 
-#endif /* _CPRIME_FILE_H */
+#endif /* _CPRIME_FILE_H_ */

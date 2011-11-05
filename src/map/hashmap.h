@@ -1,7 +1,7 @@
 /* This is free and unencumbered software released into the public domain. */
 
-#ifndef _CPRIME_HASHMAP_H
-#define _CPRIME_HASHMAP_H
+#ifndef _CPRIME_HASHMAP_H_
+#define _CPRIME_HASHMAP_H_
 
 #ifdef __cplusplus
 extern "C" {
@@ -73,7 +73,7 @@ const map_vtable_t hashmap_vtable = {
 };
 
 #ifdef __cplusplus
-}
+} /* extern "C" */
 #endif
 
-#endif /* _CPRIME_HASHMAP_H */
+#endif /* _CPRIME_HASHMAP_H_ */

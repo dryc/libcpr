@@ -1,7 +1,7 @@
 /* This is free and unencumbered software released into the public domain. */
 
-#ifndef _CPRIME_UNSAFE_H
-#define _CPRIME_UNSAFE_H
+#ifndef _CPRIME_UNSAFE_H_
+#define _CPRIME_UNSAFE_H_
 
 #ifdef __cplusplus
 extern "C" {
@@ -41,7 +41,7 @@ extern "C" {
 #define set_replace(s, e1, e2)  (((set_t*)s)->vtable->replace(s, e1, e2))
 
 #ifdef __cplusplus
-}
+} /* extern "C" */
 #endif
 
-#endif /* _CPRIME_UNSAFE_H */
+#endif /* _CPRIME_UNSAFE_H_ */

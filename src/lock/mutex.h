@@ -1,7 +1,7 @@
 /* This is free and unencumbered software released into the public domain. */
 
-#ifndef _CPRIME_MUTEX_H
-#define _CPRIME_MUTEX_H
+#ifndef _CPRIME_MUTEX_H_
+#define _CPRIME_MUTEX_H_
 
 #ifdef __cplusplus
 extern "C" {
@@ -50,7 +50,7 @@ extern int mutex_trylock(mutex_t* mutex);
 extern int mutex_unlock(mutex_t* mutex);
 
 #ifdef __cplusplus
-}
+} /* extern "C" */
 #endif
 
-#endif /* _CPRIME_MUTEX_H */
+#endif /* _CPRIME_MUTEX_H_ */

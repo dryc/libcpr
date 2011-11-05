@@ -1,7 +1,7 @@
 /* This is free and unencumbered software released into the public domain. */
 
-#ifndef _CPRIME_NULLSET_H
-#define _CPRIME_NULLSET_H
+#ifndef _CPRIME_NULLSET_H_
+#define _CPRIME_NULLSET_H_
 
 #ifdef __cplusplus
 extern "C" {
@@ -83,7 +83,7 @@ const set_vtable_t nullset_vtable = {
 };
 
 #ifdef __cplusplus
-}
+} /* extern "C" */
 #endif
 
-#endif /* _CPRIME_NULLSET_H */
+#endif /* _CPRIME_NULLSET_H_ */

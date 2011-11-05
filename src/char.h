@@ -1,7 +1,7 @@
 /* This is free and unencumbered software released into the public domain. */
 
-#ifndef _CPRIME_CHAR_H
-#define _CPRIME_CHAR_H
+#ifndef _CPRIME_CHAR_H_
+#define _CPRIME_CHAR_H_
 
 #ifdef __cplusplus
 extern "C" {
@@ -54,7 +54,7 @@ extern struct string_t* char_to_string(const char_t chr);
 extern int char_encode(const char_t input, byte_t* output);
 
 #ifdef __cplusplus
-}
+} /* extern "C" */
 #endif
 
-#endif /* _CPRIME_CHAR_H */
+#endif /* _CPRIME_CHAR_H_ */

@@ -1,7 +1,7 @@
 /* This is free and unencumbered software released into the public domain. */
 
-#ifndef _CPRIME_ASCII_H
-#define _CPRIME_ASCII_H
+#ifndef _CPRIME_ASCII_H_
+#define _CPRIME_ASCII_H_
 
 #ifdef __cplusplus
 extern "C" {
@@ -12,7 +12,7 @@ extern "C" {
 extern const int8_t const ascii_xdigit_table[128];
 
 #ifdef __cplusplus
-}
+} /* extern "C" */
 #endif
 
-#endif /* _CPRIME_ASCII_H */
+#endif /* _CPRIME_ASCII_H_ */

@@ -1,7 +1,7 @@
 /* This is free and unencumbered software released into the public domain. */
 
-#ifndef _CPRIME_DIR_H
-#define _CPRIME_DIR_H
+#ifndef _CPRIME_DIR_H_
+#define _CPRIME_DIR_H_
 
 #ifdef __cplusplus
 extern "C" {
@@ -40,7 +40,7 @@ extern int dir_read(dir_t* dir);
 extern long dir_size(dir_t* dir);
 
 #ifdef __cplusplus
-}
+} /* extern "C" */
 #endif
 
-#endif /* _CPRIME_DIR_H */
+#endif /* _CPRIME_DIR_H_ */

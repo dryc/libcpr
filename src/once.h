@@ -1,7 +1,7 @@
 /* This is free and unencumbered software released into the public domain. */
 
-#ifndef _CPRIME_ONCE_H
-#define _CPRIME_ONCE_H
+#ifndef _CPRIME_ONCE_H_
+#define _CPRIME_ONCE_H_
 
 #ifdef __cplusplus
 extern "C" {
@@ -18,7 +18,7 @@ typedef struct once_t {
 extern int once(once_t* guard, void (*function)(void));
 
 #ifdef __cplusplus
-}
+} /* extern "C" */
 #endif
 
-#endif /* _CPRIME_ONCE_H */
+#endif /* _CPRIME_ONCE_H_ */
