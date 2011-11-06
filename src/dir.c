@@ -3,13 +3,24 @@
 #include "build.h"
 #include <fcntl.h>    /* for the AT_* constants */
 #include <stdio.h>    /* for snprintf() */
-#include <sys/stat.h> /* for fstatat() */
+#include <sys/stat.h> /* for fstatat(), stat() */
 
 const class_t dir_class = {
   .name    = "dir",
   .super   = NULL,
   .vtable  = NULL, // TODO
 };
+
+bool
+dir_exists(const char* const path) {
+  validate_with_false_return(!str_is_empty(path));
+
+  struct stat st;
+  if (stat(path, &st) == -1) {
+    return FALSE;
+  }
+  return S_ISDIR(st.st_mode);
+}
 
 int
 dir_init_empty(dir_t* dir) {

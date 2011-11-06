@@ -12,6 +12,8 @@ typedef struct {
   int fd;
 } file_t;
 
+extern bool file_exists(const char* path);
+
 #ifdef __cplusplus
 } /* extern "C" */
 #endif

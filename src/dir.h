@@ -19,6 +19,8 @@ typedef struct dir_t {
   char path[PATH_MAX];
 } dir_t;
 
+extern bool dir_exists(const char* path);
+
 #define DIR_INIT {.stream = NULL, .entry = NULL, .path = "\0"}
 
 #define dir_init1(dir) dir_init_empty(dir)
