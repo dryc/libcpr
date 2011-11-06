@@ -176,6 +176,13 @@ typedef enum compare_t {
 #  endif
 #endif /* PATH_MAX */
 
+#define PTR_TO_INT(p)  ((int)((long)((void*)(p))))
+#define PTR_TO_UINT(p) ((unsigned int)((unsigned long)((void*)(p))))
+#define PTR_TO_SIZE(p) ((size_t)((void*)(p)))
+#define INT_TO_PTR(i)  ((void*)((long)(i)))
+#define UINT_TO_PTR(u) ((void*)((unsigned long)(u)))
+#define SIZE_TO_PTR(s) ((void*)((size_t)(s)))
+
 /* the function prototype for deallocation functions, e.g. free() */
 typedef void (*free_func_t)(void*);
 
