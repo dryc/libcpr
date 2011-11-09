@@ -59,7 +59,7 @@ set_reset(set_t* const set) {
   validate_with_errno_return(is_nonnull(set));
 
   const set_vtable_t* const vtable = set->vtable;
-  if (is_nonnull(vtable->reset)) {
+  if (is_nonnull(vtable) && is_nonnull(vtable->reset)) {
     return vtable->reset(set);
   }
 
