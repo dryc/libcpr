@@ -33,10 +33,11 @@ map_init(map_t* const restrict map,
          const free_func_t free_value_func, ...) {
   validate_with_errno_return(is_nonnull(map));
 
-  bzero(map, sizeof(map_t));
-
   const map_vtable_t* const vtable = is_nonnull(klass) ?
     (map_vtable_t*)klass->vtable : &listmap_vtable;
+  assert(is_nonnull(vtable));
+
+  bzero(map, sizeof(map_t));
 
   map->vtable          = vtable;
   map->hash_func       = hash_func;
@@ -60,7 +61,7 @@ map_reset(map_t* const map) {
   validate_with_errno_return(is_nonnull(map));
 
   const map_vtable_t* const vtable = map->vtable;
-  if (is_nonnull(vtable->reset)) {
+  if (is_nonnull(vtable) && is_nonnull(vtable->reset)) {
     return vtable->reset(map);
   }
 
@@ -76,6 +77,7 @@ map_clear(map_t* const map) {
   validate_with_errno_return(is_nonnull(map));
 
   const map_vtable_t* const vtable = map->vtable;
+  assert(is_nonnull(vtable));
   if (is_nonnull(vtable->clear)) {
     return vtable->clear(map);
   }
@@ -95,6 +97,7 @@ map_count(map_t* const restrict map, const void* const restrict key) {
   validate_with_zero_return(is_nonnull(map));
 
   const map_vtable_t* const vtable = map->vtable;
+  assert(is_nonnull(vtable));
   if (is_nonnull(vtable->count)) {
     return vtable->count(map, key);
   }
@@ -108,6 +111,7 @@ map_lookup(map_t* const restrict map, const void* const restrict key,
   validate_with_false_return(is_nonnull(map) && is_nonnull(key));
 
   const map_vtable_t* const vtable = map->vtable;
+  assert(is_nonnull(vtable));
   if (is_nonnull(vtable->lookup)) {
     return vtable->lookup(map, key, value);
   }
@@ -121,6 +125,7 @@ map_insert(map_t* const restrict map, const void* const restrict key,
   validate_with_errno_return(is_nonnull(map) && is_nonnull(key));
 
   const map_vtable_t* const vtable = map->vtable;
+  assert(is_nonnull(vtable));
   if (is_nonnull(vtable->insert)) {
     return vtable->insert(map, key, value);
   }
@@ -133,6 +138,7 @@ map_remove(map_t* const restrict map, const void* const restrict key) {
   validate_with_errno_return(is_nonnull(map) && is_nonnull(key));
 
   const map_vtable_t* const vtable = map->vtable;
+  assert(is_nonnull(vtable));
   if (is_nonnull(vtable->remove)) {
     return vtable->remove(map, key);
   }

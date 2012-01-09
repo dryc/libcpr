@@ -33,10 +33,11 @@ set_init(set_t* const restrict set,
          const free_func_t free_func, ...) {
   validate_with_errno_return(is_nonnull(set));
 
-  bzero(set, sizeof(set_t));
-
   const set_vtable_t* const vtable = is_nonnull(klass) ?
     (set_vtable_t*)klass->vtable : &listset_vtable;
+  assert(is_nonnull(vtable));
+
+  bzero(set, sizeof(set_t));
 
   set->vtable       = vtable;
   set->hash_func    = hash_func;
@@ -75,6 +76,7 @@ set_clear(set_t* const set) {
   validate_with_errno_return(is_nonnull(set));
 
   const set_vtable_t* const vtable = set->vtable;
+  assert(is_nonnull(vtable));
   if (is_nonnull(vtable->clear)) {
     return vtable->clear(set);
   }
@@ -94,6 +96,7 @@ set_count(set_t* const restrict set, const void* const restrict elt) {
   validate_with_zero_return(is_nonnull(set));
 
   const set_vtable_t* const vtable = set->vtable;
+  assert(is_nonnull(vtable));
   if (is_nonnull(vtable->count)) {
     return vtable->count(set, elt);
   }
@@ -106,6 +109,7 @@ set_lookup(set_t* const restrict set, const void* const restrict elt) {
   validate_with_false_return(is_nonnull(set) && is_nonnull(elt));
 
   const set_vtable_t* const vtable = set->vtable;
+  assert(is_nonnull(vtable));
   if (is_nonnull(vtable->lookup)) {
     return vtable->lookup(set, elt);
   }
@@ -118,6 +122,7 @@ set_insert(set_t* const restrict set, const void* const restrict elt) {
   validate_with_errno_return(is_nonnull(set) && is_nonnull(elt));
 
   const set_vtable_t* const vtable = set->vtable;
+  assert(is_nonnull(vtable));
   if (is_nonnull(vtable->insert)) {
     return vtable->insert(set, elt);
   }
@@ -130,6 +135,7 @@ set_remove(set_t* const restrict set, const void* const restrict elt) {
   validate_with_errno_return(is_nonnull(set) && is_nonnull(elt));
 
   const set_vtable_t* const vtable = set->vtable;
+  assert(is_nonnull(vtable));
   if (is_nonnull(vtable->remove)) {
     return vtable->remove(set, elt);
   }
@@ -143,6 +149,7 @@ set_replace(set_t* const restrict set, const void* const restrict elt1,
   validate_with_errno_return(is_nonnull(set) && is_nonnull(elt1));
 
   const set_vtable_t* const vtable = set->vtable;
+  assert(is_nonnull(vtable));
   if (is_nonnull(vtable->replace)) {
     return vtable->replace(set, elt1, elt2);
   }
