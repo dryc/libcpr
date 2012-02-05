@@ -9,6 +9,8 @@ extern "C" {
 
 #include <stdint.h> /* for int8_t */
 
+extern const char const base64_alphabet[64];
+
 extern const int8_t const base64_decode_table[256];
 
 #ifdef __cplusplus
