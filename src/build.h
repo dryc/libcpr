@@ -56,6 +56,7 @@ extern "C" {
 
 /* optional headers not included by <cprime.h> */
 #include "ascii.h"
+#include "base64.h"
 #include "memory.h"
 #ifndef DISABLE_UNICODE
 #include "utf8.h"
