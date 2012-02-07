@@ -6,10 +6,14 @@ dnl This is free and unencumbered software released into the public domain.
 AC_PREREQ([2.60])
 
 dnl Define version information:
-m4_define([VERSION_MAJOR], 0)
-m4_define([VERSION_MINOR], 0)
-m4_define([VERSION_PATCH], 0)
-m4_define([VERSION_STRING], [VERSION_MAJOR.VERSION_MINOR.VERSION_PATCH])
+m4_define([VERSION_MAJOR],
+  m4_esyscmd([cut -d'.' -f1 VERSION | tr -d '\n']))
+m4_define([VERSION_MINOR],
+  m4_esyscmd([cut -d'.' -f2 VERSION | tr -d '\n']))
+m4_define([VERSION_PATCH],
+  m4_esyscmd([cut -d'.' -f3 VERSION | tr -d '\n']))
+m4_define([VERSION_STRING],
+  m4_esyscmd([git describe --dirty --always | tr -d '\n']))
 
 dnl Define package information:
 AC_INIT([C′], [VERSION_STRING],
