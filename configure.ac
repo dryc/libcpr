@@ -68,13 +68,13 @@ AC_HEADER_STDBOOL
 # C1X header files:
 AC_CHECK_HEADERS_ONCE([stdatomic.h threads.h uchar.h])
 # POSIX header files:
-AC_CHECK_HEADERS_ONCE([dirent.h errno.h iconv.h libgen.h mqueue.h poll.h
+AC_CHECK_HEADERS_ONCE([dirent.h errno.h iconv.h libgen.h mqueue.h poll.h regex.h
                        sched.h signal.h syslog.h sys/resource.h sys/wait.h])
 # GNU header files:
 AC_CHECK_HEADERS_ONCE([execinfo.h])
 
 dnl Check for types:
-AC_CHECK_TYPES([cpu_set_t], [], [], [[#include <sched.h>]])
+AC_CHECK_TYPES([regex_t], [], [], [[#include <regex.h>]])
 AS_IF([test "x$enable_threads" != "xno"], [
 # POSIX threads support:
   AC_CHECK_TYPES(
@@ -84,6 +84,7 @@ AS_IF([test "x$enable_threads" != "xno"], [
     [pthread_mutex_t, pthread_once_t, pthread_rwlock_t, pthread_spinlock_t],
     [], [], [[#include <pthread.h>]])
 ])
+AC_CHECK_TYPES([cpu_set_t], [], [], [[#include <sched.h>]])
 
 dnl Check for structures:
 
@@ -118,6 +119,11 @@ AC_CHECK_FUNCS_ONCE([
   sched_setaffinity
   setpriority
   waitpid
+])
+# POSIX regular expressions:
+AC_CHECK_FUNCS_ONCE([
+  regcomp
+  regexec
 ])
 AS_IF([test "x$enable_threads" != "xno"], [
 # POSIX threads support:
