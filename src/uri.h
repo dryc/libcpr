@@ -7,12 +7,12 @@
 extern "C" {
 #endif
 
+#include <stdbool.h> /* for bool */
+
 /* @see http://tools.ietf.org/html/rfc3986#appendix-B */
 #define URI_PATTERN "^(([^:/?#]+):)(//([^/?#]*))?([^?#]*)(\\?([^#]*))?(#(.*))?$"
 
-typedef struct {
-  char* string;
-} uri_t;
+bool uri_validate(const char* uri);
 
 #ifdef __cplusplus
 } /* extern "C" */
