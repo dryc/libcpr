@@ -11,12 +11,9 @@ libcprime_la_SOURCES =      \
   bool.c                    \
   box.c                     \
   char.c                    \
-  closure.c                 \
-  decimal.c                 \
   dir.c                     \
   file.c                    \
   hash.c                    \
-  integer.c                 \
   iter.c                    \
   lock/mutex.c              \
   lock/rwlock.c             \
@@ -33,7 +30,6 @@ libcprime_la_SOURCES =      \
   set.c                     \
   str.c                     \
   string.c                  \
-  symbol.c                  \
   thread.c                  \
   uri.c                     \
   utf8.c                    \
@@ -49,12 +45,9 @@ nobase_pkginclude_HEADERS = \
   box.h                     \
   byte.h                    \
   char.h                    \
-  closure.h                 \
-  decimal.h                 \
   dir.h                     \
   file.h                    \
   hash.h                    \
-  integer.h                 \
   iter.h                    \
   lock/mutex.h              \
   lock/rwlock.h             \
@@ -73,7 +66,6 @@ nobase_pkginclude_HEADERS = \
   set.h                     \
   str.h                     \
   string.h                  \
-  symbol.h                  \
   thread.h                  \
   unsafe.h                  \
   uri.h                     \

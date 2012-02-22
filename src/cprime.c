@@ -28,13 +28,10 @@ const char* const cprime_module_names[] = {
   "box",
   "byte",
   "char",
-  "closure",
-  "decimal",
   "dir",
   "error",
   "file",
   "hash",
-  "integer",
   "iter",
   "list",
   "map",
@@ -56,7 +53,6 @@ const char* const cprime_module_names[] = {
 #endif
   "str",
   "string",
-  "symbol",
 #ifndef DISABLE_THREADS
   "thread",
 #endif
