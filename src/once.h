@@ -7,15 +7,26 @@
 extern "C" {
 #endif
 
-#include <pthread.h> /* for pthread_once_t */
+#include <assert.h>  /* for assert() */
+#include <pthread.h> /* for pthread_once_t, pthread_once() */
 
-typedef struct once_t {
+typedef struct once {
   pthread_once_t id;
 } once_t;
 
 #define ONCE_INIT {.id = PTHREAD_ONCE_INIT}
 
-extern int once(once_t* guard, void (*function)(void));
+static inline void
+once(once_t* const restrict guard,
+     void (*function)(void)) {
+  assert(is_nonnull(guard));
+  assert(is_nonnull(function));
+#if 1
+  (void)pthread_once(&guard->id, function);
+#else
+  errno = ENOTSUP; // operation not supported
+#endif
+}
 
 #ifdef __cplusplus
 } /* extern "C" */

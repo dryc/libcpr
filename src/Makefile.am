@@ -18,7 +18,6 @@ libcprime_la_SOURCES =      \
   lock/rwlock.c             \
   lock/spinlock.c           \
   map.c                     \
-  once.c                    \
   pair.c                    \
   posix.c                   \
   process.c                 \
