@@ -8,7 +8,6 @@ libcprime_la_SOURCES =      \
   cprime.c                  \
   ascii.c                   \
   base64.c                  \
-  bool.c                    \
   box.c                     \
   char.c                    \
   dir.c                     \

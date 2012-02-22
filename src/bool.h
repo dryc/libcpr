@@ -14,7 +14,10 @@ typedef _Bool bool_t;
 #define TRUE  true
 #define FALSE false
 
-extern int bool_equal(const bool_t bool1, const bool_t bool2);
+static inline int
+bool_equal(const bool_t bool1, const bool_t bool2) {
+  return (bool1 == bool2);
+}
 
 #ifdef __cplusplus
 } /* extern "C" */
