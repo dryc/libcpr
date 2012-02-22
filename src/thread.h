@@ -1,7 +1,7 @@
 /* This is free and unencumbered software released into the public domain. */
 
-#ifndef _CPRIME_THREAD_H_
-#define _CPRIME_THREAD_H_
+#ifndef CPRIME_THREAD_H
+#define CPRIME_THREAD_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -50,4 +50,4 @@ extern int thread_kill(thread_t* thread, const int signal);
 } /* extern "C" */
 #endif
 
-#endif /* _CPRIME_THREAD_H_ */
+#endif /* CPRIME_THREAD_H */

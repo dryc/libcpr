@@ -1,7 +1,7 @@
 /* This is free and unencumbered software released into the public domain. */
 
-#ifndef _CPRIME_VECTOR_H_
-#define _CPRIME_VECTOR_H_
+#ifndef CPRIME_VECTOR_H
+#define CPRIME_VECTOR_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -46,4 +46,4 @@ extern int vector_dispose(vector_t* vector);
 } /* extern "C" */
 #endif
 
-#endif /* _CPRIME_VECTOR_H_ */
+#endif /* CPRIME_VECTOR_H */

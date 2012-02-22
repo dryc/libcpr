@@ -1,7 +1,7 @@
 /* This is free and unencumbered software released into the public domain. */
 
-#ifndef _CPRIME_PROCESS_H_
-#define _CPRIME_PROCESS_H_
+#ifndef CPRIME_PROCESS_H
+#define CPRIME_PROCESS_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -44,4 +44,4 @@ extern int process_wait(process_t* process);
 } /* extern "C" */
 #endif
 
-#endif /* _CPRIME_PROCESS_H_ */
+#endif /* CPRIME_PROCESS_H */

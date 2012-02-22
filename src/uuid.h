@@ -1,7 +1,7 @@
 /* This is free and unencumbered software released into the public domain. */
 
-#ifndef _CPRIME_UUID_H_
-#define _CPRIME_UUID_H_
+#ifndef CPRIME_UUID_H
+#define CPRIME_UUID_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -101,4 +101,4 @@ extern int uuid_print(const uuid_t* restrict uuid,
 } /* extern "C" */
 #endif
 
-#endif /* _CPRIME_UUID_H_ */
+#endif /* CPRIME_UUID_H */

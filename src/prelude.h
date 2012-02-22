@@ -1,7 +1,7 @@
 /* This is free and unencumbered software released into the public domain. */
 
-#ifndef _CPRIME_PRELUDE_H_
-#define _CPRIME_PRELUDE_H_
+#ifndef CPRIME_PRELUDE_H
+#define CPRIME_PRELUDE_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -228,4 +228,4 @@ typedef struct iterable_vtable_t {
 } /* extern "C" */
 #endif
 
-#endif /* _CPRIME_PRELUDE_H_ */
+#endif /* CPRIME_PRELUDE_H */

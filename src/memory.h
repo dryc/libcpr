@@ -1,7 +1,7 @@
 /* This is free and unencumbered software released into the public domain. */
 
-#ifndef _CPRIME_MEMORY_H_
-#define _CPRIME_MEMORY_H_
+#ifndef CPRIME_MEMORY_H
+#define CPRIME_MEMORY_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -90,4 +90,4 @@ extern "C" {
 } /* extern "C" */
 #endif
 
-#endif /* _CPRIME_MEMORY_H_ */
+#endif /* CPRIME_MEMORY_H */

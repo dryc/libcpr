@@ -1,7 +1,7 @@
 /* This is free and unencumbered software released into the public domain. */
 
-#ifndef _CPRIME_BYTE_H_
-#define _CPRIME_BYTE_H_
+#ifndef CPRIME_BYTE_H
+#define CPRIME_BYTE_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -15,4 +15,4 @@ typedef uint8_t byte_t;
 } /* extern "C" */
 #endif
 
-#endif /* _CPRIME_BYTE_H_ */
+#endif /* CPRIME_BYTE_H */

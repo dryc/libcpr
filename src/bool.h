@@ -1,7 +1,7 @@
 /* This is free and unencumbered software released into the public domain. */
 
-#ifndef _CPRIME_BOOL_H_
-#define _CPRIME_BOOL_H_
+#ifndef CPRIME_BOOL_H
+#define CPRIME_BOOL_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -20,4 +20,4 @@ extern int bool_equal(const bool_t bool1, const bool_t bool2);
 } /* extern "C" */
 #endif
 
-#endif /* _CPRIME_BOOL_H_ */
+#endif /* CPRIME_BOOL_H */

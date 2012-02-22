@@ -1,7 +1,7 @@
 /* This is free and unencumbered software released into the public domain. */
 
-#ifndef _CPRIME_SPINLOCK_H_
-#define _CPRIME_SPINLOCK_H_
+#ifndef CPRIME_SPINLOCK_H
+#define CPRIME_SPINLOCK_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -39,4 +39,4 @@ extern int spinlock_unlock(spinlock_t* spinlock);
 } /* extern "C" */
 #endif
 
-#endif /* _CPRIME_SPINLOCK_H_ */
+#endif /* CPRIME_SPINLOCK_H */

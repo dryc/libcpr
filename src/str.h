@@ -1,7 +1,7 @@
 /* This is free and unencumbered software released into the public domain. */
 
-#ifndef _CPRIME_STR_H_
-#define _CPRIME_STR_H_
+#ifndef CPRIME_STR_H
+#define CPRIME_STR_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -69,4 +69,4 @@ extern double str_to_double(const char* restrict str);
 } /* extern "C" */
 #endif
 
-#endif /* _CPRIME_STR_H_ */
+#endif /* CPRIME_STR_H */

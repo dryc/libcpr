@@ -1,7 +1,7 @@
 /* This is free and unencumbered software released into the public domain. */
 
-#ifndef _CPRIME_TREEMAP_H_
-#define _CPRIME_TREEMAP_H_
+#ifndef CPRIME_TREEMAP_H
+#define CPRIME_TREEMAP_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -76,4 +76,4 @@ const map_vtable_t treemap_vtable = {
 } /* extern "C" */
 #endif
 
-#endif /* _CPRIME_TREEMAP_H_ */
+#endif /* CPRIME_TREEMAP_H */

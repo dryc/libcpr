@@ -1,7 +1,7 @@
 /* This is free and unencumbered software released into the public domain. */
 
-#ifndef _CPRIME_UTF8_H_
-#define _CPRIME_UTF8_H_
+#ifndef CPRIME_UTF8_H
+#define CPRIME_UTF8_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -45,4 +45,4 @@ extern const byte_t const utf8_skip_table[256];
 } /* extern "C" */
 #endif
 
-#endif /* _CPRIME_UTF8_H_ */
+#endif /* CPRIME_UTF8_H */

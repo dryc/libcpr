@@ -1,7 +1,7 @@
 /* This is free and unencumbered software released into the public domain. */
 
-#ifndef _CPRIME_TREESET_H_
-#define _CPRIME_TREESET_H_
+#ifndef CPRIME_TREESET_H
+#define CPRIME_TREESET_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -83,4 +83,4 @@ const set_vtable_t treeset_vtable = {
 } /* extern "C" */
 #endif
 
-#endif /* _CPRIME_TREESET_H_ */
+#endif /* CPRIME_TREESET_H */

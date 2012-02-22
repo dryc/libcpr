@@ -1,7 +1,7 @@
 /* This is free and unencumbered software released into the public domain. */
 
-#ifndef _CPRIME_LISTSET_H_
-#define _CPRIME_LISTSET_H_
+#ifndef CPRIME_LISTSET_H
+#define CPRIME_LISTSET_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -91,4 +91,4 @@ const set_vtable_t listset_vtable = {
 } /* extern "C" */
 #endif
 
-#endif /* _CPRIME_LISTSET_H_ */
+#endif /* CPRIME_LISTSET_H */

@@ -1,7 +1,7 @@
 /* This is free and unencumbered software released into the public domain. */
 
-#ifndef _CPRIME_BOX_H_
-#define _CPRIME_BOX_H_
+#ifndef CPRIME_BOX_H
+#define CPRIME_BOX_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -99,4 +99,4 @@ extern bool box_equal(const box_t* box1, const box_t* box2);
 } /* extern "C" */
 #endif
 
-#endif /* _CPRIME_BOX_H_ */
+#endif /* CPRIME_BOX_H */

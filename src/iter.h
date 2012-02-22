@@ -1,7 +1,7 @@
 /* This is free and unencumbered software released into the public domain. */
 
-#ifndef _CPRIME_ITER_H_
-#define _CPRIME_ITER_H_
+#ifndef CPRIME_ITER_H
+#define CPRIME_ITER_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -39,4 +39,4 @@ extern bool iter_next(void* iter);
 } /* extern "C" */
 #endif
 
-#endif /* _CPRIME_ITER_H_ */
+#endif /* CPRIME_ITER_H */

@@ -1,7 +1,7 @@
 /* This is free and unencumbered software released into the public domain. */
 
-#ifndef _CPRIME_QUEUE_H_
-#define _CPRIME_QUEUE_H_
+#ifndef CPRIME_QUEUE_H
+#define CPRIME_QUEUE_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -15,4 +15,4 @@ typedef struct {
 } /* extern "C" */
 #endif
 
-#endif /* _CPRIME_QUEUE_H_ */
+#endif /* CPRIME_QUEUE_H */

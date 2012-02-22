@@ -1,7 +1,7 @@
 /* This is free and unencumbered software released into the public domain. */
 
-#ifndef _CPRIME_NULLMAP_H_
-#define _CPRIME_NULLMAP_H_
+#ifndef CPRIME_NULLMAP_H
+#define CPRIME_NULLMAP_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -82,4 +82,4 @@ const map_vtable_t nullmap_vtable = {
 } /* extern "C" */
 #endif
 
-#endif /* _CPRIME_NULLMAP_H_ */
+#endif /* CPRIME_NULLMAP_H */

@@ -1,7 +1,7 @@
 /* This is free and unencumbered software released into the public domain. */
 
-#ifndef _CPRIME_ATOM_H_
-#define _CPRIME_ATOM_H_
+#ifndef CPRIME_ATOM_H
+#define CPRIME_ATOM_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -160,4 +160,4 @@ typedef struct atom64_t {
 } /* extern "C" */
 #endif
 
-#endif /* _CPRIME_ATOM_H_ */
+#endif /* CPRIME_ATOM_H */

@@ -1,7 +1,7 @@
 /* This is free and unencumbered software released into the public domain. */
 
-#ifndef _CPRIME_FILE_H_
-#define _CPRIME_FILE_H_
+#ifndef CPRIME_FILE_H
+#define CPRIME_FILE_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -18,4 +18,4 @@ extern bool file_exists(const char* path);
 } /* extern "C" */
 #endif
 
-#endif /* _CPRIME_FILE_H_ */
+#endif /* CPRIME_FILE_H */

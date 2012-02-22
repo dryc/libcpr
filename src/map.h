@@ -1,7 +1,7 @@
 /* This is free and unencumbered software released into the public domain. */
 
-#ifndef _CPRIME_MAP_H_
-#define _CPRIME_MAP_H_
+#ifndef CPRIME_MAP_H
+#define CPRIME_MAP_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -137,4 +137,4 @@ extern int map_remove(map_t* restrict map,
 } /* extern "C" */
 #endif
 
-#endif /* _CPRIME_MAP_H_ */
+#endif /* CPRIME_MAP_H */

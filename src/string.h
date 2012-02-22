@@ -1,7 +1,7 @@
 /* This is free and unencumbered software released into the public domain. */
 
-#ifndef _CPRIME_STRING_H_
-#define _CPRIME_STRING_H_
+#ifndef CPRIME_STRING_H
+#define CPRIME_STRING_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -92,4 +92,4 @@ extern intmax_t string_to_intmax(const string_t* restrict string);
 } /* extern "C" */
 #endif
 
-#endif /* _CPRIME_STRING_H_ */
+#endif /* CPRIME_STRING_H */

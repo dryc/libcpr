@@ -1,7 +1,7 @@
 /* This is free and unencumbered software released into the public domain. */
 
-#ifndef _CPRIME_LISTMAP_H_
-#define _CPRIME_LISTMAP_H_
+#ifndef CPRIME_LISTMAP_H
+#define CPRIME_LISTMAP_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -82,4 +82,4 @@ const map_vtable_t listmap_vtable = {
 } /* extern "C" */
 #endif
 
-#endif /* _CPRIME_LISTMAP_H_ */
+#endif /* CPRIME_LISTMAP_H */

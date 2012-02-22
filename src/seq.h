@@ -1,7 +1,7 @@
 /* This is free and unencumbered software released into the public domain. */
 
-#ifndef _CPRIME_SEQ_H_
-#define _CPRIME_SEQ_H_
+#ifndef CPRIME_SEQ_H
+#define CPRIME_SEQ_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -156,4 +156,4 @@ extern int seq_sort(seq_t* seq, seq_sort_type_t how);
 } /* extern "C" */
 #endif
 
-#endif /* _CPRIME_SEQ_H_ */
+#endif /* CPRIME_SEQ_H */

@@ -1,7 +1,7 @@
 /* This is free and unencumbered software released into the public domain. */
 
-#ifndef _CPRIME_LIST_H_
-#define _CPRIME_LIST_H_
+#ifndef CPRIME_LIST_H
+#define CPRIME_LIST_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -140,4 +140,4 @@ extern int list_iter_next(list_iter_t* iter);
 } /* extern "C" */
 #endif
 
-#endif /* _CPRIME_LIST_H_ */
+#endif /* CPRIME_LIST_H */
