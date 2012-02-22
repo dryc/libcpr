@@ -2,7 +2,7 @@
 
 #include "build.h"
 
-const class_t queue_class = {
+public const class_t queue_class = {
   .name    = "queue",
   .super   = NULL,
   .vtable  = NULL, // TODO

@@ -2,20 +2,20 @@
 
 #include "build.h"
 
-const class_t rwlock_class = {
+public const class_t rwlock_class = {
   .name    = "rwlock",
   .super   = NULL,
   .vtable  = NULL, // TODO
 };
 
-rwlock_t*
+public rwlock_t*
 rwlock_alloc() {
   rwlock_t* rwlock = malloc(sizeof(rwlock_t));
   rwlock_init(rwlock);
   return rwlock;
 }
 
-void
+public void
 rwlock_free(rwlock_t* rwlock) {
   if (likely(rwlock != NULL)) {
     rwlock_dispose(rwlock);
@@ -23,7 +23,7 @@ rwlock_free(rwlock_t* rwlock) {
   }
 }
 
-int
+public int
 rwlock_init(rwlock_t* rwlock) {
   validate_with_errno_return(rwlock != NULL);
 
@@ -40,7 +40,7 @@ rwlock_init(rwlock_t* rwlock) {
   return likely(rc == 0) ? SUCCESS : FAILURE(rc);
 }
 
-int
+public int
 rwlock_dispose(rwlock_t* rwlock) {
   validate_with_errno_return(rwlock != NULL);
 
@@ -57,7 +57,7 @@ rwlock_dispose(rwlock_t* rwlock) {
   return likely(rc == 0) ? SUCCESS : FAILURE(rc);
 }
 
-int
+public int
 rwlock_rdlock(rwlock_t* rwlock) {
   validate_with_errno_return(rwlock != NULL);
 
@@ -70,7 +70,7 @@ rwlock_rdlock(rwlock_t* rwlock) {
   return likely(rc == 0) ? SUCCESS : FAILURE(rc);
 }
 
-int
+public int
 rwlock_tryrdlock(rwlock_t* rwlock) {
   validate_with_errno_return(rwlock != NULL);
 
@@ -83,7 +83,7 @@ rwlock_tryrdlock(rwlock_t* rwlock) {
   return likely(rc == 0) ? SUCCESS : FAILURE(rc);
 }
 
-int
+public int
 rwlock_wrlock(rwlock_t* rwlock) {
   validate_with_errno_return(rwlock != NULL);
 
@@ -96,7 +96,7 @@ rwlock_wrlock(rwlock_t* rwlock) {
   return likely(rc == 0) ? SUCCESS : FAILURE(rc);
 }
 
-int
+public int
 rwlock_trywrlock(rwlock_t* rwlock) {
   validate_with_errno_return(rwlock != NULL);
 
@@ -109,7 +109,7 @@ rwlock_trywrlock(rwlock_t* rwlock) {
   return likely(rc == 0) ? SUCCESS : FAILURE(rc);
 }
 
-int
+public int
 rwlock_unlock(rwlock_t* rwlock) {
   validate_with_errno_return(rwlock != NULL);
 

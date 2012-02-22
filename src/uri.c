@@ -17,7 +17,7 @@ uri_validate_init() {
 }
 #endif /* HAVE_REGEX_H */
 
-bool
+public bool
 uri_validate(const char* const restrict uri) {
   validate_with_false_return(is_nonnull(uri) && *uri != '\0');
 

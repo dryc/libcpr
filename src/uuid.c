@@ -5,22 +5,22 @@
 #include <stdio.h>     /* for FILE*, snprintf() */
 #include <string.h>    /* for memcmp() */
 
-const class_t uuid_class = {
+public const class_t uuid_class = {
   .name    = "uuid",
   .super   = NULL,
   .vtable  = NULL, // TODO
 };
 
-const uuid_t uuid_null = UUID_INIT;
+public const uuid_t uuid_null = UUID_INIT;
 
-uuid_t*
+public uuid_t*
 uuid_alloc() {
   uuid_t* uuid = malloc(sizeof(uuid_t));
   uuid_init(uuid);
   return uuid;
 }
 
-void
+public void
 uuid_free(uuid_t* const uuid) {
   if (likely(uuid != NULL)) {
     uuid_dispose(uuid);
@@ -28,7 +28,7 @@ uuid_free(uuid_t* const uuid) {
   }
 }
 
-uuid_t*
+public uuid_t*
 uuid_clone(const uuid_t* const uuid) {
   validate_with_null_return(uuid != NULL);
 
@@ -39,12 +39,12 @@ uuid_clone(const uuid_t* const uuid) {
   return copy;
 }
 
-int
+public int
 uuid_init(uuid_t* const uuid) {
   return uuid_clear(uuid);
 }
 
-int
+public int
 uuid_dispose(uuid_t* const uuid) {
   validate_with_errno_return(uuid != NULL);
 
@@ -55,7 +55,7 @@ uuid_dispose(uuid_t* const uuid) {
   return SUCCESS;
 }
 
-hash_t
+public hash_t
 uuid_hash(uuid_t* const uuid) {
   validate_with_zero_return(uuid != NULL);
 
@@ -64,7 +64,7 @@ uuid_hash(uuid_t* const uuid) {
   return str_hash(buffer);
 }
 
-int
+public int
 uuid_compare(const uuid_t* const uuid1, const uuid_t* const uuid2) {
   validate_with_errno_return(uuid1 != NULL && uuid2 != NULL);
 
@@ -99,7 +99,7 @@ uuid_compare(const uuid_t* const uuid1, const uuid_t* const uuid2) {
   return memcmp(uuid1->layout.node, uuid2->layout.node, 6);
 }
 
-bool
+public bool
 uuid_equal(const uuid_t* const uuid1, const uuid_t* const uuid2) {
   validate_with_false_return(uuid1 != NULL && uuid2 != NULL);
 
@@ -109,21 +109,21 @@ uuid_equal(const uuid_t* const uuid1, const uuid_t* const uuid2) {
   return unlikely(bcmp(uuid1, uuid2, sizeof(uuid_t)) == 0) ? TRUE : FALSE;
 }
 
-int
+public int
 uuid_is_null(const uuid_t* const uuid) {
   validate_with_errno_return(uuid != NULL);
 
   return unlikely(bcmp(uuid, &uuid_null, sizeof(uuid_t)) == 0) ? TRUE : FALSE;
 }
 
-int
+public int
 uuid_version(const uuid_t* const uuid) {
   validate_with_errno_return(uuid != NULL);
 
   return ((uuid->layout.time_hi_and_version & 0xF000) >> 12);
 }
 
-int
+public int
 uuid_clear(uuid_t* const uuid) {
   validate_with_errno_return(uuid != NULL);
 
@@ -132,7 +132,7 @@ uuid_clear(uuid_t* const uuid) {
   return SUCCESS;
 }
 
-int
+public int
 uuid_copy(const uuid_t* const restrict uuid, uuid_t* const restrict copy) {
   validate_with_errno_return(uuid != NULL && copy != NULL);
 
@@ -141,7 +141,7 @@ uuid_copy(const uuid_t* const restrict uuid, uuid_t* const restrict copy) {
   return SUCCESS;
 }
 
-int
+public int
 uuid_serialize(const uuid_t* const restrict uuid, char* const restrict buffer, const size_t buffer_size) {
   validate_with_errno_return(uuid != NULL && buffer != NULL);
 
@@ -162,7 +162,7 @@ uuid_serialize(const uuid_t* const restrict uuid, char* const restrict buffer, c
     uuid->layout.node[5]);
 }
 
-int
+public int
 uuid_print(const uuid_t* const restrict uuid, FILE* const restrict stream) {
   validate_with_errno_return(uuid != NULL && stream != NULL);
 

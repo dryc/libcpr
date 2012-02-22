@@ -7,25 +7,25 @@
 #include "set/treeset.h"
 #include "set/hashset.h"
 
-const class_t set_class = {
+public const class_t set_class = {
   .name    = "set",
   .super   = NULL,
   .vtable  = NULL, /* abstract class */
 };
 
-set_t*
+public set_t*
 set_alloc() {
   return calloc(1, sizeof(set_t));
 }
 
-void
+public void
 set_free(set_t* const set) {
   validate_with_void_return(is_nonnull(set));
   set_reset(set);
   free(set);
 }
 
-int
+public int
 set_init(set_t* const restrict set,
          const class_t* restrict klass,
          const hash_func_t hash_func,
@@ -55,7 +55,7 @@ set_init(set_t* const restrict set,
   return SUCCESS;
 }
 
-int
+public int
 set_reset(set_t* const set) {
   validate_with_errno_return(is_nonnull(set));
 
@@ -71,7 +71,7 @@ set_reset(set_t* const set) {
   return SUCCESS;
 }
 
-int
+public int
 set_clear(set_t* const set) {
   validate_with_errno_return(is_nonnull(set));
 
@@ -84,14 +84,14 @@ set_clear(set_t* const set) {
   return FAILURE(ENOTSUP); // operation not supported
 }
 
-bool
+public bool
 set_is_empty(const set_t* const set) {
   validate_with_true_return(is_nonnull(set));
 
   return unlikely(is_null(set->instance) || set_count((set_t*)set, NULL) == 0);
 }
 
-long
+public long
 set_count(set_t* const restrict set, const void* const restrict elt) {
   validate_with_zero_return(is_nonnull(set));
 
@@ -104,7 +104,7 @@ set_count(set_t* const restrict set, const void* const restrict elt) {
   return (void)FAILURE(ENOTSUP), 0; // operation not supported
 }
 
-bool
+public bool
 set_lookup(set_t* const restrict set, const void* const restrict elt) {
   validate_with_false_return(is_nonnull(set) && is_nonnull(elt));
 
@@ -117,7 +117,7 @@ set_lookup(set_t* const restrict set, const void* const restrict elt) {
   return (void)FAILURE(ENOTSUP), FALSE; // operation not supported
 }
 
-int
+public int
 set_insert(set_t* const restrict set, const void* const restrict elt) {
   validate_with_errno_return(is_nonnull(set) && is_nonnull(elt));
 
@@ -130,7 +130,7 @@ set_insert(set_t* const restrict set, const void* const restrict elt) {
   return FAILURE(ENOTSUP); // operation not supported
 }
 
-int
+public int
 set_remove(set_t* const restrict set, const void* const restrict elt) {
   validate_with_errno_return(is_nonnull(set) && is_nonnull(elt));
 
@@ -143,7 +143,7 @@ set_remove(set_t* const restrict set, const void* const restrict elt) {
   return FAILURE(ENOTSUP); // operation not supported
 }
 
-int
+public int
 set_replace(set_t* const restrict set, const void* const restrict elt1,
                                        const void* const restrict elt2) {
   validate_with_errno_return(is_nonnull(set) && is_nonnull(elt1));

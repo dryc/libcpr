@@ -61,6 +61,15 @@ extern "C" {
 /* standard library headers */
 #include <assert.h> /* for assert() */
 
+/* linking visibility specifiers */
+#ifdef __GNUC__
+#  define public  __attribute__((visibility("default")))
+#  define private __attribute__((visibility("hidden")))
+#else
+#  define public
+#  define private
+#endif
+
 #ifdef __cplusplus
 } /* extern "C" */
 #endif

@@ -3,20 +3,20 @@
 #include "build.h"
 #include <inttypes.h> /* for strtoimax() */
 
-const class_t string_class = {
+public const class_t string_class = {
   .name    = "string",
   .super   = &seq_class,
   .vtable  = NULL, // TODO
 };
 
-string_t*
+public string_t*
 string_alloc() {
   string_t* string = malloc(sizeof(string_t));
   string_init_empty(string);
   return string;
 }
 
-void
+public void
 string_free(string_t* string) {
   if (likely(string != NULL)) {
     string_dispose(string);
@@ -24,28 +24,28 @@ string_free(string_t* string) {
   }
 }
 
-string_t*
+public string_t*
 string_construct_with(const char* const restrict data, const size_t size) {
   string_t* string = malloc(sizeof(string_t));
   string_init_with(string, data, size);
   return string;
 }
 
-string_t*
+public string_t*
 string_construct_with_data(const char* const restrict data) {
   string_t* string = malloc(sizeof(string_t));
   string_init_with_data(string, data);
   return string;
 }
 
-string_t*
+public string_t*
 string_construct_with_size(const size_t size) {
   string_t* string = malloc(sizeof(string_t));
   string_init_with_size(string, size);
   return string;
 }
 
-string_t*
+public string_t*
 string_clone(const string_t* const restrict string) {
   validate_with_null_return(string != NULL);
   if (likely(string->size > 0 && string->size != STRING_SIZE_UNKNOWN))
@@ -54,7 +54,7 @@ string_clone(const string_t* const restrict string) {
   return string_construct_with(string->data, string->size);
 }
 
-int
+public int
 string_init_empty(string_t* restrict string) {
   validate_with_errno_return(string != NULL);
 
@@ -63,7 +63,7 @@ string_init_empty(string_t* restrict string) {
   return SUCCESS;
 }
 
-int
+public int
 string_init_with(string_t* const restrict string, const char* const restrict data, const size_t size) {
   validate_with_errno_return(string != NULL);
   if (likely(size > 0 && size != STRING_SIZE_UNKNOWN))
@@ -84,7 +84,7 @@ string_init_with(string_t* const restrict string, const char* const restrict dat
   return result;
 }
 
-int
+public int
 string_init_with_data(string_t* const restrict string, const char* const restrict data) {
   validate_with_errno_return(string != NULL);
 
@@ -103,7 +103,7 @@ string_init_with_data(string_t* const restrict string, const char* const restric
   return result;
 }
 
-int
+public int
 string_init_with_size(string_t* const restrict string, const size_t size) {
   validate_with_errno_return(string != NULL);
 
@@ -122,7 +122,7 @@ string_init_with_size(string_t* const restrict string, const size_t size) {
   return result;
 }
 
-int
+public int
 string_dispose(string_t* const restrict string) {
   validate_with_errno_return(string != NULL);
 
@@ -135,7 +135,7 @@ string_dispose(string_t* const restrict string) {
   return SUCCESS;
 }
 
-long
+public long
 string_size(const string_t* const restrict string) {
   validate_with_errno_return(string != NULL);
 
@@ -148,7 +148,7 @@ string_size(const string_t* const restrict string) {
   return str_size(string->data);
 }
 
-long
+public long
 string_length(const string_t* const restrict string) {
   validate_with_errno_return(string != NULL);
 
@@ -158,7 +158,7 @@ string_length(const string_t* const restrict string) {
   return str_length(string->data);
 }
 
-hash_t
+public hash_t
 string_hash(const string_t* const restrict string) {
   validate_with_zero_return(string != NULL);
 
@@ -168,7 +168,7 @@ string_hash(const string_t* const restrict string) {
   return str_hash(string->data);
 }
 
-int
+public int
 string_compare(const string_t* const string1, const string_t* const string2) {
   validate_with_errno_return(string1 != NULL && string2 != NULL);
 
@@ -178,7 +178,7 @@ string_compare(const string_t* const string1, const string_t* const string2) {
   return strcmp(string1->data, string2->data);
 }
 
-bool
+public bool
 string_equal(const string_t* const string1, const string_t* const string2) {
   validate_with_false_return(string1 != NULL && string2 != NULL);
 
@@ -191,7 +191,7 @@ string_equal(const string_t* const string1, const string_t* const string2) {
   return unlikely(strcmp(string1->data, string2->data) == 0) ? TRUE : FALSE;
 }
 
-bool
+public bool
 string_is_empty(const string_t* const restrict string) {
   validate_with_false_return(string != NULL);
 
@@ -204,7 +204,7 @@ string_is_empty(const string_t* const restrict string) {
   return FALSE;
 }
 
-bool
+public bool
 string_is_ascii(const string_t* const restrict string) {
   validate_with_false_return(string != NULL);
 
@@ -218,7 +218,7 @@ string_is_ascii(const string_t* const restrict string) {
   return TRUE;
 }
 
-bool
+public bool
 string_is_utf8(const string_t* const restrict string) {
   validate_with_false_return(string != NULL);
 
@@ -239,67 +239,67 @@ string_is(const string_t* const restrict string, int (*predicate)(const char_t c
   return TRUE;
 }
 
-bool
+public bool
 string_is_alnum(const string_t* const restrict string) {
   return string_is(string, char_is_alnum);
 }
 
-bool
+public bool
 string_is_alpha(const string_t* const restrict string) {
   return string_is(string, char_is_alpha);
 }
 
-bool
+public bool
 string_is_blank(const string_t* const restrict string) {
   return string_is(string, char_is_blank);
 }
 
-bool
+public bool
 string_is_cntrl(const string_t* const restrict string) {
   return string_is(string, char_is_cntrl);
 }
 
-bool
+public bool
 string_is_digit(const string_t* const restrict string) {
   return string_is(string, char_is_digit);
 }
 
-bool
+public bool
 string_is_graph(const string_t* const restrict string) {
   return string_is(string, char_is_graph);
 }
 
-bool
+public bool
 string_is_lower(const string_t* const restrict string) {
   return string_is(string, char_is_lower);
 }
 
-bool
+public bool
 string_is_print(const string_t* const restrict string) {
   return string_is(string, char_is_print);
 }
 
-bool
+public bool
 string_is_punct(const string_t* const restrict string) {
   return string_is(string, char_is_punct);
 }
 
-bool
+public bool
 string_is_space(const string_t* const restrict string) {
   return string_is(string, char_is_space);
 }
 
-bool
+public bool
 string_is_upper(const string_t* const restrict string) {
   return string_is(string, char_is_upper);
 }
 
-bool
+public bool
 string_is_xdigit(const string_t* const restrict string) {
   return string_is(string, char_is_xdigit);
 }
 
-bool
+public bool
 string_has_prefix(const string_t* const restrict string, const char* const restrict prefix) {
   validate_with_false_return(string != NULL && prefix != NULL);
 
@@ -315,7 +315,7 @@ string_has_prefix(const string_t* const restrict string, const char* const restr
   return unlikely(strncmp(string_data, prefix, prefix_sz) == 0) ? TRUE : FALSE;
 }
 
-bool
+public bool
 string_has_suffix(const string_t* const restrict string, const char* const restrict suffix) {
   validate_with_false_return(string != NULL && suffix != NULL);
 
@@ -331,7 +331,7 @@ string_has_suffix(const string_t* const restrict string, const char* const restr
   return unlikely(strncmp(string_data, suffix, suffix_sz) == 0) ? TRUE : FALSE;
 }
 
-int
+public int
 string_clear(string_t* const restrict string) {
   validate_with_errno_return(string != NULL);
 
@@ -344,7 +344,7 @@ string_clear(string_t* const restrict string) {
   return SUCCESS;
 }
 
-int
+public int
 string_append_string(string_t* const restrict string, const string_t* const restrict suffix) {
   validate_with_errno_return(string != NULL && suffix != NULL);
 
@@ -352,7 +352,7 @@ string_append_string(string_t* const restrict string, const string_t* const rest
     unlikely(suffix->size == STRING_SIZE_UNKNOWN) ? -1 : (int)suffix->size);
 }
 
-int
+public int
 string_append_char(string_t* const restrict string, const char_t suffix) {
   validate_with_errno_return(string != NULL && suffix > 0);
 
@@ -367,7 +367,7 @@ string_append_char(string_t* const restrict string, const char_t suffix) {
   return string_append_bytes(string, bytes, sizeof(bytes) - 1);
 }
 
-int
+public int
 string_append_bytes(string_t* const restrict string, const char* const restrict suffix, const int suffix_size) {
   validate_with_errno_return(string != NULL && suffix != NULL && suffix_size >= -1);
 
@@ -382,7 +382,7 @@ string_append_bytes(string_t* const restrict string, const char* const restrict 
   return suffix_sz;
 }
 
-char*
+public char*
 string_to_str(const string_t* const restrict string) {
   validate_with_null_return(string != NULL);
 
@@ -391,7 +391,7 @@ string_to_str(const string_t* const restrict string) {
     strndup(string->data, string->size);
 }
 
-intmax_t
+public intmax_t
 string_to_intmax(const string_t* const restrict string) {
   validate_with_errno_return(string != NULL && !string_is_empty(string));
 

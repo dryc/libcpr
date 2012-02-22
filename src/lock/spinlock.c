@@ -2,13 +2,13 @@
 
 #include "build.h"
 
-const class_t spinlock_class = {
+public const class_t spinlock_class = {
   .name    = "spinlock",
   .super   = NULL,
   .vtable  = NULL, // TODO
 };
 
-spinlock_t*
+public spinlock_t*
 spinlock_alloc() {
   spinlock_t* spinlock = malloc(sizeof(spinlock_t));
   if (is_nonnull(spinlock)) {
@@ -17,7 +17,7 @@ spinlock_alloc() {
   return spinlock;
 }
 
-void
+public void
 spinlock_free(spinlock_t* const spinlock) {
   if (is_nonnull(spinlock)) {
     spinlock_dispose(spinlock);
@@ -25,7 +25,7 @@ spinlock_free(spinlock_t* const spinlock) {
   }
 }
 
-int
+public int
 spinlock_init(spinlock_t* const spinlock) {
   validate_with_errno_return(is_nonnull(spinlock));
 
@@ -42,7 +42,7 @@ spinlock_init(spinlock_t* const spinlock) {
   return likely(rc == 0) ? SUCCESS : FAILURE(rc);
 }
 
-int
+public int
 spinlock_dispose(spinlock_t* const spinlock) {
   validate_with_errno_return(is_nonnull(spinlock));
 
@@ -59,7 +59,7 @@ spinlock_dispose(spinlock_t* const spinlock) {
   return likely(rc == 0) ? SUCCESS : FAILURE(rc);
 }
 
-int
+public int
 spinlock_lock(spinlock_t* const spinlock) {
   validate_with_errno_return(is_nonnull(spinlock));
 
@@ -72,7 +72,7 @@ spinlock_lock(spinlock_t* const spinlock) {
   return likely(rc == 0) ? SUCCESS : FAILURE(rc);
 }
 
-int
+public int
 spinlock_trylock(spinlock_t* const spinlock) {
   validate_with_errno_return(is_nonnull(spinlock));
 
@@ -85,7 +85,7 @@ spinlock_trylock(spinlock_t* const spinlock) {
   return likely(rc == 0) ? SUCCESS : FAILURE(rc);
 }
 
-int
+public int
 spinlock_unlock(spinlock_t* const spinlock) {
   validate_with_errno_return(is_nonnull(spinlock));
 

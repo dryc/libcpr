@@ -5,13 +5,13 @@
 #include <stdio.h>    /* for snprintf() */
 #include <sys/stat.h> /* for fstatat(), stat() */
 
-const class_t dir_class = {
+public const class_t dir_class = {
   .name    = "dir",
   .super   = NULL,
   .vtable  = NULL, // TODO
 };
 
-bool
+public bool
 dir_exists(const char* const path) {
   validate_with_false_return(!str_is_empty(path));
 
@@ -22,7 +22,7 @@ dir_exists(const char* const path) {
   return S_ISDIR(st.st_mode);
 }
 
-int
+public int
 dir_init_empty(dir_t* dir) {
   validate_with_errno_return(dir != NULL);
 
@@ -31,7 +31,7 @@ dir_init_empty(dir_t* dir) {
   return SUCCESS;
 }
 
-int
+public int
 dir_init_with_path(dir_t* dir, const char* const restrict path) {
   const int result = dir_init_empty(dir);
 
@@ -42,7 +42,7 @@ dir_init_with_path(dir_t* dir, const char* const restrict path) {
   return result;
 }
 
-int
+public int
 dir_open(dir_t* dir) {
   validate_with_errno_return(dir != NULL);
   if (unlikely(dir->stream != NULL)) {
@@ -66,7 +66,7 @@ dir_open(dir_t* dir) {
   return SUCCESS;
 }
 
-int
+public int
 dir_close(dir_t* dir) {
   validate_with_errno_return(dir != NULL);
 
@@ -91,7 +91,7 @@ dir_close(dir_t* dir) {
   return result;
 }
 
-int
+public int
 dir_read(dir_t* dir) {
   validate_with_errno_return(dir != NULL);
 
@@ -107,7 +107,7 @@ dir_read(dir_t* dir) {
   return likely(rc == 0) ? (result != NULL) : FAILURE(rc);
 }
 
-long
+public long
 dir_size(dir_t* dir) {
   validate_with_errno_return(dir != NULL);
 

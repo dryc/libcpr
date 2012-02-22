@@ -6,10 +6,10 @@
  * @see http://en.wikipedia.org/wiki/Base64
  */
 
-const char const base64_alphabet[64] =
+public const char const base64_alphabet[64] =
   "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
-const int8_t const base64_decode_table[256] = {
+public const int8_t const base64_decode_table[256] = {
   -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, /* 0x00..0x0F */
   -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, /* 0x10..0x1F */
   -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 62, -1, -1, -1, 63, /* 0x20..0x2F */

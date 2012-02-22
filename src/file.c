@@ -4,13 +4,13 @@
 #include <sys/stat.h> /* for stat() */
 #include <unistd.h>
 
-const class_t file_class = {
+public const class_t file_class = {
   .name    = "file",
   .super   = NULL,
   .vtable  = NULL, // TODO
 };
 
-bool
+public bool
 file_exists(const char* const path) {
   validate_with_false_return(!str_is_empty(path));
 

@@ -6,20 +6,20 @@
 #include <signal.h> /* for pthread_kill() */
 #endif
 
-const class_t thread_class = {
+public const class_t thread_class = {
   .name    = "thread",
   .super   = NULL,
   .vtable  = NULL, // TODO
 };
 
-thread_t*
+public thread_t*
 thread_alloc() {
   thread_t* thread = malloc(sizeof(thread_t));
   thread_init(thread);
   return thread;
 }
 
-void
+public void
 thread_free(thread_t* thread) {
   if (likely(thread != NULL)) {
     thread_dispose(thread);
@@ -27,7 +27,7 @@ thread_free(thread_t* thread) {
   }
 }
 
-int
+public int
 thread_init(thread_t* thread) {
   validate_with_errno_return(thread != NULL);
 
@@ -42,7 +42,7 @@ thread_init(thread_t* thread) {
   return likely(rc == 0) ? SUCCESS : FAILURE(rc);
 }
 
-int
+public int
 thread_init_with_id(thread_t* thread, const pthread_t id) {
   validate_with_errno_return(thread != NULL);
 
@@ -58,7 +58,7 @@ thread_init_with_id(thread_t* thread, const pthread_t id) {
   return likely(rc == 0) ? SUCCESS : FAILURE(rc);
 }
 
-int
+public int
 thread_init_with_user_data(thread_t* thread, const void* user_data) {
   int result = thread_init(thread);
 
@@ -69,12 +69,12 @@ thread_init_with_user_data(thread_t* thread, const void* user_data) {
   return result;
 }
 
-int
+public int
 thread_init_self(thread_t* thread) {
   return thread_init_with_id(thread, pthread_self());
 }
 
-int
+public int
 thread_dispose(thread_t* thread) {
   validate_with_errno_return(thread != NULL);
 
@@ -91,7 +91,7 @@ thread_dispose(thread_t* thread) {
   return likely(rc == 0) ? SUCCESS : FAILURE(rc);
 }
 
-bool
+public bool
 thread_is_self(thread_t* thread) {
   validate_with_false_return(thread != NULL);
 
@@ -104,7 +104,7 @@ thread_is_self(thread_t* thread) {
   return unlikely(rc != 0) ? TRUE : FALSE;
 }
 
-int
+public int
 #ifdef __linux__
 thread_set_affinity(thread_t* thread, const cpu_set_t* restrict mask) {
 #ifdef HAVE_PTHREAD_SETAFFINITY_NP
@@ -141,7 +141,7 @@ thread_set_affinity(thread_t* thread, const void* restrict mask) {
 #endif /* __linux__ */
 }
 
-int
+public int
 thread_start(thread_t* thread, const thread_execute_t function) {
   validate_with_false_return(thread != NULL && function != NULL);
 
@@ -155,7 +155,7 @@ thread_start(thread_t* thread, const thread_execute_t function) {
   return likely(rc == 0) ? SUCCESS : FAILURE(rc);
 }
 
-int
+public int
 thread_detach(thread_t* thread) {
 #ifdef HAVE_PTHREAD_DETACH
   const pthread_t tid = likely(thread != NULL) ? thread->id : pthread_self();
@@ -167,7 +167,7 @@ thread_detach(thread_t* thread) {
   return likely(rc == 0) ? SUCCESS : FAILURE(rc);
 }
 
-int
+public int
 thread_join(thread_t* thread) {
   validate_with_errno_return(thread != NULL);
 
@@ -180,7 +180,7 @@ thread_join(thread_t* thread) {
   return likely(rc == 0) ? SUCCESS : FAILURE(rc);
 }
 
-int
+public int
 thread_cancel(thread_t* thread) {
   validate_with_errno_return(thread != NULL);
 
@@ -193,7 +193,7 @@ thread_cancel(thread_t* thread) {
   return likely(rc == 0) ? SUCCESS : FAILURE(rc);
 }
 
-int
+public int
 thread_kill(thread_t* thread, const int signal) {
   validate_with_errno_return(signal >= 0);
 

@@ -5,7 +5,7 @@
 /**
  * @see http://burtleburtle.net/bob/hash/integer.html
  */
-hash_t
+public hash_t
 uint32_hash(uint32_t n) {
   n -= (n << 6);
   n ^= (n >> 17);
@@ -20,7 +20,7 @@ uint32_hash(uint32_t n) {
 /**
  * @see http://www.cris.com/~Ttwang/tech/inthash.htm
  */
-hash_t
+public hash_t
 uint64_hash(uint64_t n) {
   n = (~n) + (n << 18);
   n ^= (n >> 31);
@@ -31,7 +31,7 @@ uint64_hash(uint64_t n) {
   return (hash_t)n;
 }
 
-hash_t
+public hash_t
 ptr_hash(const void* const ptr) {
   if (sizeof(void*) == sizeof(uint64_t))
     return uint64_hash((uintptr_t)ptr);
@@ -40,7 +40,7 @@ ptr_hash(const void* const ptr) {
   return uint64_hash((uintptr_t)ptr);
 }
 
-int
+public int
 ptr_compare(const void* const ptr1, const void* const ptr2) {
   if (unlikely(ptr1 == ptr2))
     return COMPARE_EQ;

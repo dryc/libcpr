@@ -2,20 +2,20 @@
 
 #include "build.h"
 
-const class_t iter_class = {
+public const class_t iter_class = {
   .name    = "iter",
   .super   = NULL,
   .vtable  = NULL, // TODO
 };
 
-iter_t*
+public iter_t*
 iter_alloc() {
   iter_t* iter = malloc(sizeof(iter_t));
   iter_init(iter);
   return iter;
 }
 
-void
+public void
 iter_free(iter_t* iter) {
   if (likely(iter != NULL)) {
     iter_dispose(iter);
@@ -23,7 +23,7 @@ iter_free(iter_t* iter) {
   }
 }
 
-int
+public int
 iter_init(iter_t* iter) {
   validate_with_errno_return(iter != NULL);
 
@@ -32,7 +32,7 @@ iter_init(iter_t* iter) {
   return SUCCESS;
 }
 
-int
+public int
 iter_init_with(iter_t* iter, const iter_interface_t* restrict methods, const void* restrict user_data) {
   validate_with_errno_return(methods != NULL);
 
@@ -50,7 +50,7 @@ iter_init_with(iter_t* iter, const iter_interface_t* restrict methods, const voi
   return result;
 }
 
-int
+public int
 iter_dispose(iter_t* iter) {
   validate_with_errno_return(iter != NULL && iter->methods != NULL);
 
@@ -66,7 +66,7 @@ iter_dispose(iter_t* iter) {
   return result;
 }
 
-bool
+public bool
 iter_next(void* iter_) {
   iter_t* iter = iter_;
   validate_with_false_return(iter != NULL && iter->methods != NULL);

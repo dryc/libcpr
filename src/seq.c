@@ -3,25 +3,25 @@
 #include "build.h"
 #include "seq/nullseq.h"
 
-const class_t seq_class = {
+public const class_t seq_class = {
   .name    = "seq",
   .super   = NULL,
   .vtable  = NULL, /* abstract class */
 };
 
-seq_t*
+public seq_t*
 seq_alloc() {
   return calloc(1, sizeof(seq_t));
 }
 
-void
+public void
 seq_free(seq_t* const seq) {
   validate_with_void_return(is_nonnull(seq));
   seq_reset(seq);
   free(seq);
 }
 
-int
+public int
 seq_init(seq_t* const restrict seq,
          const class_t* restrict klass,
          const compare_func_t compare_func,
@@ -48,7 +48,7 @@ seq_init(seq_t* const restrict seq,
   return SUCCESS;
 }
 
-int
+public int
 seq_reset(seq_t* const seq) {
   validate_with_errno_return(is_nonnull(seq));
 
@@ -64,7 +64,7 @@ seq_reset(seq_t* const seq) {
   return SUCCESS;
 }
 
-int
+public int
 seq_clear(seq_t* const seq) {
   validate_with_errno_return(is_nonnull(seq));
 
@@ -76,14 +76,14 @@ seq_clear(seq_t* const seq) {
   return FAILURE(ENOTSUP); // operation not supported
 }
 
-bool
+public bool
 seq_is_empty(const seq_t* const seq) {
   validate_with_true_return(is_nonnull(seq));
 
   return unlikely(is_null(seq->data) || seq_length((seq_t*)seq) == 0);
 }
 
-long
+public long
 seq_length(seq_t* const seq) {
   validate_with_zero_return(is_nonnull(seq));
 
@@ -95,7 +95,7 @@ seq_length(seq_t* const seq) {
   return (void)FAILURE(ENOTSUP), 0; // operation not supported
 }
 
-long
+public long
 seq_count(seq_t* const restrict seq, const void* const restrict elt) {
   validate_with_zero_return(is_nonnull(seq) && is_nonnull(elt));
 
@@ -107,7 +107,7 @@ seq_count(seq_t* const restrict seq, const void* const restrict elt) {
   return (void)FAILURE(ENOTSUP), 0; // operation not supported
 }
 
-bool
+public bool
 seq_lookup(seq_t* const restrict seq, const void* const restrict elt) {
   validate_with_false_return(is_nonnull(seq) && is_nonnull(elt));
 
@@ -119,7 +119,7 @@ seq_lookup(seq_t* const restrict seq, const void* const restrict elt) {
   return (void)FAILURE(ENOTSUP), FALSE; // operation not supported
 }
 
-int
+public int
 seq_insert(seq_t* const restrict seq, const void* const restrict elt) {
   validate_with_errno_return(is_nonnull(seq) && is_nonnull(elt));
 
@@ -131,7 +131,7 @@ seq_insert(seq_t* const restrict seq, const void* const restrict elt) {
   return FAILURE(ENOTSUP); // operation not supported
 }
 
-int
+public int
 seq_remove(seq_t* const restrict seq, const void* const restrict elt) {
   validate_with_errno_return(is_nonnull(seq) && is_nonnull(elt));
 
@@ -143,7 +143,7 @@ seq_remove(seq_t* const restrict seq, const void* const restrict elt) {
   return FAILURE(ENOTSUP); // operation not supported
 }
 
-int
+public int
 seq_replace(seq_t* const restrict seq, const void* const restrict elt1,
                                        const void* const restrict elt2) {
   validate_with_errno_return(is_nonnull(seq) && is_nonnull(elt1));
@@ -156,7 +156,7 @@ seq_replace(seq_t* const restrict seq, const void* const restrict elt1,
   return FAILURE(ENOTSUP); // operation not supported
 }
 
-int
+public int
 seq_reverse(seq_t* const seq) {
   validate_with_zero_return(is_nonnull(seq));
 
@@ -168,7 +168,7 @@ seq_reverse(seq_t* const seq) {
   return FAILURE(ENOTSUP); // operation not supported
 }
 
-int
+public int
 seq_sort(seq_t* const seq, const seq_sort_type_t how) {
   validate_with_errno_return(is_nonnull(seq));
   validate_with_errno_return(how > SEQ_SORT_NONE);

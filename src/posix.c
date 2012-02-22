@@ -20,7 +20,7 @@
 #endif /* HAVE_MQUEUE_H */
 
 #ifdef HAVE_UNISTD_H
-int
+public int
 posix_close(const int fd) {
   int result = 0;
   while (unlikely((result = close(fd)) == -1)) {
@@ -37,7 +37,7 @@ done:
 #endif /* HAVE_UNISTD_H */
 
 #ifdef HAVE_UNISTD_H
-ssize_t
+public ssize_t
 posix_write(const int fd, const void* buf, const size_t count) {
   ssize_t result = 0;
   while (unlikely((result = write(fd, buf, count)) == -1)) {
@@ -55,7 +55,7 @@ done:
 #endif /* HAVE_UNISTD_H */
 
 #ifdef HAVE_POLL_H
-int
+public int
 posix_poll(struct pollfd fds[], const nfds_t nfds, const int timeout) {
   int result = 0;
   while (unlikely((result = poll(fds, nfds, timeout)) == -1)) {
@@ -74,7 +74,7 @@ done:
 
 #ifdef HAVE_PTHREAD_H
 #ifdef HAVE_PTHREAD_CREATE
-int
+public int
 posix_pthread_create(pthread_t* restrict thread, const pthread_attr_t* restrict attr,
                void* (*start_routine)(void*), void* restrict arg) {
   int result = 0;
@@ -94,7 +94,7 @@ done:
 #endif /* HAVE_PTHREAD_H */
 
 #ifdef HAVE_MQUEUE_H
-mqd_t
+public mqd_t
 posix_mq_send(mqd_t mqdes, const char* msg_ptr, size_t msg_len, unsigned int msg_prio) {
   mqd_t result = 0;
   while (unlikely((result = mq_send(mqdes, msg_ptr, msg_len, msg_prio)) == -1)) {
@@ -112,7 +112,7 @@ done:
 #endif /* HAVE_MQUEUE_H */
 
 #ifdef HAVE_MQUEUE_H
-mqd_t
+public mqd_t
 posix_mq_timedsend(mqd_t mqdes, const char* msg_ptr, size_t msg_len, unsigned int msg_prio, const struct timespec* abs_timeout) {
   mqd_t result = 0;
   while (unlikely((result = mq_timedsend(mqdes, msg_ptr, msg_len, msg_prio, abs_timeout)) == -1)) {
@@ -130,7 +130,7 @@ done:
 #endif /* HAVE_MQUEUE_H */
 
 #ifdef HAVE_MQUEUE_H
-ssize_t
+public ssize_t
 posix_mq_receive(mqd_t mqdes, char* msg_ptr, size_t msg_len, unsigned int* msg_prio) {
   ssize_t result = 0;
   while (unlikely((result = mq_receive(mqdes, msg_ptr, msg_len, msg_prio)) == -1)) {
@@ -148,7 +148,7 @@ done:
 #endif /* HAVE_MQUEUE_H */
 
 #ifdef HAVE_MQUEUE_H
-ssize_t
+public ssize_t
 posix_mq_timedreceive(mqd_t mqdes, char* msg_ptr, size_t msg_len, unsigned int* msg_prio, const struct timespec* abs_timeout) {
   ssize_t result = 0;
   while (unlikely((result = mq_timedreceive(mqdes, msg_ptr, msg_len, msg_prio, abs_timeout)) == -1)) {

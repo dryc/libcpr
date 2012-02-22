@@ -9,20 +9,20 @@
 #include <sched.h>        /* for sched_setaffinity() */
 #endif
 
-const class_t process_class = {
+public const class_t process_class = {
   .name    = "process",
   .super   = NULL,
   .vtable  = NULL, // TODO
 };
 
-process_t*
+public process_t*
 process_alloc() {
   process_t* process = malloc(sizeof(process_t));
   process_init(process);
   return process;
 }
 
-void
+public void
 process_free(process_t* process) {
   if (likely(process != NULL)) {
     process_dispose(process);
@@ -30,7 +30,7 @@ process_free(process_t* process) {
   }
 }
 
-int
+public int
 process_init(process_t* process) {
   validate_with_errno_return(process != NULL);
 
@@ -39,7 +39,7 @@ process_init(process_t* process) {
   return SUCCESS;
 }
 
-int
+public int
 process_init_with(process_t* process, const pid_t id) {
   const int result = process_init(process);
 
@@ -50,12 +50,12 @@ process_init_with(process_t* process, const pid_t id) {
   return result;
 }
 
-int
+public int
 process_init_self(process_t* process) {
   return process_init_with(process, getpid());
 }
 
-int
+public int
 process_dispose(process_t* process) {
   validate_with_errno_return(process != NULL);
 
@@ -66,14 +66,14 @@ process_dispose(process_t* process) {
   return SUCCESS;
 }
 
-bool
+public bool
 process_is_self(process_t* process) {
   validate_with_false_return(process != NULL);
 
   return unlikely(process->id == getpid()) ? TRUE : FALSE;
 }
 
-int
+public int
 process_set_priority(process_t* process, const int priority) {
   validate_with_errno_return(priority >= -20 && priority <= 20);
 
@@ -87,7 +87,7 @@ process_set_priority(process_t* process, const int priority) {
   return likely(rc == 0) ? SUCCESS : FAILURE(errno);
 }
 
-int
+public int
 #ifdef __linux__
 process_set_affinity(process_t* process, const cpu_set_t* restrict mask) {
   validate_with_errno_return(mask != NULL);
@@ -108,7 +108,7 @@ process_set_affinity(process_t* process, const void* restrict mask) {
 #endif /* __linux__ */
 }
 
-int
+public int
 process_kill(process_t* process, const int signal) {
   validate_with_errno_return(signal >= 0);
 
@@ -122,7 +122,7 @@ process_kill(process_t* process, const int signal) {
   return likely(rc == 0) ? SUCCESS : FAILURE(errno);
 }
 
-int
+public int
 process_wait(process_t* process) {
   validate_with_errno_return(process != NULL);
 

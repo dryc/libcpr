@@ -2,13 +2,13 @@
 
 #include "build.h"
 
-const class_t mutex_class = {
+public const class_t mutex_class = {
   .name    = "mutex",
   .super   = NULL,
   .vtable  = NULL, // TODO
 };
 
-const mutex_interface_t mutex = {
+public const mutex_interface_t mutex = {
   .alloc   = mutex_alloc,
   .free    = mutex_free,
   .init    = mutex_init,
@@ -18,14 +18,14 @@ const mutex_interface_t mutex = {
   .unlock  = mutex_unlock,
 };
 
-mutex_t*
+public mutex_t*
 mutex_alloc() {
   mutex_t* mutex = malloc(sizeof(mutex_t));
   mutex_init(mutex);
   return mutex;
 }
 
-void
+public void
 mutex_free(mutex_t* mutex) {
   if (likely(mutex != NULL)) {
     mutex_dispose(mutex);
@@ -33,7 +33,7 @@ mutex_free(mutex_t* mutex) {
   }
 }
 
-int
+public int
 mutex_init(mutex_t* mutex) {
   validate_with_errno_return(mutex != NULL);
 
@@ -50,7 +50,7 @@ mutex_init(mutex_t* mutex) {
   return likely(rc == 0) ? SUCCESS : FAILURE(rc);
 }
 
-int
+public int
 mutex_dispose(mutex_t* mutex) {
   validate_with_errno_return(mutex != NULL);
 
@@ -67,7 +67,7 @@ mutex_dispose(mutex_t* mutex) {
   return likely(rc == 0) ? SUCCESS : FAILURE(rc);
 }
 
-int
+public int
 mutex_lock(mutex_t* mutex) {
   validate_with_errno_return(mutex != NULL);
 
@@ -80,7 +80,7 @@ mutex_lock(mutex_t* mutex) {
   return likely(rc == 0) ? SUCCESS : FAILURE(rc);
 }
 
-int
+public int
 mutex_trylock(mutex_t* mutex) {
   validate_with_errno_return(mutex != NULL);
 
@@ -93,7 +93,7 @@ mutex_trylock(mutex_t* mutex) {
   return likely(rc == 0) ? SUCCESS : FAILURE(rc);
 }
 
-int
+public int
 mutex_unlock(mutex_t* mutex) {
   validate_with_errno_return(mutex != NULL);
 

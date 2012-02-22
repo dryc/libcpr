@@ -2,7 +2,7 @@
 
 #include "build.h"
 
-int
+public int
 once(once_t* guard, void (*function)(void)) {
   validate_with_errno_return(guard != NULL);
 

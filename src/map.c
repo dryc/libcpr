@@ -6,25 +6,25 @@
 #include "map/treemap.h"
 #include "map/hashmap.h"
 
-const class_t map_class = {
+public const class_t map_class = {
   .name    = "map",
   .super   = NULL,
   .vtable  = NULL, /* abstract class */
 };
 
-map_t*
+public map_t*
 map_alloc() {
   return calloc(1, sizeof(map_t));
 }
 
-void
+public void
 map_free(map_t* const map) {
   validate_with_void_return(is_nonnull(map));
   map_reset(map);
   free(map);
 }
 
-int
+public int
 map_init(map_t* const restrict map,
          const class_t* restrict klass,
          const hash_func_t hash_func,
@@ -56,7 +56,7 @@ map_init(map_t* const restrict map,
   return SUCCESS;
 }
 
-int
+public int
 map_reset(map_t* const map) {
   validate_with_errno_return(is_nonnull(map));
 
@@ -72,7 +72,7 @@ map_reset(map_t* const map) {
   return SUCCESS;
 }
 
-int
+public int
 map_clear(map_t* const map) {
   validate_with_errno_return(is_nonnull(map));
 
@@ -85,14 +85,14 @@ map_clear(map_t* const map) {
   return FAILURE(ENOTSUP); // operation not supported
 }
 
-bool
+public bool
 map_is_empty(map_t* const map) {
   validate_with_true_return(is_nonnull(map));
 
   return unlikely(is_null(map->instance) || map_count((map_t*)map, NULL) == 0);
 }
 
-long
+public long
 map_count(map_t* const restrict map, const void* const restrict key) {
   validate_with_zero_return(is_nonnull(map));
 
@@ -105,7 +105,7 @@ map_count(map_t* const restrict map, const void* const restrict key) {
   return (void)FAILURE(ENOTSUP), 0; // operation not supported
 }
 
-bool
+public bool
 map_lookup(map_t* const restrict map, const void* const restrict key,
                                       void** const restrict value) {
   validate_with_false_return(is_nonnull(map) && is_nonnull(key));
@@ -119,7 +119,7 @@ map_lookup(map_t* const restrict map, const void* const restrict key,
   return (void)FAILURE(ENOTSUP), FALSE; // operation not supported
 }
 
-int
+public int
 map_insert(map_t* const restrict map, const void* const restrict key,
                                       const void* const restrict value) {
   validate_with_errno_return(is_nonnull(map) && is_nonnull(key));
@@ -133,7 +133,7 @@ map_insert(map_t* const restrict map, const void* const restrict key,
   return FAILURE(ENOTSUP); // operation not supported
 }
 
-int
+public int
 map_remove(map_t* const restrict map, const void* const restrict key) {
   validate_with_errno_return(is_nonnull(map) && is_nonnull(key));
 

@@ -2,42 +2,42 @@
 
 #include "build.h"
 
-const class_t list_class = {
+public const class_t list_class = {
   .name    = "list",
   .super   = &seq_class,
   .vtable  = &list_vtable.base,
 };
 
-list_t*
+public list_t*
 list_alloc() {
   return seq_alloc();
 }
 
-void
+public void
 list_free(list_t* const list) {
   validate_with_void_return(is_nonnull(list));
   list_reset(list);
   free(list);
 }
 
-int
+public int
 list_init(list_t* const list) {
   return seq_init(list, LIST, NULL, free);
 }
 
-int
+public int
 list_init_with(list_t* const restrict list,
                const compare_func_t compare_func,
                const free_func_t free_func) {
   return seq_init(list, LIST, compare_func, free_func);
 }
 
-int
+public int
 list_reset(list_t* const list) {
   return list_clear(list);
 }
 
-int
+public int
 list_clear(list_t* const list) {
   validate_with_errno_return(is_nonnull(list));
 
@@ -63,21 +63,21 @@ list_clear(list_t* const list) {
   return SUCCESS;
 }
 
-bool
+public bool
 list_is_empty(const list_t* const list) {
   validate_with_true_return(is_nonnull(list));
 
   return unlikely(list->data == LIST_SENTINEL) ? TRUE : FALSE;
 }
 
-long
+public long
 list_length(list_t* const list) {
   validate_with_zero_return(is_nonnull(list));
 
   return list->length;
 }
 
-long
+public long
 list_count(list_t* const restrict list, const void* const restrict elt) {
   validate_with_zero_return(is_nonnull(list));
 
@@ -98,7 +98,7 @@ list_count(list_t* const restrict list, const void* const restrict elt) {
   return count;
 }
 
-bool
+public bool
 list_lookup(list_t* const restrict list, const void* const restrict elt) {
   validate_with_false_return(is_nonnull(list));
 
@@ -117,28 +117,28 @@ list_lookup(list_t* const restrict list, const void* const restrict elt) {
   return FALSE;
 }
 
-int
+public int
 list_prepend_bool(list_t* const list, const bool_t value) {
   validate_with_errno_return(is_nonnull(list));
 
   return list_prepend_ptr(list, (void*)((intptr_t)value));
 }
 
-int
+public int
 list_prepend_byte(list_t* const list, const byte_t value) {
   validate_with_errno_return(is_nonnull(list));
 
   return list_prepend_ptr(list, (void*)((uintptr_t)value));
 }
 
-int
+public int
 list_prepend_char(list_t* const list, const char_t value) {
   validate_with_errno_return(is_nonnull(list));
 
   return list_prepend_ptr(list, (void*)((uintptr_t)value));
 }
 
-int
+public int
 list_prepend_ptr(list_t* const restrict list,
                  const void* const restrict ptr) {
   validate_with_errno_return(is_nonnull(list));
@@ -148,7 +148,7 @@ list_prepend_ptr(list_t* const restrict list,
   return list_prepend_pair(list, pair);
 }
 
-int
+public int
 list_prepend_pair(list_t* const restrict list,
                   const pair_t* const restrict pair) {
   validate_with_errno_return(is_nonnull(list));
@@ -159,7 +159,7 @@ list_prepend_pair(list_t* const restrict list,
   return list->length;
 }
 
-int
+public int
 list_insert(list_t* const restrict list,
             const void* const restrict elt) {
   validate_with_errno_return(is_nonnull(list));
@@ -168,7 +168,7 @@ list_insert(list_t* const restrict list,
   return FAILURE(ENOTSUP); // TODO
 }
 
-int
+public int
 list_remove(list_t* const restrict list,
             const void* const restrict elt) {
   validate_with_errno_return(is_nonnull(list));
@@ -177,7 +177,7 @@ list_remove(list_t* const restrict list,
   return FAILURE(ENOTSUP); // TODO
 }
 
-int
+public int
 list_replace(list_t* const restrict list,
              const void* const restrict elt1,
              const void* const restrict elt2) {
@@ -187,7 +187,7 @@ list_replace(list_t* const restrict list,
   return FAILURE(ENOTSUP); // TODO
 }
 
-int
+public int
 list_reverse(list_t* const list) {
   validate_with_errno_return(is_nonnull(list));
 
@@ -209,7 +209,7 @@ list_reverse(list_t* const list) {
   return SUCCESS;
 }
 
-int
+public int
 list_sort(list_t* const list, const seq_sort_type_t how) {
   validate_with_errno_return(is_nonnull(list));
   validate_with_errno_return(how > SEQ_SORT_NONE);
@@ -217,7 +217,7 @@ list_sort(list_t* const list, const seq_sort_type_t how) {
   return FAILURE(ENOTSUP); // TODO
 }
 
-const seq_vtable_t list_vtable = {
+public const seq_vtable_t list_vtable = {
   .base    = {.klass = &list_class},
   .init    = NULL,
   .reset   = list_reset,
@@ -234,11 +234,11 @@ const seq_vtable_t list_vtable = {
 
 /* List Iterator API */
 
-const iter_interface_t list_iter_interface = {
+public const iter_interface_t list_iter_interface = {
   .next = (iter_next_t)list_iter_next,
 };
 
-int
+public int
 list_iter_next(list_iter_t* iter) {
   validate_with_errno_return(iter != NULL);
 

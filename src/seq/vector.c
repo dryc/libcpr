@@ -2,20 +2,20 @@
 
 #include "build.h"
 
-const class_t vector_class = {
+public const class_t vector_class = {
   .name    = "vector",
   .super   = NULL,
   .vtable  = NULL, // TODO
 };
 
-vector_t*
+public vector_t*
 vector_alloc() {
   vector_t* vector = malloc(sizeof(vector_t));
   vector_init_empty(vector);
   return vector;
 }
 
-void
+public void
 vector_free(vector_t* vector) {
   if (likely(vector != NULL)) {
     vector_dispose(vector);
@@ -23,7 +23,7 @@ vector_free(vector_t* vector) {
   }
 }
 
-int
+public int
 vector_init_empty(vector_t* vector) {
   validate_with_errno_return(vector != NULL);
 
@@ -32,7 +32,7 @@ vector_init_empty(vector_t* vector) {
   return SUCCESS;
 }
 
-int
+public int
 vector_init_with(vector_t* vector, const size_t element_size, const size_t capacity) {
   int result = vector_init_empty(vector);
 
@@ -46,7 +46,7 @@ vector_init_with(vector_t* vector, const size_t element_size, const size_t capac
   return result;
 }
 
-int
+public int
 vector_dispose(vector_t* vector) {
   validate_with_errno_return(vector != NULL);
 

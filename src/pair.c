@@ -2,12 +2,12 @@
 
 #include "build.h"
 
-pair_t*
+public pair_t*
 pair_alloc() {
   return calloc(1, sizeof(pair_t));
 }
 
-void
+public void
 pair_free(pair_t* pair) {
   if (likely(pair != NULL)) {
     pair_dispose(pair);
@@ -15,14 +15,14 @@ pair_free(pair_t* pair) {
   }
 }
 
-pair_t*
+public pair_t*
 pair_construct_with(const void* const head, const pair_t* const tail) {
   pair_t* pair = malloc(sizeof(pair_t));
   pair_init_with(pair, head, tail);
   return pair;
 }
 
-int
+public int
 pair_init_empty(pair_t* pair) {
   validate_with_errno_return(pair != NULL);
 
@@ -31,7 +31,7 @@ pair_init_empty(pair_t* pair) {
   return SUCCESS;
 }
 
-int
+public int
 pair_init_with(pair_t* pair, const void* const head, const pair_t* const tail) {
   const int result = pair_init_empty(pair);
 
@@ -43,7 +43,7 @@ pair_init_with(pair_t* pair, const void* const head, const pair_t* const tail) {
   return result;
 }
 
-int
+public int
 pair_dispose(pair_t* pair) {
   validate_with_errno_return(pair != NULL);
 

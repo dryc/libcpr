@@ -2,9 +2,9 @@
 
 #include "build.h"
 
-const char* const cprime_version_string = PACKAGE_VERSION;
+public const char* const cprime_version_string = PACKAGE_VERSION;
 
-const char* const cprime_feature_names[] = {
+public const char* const cprime_feature_names[] = {
   "ascii",
 #ifndef NDEBUG
   "debug",
@@ -18,10 +18,10 @@ const char* const cprime_feature_names[] = {
   NULL
 };
 
-const unsigned int cprime_feature_count =
+public const unsigned int cprime_feature_count =
   (sizeof(cprime_feature_names) / sizeof(cprime_feature_names[0])) - 1;
 
-const char* const cprime_module_names[] = {
+public const char* const cprime_module_names[] = {
   "ascii",
   "atom",
   "bool",
@@ -65,10 +65,10 @@ const char* const cprime_module_names[] = {
   NULL
 };
 
-const unsigned int cprime_module_count =
+public const unsigned int cprime_module_count =
   (sizeof(cprime_module_names) / sizeof(cprime_module_names[0])) - 1;
 
-bool
+public bool
 cprime_has_feature(const char* const restrict name) {
   validate_with_false_return(name != NULL);
 
@@ -80,7 +80,7 @@ cprime_has_feature(const char* const restrict name) {
   return FALSE;
 }
 
-bool
+public bool
 cprime_has_module(const char* const restrict name) {
   validate_with_false_return(name != NULL);
 

@@ -2,13 +2,13 @@
 
 #include "build.h"
 
-const class_t box_class = {
+public const class_t box_class = {
   .name    = "box",
   .super   = NULL,
   .vtable  = NULL, /* abstract class */
 };
 
-box_t*
+public box_t*
 box_alloc() {
 #ifdef NDEBUG
   return malloc(sizeof(box_t));
@@ -17,14 +17,14 @@ box_alloc() {
 #endif
 }
 
-void
+public void
 box_free(box_t* const box) {
   validate_with_void_return(is_nonnull(box));
   box_reset(box);
   free(box);
 }
 
-int
+public int
 box_init(box_t* const restrict box,
          const box_vtable_t* const restrict vtable, ...) {
   validate_with_errno_return(is_nonnull(box) && is_nonnull(vtable));
@@ -44,7 +44,7 @@ box_init(box_t* const restrict box,
   return SUCCESS;
 }
 
-int
+public int
 box_reset(box_t* const box) {
   validate_with_errno_return(is_nonnull(box));
 
@@ -60,7 +60,7 @@ box_reset(box_t* const box) {
   return SUCCESS;
 }
 
-int
+public int
 box_clear(box_t* const box) {
   validate_with_errno_return(is_nonnull(box));
 
@@ -76,7 +76,7 @@ box_clear(box_t* const box) {
   return SUCCESS;
 }
 
-long
+public long
 box_size(const box_t* const box) {
   validate_with_zero_return(is_nonnull(box));
 
@@ -84,7 +84,7 @@ box_size(const box_t* const box) {
   return vtable->klass->size;
 }
 
-hash_t
+public hash_t
 box_hash(const box_t* const box) {
   validate_with_zero_return(is_nonnull(box));
 
@@ -96,7 +96,7 @@ box_hash(const box_t* const box) {
   return (void)FAILURE(ENOTSUP), 0;
 }
 
-int
+public int
 box_compare(const box_t* const box1, const box_t* const box2) {
   validate_with_errno_return(is_nonnull(box1) && is_nonnull(box2));
 
@@ -111,7 +111,7 @@ box_compare(const box_t* const box1, const box_t* const box2) {
   return FAILURE(ENOTSUP);
 }
 
-bool
+public bool
 box_equal(const box_t* const box1, const box_t* const box2) {
   validate_with_false_return(is_nonnull(box1) && is_nonnull(box2));
 
