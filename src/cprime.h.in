@@ -12,40 +12,40 @@ extern "C" {
 #define CPRIME_VERSION_MINOR  @PACKAGE_VERSION_MINOR@
 #define CPRIME_VERSION_PATCH  @PACKAGE_VERSION_PATCH@
 
-#include <cprime/prelude.h>
+#include "cprime/prelude.h"
 
-#include <cprime/hash.h>
-#include <cprime/bool.h>
-#include <cprime/byte.h>
-#include <cprime/char.h>
-#include <cprime/pair.h>
-#include <cprime/iter.h>
-#include <cprime/seq.h>
-#include <cprime/seq/list.h>
+#include "cprime/hash.h"
+#include "cprime/bool.h"
+#include "cprime/byte.h"
+#include "cprime/char.h"
+#include "cprime/pair.h"
+#include "cprime/iter.h"
+#include "cprime/seq.h"
+#include "cprime/seq/list.h"
 
-#include <cprime/atom.h>
-#include <cprime/box.h>
-#include <cprime/closure.h>
-#include <cprime/decimal.h>
-#include <cprime/dir.h>
-#include <cprime/file.h>
-#include <cprime/integer.h>
-#include <cprime/lock/mutex.h>
-#include <cprime/lock/rwlock.h>
-#include <cprime/lock/spinlock.h>
-#include <cprime/map.h>
-#include <cprime/once.h>
-#include <cprime/posix.h>
-#include <cprime/process.h>
-#include <cprime/queue.h>
-#include <cprime/set.h>
-#include <cprime/str.h>
-#include <cprime/string.h>
-#include <cprime/symbol.h>
-#include <cprime/thread.h>
-#include <cprime/uri.h>
-#include <cprime/uuid.h>
-#include <cprime/seq/vector.h>
+#include "cprime/atom.h"
+#include "cprime/box.h"
+#include "cprime/closure.h"
+#include "cprime/decimal.h"
+#include "cprime/dir.h"
+#include "cprime/file.h"
+#include "cprime/integer.h"
+#include "cprime/lock/mutex.h"
+#include "cprime/lock/rwlock.h"
+#include "cprime/lock/spinlock.h"
+#include "cprime/map.h"
+#include "cprime/once.h"
+#include "cprime/posix.h"
+#include "cprime/process.h"
+#include "cprime/queue.h"
+#include "cprime/set.h"
+#include "cprime/str.h"
+#include "cprime/string.h"
+#include "cprime/symbol.h"
+#include "cprime/thread.h"
+#include "cprime/uri.h"
+#include "cprime/uuid.h"
+#include "cprime/seq/vector.h"
 
 extern const char* const cprime_version_string;
 extern const char* const cprime_feature_names[];
