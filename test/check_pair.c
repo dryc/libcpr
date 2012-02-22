@@ -2,7 +2,7 @@
 #include <stdio.h>  /* for printf() */
 #include <stdlib.h> /* for EXIT_SUCCESS */
 
-#include "cprime.h"
+#include "build.h"
 
 int
 main(void) {
