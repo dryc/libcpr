@@ -36,6 +36,7 @@ extern "C" {
 #include "cprime/process.h"
 #include "cprime/queue.h"
 #include "cprime/set.h"
+#include "cprime/sort.h"
 #include "cprime/str.h"
 #include "cprime/string.h"
 #include "cprime/thread.h"
