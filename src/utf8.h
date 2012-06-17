@@ -9,6 +9,9 @@ extern "C" {
 
 #include <stdint.h> /* for uint8_t */
 
+#define UTF8_SKIP_CHAR(p)                              \
+  (typeof(p))((p) + utf8_skip_table[*((const uint8_t*)(p))])
+
 #define UTF8_LENGTH(c) (                               \
   (c < 0x00080) ? 1 :                                  \
   (c < 0x00800) ? 2 :                                  \
@@ -36,10 +39,24 @@ extern "C" {
   }                                                    \
 }
 
-#define UTF8_SKIP_CHAR(p)                              \
-  (typeof(p))((p) + utf8_skip_table[*((const uint8_t*)(p))])
+#define UTF8_DECODE(input, c) {                        \
+  c = *input++;                                        \
+  if (unlikely(c >= 0xC0)) {                           \
+    c = utf8_decode_table[c - 0xC0];                   \
+    while ((*input & 0xC0) == 0x80) {                  \
+      c = (c << 6) + (*input++ & 0x3F);                \
+    }                                                  \
+    if ((c < 0x80) ||                                  \
+        (c & 0xFFFFF800) == 0xD800 ||                  \
+        (c & 0xFFFFFFFE) == 0xFFFE) {                  \
+      c = 0xFFFD; /* replacement character (U+FFFD) */ \
+    }                                                  \
+  }                                                    \
+}
 
-extern const uint8_t const utf8_skip_table[256];
+extern const uint8_t utf8_skip_table[256];
+
+extern const uint8_t utf8_decode_table[64];
 
 /**
  * Encodes a single Unicode code point as UTF-8.
