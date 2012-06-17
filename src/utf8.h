@@ -67,6 +67,11 @@ extern const uint8_t utf8_decode_table[64];
  */
 int utf8_encode(unsigned int c, char* buffer);
 
+/**
+ * Decodes a single Unicode code point from UTF-8 input.
+ */
+int utf8_decode(const char* input);
+
 #ifdef __cplusplus
 } /* extern "C" */
 #endif

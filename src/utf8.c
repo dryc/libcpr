@@ -47,3 +47,10 @@ utf8_encode(const unsigned int c,
   UTF8_ENCODE(c, output);
   return output - buffer;
 }
+
+public int
+utf8_decode(const char* restrict input) {
+  int c;
+  UTF8_DECODE(input, c);
+  return c;
+}
