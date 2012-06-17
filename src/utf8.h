@@ -37,9 +37,9 @@ extern "C" {
 }
 
 #define UTF8_SKIP_CHAR(p)                              \
-  (typeof(p))((p) + utf8_skip_table[*((byte_t*)(p))])
+  (typeof(p))((p) + utf8_skip_table[*((const uint8_t*)(p))])
 
-extern const byte_t const utf8_skip_table[256];
+extern const uint8_t const utf8_skip_table[256];
 
 /**
  * Encodes a single Unicode code point as UTF-8.

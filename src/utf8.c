@@ -5,7 +5,7 @@
 /**
  * @see http://en.wikipedia.org/wiki/UTF-8#Codepage_layout
  */
-public const byte_t const utf8_skip_table[256] = {
+public const uint8_t const utf8_skip_table[256] = {
   1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, /* 0x00-0x0F */
   1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, /* 0x10-0x1F */
   1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, /* 0x20-0x2F */
