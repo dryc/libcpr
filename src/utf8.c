@@ -23,3 +23,11 @@ public const byte_t const utf8_skip_table[256] = {
   3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, /* 0xE0-0xEF */
   4, 4, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 6, 6, 1, 1, /* 0xF0-0xFF */
 };
+
+public int
+utf8_encode(const unsigned int c,
+            char* const restrict buffer) {
+  char* output = buffer;
+  UTF8_ENCODE(c, output);
+  return output - buffer;
+}

@@ -41,6 +41,15 @@ extern "C" {
 
 extern const byte_t const utf8_skip_table[256];
 
+/**
+ * Encodes a single Unicode code point as UTF-8.
+ *
+ * The given output buffer must have at least 4 bytes of space.
+ *
+ * @return the number of bytes written
+ */
+int utf8_encode(unsigned int c, char* buffer);
+
 #ifdef __cplusplus
 } /* extern "C" */
 #endif
