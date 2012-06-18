@@ -43,14 +43,15 @@ public const uint8_t utf8_decode_table[64] = {
 public int
 utf8_encode(const unsigned int c,
             char* const restrict buffer) {
-  char* output = buffer;
-  UTF8_ENCODE(c, output);
-  return output - buffer;
+  register uint8_t* p = (uint8_t*)buffer;
+  UTF8_ENCODE(c, p);
+  return (uintptr_t)p - (uintptr_t)buffer;
 }
 
 public int
-utf8_decode(const char* restrict input) {
-  int c;
-  UTF8_DECODE(input, c);
+utf8_decode(const char* const restrict input) {
+  register const uint8_t* p = (uint8_t*)input;
+  register int c;
+  UTF8_DECODE(p, c);
   return c;
 }
