@@ -56,7 +56,33 @@ check_utf8_encode(void) {
 
 static void
 check_utf8_decode(void) {
-  // TODO
+  char buffer[8];
+
+  /* Check the ASCII range (U+0000..U+007F): */
+  for (int c = 0x00; c <= 0x7F; c++) {
+    bzero(buffer, sizeof(buffer));
+    assert(utf8_encode(c, buffer) == 1);
+#if 0
+    printf("check_utf8_decode: 0x%02X => \"\\x%02X\\x%02X\" => 0x%02X\n",
+      c, (uint8_t)buffer[0], (uint8_t)buffer[1], utf8_decode(buffer));
+#endif
+    assert(utf8_decode(buffer) == c);
+  }
+
+  /* Check the ISO-8859-1 range (U+0080..U+00FF): */
+  for (int c = 0x80; c <= 0xFF; c++) {
+    bzero(buffer, sizeof(buffer));
+    assert(utf8_encode(c, buffer) == 2);
+#if 0
+    printf("check_utf8_decode: 0x%02X => \"\\x%02X\\x%02X\\x%02X\" => 0x%02X\n",
+      c, (uint8_t)buffer[0], (uint8_t)buffer[1], (uint8_t)buffer[2],
+      utf8_decode(buffer));
+#endif
+    assert(utf8_decode(buffer) == c);
+  }
+
+  /* Check the euro sign (U+20AC): */
+  assert(utf8_decode("\xE2\x82\xAC") == 0x20AC);
 }
 
 int
