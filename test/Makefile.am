@@ -20,6 +20,7 @@ check_PROGRAMS = \
   check_queue    \
   check_seq      \
   check_set      \
+  check_sort     \
   check_str      \
   check_uri      \
   check_utf8     \
