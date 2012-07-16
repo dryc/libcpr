@@ -81,6 +81,8 @@ typedef enum compare_t {
 #define is_zero(expr)           unlikely((expr) == 0)
 #define is_nonzero(expr)        likely((expr) != 0)
 
+#define is_equal(a, b)          ((a) == (b))
+
 /* for branch prediction hints */
 #ifdef __GNUC__
 #  define likely(x)   __builtin_expect(!!(x), 1) // `x` is likely to evaluate to TRUE
