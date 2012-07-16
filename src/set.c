@@ -1,11 +1,6 @@
 /* This is free and unencumbered software released into the public domain. */
 
 #include "build.h"
-#include "set/nullset.h"
-#include "set/vectorset.h"
-#include "set/listset.h"
-#include "set/treeset.h"
-#include "set/hashset.h"
 
 public const class_t set_class = {
   .name    = "set",
@@ -34,7 +29,7 @@ set_init(set_t* const restrict set,
   validate_with_errno_return(is_nonnull(set));
 
   const set_vtable_t* const vtable = is_nonnull(klass) ?
-    (set_vtable_t*)klass->vtable : &listset_vtable;
+    (set_vtable_t*)klass->vtable : &hashset_vtable;
   assert(is_nonnull(vtable));
 
   bzero(set, sizeof(set_t));

@@ -13,8 +13,8 @@ extern "C" {
 typedef struct set_iter_t {
   size_t position;
   set_t* set;
-  void* instance;
   void* elt;
+  void* data;
 } set_iter_t;
 
 int set_iter_init(set_iter_t* iter, set_t* set);
