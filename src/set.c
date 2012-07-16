@@ -40,8 +40,8 @@ set_init(set_t* const restrict set,
   bzero(set, sizeof(set_t));
 
   set->vtable       = vtable;
-  set->hash_func    = hash_func;
-  set->compare_func = compare_func;
+  set->hash_func    = is_nonnull(hash_func)    ? hash_func    : ptr_hash;
+  set->compare_func = is_nonnull(compare_func) ? compare_func : ptr_compare;
   set->free_func    = free_func;
 
   if (is_nonnull(vtable->init)) {
