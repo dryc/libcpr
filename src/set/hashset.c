@@ -324,6 +324,7 @@ hashset_iter_remove(set_iter_t* const restrict iter) {
   assert(is_nonnull(entry->elt));
 
   hashset_entry_dispose(entry, iter->set->free_func);
+  table->count--;
 
   iter->elt = NULL;
 
