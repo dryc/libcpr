@@ -2,6 +2,7 @@
 .tmp/
 pkg/
 tmp/
+*~
 
 # GNU Autotools
 etc/aclocal/
