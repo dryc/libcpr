@@ -27,6 +27,7 @@ libcprime_la_SOURCES =      \
   seq/vector.c              \
   set.c                     \
   set/hashset.c             \
+  set_iter.c                \
   sort.c                    \
   str.c                     \
   string.c                  \
@@ -64,6 +65,7 @@ nobase_pkginclude_HEADERS = \
   seq/list.h                \
   seq/vector.h              \
   set.h                     \
+  set_iter.h                \
   sort.h                    \
   str.h                     \
   string.h                  \

@@ -35,6 +35,7 @@ extern "C" {
 #include "process.h"
 #include "queue.h"
 #include "set.h"
+#include "set_iter.h"
 #include "sort.h"
 #include "str.h"
 #include "string.h"
