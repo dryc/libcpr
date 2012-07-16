@@ -20,7 +20,7 @@ hashmap_init(hashmap_t* const map, va_list args) {
 }
 
 static int
-hashmap_reset(hashmap_t* const map) {
+hashmap_dispose(hashmap_t* const map) {
   (void)map;
   return FAILURE(ENOTSUP); // TODO
 }
@@ -64,7 +64,7 @@ hashmap_remove(hashmap_t* const restrict map,
 const map_vtable_t hashmap_vtable = {
   .base    = {.klass = &hashmap_class},
   .init    = hashmap_init,
-  .reset   = hashmap_reset,
+  .dispose = hashmap_dispose,
   .clear   = hashmap_clear,
   .count   = hashmap_count,
   .lookup  = hashmap_lookup,

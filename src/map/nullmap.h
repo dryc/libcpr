@@ -20,7 +20,7 @@ nullmap_init(nullmap_t* const map, va_list args) {
 }
 
 static int
-nullmap_reset(nullmap_t* const map) {
+nullmap_dispose(nullmap_t* const map) {
   (void)map;
   return SUCCESS;
 }
@@ -70,7 +70,7 @@ nullmap_remove(nullmap_t* const restrict map,
 const map_vtable_t nullmap_vtable = {
   .base    = {.klass = &nullmap_class},
   .init    = nullmap_init,
-  .reset   = nullmap_reset,
+  .dispose = nullmap_dispose,
   .clear   = nullmap_clear,
   .count   = nullmap_count,
   .lookup  = nullmap_lookup,

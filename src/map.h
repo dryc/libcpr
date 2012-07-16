@@ -53,7 +53,7 @@ typedef struct map_vtable_t {
   const comparable_vtable_t comparable;
   const iterable_vtable_t iterable;
   int (*init)(map_t* map, va_list args);
-  int (*reset)(map_t* map);
+  int (*dispose)(map_t* map);
   int (*clear)(map_t* map);
   long (*count)(map_t* restrict map,
     const void* restrict key);
@@ -95,7 +95,7 @@ extern int map_init(map_t* restrict map,
 /**
  * Resets a map back to an uninitialized state.
  */
-extern int map_reset(map_t* map);
+extern int map_dispose(map_t* map);
 
 /**
  * Removes all key-value pairs from a map.

@@ -1,10 +1,7 @@
 /* This is free and unencumbered software released into the public domain. */
 
 #include "build.h"
-#include "map/nullmap.h"
 #include "map/listmap.h"
-#include "map/treemap.h"
-#include "map/hashmap.h"
 
 public const class_t map_class = {
   .name    = "map",
@@ -20,7 +17,7 @@ map_alloc() {
 public void
 map_free(map_t* const map) {
   validate_with_void_return(is_nonnull(map));
-  map_reset(map);
+  map_dispose(map);
   free(map);
 }
 
@@ -57,12 +54,12 @@ map_init(map_t* const restrict map,
 }
 
 public int
-map_reset(map_t* const map) {
+map_dispose(map_t* const map) {
   validate_with_errno_return(is_nonnull(map));
 
   const map_vtable_t* const vtable = map->vtable;
-  if (is_nonnull(vtable) && is_nonnull(vtable->reset)) {
-    return vtable->reset(map);
+  if (is_nonnull(vtable) && is_nonnull(vtable->dispose)) {
+    return vtable->dispose(map);
   }
 
 #ifndef NDEBUG

@@ -24,7 +24,7 @@ listmap_init(listmap_t* const map, va_list args) {
 }
 
 static int
-listmap_reset(listmap_t* const map) {
+listmap_dispose(listmap_t* const map) {
   if (likely(map->instance != NULL)) {
     list_free(map->instance);
     map->instance = NULL;
@@ -70,7 +70,7 @@ listmap_remove(listmap_t* const restrict map,
 const map_vtable_t listmap_vtable = {
   .base    = {.klass = &listmap_class},
   .init    = listmap_init,
-  .reset   = listmap_reset,
+  .dispose = listmap_dispose,
   .clear   = listmap_clear,
   .count   = listmap_count,
   .lookup  = listmap_lookup,

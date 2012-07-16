@@ -20,7 +20,7 @@ treemap_init(treemap_t* const map, va_list args) {
 }
 
 static int
-treemap_reset(treemap_t* const map) {
+treemap_dispose(treemap_t* const map) {
   (void)map;
   return FAILURE(ENOTSUP); // TODO
 }
@@ -64,7 +64,7 @@ treemap_remove(treemap_t* const restrict map,
 const map_vtable_t treemap_vtable = {
   .base    = {.klass = &treemap_class},
   .init    = treemap_init,
-  .reset   = treemap_reset,
+  .dispose = treemap_dispose,
   .clear   = treemap_clear,
   .count   = treemap_count,
   .lookup  = treemap_lookup,
