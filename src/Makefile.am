@@ -1,4 +1,4 @@
-AM_CFLAGS       = -Wall -Wextra -Werror -pedantic -fPIC -DPIC -pipe -fvisibility=hidden
+AM_CFLAGS       = -Wall -Wextra -fPIC -DPIC -pipe -fvisibility=hidden
 AM_CPPFLAGS     = -D_GNU_SOURCE -D_REENTRANT
 AM_LDFLAGS      = -rdynamic
 LDADD           = libcprime.la
@@ -26,6 +26,7 @@ libcprime_la_SOURCES =      \
   seq/list.c                \
   seq/vector.c              \
   set.c                     \
+  set/hashset.c             \
   sort.c                    \
   str.c                     \
   string.c                  \
