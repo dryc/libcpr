@@ -20,7 +20,7 @@ treeset_init(treeset_t* const set, va_list args) {
 }
 
 static int
-treeset_reset(treeset_t* const set) {
+treeset_dispose(treeset_t* const set) {
   (void)set;
   return FAILURE(ENOTSUP); // TODO
 }
@@ -70,7 +70,7 @@ treeset_replace(treeset_t* const restrict set,
 const set_vtable_t treeset_vtable = {
   .base    = {.klass = &treeset_class},
   .init    = treeset_init,
-  .reset   = treeset_reset,
+  .dispose = treeset_dispose,
   .clear   = treeset_clear,
   .count   = treeset_count,
   .lookup  = treeset_lookup,

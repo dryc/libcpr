@@ -20,7 +20,7 @@ nullset_init(nullset_t* const set, va_list args) {
 }
 
 static int
-nullset_reset(nullset_t* const set) {
+nullset_dispose(nullset_t* const set) {
   (void)set;
   return SUCCESS;
 }
@@ -73,7 +73,7 @@ nullset_replace(nullset_t* const restrict set,
 const set_vtable_t nullset_vtable = {
   .base    = {.klass = &nullset_class},
   .init    = nullset_init,
-  .reset   = nullset_reset,
+  .dispose = nullset_dispose,
   .clear   = nullset_clear,
   .count   = nullset_count,
   .lookup  = nullset_lookup,

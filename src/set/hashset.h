@@ -46,7 +46,7 @@ hashset_init(hashset_t* const set, va_list args) {
 }
 
 static int
-hashset_reset(hashset_t* const set) {
+hashset_dispose(hashset_t* const set) {
   if (is_nonnull(set->instance)) {
     free(set->instance);
     set->instance = NULL;
@@ -142,7 +142,7 @@ hashset_replace(hashset_t* const restrict set,
 const set_vtable_t hashset_vtable = {
   .base    = {.klass = &hashset_class},
   .init    = hashset_init,
-  .reset   = hashset_reset,
+  .dispose = hashset_dispose,
   .clear   = hashset_clear,
   .count   = hashset_count,
   .lookup  = hashset_lookup,

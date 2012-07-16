@@ -20,7 +20,7 @@ vectorset_init(vectorset_t* const set, va_list args) {
 }
 
 static int
-vectorset_reset(vectorset_t* const set) {
+vectorset_dispose(vectorset_t* const set) {
   (void)set;
   return FAILURE(ENOTSUP); // TODO
 }
@@ -70,7 +70,7 @@ vectorset_replace(vectorset_t* const restrict set,
 const set_vtable_t vectorset_vtable = {
   .base    = {.klass = &vectorset_class},
   .init    = vectorset_init,
-  .reset   = vectorset_reset,
+  .dispose = vectorset_dispose,
   .clear   = vectorset_clear,
   .count   = vectorset_count,
   .lookup  = vectorset_lookup,

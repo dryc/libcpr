@@ -55,7 +55,7 @@ typedef struct set_vtable_t {
   const comparable_vtable_t comparable;
   const iterable_vtable_t iterable;
   int (*init)(set_t* set, va_list args);
-  int (*reset)(set_t* set);
+  int (*dispose)(set_t* set);
   int (*clear)(set_t* set);
   long (*count)(set_t* restrict set,
     const void* restrict elt);
@@ -98,7 +98,7 @@ extern int set_init(set_t* restrict set,
 /**
  * Resets a set back to an uninitialized state.
  */
-extern int set_reset(set_t* set);
+extern int set_dispose(set_t* set);
 
 /**
  * Removes all elements from a set.

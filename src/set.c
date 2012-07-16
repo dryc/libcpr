@@ -21,7 +21,7 @@ set_alloc() {
 public void
 set_free(set_t* const set) {
   validate_with_void_return(is_nonnull(set));
-  set_reset(set);
+  set_dispose(set);
   free(set);
 }
 
@@ -56,12 +56,12 @@ set_init(set_t* const restrict set,
 }
 
 public int
-set_reset(set_t* const set) {
+set_dispose(set_t* const set) {
   validate_with_errno_return(is_nonnull(set));
 
   const set_vtable_t* const vtable = set->vtable;
-  if (is_nonnull(vtable) && is_nonnull(vtable->reset)) {
-    return vtable->reset(set);
+  if (is_nonnull(vtable) && is_nonnull(vtable->dispose)) {
+    return vtable->dispose(set);
   }
 
 #ifndef NDEBUG

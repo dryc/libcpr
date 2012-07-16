@@ -24,7 +24,7 @@ listset_init(listset_t* const set, va_list args) {
 }
 
 static int
-listset_reset(listset_t* const set) {
+listset_dispose(listset_t* const set) {
   if (likely(set->instance != NULL)) {
     list_free(set->instance);
     set->instance = NULL;
@@ -78,7 +78,7 @@ listset_replace(listset_t* const restrict set,
 const set_vtable_t listset_vtable = {
   .base    = {.klass = &listset_class},
   .init    = listset_init,
-  .reset   = listset_reset,
+  .dispose = listset_dispose,
   .clear   = listset_clear,
   .count   = listset_count,
   .lookup  = listset_lookup,
