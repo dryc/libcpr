@@ -9,9 +9,11 @@ extern "C" {
 
 #include <stdbool.h> /* for bool */
 #include <stddef.h>  /* for size_t */
+#include <stdint.h>  /* for uint64_t */
 
 typedef struct set_iter {
   size_t position;
+  uint64_t flags;
   set_t* set;
   void* elt;
   void* data;
