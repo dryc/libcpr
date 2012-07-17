@@ -36,8 +36,8 @@ map_init(map_t* const restrict map,
   bzero(map, sizeof(map_t));
 
   map->vtable          = vtable;
-  map->hash_func       = hash_func;
-  map->compare_func    = compare_func;
+  map->hash_func       = is_nonnull(hash_func)    ? hash_func    : ptr_hash;
+  map->compare_func    = is_nonnull(compare_func) ? compare_func : ptr_compare;
   map->free_key_func   = free_key_func;
   map->free_value_func = free_value_func;
 
