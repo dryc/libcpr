@@ -31,6 +31,7 @@ extern "C" {
 #include "dir.h"
 #include "file.h"
 #include "map.h"
+#include "map_iter.h"
 #include "posix.h"
 #include "process.h"
 #include "queue.h"

@@ -22,6 +22,7 @@ libcprime_la_SOURCES =      \
   map/listmap.c             \
   map/nullmap.c             \
   map/treemap.c             \
+  map_iter.c                \
   pair.c                    \
   posix.c                   \
   process.c                 \
@@ -62,6 +63,7 @@ nobase_pkginclude_HEADERS = \
   lock/rwlock.h             \
   lock/spinlock.h           \
   map.h                     \
+  map_iter.h                \
   memory.h                  \
   once.h                    \
   pair.h                    \

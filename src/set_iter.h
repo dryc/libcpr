@@ -10,18 +10,20 @@ extern "C" {
 #include <stdbool.h> /* for bool */
 #include <stddef.h>  /* for size_t */
 
-typedef struct set_iter_t {
+typedef struct set_iter {
   size_t position;
   set_t* set;
   void* elt;
   void* data;
 } set_iter_t;
 
-int set_iter_init(set_iter_t* iter, set_t* set);
+int set_iter_init(set_iter_t* iter,
+  set_t* set);
 
 int set_iter_dispose(set_iter_t* iter);
 
-bool set_iter_next(set_iter_t* iter, void** elt);
+bool set_iter_next(set_iter_t* iter,
+  void** elt);
 
 int set_iter_remove(set_iter_t* iter);
 
