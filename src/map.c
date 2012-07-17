@@ -1,7 +1,6 @@
 /* This is free and unencumbered software released into the public domain. */
 
 #include "build.h"
-#include "map/listmap.h"
 
 public const class_t map_class = {
   .name    = "map",
@@ -31,7 +30,7 @@ map_init(map_t* const restrict map,
   validate_with_errno_return(is_nonnull(map));
 
   const map_vtable_t* const vtable = is_nonnull(klass) ?
-    (map_vtable_t*)klass->vtable : &listmap_vtable;
+    (map_vtable_t*)klass->vtable : &hashmap_vtable;
   assert(is_nonnull(vtable));
 
   bzero(map, sizeof(map_t));

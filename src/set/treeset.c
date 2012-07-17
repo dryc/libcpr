@@ -1,32 +1,21 @@
 /* This is free and unencumbered software released into the public domain. */
 
-#ifndef CPRIME_TREESET_H
-#define CPRIME_TREESET_H
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-const class_t treeset_class = {
-  .name    = "treeset",
-  .super   = &set_class,
-  .vtable  = &treeset_vtable.base,
-};
+#include "build.h"
 
 static int
-treeset_init(treeset_t* const set, va_list args) {
+treeset_init(treeset_t* const restrict set, va_list args) {
   (void)set, (void)args;
   return FAILURE(ENOTSUP); // TODO
 }
 
 static int
-treeset_dispose(treeset_t* const set) {
+treeset_dispose(treeset_t* const restrict set) {
   (void)set;
   return FAILURE(ENOTSUP); // TODO
 }
 
 static int
-treeset_clear(treeset_t* const set) {
+treeset_clear(treeset_t* const restrict set) {
   (void)set;
   return FAILURE(ENOTSUP); // TODO
 }
@@ -59,15 +48,13 @@ treeset_remove(treeset_t* const restrict set,
   return FAILURE(ENOTSUP); // TODO
 }
 
-static int
-treeset_replace(treeset_t* const restrict set,
-                const void* const restrict elt1,
-                const void* const restrict elt2) {
-  (void)set, (void)elt1, (void)elt2;
-  return FAILURE(ENOTSUP); // TODO
-}
+public const class_t treeset_class = {
+  .name    = "treeset",
+  .super   = &set_class,
+  .vtable  = &treeset_vtable.base,
+};
 
-const set_vtable_t treeset_vtable = {
+public const set_vtable_t treeset_vtable = {
   .base    = {.klass = &treeset_class},
   .init    = treeset_init,
   .dispose = treeset_dispose,
@@ -76,11 +63,5 @@ const set_vtable_t treeset_vtable = {
   .lookup  = treeset_lookup,
   .insert  = treeset_insert,
   .remove  = treeset_remove,
-  .replace = treeset_replace,
+  .replace = NULL,
 };
-
-#ifdef __cplusplus
-} /* extern "C" */
-#endif
-
-#endif /* CPRIME_TREESET_H */

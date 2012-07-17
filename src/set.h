@@ -9,18 +9,18 @@ extern "C" {
 
 #include <stdbool.h> /* for bool */
 
-#define NULLSET   (&nullset_class)
-#define VECTORSET (&vectorset_class)
-#define LISTSET   (&listset_class)
-#define TREESET   (&treeset_class)
-#define HASHSET   (&hashset_class)
+#define NULLSET (&nullset_class)
+#define VECTSET (&vectset_class)
+#define LISTSET (&listset_class)
+#define TREESET (&treeset_class)
+#define HASHSET (&hashset_class)
 
 /**
  * The base class for set classes.
  */
 extern const class_t set_class;
 extern const class_t nullset_class;
-extern const class_t vectorset_class;
+extern const class_t vectset_class;
 extern const class_t listset_class;
 extern const class_t treeset_class;
 extern const class_t hashset_class;
@@ -39,7 +39,7 @@ typedef struct set_t {
 } set_t;
 
 typedef set_t nullset_t;
-typedef set_t vectorset_t;
+typedef set_t vectset_t;
 typedef set_t listset_t;
 typedef set_t treeset_t;
 typedef set_t hashset_t;
@@ -71,7 +71,7 @@ typedef struct set_vtable_t {
 } set_vtable_t;
 
 extern const set_vtable_t nullset_vtable;
-extern const set_vtable_t vectorset_vtable;
+extern const set_vtable_t vectset_vtable;
 extern const set_vtable_t listset_vtable;
 extern const set_vtable_t treeset_vtable;
 extern const set_vtable_t hashset_vtable;

@@ -1,31 +1,20 @@
 /* This is free and unencumbered software released into the public domain. */
 
-#ifndef CPRIME_LISTMAP_H
-#define CPRIME_LISTMAP_H
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-const class_t listmap_class = {
-  .name    = "listmap",
-  .super   = &map_class,
-  .vtable  = &listmap_vtable.base,
-};
+#include "build.h"
 
 static int
-listmap_init(listmap_t* const map, va_list args) {
+listmap_init(listmap_t* const restrict map, va_list args) {
   (void)args;
   map->instance = list_alloc();
   if (is_null(map->instance)) {
-    return -errno; // pass on the error from list_alloc()
+    return -errno; /* pass on the error from list_alloc() */
   }
   return list_init_with(map->instance, map->compare_func, free);
 }
 
 static int
-listmap_dispose(listmap_t* const map) {
-  if (likely(map->instance != NULL)) {
+listmap_dispose(listmap_t* const restrict map) {
+  if (is_nonnull(map->instance)) {
     list_free(map->instance);
     map->instance = NULL;
   }
@@ -33,7 +22,7 @@ listmap_dispose(listmap_t* const map) {
 }
 
 static int
-listmap_clear(listmap_t* const map) {
+listmap_clear(listmap_t* const restrict map) {
   return list_clear(map->instance);
 }
 
@@ -67,7 +56,13 @@ listmap_remove(listmap_t* const restrict map,
   return FAILURE(ENOTSUP); // TODO
 }
 
-const map_vtable_t listmap_vtable = {
+public const class_t listmap_class = {
+  .name    = "listmap",
+  .super   = &map_class,
+  .vtable  = &listmap_vtable.base,
+};
+
+public const map_vtable_t listmap_vtable = {
   .base    = {.klass = &listmap_class},
   .init    = listmap_init,
   .dispose = listmap_dispose,
@@ -77,9 +72,3 @@ const map_vtable_t listmap_vtable = {
   .insert  = listmap_insert,
   .remove  = listmap_remove,
 };
-
-#ifdef __cplusplus
-} /* extern "C" */
-#endif
-
-#endif /* CPRIME_LISTMAP_H */

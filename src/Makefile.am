@@ -18,6 +18,10 @@ libcprime_la_SOURCES =      \
   lock/rwlock.c             \
   lock/spinlock.c           \
   map.c                     \
+  map/hashmap.c             \
+  map/listmap.c             \
+  map/nullmap.c             \
+  map/treemap.c             \
   pair.c                    \
   posix.c                   \
   process.c                 \
@@ -27,6 +31,10 @@ libcprime_la_SOURCES =      \
   seq/vector.c              \
   set.c                     \
   set/hashset.c             \
+  set/listset.c             \
+  set/nullset.c             \
+  set/treeset.c             \
+  set/vectset.c             \
   set_iter.c                \
   sort.c                    \
   str.c                     \

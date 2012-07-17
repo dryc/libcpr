@@ -1,31 +1,20 @@
 /* This is free and unencumbered software released into the public domain. */
 
-#ifndef CPRIME_LISTSET_H
-#define CPRIME_LISTSET_H
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-const class_t listset_class = {
-  .name    = "listset",
-  .super   = &set_class,
-  .vtable  = &listset_vtable.base,
-};
+#include "build.h"
 
 static int
-listset_init(listset_t* const set, va_list args) {
+listset_init(listset_t* const restrict set, va_list args) {
   (void)args;
   set->instance = list_alloc();
   if (is_null(set->instance)) {
-    return -errno; // pass on the error from list_alloc()
+    return -errno; /* pass on the error from list_alloc() */
   }
   return list_init_with(set->instance, set->compare_func, set->free_func);
 }
 
 static int
-listset_dispose(listset_t* const set) {
-  if (likely(set->instance != NULL)) {
+listset_dispose(listset_t* const restrict set) {
+  if (is_nonnull(set->instance)) {
     list_free(set->instance);
     set->instance = NULL;
   }
@@ -33,16 +22,16 @@ listset_dispose(listset_t* const set) {
 }
 
 static int
-listset_clear(listset_t* const set) {
+listset_clear(listset_t* const restrict set) {
   return list_clear(set->instance);
 }
 
 static long
 listset_count(listset_t* const restrict set,
               const void* const restrict elt) {
-  return likely(elt == NULL) ?
+  return is_null(elt) ?
     list_length(set->instance) :
-    (unlikely(list_lookup(set->instance, elt) == TRUE) ? 1 : 0);
+    (list_lookup(set->instance, elt) == TRUE ? 1 : 0);
 }
 
 static bool
@@ -54,7 +43,7 @@ listset_lookup(listset_t* const restrict set,
 static int
 listset_insert(listset_t* const restrict set,
                const void* const restrict elt) {
-  if (unlikely(list_lookup(set->instance, elt) == TRUE)) {
+  if (list_lookup(set->instance, elt) == TRUE) {
     return FALSE; // the set already contains the element
   }
   return succeeded(list_prepend(set->instance, elt)) ? TRUE : -errno;
@@ -75,7 +64,13 @@ listset_replace(listset_t* const restrict set,
   return FAILURE(ENOTSUP); // TODO
 }
 
-const set_vtable_t listset_vtable = {
+public const class_t listset_class = {
+  .name    = "listset",
+  .super   = &set_class,
+  .vtable  = &listset_vtable.base,
+};
+
+public const set_vtable_t listset_vtable = {
   .base    = {.klass = &listset_class},
   .init    = listset_init,
   .dispose = listset_dispose,
@@ -86,9 +81,3 @@ const set_vtable_t listset_vtable = {
   .remove  = listset_remove,
   .replace = listset_replace,
 };
-
-#ifdef __cplusplus
-} /* extern "C" */
-#endif
-
-#endif /* CPRIME_LISTSET_H */
