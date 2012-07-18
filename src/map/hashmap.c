@@ -5,13 +5,18 @@
 
 static inline void
 hashmap_entry_dispose(hashmap_entry_t* const restrict entry,
-                      const free_func_t free_key_func) {
+                      const free_func_t free_key_func,
+                      const free_func_t free_value_func) {
   if (is_nonnull(entry->key)) {
     if (is_nonnull(free_key_func)) {
       free_key_func((void*)entry->key);
     }
-    entry->key  = NULL;
-    entry->hash = 0;
+    if (is_nonnull(free_value_func)) {
+      free_value_func((void*)entry->value);
+    }
+    entry->hash  = 0;
+    entry->key   = NULL;
+    entry->value = NULL;
   }
 }
 
@@ -31,13 +36,17 @@ hashmap_table_alloc(const size_t capacity) {
 
 static inline void
 hashmap_table_free(hashmap_table_t* const restrict table,
-                   const free_func_t free_key_func) {
+                   const free_func_t free_key_func,
+                   const free_func_t free_value_func) {
   if (is_nonnull(table)) {
-    if (is_nonnull(free_key_func)) {
+    if (is_nonnull(free_key_func) || is_nonnull(free_value_func)) {
       for (size_t index = 0; index < table->capacity; index++) {
         const hashmap_entry_t* const restrict entry = &table->entries[index];
         if (is_nonnull(entry->key)) {
-          free_key_func((void*)entry->key);
+          if (is_nonnull(free_key_func))
+            free_key_func((void*)entry->key);
+          if (is_nonnull(free_value_func))
+            free_value_func((void*)entry->value);
         }
       }
     }
@@ -63,8 +72,9 @@ hashmap_resize(hashmap_t* const restrict map,
     for (; new_index < new_table->capacity; new_index++) {
       hashmap_entry_t* const restrict new_entry = &new_table->entries[new_index];
       if (is_null(new_entry->key)) {
-        new_entry->key  = old_entry->key;
-        new_entry->hash = old_entry->hash;
+        new_entry->hash  = old_entry->hash;
+        new_entry->key   = old_entry->key;
+        new_entry->value = old_entry->value;
         break;
       }
     }
@@ -113,7 +123,7 @@ hashmap_dispose(hashmap_t* const restrict map) {
   hashmap_table_t* const restrict table = map->instance;
 
   if (is_nonnull(table)) {
-    hashmap_table_free(table, map->free_key_func);
+    hashmap_table_free(table, map->free_key_func, map->free_value_func);
     map->instance = NULL;
   }
 
@@ -126,7 +136,7 @@ hashmap_clear(hashmap_t* const restrict map) {
   hashmap_table_t* const restrict new_table = hashmap_table_alloc(HASHMAP_CAPACITY_MIN);
 
   map->instance = new_table;
-  hashmap_table_free(old_table, map->free_key_func);
+  hashmap_table_free(old_table, map->free_key_func, map->free_value_func);
 
   return SUCCESS;
 }
@@ -193,8 +203,8 @@ retry:;
     hashmap_entry_t* const restrict entry = &table->entries[index];
 
     if (is_null(entry->key)) {
-      entry->key   = key;
       entry->hash  = hash;
+      entry->key   = key;
       entry->value = value;
       table->count++;
 #if 0
@@ -232,7 +242,7 @@ hashmap_remove(hashmap_t* const restrict map,
     }
 
     if (entry->key == key || (entry->hash == hash && compare_func(entry->key, key) == COMPARE_EQ)) {
-      hashmap_entry_dispose(entry, map->free_key_func);
+      hashmap_entry_dispose(entry, map->free_key_func, map->free_value_func);
       table->count--;
 #if 0
       fprintf(stderr, "hashmap_remove: element=%p removed at index=%zu (hash=%lu)\n", key, index, (uint64_t)hash);
@@ -336,7 +346,7 @@ hashmap_iter_remove(map_iter_t* const restrict iter) {
   hashmap_entry_t* const restrict entry = &table->entries[index - 1];
   assert(is_nonnull(entry->key));
 
-  hashmap_entry_dispose(entry, iter->map->free_key_func);
+  hashmap_entry_dispose(entry, iter->map->free_key_func, iter->map->free_value_func);
   table->count--;
 
   iter->key = NULL;

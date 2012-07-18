@@ -12,8 +12,8 @@ extern "C" {
 #define HASHMAP_CAPACITY_MIN 4
 
 typedef struct hashmap_entry_t {
-  const void* key;
   hash_t hash;
+  const void* key;
   const void* value;
 } hashmap_entry_t;
 

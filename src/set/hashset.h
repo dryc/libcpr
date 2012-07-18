@@ -12,8 +12,8 @@ extern "C" {
 #define HASHSET_CAPACITY_MIN 4
 
 typedef struct hashset_entry_t {
-  const void* elt;
   hash_t hash;
+  const void* elt;
 } hashset_entry_t;
 
 typedef struct hashset_table_t {
@@ -22,9 +22,14 @@ typedef struct hashset_table_t {
   hashset_entry_t entries[];
 } hashset_table_t;
 
-int hashset_iter_init(set_iter_t* iter, set_t* set);
+int hashset_iter_init(set_iter_t* iter,
+  set_t* set);
+
 int hashset_iter_dispose(set_iter_t* iter);
-bool hashset_iter_next(set_iter_t* iter, void** elt);
+
+bool hashset_iter_next(set_iter_t* iter,
+  void** elt);
+
 int hashset_iter_remove(set_iter_t* iter);
 
 #ifdef __cplusplus

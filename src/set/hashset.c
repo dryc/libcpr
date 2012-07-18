@@ -5,13 +5,13 @@
 
 static inline void
 hashset_entry_dispose(hashset_entry_t* const restrict entry,
-                      const free_func_t elt_free_func) {
+                      const free_func_t free_elt_func) {
   if (is_nonnull(entry->elt)) {
-    if (is_nonnull(elt_free_func)) {
-      elt_free_func((void*)entry->elt);
+    if (is_nonnull(free_elt_func)) {
+      free_elt_func((void*)entry->elt);
     }
-    entry->elt  = NULL;
     entry->hash = 0;
+    entry->elt  = NULL;
   }
 }
 
@@ -31,13 +31,13 @@ hashset_table_alloc(const size_t capacity) {
 
 static inline void
 hashset_table_free(hashset_table_t* const restrict table,
-                   const free_func_t elt_free_func) {
+                   const free_func_t free_elt_func) {
   if (is_nonnull(table)) {
-    if (is_nonnull(elt_free_func)) {
+    if (is_nonnull(free_elt_func)) {
       for (size_t index = 0; index < table->capacity; index++) {
         const hashset_entry_t* const restrict entry = &table->entries[index];
         if (is_nonnull(entry->elt)) {
-          elt_free_func((void*)entry->elt);
+          free_elt_func((void*)entry->elt);
         }
       }
     }
