@@ -17,6 +17,14 @@ uint32_hash(uint32_t n) {
   return (hash_t)n;
 }
 
+public int
+uint32_compare(const uint32_t n1,
+               const uint32_t n2) {
+  if (unlikely(n1 == n2))
+    return COMPARE_EQ;
+  return (n1 < n2) ? COMPARE_LT : COMPARE_GT;
+}
+
 /**
  * @see http://www.cris.com/~Ttwang/tech/inthash.htm
  */
@@ -29,6 +37,14 @@ uint64_hash(uint64_t n) {
   n += (n << 6);
   n ^= (n >> 22);
   return (hash_t)n;
+}
+
+public int
+uint64_compare(const uint64_t n1,
+               const uint64_t n2) {
+  if (unlikely(n1 == n2))
+    return COMPARE_EQ;
+  return (n1 < n2) ? COMPARE_LT : COMPARE_GT;
 }
 
 public hash_t
