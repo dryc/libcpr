@@ -38,19 +38,22 @@ done:
 
 #ifdef HAVE_UNISTD_H
 public ssize_t
-posix_write(const int fd, const void* buf, const size_t count) {
-  ssize_t result = 0;
-  while (unlikely((result = write(fd, buf, count)) == -1)) {
-    switch (errno) {
-      case EINTR:
-      case EAGAIN:
-        continue; // retry the syscall
-      default:
-        goto done;
+posix_write(const int fd, const void* const buffer, const size_t count) {
+  size_t result = 0;
+  while (result < count) {
+    const ssize_t rc = write(fd, buffer + result, count - result);
+    if (unlikely(rc == -1)) {
+      switch (errno) {
+        case EINTR:
+        case EAGAIN:
+          continue; /* try again */
+        default:
+          return is_zero(result) ? rc : (ssize_t)result;
+      }
     }
+    result += rc;
   }
-done:
-  return result;
+  return (ssize_t)result;
 }
 #endif /* HAVE_UNISTD_H */
 
