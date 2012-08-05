@@ -71,6 +71,7 @@ nobase_pkginclude_HEADERS = \
   prelude.h                 \
   process.h                 \
   queue.h                   \
+  regmatch.h                \
   seq.h                     \
   seq/list.h                \
   seq/vector.h              \
