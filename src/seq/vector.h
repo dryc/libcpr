@@ -9,8 +9,9 @@ extern "C" {
 
 #include <stddef.h> /* for size_t */
 
-#define VECTOR_LENGTH_MAX       (SIZE_MAX-1)
 #define VECTOR_LENGTH_MIN       0
+#define VECTOR_LENGTH_MAX       (LONG_MAX-1)
+#define VECTOR_LENGTH_INIT      8
 
 typedef struct vector {
   //class_t* element_class;
@@ -18,7 +19,7 @@ typedef struct vector {
   size_t element_size;
   size_t element_count;
   size_t capacity;
-  void** element_data;
+  const void** element_data;
 } vector_t;
 
 /**
@@ -65,19 +66,19 @@ size_t vector_length(const vector_t* vector);
  * Counts occurrences of a given element in a vector.
  */
 size_t vector_count(const vector_t* vector,
-  const void* elt);
+  const void* element);
 
 /**
  * Checks whether a vector contains a given element.
  */
 bool vector_lookup(const vector_t* vector,
-  const void* elt);
+  const void* element);
 
 /**
  * Appends a given element to a vector.
  */
-int vector_append(vector_t* vector,
-  const void* elt);
+long vector_append(vector_t* vector,
+  const void* element);
 
 #ifdef __cplusplus
 } /* extern "C" */
