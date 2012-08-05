@@ -35,18 +35,39 @@ vector_init_empty(vector_t* const restrict vector) {
 }
 
 public int
+vector_init(vector_t* const restrict vector,
+            const size_t capacity) {
+  validate_with_errno_return(is_nonnull(vector));
+
+  vector->element_size  = sizeof(void*);
+  vector->element_count = 0;
+  vector->capacity      = capacity;
+  vector->element_data  = NULL;
+
+  if (is_nonzero(capacity)) {
+    vector->element_data = calloc(vector->capacity, vector->element_size);
+    if (is_null(vector->element_data)) {
+      return FAILURE(ENOMEM); /* out of memory */
+    }
+  }
+
+  return SUCCESS;
+}
+
+public int
 vector_init_with(vector_t* const restrict vector,
-                 const size_t element_size,
-                 const size_t capacity) {
+                 const size_t capacity,
+                 const size_t element_size) {
   validate_with_errno_return(is_nonnull(vector));
   validate_with_errno_return(is_nonzero(element_size));
 
   vector->element_size  = element_size;
   vector->element_count = 0;
   vector->capacity      = capacity;
+  vector->element_data  = NULL;
 
   if (is_nonzero(capacity)) {
-    vector->element_data = calloc(capacity, element_size);
+    vector->element_data = calloc(vector->capacity, vector->element_size);
     if (is_null(vector->element_data)) {
       return FAILURE(ENOMEM); /* out of memory */
     }
@@ -67,6 +88,62 @@ vector_dispose(vector_t* const restrict vector) {
     free(vector->element_data);
     vector->element_data = NULL;
   }
+
+  return SUCCESS;
+}
+
+public int
+vector_clear(vector_t* const restrict vector) {
+  validate_with_errno_return(is_nonnull(vector));
+
+  vector->element_count = 0;
+
+  return SUCCESS;
+}
+
+public bool
+vector_is_empty(const vector_t* const restrict vector) {
+  validate_with_true_return(is_nonnull(vector));
+
+  return is_zero(vector->element_count);
+}
+
+public size_t
+vector_length(const vector_t* const restrict vector) {
+  validate_with_zero_return(is_nonnull(vector));
+
+  return vector->element_count;
+}
+
+public size_t
+vector_count(const vector_t* const restrict vector,
+             const void* const restrict elt) {
+  validate_with_zero_return(is_nonnull(vector));
+  validate_with_zero_return(is_nonnull(elt));
+
+  // TODO
+
+  return FALSE;
+}
+
+public bool
+vector_lookup(const vector_t* const restrict vector,
+              const void* const restrict elt) {
+  validate_with_false_return(is_nonnull(vector));
+  validate_with_false_return(is_nonnull(elt));
+
+  // TODO
+
+  return FALSE;
+}
+
+public int
+vector_append(vector_t* const restrict vector,
+              const void* const restrict elt) {
+  validate_with_errno_return(is_nonnull(vector));
+  validate_with_errno_return(is_nonnull(elt));
+
+  // TODO
 
   return SUCCESS;
 }
