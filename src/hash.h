@@ -14,6 +14,8 @@ extern "C" {
 
 typedef uint32_t hash_t;
 
+hash_t nop_hash(uint64_t n);
+
 /**
  * Calculates a hash code for the given 32-bit integer.
  */

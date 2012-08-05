@@ -2,6 +2,11 @@
 
 #include "build.h"
 
+public hash_t
+nop_hash(const uint64_t n) {
+  return n;
+}
+
 /**
  * @see http://burtleburtle.net/bob/hash/integer.html
  */
