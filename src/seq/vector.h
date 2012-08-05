@@ -18,7 +18,7 @@ typedef struct vector {
   size_t element_size;
   size_t element_count;
   size_t capacity;
-  void* element_data;
+  void** element_data;
 } vector_t;
 
 /**
