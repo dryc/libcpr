@@ -135,9 +135,12 @@ public bool
 vector_lookup(const vector_t* const restrict vector,
               const void* const restrict elt) {
   validate_with_false_return(is_nonnull(vector));
-  validate_with_false_return(is_nonnull(elt));
 
-  // TODO
+  for (size_t index = 0; index < vector->element_count; index++) {
+    if (elt == vector->element_data[index]) { // TODO: use vector->compare_func
+      return TRUE;
+    }
+  }
 
   return FALSE;
 }
@@ -146,7 +149,6 @@ public int
 vector_append(vector_t* const restrict vector,
               const void* const restrict elt) {
   validate_with_errno_return(is_nonnull(vector));
-  validate_with_errno_return(is_nonnull(elt));
 
   // TODO
 
