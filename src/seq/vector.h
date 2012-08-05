@@ -80,6 +80,12 @@ bool vector_lookup(const vector_t* vector,
 long vector_append(vector_t* vector,
   const void* element);
 
+/**
+ * Sorts the elements in a vector.
+ */
+int vector_sort(vector_t* vector,
+  unsigned int flags);
+
 #ifdef __cplusplus
 } /* extern "C" */
 #endif

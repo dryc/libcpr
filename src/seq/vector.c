@@ -167,3 +167,14 @@ vector_append(vector_t* const restrict vector,
 
   return index;
 }
+
+public int
+vector_sort(vector_t* const restrict vector,
+            const unsigned int flags) {
+  validate_with_errno_return(is_nonnull(vector));
+  (void)flags; /* unused for now */
+
+  uint64_sort((uint64_t*)vector->element_data, vector->element_count); // TODO: use vector->compare_func
+
+  return SUCCESS;
+}
