@@ -10,53 +10,63 @@ public const class_t vector_class = {
 
 public vector_t*
 vector_alloc() {
-  vector_t* vector = malloc(sizeof(vector_t));
-  vector_init_empty(vector);
+  vector_t* const restrict vector = malloc(sizeof(vector_t));
+  if (is_nonnull(vector)) {
+    vector_init_empty(vector);
+  }
   return vector;
 }
 
 public void
-vector_free(vector_t* vector) {
-  if (likely(vector != NULL)) {
+vector_free(vector_t* const restrict vector) {
+  if (is_nonnull(vector)) {
     vector_dispose(vector);
     free(vector);
   }
 }
 
 public int
-vector_init_empty(vector_t* vector) {
-  validate_with_errno_return(vector != NULL);
+vector_init_empty(vector_t* const restrict vector) {
+  validate_with_errno_return(is_nonnull(vector));
 
-  bzero(vector, sizeof(vector_t));
+  bzero(vector, sizeof(*vector));
 
   return SUCCESS;
 }
 
 public int
-vector_init_with(vector_t* vector, const size_t element_size, const size_t capacity) {
-  int result = vector_init_empty(vector);
+vector_init_with(vector_t* const restrict vector,
+                 const size_t element_size,
+                 const size_t capacity) {
+  validate_with_errno_return(is_nonnull(vector));
+  validate_with_errno_return(is_nonzero(element_size));
 
-  if (likely(succeeded(result) && element_size > 0 && capacity > 0)) {
-    vector->data = calloc(capacity, element_size);
+  vector->element_size  = element_size;
+  vector->element_count = 0;
+  vector->capacity      = capacity;
+
+  if (is_nonzero(capacity)) {
+    vector->element_data = calloc(capacity, element_size);
+    if (is_null(vector->element_data)) {
+      return FAILURE(ENOMEM); /* out of memory */
+    }
   }
-  vector->element_size = element_size;
-  vector->capacity     = capacity;
-  vector->count        = 0;
 
-  return result;
+  return SUCCESS;
 }
 
 public int
-vector_dispose(vector_t* vector) {
-  validate_with_errno_return(vector != NULL);
+vector_dispose(vector_t* const restrict vector) {
+  validate_with_errno_return(is_nonnull(vector));
 
-  if (likely(vector->data != NULL)) {
-    free(vector->data);
-    vector->data = NULL;
+  vector->element_size  = 0;
+  vector->element_count = 0;
+  vector->capacity      = 0;
+
+  if (is_nonnull(vector->element_data)) {
+    free(vector->element_data);
+    vector->element_data = NULL;
   }
-  vector->element_size = 0;
-  vector->capacity     = 0;
-  vector->count        = 0;
 
   return SUCCESS;
 }
