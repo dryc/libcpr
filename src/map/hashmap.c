@@ -339,7 +339,7 @@ hashmap_iter_remove(map_iter_t* const restrict iter) {
     return FAILURE(EPERM); /* iteration not yet begun */
   }
 
-  if (index >= table->capacity) {
+  if (index > table->capacity) {
     return FAILURE(EPERM); /* iteration already ended */
   }
 
