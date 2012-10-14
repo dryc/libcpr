@@ -215,23 +215,33 @@ hashset_remove(hashset_t* const restrict set,
   hashset_table_t* const restrict table = set->instance;
   assert(is_nonnull(table));
 
+#if 0
+  fprintf(stderr, "hashset_remove: hash=%lu index_range=%zu..%zu\n",
+    (uint64_t)hash, hash & (table->capacity - 1), table->capacity - 1);
+#endif
   for (size_t index = hash & (table->capacity - 1); index < table->capacity; index++) {
     hashset_entry_t* const restrict entry = &table->entries[index];
 
+#if 0
     if (is_null(entry->elt)) {
-      break;
+      break; // FIXME: this logic was invalid in the presence of collisions.
     }
+#endif
 
     if (entry->elt == elt || (entry->hash == hash && compare_func(entry->elt, elt) == COMPARE_EQ)) {
       hashset_entry_dispose(entry, set->free_func);
       table->count--;
 #if 0
-      fprintf(stderr, "hashset_remove: element=%p removed at index=%zu (hash=%lu)\n", elt, index, (uint64_t)hash);
+      fprintf(stderr, "hashset_remove: element=%p removed at index=%zu (hash=%lu)\n",
+        elt, index, (uint64_t)hash);
 #endif
       return TRUE; /* element removed from set */
     }
   }
 
+#if 0
+  fprintf(stderr, "hashset_remove: element=%p not found\n", elt);
+#endif
   return FALSE; /* element not found in set */
 }
 
