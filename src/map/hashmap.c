@@ -237,9 +237,11 @@ hashmap_remove(hashmap_t* const restrict map,
   for (size_t index = hash & (table->capacity - 1); index < table->capacity; index++) {
     hashmap_entry_t* const restrict entry = &table->entries[index];
 
+#if 0
     if (is_null(entry->key)) {
-      break;
+      break; // FIXME: this logic was invalid in the presence of collisions.
     }
+#endif
 
     if (entry->key == key || (entry->hash == hash && compare_func(entry->key, key) == COMPARE_EQ)) {
       hashmap_entry_dispose(entry, map->free_key_func, map->free_value_func);
