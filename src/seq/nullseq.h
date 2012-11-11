@@ -20,7 +20,7 @@ nullseq_init(nullseq_t* const seq, va_list args) {
 }
 
 static int
-nullseq_reset(nullseq_t* const seq) {
+nullseq_dispose(nullseq_t* const seq) {
   (void)seq;
   return SUCCESS;
 }
@@ -73,7 +73,7 @@ nullseq_replace(nullseq_t* const restrict seq,
 const seq_vtable_t nullseq_vtable = {
   .base    = {.klass = &nullseq_class},
   .init    = nullseq_init,
-  .reset   = nullseq_reset,
+  .dispose = nullseq_dispose,
   .clear   = nullseq_clear,
   .length  = NULL,
   .count   = nullseq_count,

@@ -16,7 +16,7 @@ list_alloc() {
 public void
 list_free(list_t* const list) {
   validate_with_void_return(is_nonnull(list));
-  list_reset(list);
+  list_dispose(list);
   free(list);
 }
 
@@ -33,7 +33,7 @@ list_init_with(list_t* const restrict list,
 }
 
 public int
-list_reset(list_t* const list) {
+list_dispose(list_t* const list) {
   return list_clear(list);
 }
 
@@ -220,7 +220,7 @@ list_sort(list_t* const list, const seq_sort_type_t how) {
 public const seq_vtable_t list_vtable = {
   .base    = {.klass = &list_class},
   .init    = NULL,
-  .reset   = list_reset,
+  .dispose = list_dispose,
   .clear   = list_clear,
   .length  = list_length,
   .count   = list_count,

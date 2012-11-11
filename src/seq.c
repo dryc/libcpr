@@ -17,7 +17,7 @@ seq_alloc() {
 public void
 seq_free(seq_t* const seq) {
   validate_with_void_return(is_nonnull(seq));
-  seq_reset(seq);
+  seq_dispose(seq);
   free(seq);
 }
 
@@ -49,12 +49,12 @@ seq_init(seq_t* const restrict seq,
 }
 
 public int
-seq_reset(seq_t* const seq) {
+seq_dispose(seq_t* const seq) {
   validate_with_errno_return(is_nonnull(seq));
 
   const seq_vtable_t* const vtable = seq->vtable;
-  if (is_nonnull(vtable->reset)) {
-    return vtable->reset(seq);
+  if (is_nonnull(vtable->dispose)) {
+    return vtable->dispose(seq);
   }
 
 #ifndef NDEBUG

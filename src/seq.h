@@ -53,7 +53,7 @@ typedef struct seq_vtable_t {
   const comparable_vtable_t comparable;
   const iterable_vtable_t iterable;
   int (*init)(seq_t* seq, va_list args);
-  int (*reset)(seq_t* seq);
+  int (*dispose)(seq_t* seq);
   int (*clear)(seq_t* seq);
   long (*length)(seq_t* seq);
   long (*count)(seq_t* restrict seq,
@@ -94,7 +94,7 @@ extern int seq_init(seq_t* seq,
 /**
  * Resets a sequence back to an uninitialized state.
  */
-extern int seq_reset(seq_t* seq);
+extern int seq_dispose(seq_t* seq);
 
 /**
  * Removes all elements from a sequence.

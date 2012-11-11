@@ -66,7 +66,7 @@ extern int list_init_with(list_t* restrict list,
 /**
  * Resets a list back to an uninitialized state.
  */
-extern int list_reset(list_t* list);
+extern int list_dispose(list_t* list);
 
 /**
  * Removes all elements from a list.
