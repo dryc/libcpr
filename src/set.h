@@ -89,8 +89,8 @@ extern void set_free(set_t* set);
 /**
  * Initializes a set.
  */
-extern int set_init(set_t* restrict set,
-  const class_t* restrict klass,
+extern int set_init(set_t* set,
+  const class_t* klass,
   const hash_func_t hash_func,
   const compare_func_t compare_func,
   const free_func_t free_func, ...);
@@ -113,31 +113,31 @@ extern bool set_is_empty(const set_t* set);
 /**
  * Returns the cardinality of a set.
  */
-extern long set_count(set_t* restrict set,
-  const void* restrict elt);
+extern long set_count(set_t* set,
+  const void* elt);
 
 /**
  * Checks whether a set contains a given element.
  */
-extern bool set_lookup(set_t* restrict set,
-  const void* restrict elt);
+extern bool set_lookup(set_t* set,
+  const void* elt);
 
 /**
  * Inserts a given element into a set.
  */
-extern int set_insert(set_t* restrict set,
-  const void* restrict elt);
+extern int set_insert(set_t* set,
+  const void* elt);
 
 /**
  * Removes a given element from a set.
  */
-extern int set_remove(set_t* restrict set,
-  const void* restrict elt);
+extern int set_remove(set_t* set,
+  const void* elt);
 
 /**
  * Replaces a given element in a set with another element.
  */
-extern int set_replace(set_t* restrict set,
+extern int set_replace(set_t* set,
   const void* restrict elt1,
   const void* restrict elt2);
 

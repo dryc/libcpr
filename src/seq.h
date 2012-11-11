@@ -86,8 +86,8 @@ extern void seq_free(seq_t* seq);
 /**
  * Initializes a heap-allocated sequence.
  */
-extern int seq_init(seq_t* restrict seq,
-  const class_t* restrict klass,
+extern int seq_init(seq_t* seq,
+  const class_t* klass,
   const compare_func_t compare_func,
   const free_func_t free_func, ...);
 
@@ -114,31 +114,31 @@ extern long seq_length(seq_t* seq);
 /**
  * Counts occurrences of a given element in a sequence.
  */
-extern long seq_count(seq_t* restrict seq,
-  const void* restrict elt);
+extern long seq_count(seq_t* seq,
+  const void* elt);
 
 /**
  * Checks whether a sequence contains a given element.
  */
-extern bool seq_lookup(seq_t* restrict seq,
-  const void* restrict elt);
+extern bool seq_lookup(seq_t* seq,
+  const void* elt);
 
 /**
  * Inserts a given element into a sequence.
  */
-extern int seq_insert(seq_t* restrict seq,
-  const void* restrict elt);
+extern int seq_insert(seq_t* seq,
+  const void* elt);
 
 /**
  * Removes a given element from a sequence.
  */
-extern int seq_remove(seq_t* restrict seq,
-  const void* restrict elt);
+extern int seq_remove(seq_t* seq,
+  const void* elt);
 
 /**
  * Replaces a given element in a sequence with another element.
  */
-extern int seq_replace(seq_t* restrict seq,
+extern int seq_replace(seq_t* seq,
   const void* restrict elt1,
   const void* restrict elt2);
 

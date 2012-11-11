@@ -85,8 +85,8 @@ extern void map_free(map_t* map);
 /**
  * Initializes a map.
  */
-extern int map_init(map_t* restrict map,
-  const class_t* restrict klass,
+extern int map_init(map_t* map,
+  const class_t* klass,
   const hash_func_t hash_func,
   const compare_func_t compare_func,
   const free_func_t free_key_func,
@@ -110,28 +110,28 @@ extern bool map_is_empty(map_t* map);
 /**
  * Returns the number of key-value pairs in a map.
  */
-extern long map_count(map_t* restrict map,
-  const void* restrict key);
+extern long map_count(map_t* map,
+  const void* key);
 
 /**
  * Looks up a key-value pair in a map.
  */
-extern bool map_lookup(map_t* restrict map,
+extern bool map_lookup(map_t* map,
   const void* restrict key,
   void** restrict value);
 
 /**
  * Inserts a given key-value pair into a map.
  */
-extern int map_insert(map_t* restrict map,
+extern int map_insert(map_t* map,
   const void* restrict key,
   const void* restrict value);
 
 /**
  * Removes a given key-value pair from a map.
  */
-extern int map_remove(map_t* restrict map,
-  const void* restrict key);
+extern int map_remove(map_t* map,
+  const void* key);
 
 #ifdef __cplusplus
 } /* extern "C" */
