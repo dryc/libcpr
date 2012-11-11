@@ -1,22 +1,17 @@
-.. libcpr documentation master file, created by
-   sphinx-quickstart on Sun Nov 11 05:56:23 2012.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
-Welcome to libcpr's documentation!
-==================================
-
-Contents:
+``libcpr`` Manual
+=================
 
 .. toctree::
    :maxdepth: 2
 
+   installation
+   concepts
+   headers
+   interfaces
 
-
-Indices and tables
+Indices and Tables
 ==================
 
 * :ref:`genindex`
-* :ref:`modindex`
 * :ref:`search`
 
