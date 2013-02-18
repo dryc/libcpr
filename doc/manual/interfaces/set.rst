@@ -15,7 +15,7 @@ Sets (``set_t``)
 
    Releases the heap memory used by a set.
 
-.. c:function:: int set_init(set_t* set, const class_t* klass, const hash_func_t hash_func, const compare_func_t compare_func, const free_func_t free_func, ...)
+.. c:function:: int set_init(set_t* set, const class_t* klass, unsigned long element_size, const hash_func_t hash_func, const compare_func_t compare_func, const free_func_t free_func, ...)
 
    Initializes a set.
 

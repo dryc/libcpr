@@ -33,6 +33,7 @@ extern const class_t hashset_class;
 typedef struct set_t {
   const struct set_vtable_t* restrict vtable;
   void* instance;
+  unsigned long element_size;
   hash_func_t hash_func;
   compare_func_t compare_func;
   free_func_t free_func;
@@ -91,6 +92,7 @@ extern void set_free(set_t* set);
  */
 extern int set_init(set_t* set,
   const class_t* klass,
+  unsigned long element_size,
   const hash_func_t hash_func,
   const compare_func_t compare_func,
   const free_func_t free_func, ...);
