@@ -7,3 +7,7 @@
 #include "cpr/set.h"
 
 #include <set> /* for std::set */
+
+struct cpr_set : public std::set<void*> {
+  // TODO
+};

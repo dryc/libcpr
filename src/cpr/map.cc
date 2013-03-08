@@ -7,3 +7,7 @@
 #include "cpr/map.h"
 
 #include <map> /* for std::map */
+
+struct cpr_map : public std::map<void*, void*> {
+  // TODO
+};

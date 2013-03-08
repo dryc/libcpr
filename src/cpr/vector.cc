@@ -7,3 +7,7 @@
 #include "cpr/vector.h"
 
 #include <vector> /* for std::vector */
+
+struct cpr_vector : public std::vector<void*> {
+  // TODO
+};

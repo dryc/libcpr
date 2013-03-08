@@ -7,3 +7,7 @@
 #include "cpr/list.h"
 
 #include <list> /* for std::list */
+
+struct cpr_list : public std::list<void*> {
+  // TODO
+};

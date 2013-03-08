@@ -7,3 +7,7 @@
 #include "cpr/string.h"
 
 #include <string> /* for std::string */
+
+struct cpr_string : public std::string {
+  // TODO
+};
