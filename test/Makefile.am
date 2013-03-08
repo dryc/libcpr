@@ -4,13 +4,28 @@ LDADD       = $(top_srcdir)/src/cpr/libcpr.la
 
 check_PROGRAMS = \
   check_feature  \
-  check_list     \
-  check_map      \
   check_module   \
   check_prelude  \
-  check_set      \
-  check_string   \
-  check_vector   \
   check_version
+
+if !DISABLE_LIST
+  check_PROGRAMS += check_list
+endif
+
+if !DISABLE_MAP
+  check_PROGRAMS += check_map
+endif
+
+if !DISABLE_SET
+  check_PROGRAMS += check_set
+endif
+
+if !DISABLE_STRING
+  check_PROGRAMS += check_string
+endif
+
+if !DISABLE_VECTOR
+  check_PROGRAMS += check_vector
+endif
 
 TESTS = $(check_PROGRAMS)

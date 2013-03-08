@@ -41,6 +41,7 @@ LT_INIT
 AC_LANG([C++])
 
 dnl Check for configuration options:
+# --enable-debug/--disable-debug
 AC_ARG_ENABLE([debug],
   [AS_HELP_STRING([--enable-debug], [build with debugging support [default=yes]])],
   [], [enable_debug=yes])
@@ -48,6 +49,41 @@ AS_IF([test "x$enable_debug" != "xno"],
   [AC_DEFINE([DEBUG], [1], [Enable debugging support.])],
   [AC_DEFINE([NDEBUG], [1], [Disable assertions.])])
 AM_CONDITIONAL([ENABLE_DEBUG], [test "x$enable_debug" != "xno"])
+# --enable-list/--disable-list
+AC_ARG_ENABLE([list],
+  [AS_HELP_STRING([--disable-list], [do not include the list module])])
+AS_IF([test "x$enable_list" == "xno"], [
+  AC_DEFINE([DISABLE_LIST], 1, [Define to omit the <cpr/list.h> module.])
+])
+AM_CONDITIONAL([DISABLE_LIST], [test "x$enable_list" == "xno"])
+# --enable-map/--disable-map
+AC_ARG_ENABLE([map],
+  [AS_HELP_STRING([--disable-map], [do not include the map module])])
+AS_IF([test "x$enable_map" == "xno"], [
+  AC_DEFINE([DISABLE_MAP], 1, [Define to omit the <cpr/map.h> module.])
+])
+AM_CONDITIONAL([DISABLE_MAP], [test "x$enable_map" == "xno"])
+# --enable-set/--disable-set
+AC_ARG_ENABLE([set],
+  [AS_HELP_STRING([--disable-set], [do not include the set module])])
+AS_IF([test "x$enable_set" == "xno"], [
+  AC_DEFINE([DISABLE_SET], 1, [Define to omit the <cpr/set.h> module.])
+])
+AM_CONDITIONAL([DISABLE_SET], [test "x$enable_set" == "xno"])
+# --enable-string/--disable-string
+AC_ARG_ENABLE([string],
+  [AS_HELP_STRING([--disable-string], [do not include the string module])])
+AS_IF([test "x$enable_string" == "xno"], [
+  AC_DEFINE([DISABLE_STRING], 1, [Define to omit the <cpr/string.h> module.])
+])
+AM_CONDITIONAL([DISABLE_STRING], [test "x$enable_string" == "xno"])
+# --enable-vector/--disable-vector
+AC_ARG_ENABLE([vector],
+  [AS_HELP_STRING([--disable-vector], [do not include the vector module])])
+AS_IF([test "x$enable_vector" == "xno"], [
+  AC_DEFINE([DISABLE_VECTOR], 1, [Define to omit the <cpr/vector.h> module.])
+])
+AM_CONDITIONAL([DISABLE_VECTOR], [test "x$enable_vector" == "xno"])
 
 dnl Check for libraries:
 
