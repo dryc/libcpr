@@ -1,14 +1,44 @@
 Release 0.1.0
 -------------
 
-* To be defined.
+- Implement the <cpr/vector.h> interface.
 
 Release 0.2.0
 -------------
 
-* To be defined.
+- Implement the <cpr/set.h> interface.
+
+Release 0.3.0
+-------------
+
+- Implement the <cpr/map.h> interface.
+
+Release 0.4.0
+-------------
+
+- Implement the <cpr/list.h> interface.
+
+Release 0.5.0
+-------------
+
+- Implement the <cpr/string.h> interface.
+
+Release 1.0.0
+-------------
+
+- Implement the <cpr/list.h> interface.
+- Implement the <cpr/map.h> interface.
+- Implement the <cpr/set.h> interface.
+- Implement the <cpr/string.h> interface.
+- Implement the <cpr/vector.h> interface.
+
+Missing Functions
+-----------------
+
+- bool cpr_feature_enumerate(const char-- feature_name)
+- bool cpr_module_enumerate(const char-- module_name)
 
 Nice to Have
 ------------
 
-* Support --with-stdlib=libc++ and --with-stdlib=libstdc++ options.
+- Support --with-stdlib=libc++ and --with-stdlib=libstdc++ options.

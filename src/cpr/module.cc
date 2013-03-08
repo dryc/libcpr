@@ -9,6 +9,21 @@
 #include <cstring> /* for std::strcmp() */
 
 static const char* const cpr_module_names[] = {
+#ifndef DISABLE_LIST
+  "list",
+#endif
+#ifndef DISABLE_MAP
+  "map",
+#endif
+#ifndef DISABLE_SET
+  "set",
+#endif
+#ifndef DISABLE_STRING
+  "string",
+#endif
+#ifndef DISABLE_VECTOR
+  "vector",
+#endif
   nullptr
 };
 

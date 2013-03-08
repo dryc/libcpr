@@ -11,6 +11,12 @@ Headers
 
 Determines whether libcpr supports a given feature.
 
+``<cpr/list.h>``
+----------------
+
+``<cpr/map.h>``
+---------------
+
 ``<cpr/module.h>``
 ------------------
 
@@ -21,7 +27,16 @@ Determines whether libcpr includes a given module.
 ``<cpr/prelude.h>``
 -------------------
 
+``<cpr/set.h>``
+---------------
+
+``<cpr/string.h>``
+------------------
+
 ``<cpr/unsafe.h>``
+------------------
+
+``<cpr/vector.h>``
 ------------------
 
 ``<cpr/version.h>``

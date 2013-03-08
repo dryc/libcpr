@@ -9,7 +9,7 @@
    concepts
    headers
    macros
-   interfaces
+   classes
    utilities
    license
 
