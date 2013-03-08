@@ -1,0 +1,21 @@
+/* This is free and unencumbered software released into the public domain. */
+
+#ifndef CPR_VERSION_H
+#define CPR_VERSION_H
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#define CPR_VERSION_STRING "@PACKAGE_VERSION@"
+#define CPR_VERSION_MAJOR  @PACKAGE_VERSION_MAJOR@
+#define CPR_VERSION_MINOR  @PACKAGE_VERSION_MINOR@
+#define CPR_VERSION_PATCH  @PACKAGE_VERSION_PATCH@
+
+extern const char* const cpr_version_string;
+
+#ifdef __cplusplus
+} /* extern "C" */
+#endif
+
+#endif /* CPR_VERSION_H */

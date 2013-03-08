@@ -4,8 +4,8 @@
 .. toctree::
    :maxdepth: 2
 
-   introduction
-   installation
+   intro
+   install
    concepts
    headers
    macros

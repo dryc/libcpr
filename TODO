@@ -1,0 +1,14 @@
+Release 0.1.0
+-------------
+
+* To be defined.
+
+Release 0.2.0
+-------------
+
+* To be defined.
+
+Nice to Have
+------------
+
+* Support --with-stdlib=libc++ and --with-stdlib=libstdc++ options.
