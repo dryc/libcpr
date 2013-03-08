@@ -98,6 +98,7 @@ AC_CANONICAL_HOST
 AC_C_BIGENDIAN
 AC_C_INLINE
 AC_C_RESTRICT
+AX_CXX_COMPILE_STDCXX_11([noext])
 
 dnl Check for library functions:
 
