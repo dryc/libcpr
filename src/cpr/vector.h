@@ -16,6 +16,10 @@ typedef struct cpr_vector cpr_vector_t;
  */
 extern const size_t cpr_vector_sizeof;
 
+cpr_vector_t* cpr_vector_alloc(void);
+
+void cpr_vector_free(cpr_vector_t* vector);
+
 #ifdef __cplusplus
 } /* extern "C" */
 #endif

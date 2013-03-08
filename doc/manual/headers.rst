@@ -30,6 +30,10 @@ Determines whether libcpr supports a given feature.
 
 The size of the :c:type:`cpr_list_t` opaque type, i.e., ``sizeof(cpr_list_t)``.
 
+.. c:function:: cpr_list_t* cpr_list_alloc(void)
+
+.. c:function:: void cpr_list_free(cpr_list_t* list)
+
 ``<cpr/map.h>``
 ---------------
 
@@ -38,6 +42,10 @@ The size of the :c:type:`cpr_list_t` opaque type, i.e., ``sizeof(cpr_list_t)``.
 .. c:var:: const size_t cpr_map_sizeof
 
 The size of the :c:type:`cpr_map_t` opaque type, i.e., ``sizeof(cpr_map_t)``.
+
+.. c:function:: cpr_map_t* cpr_map_alloc(void)
+
+.. c:function:: void cpr_map_free(cpr_map_t* map)
 
 ``<cpr/module.h>``
 ------------------
@@ -58,6 +66,10 @@ Determines whether libcpr includes a given module.
 
 The size of the :c:type:`cpr_set_t` opaque type, i.e., ``sizeof(cpr_set_t)``.
 
+.. c:function:: cpr_set_t* cpr_set_alloc(void)
+
+.. c:function:: void cpr_set_free(cpr_set_t* set)
+
 ``<cpr/string.h>``
 ------------------
 
@@ -66,6 +78,10 @@ The size of the :c:type:`cpr_set_t` opaque type, i.e., ``sizeof(cpr_set_t)``.
 .. c:var:: const size_t cpr_string_sizeof
 
 The size of the :c:type:`cpr_string_t` opaque type, i.e., ``sizeof(cpr_string_t)``.
+
+.. c:function:: cpr_string_t* cpr_string_alloc(void)
+
+.. c:function:: void cpr_string_free(cpr_string_t* string)
 
 ``<cpr/unsafe.h>``
 ------------------
@@ -78,6 +94,10 @@ The size of the :c:type:`cpr_string_t` opaque type, i.e., ``sizeof(cpr_string_t)
 .. c:var:: const size_t cpr_vector_sizeof
 
 The size of the :c:type:`cpr_vector_t` opaque type, i.e., ``sizeof(cpr_vector_t)``.
+
+.. c:function:: cpr_vector_t* cpr_vector_alloc(void)
+
+.. c:function:: void cpr_vector_free(cpr_vector_t* vector)
 
 ``<cpr/version.h>``
 -------------------

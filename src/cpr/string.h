@@ -16,6 +16,10 @@ typedef struct cpr_string cpr_string_t;
  */
 extern const size_t cpr_string_sizeof;
 
+cpr_string_t* cpr_string_alloc(void);
+
+void cpr_string_free(cpr_string_t* string);
+
 #ifdef __cplusplus
 } /* extern "C" */
 #endif

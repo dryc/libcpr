@@ -16,6 +16,10 @@ typedef struct cpr_set cpr_set_t;
  */
 extern const size_t cpr_set_sizeof;
 
+cpr_set_t* cpr_set_alloc(void);
+
+void cpr_set_free(cpr_set_t* set);
+
 #ifdef __cplusplus
 } /* extern "C" */
 #endif

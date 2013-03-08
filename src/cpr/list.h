@@ -16,6 +16,10 @@ typedef struct cpr_list cpr_list_t;
  */
 extern const size_t cpr_list_sizeof;
 
+cpr_list_t* cpr_list_alloc(void);
+
+void cpr_list_free(cpr_list_t* list);
+
 #ifdef __cplusplus
 } /* extern "C" */
 #endif
