@@ -11,3 +11,5 @@
 struct cpr_map : public std::map<void*, void*> {
   // TODO
 };
+
+extern const size_t cpr_map_sizeof = sizeof(cpr_map);

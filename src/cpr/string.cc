@@ -11,3 +11,5 @@
 struct cpr_string : public std::string {
   // TODO
 };
+
+extern const size_t cpr_string_sizeof = sizeof(cpr_string);

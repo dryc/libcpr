@@ -11,3 +11,5 @@
 struct cpr_vector : public std::vector<void*> {
   // TODO
 };
+
+extern const size_t cpr_vector_sizeof = sizeof(cpr_vector);

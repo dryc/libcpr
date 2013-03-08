@@ -11,3 +11,5 @@
 struct cpr_set : public std::set<void*> {
   // TODO
 };
+
+extern const size_t cpr_set_sizeof = sizeof(cpr_set);

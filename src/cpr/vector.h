@@ -7,7 +7,14 @@
 extern "C" {
 #endif
 
+#include <stddef.h> /* for size_t */
+
 typedef struct cpr_vector cpr_vector_t;
+
+/**
+ * The size of the cpr_vector_t opaque type, i.e., sizeof(cpr_vector_t).
+ */
+extern const size_t cpr_vector_sizeof;
 
 #ifdef __cplusplus
 } /* extern "C" */
