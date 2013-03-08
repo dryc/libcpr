@@ -7,6 +7,13 @@
 extern "C" {
 #endif
 
+#include <stdbool.h> /* for bool */
+
+/**
+ * Determines whether libcpr includes a given module.
+ */
+bool cpr_module_exists(const char* module_name);
+
 #ifdef __cplusplus
 } /* extern "C" */
 #endif
