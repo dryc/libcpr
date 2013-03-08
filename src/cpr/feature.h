@@ -7,6 +7,13 @@
 extern "C" {
 #endif
 
+#include <stdbool.h> /* for bool */
+
+/**
+ * Determines whether libcpr supports a given feature.
+ */
+bool cpr_feature_exists(const char* feature_name);
+
 #ifdef __cplusplus
 } /* extern "C" */
 #endif
