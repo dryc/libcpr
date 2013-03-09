@@ -35,6 +35,10 @@ Returns a direct pointer to a vector's internal memory array.
 
 Returns a pointer to the element at the given position in a vector.
 
+.. c:function:: void cpr_vector_reserve(cpr_vector_t* vector, size_t capacity)
+
+Adjusts the minimum capacity of a vector, allocating storage if necessary.
+
 .. c:function:: void cpr_vector_clear(cpr_vector_t* vector)
 
 Removes all elements from a vector, leaving its size zero.

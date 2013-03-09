@@ -9,7 +9,7 @@
 #include <cerrno>       /* for errno */
 #include <cstdlib>      /* for std::calloc(), std::free() */
 #include <new>          /* for std::bad_alloc */
-#include <stdexcept>    /* for std::out_of_range */
+#include <stdexcept>    /* for std::length_error, std::out_of_range */
 #include <system_error> /* for std::errc */
 #include <vector>       /* for std::vector */
 
@@ -87,6 +87,17 @@ cpr_vector_at(const cpr_vector* const vector,
   catch (const std::out_of_range& error) {
     errno = static_cast<int>(std::errc::argument_out_of_domain); /* EDOM */
     return nullptr;
+  }
+}
+
+void
+cpr_vector_reserve(cpr_vector* const vector,
+                   const size_t capacity) {
+  try {
+    vector->reserve(capacity);
+  }
+  catch (const std::length_error& error) {
+    errno = static_cast<int>(std::errc::invalid_argument); /* EINVAL */
   }
 }
 

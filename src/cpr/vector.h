@@ -52,6 +52,12 @@ void* cpr_vector_at(const cpr_vector_t* vector,
   size_t position);
 
 /**
+ * Adjusts the minimum capacity of a vector, allocating storage if necessary.
+ */
+void cpr_vector_reserve(cpr_vector_t* vector,
+  size_t capacity);
+
+/**
  * Removes all elements from a vector, leaving its size zero.
  */
 void cpr_vector_clear(cpr_vector_t* vector);
