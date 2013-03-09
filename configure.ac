@@ -101,6 +101,7 @@ AC_C_RESTRICT
 AX_CXX_COMPILE_STDCXX_11([noext])
 
 dnl Check for library functions:
+AC_FUNC_ALLOCA
 
 dnl Check for system services:
 

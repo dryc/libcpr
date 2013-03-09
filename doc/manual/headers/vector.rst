@@ -11,6 +11,8 @@ The size of the :c:type:`cpr_vector_t` opaque type, i.e., ``sizeof(cpr_vector_t)
 
 .. c:function:: cpr_vector_t* cpr_vector_alloc(void)
 
+Returns a pointer to a new heap-allocated ``cpr_vector_t`` structure.
+
 .. c:function:: void cpr_vector_free(cpr_vector_t* vector)
 
 .. c:function:: void cpr_vector_init(cpr_vector_t* vector)

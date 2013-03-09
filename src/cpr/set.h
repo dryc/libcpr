@@ -20,7 +20,7 @@ typedef struct cpr_set cpr_set_t;
 extern const size_t cpr_set_sizeof;
 
 /**
- * ...
+ * Returns a pointer to a new heap-allocated cpr_set_t structure.
  */
 cpr_set_t* cpr_set_alloc(void);
 

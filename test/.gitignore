@@ -11,5 +11,6 @@ check_map
 check_module
 check_set
 check_string
+check_unsafe
 check_vector
 check_version

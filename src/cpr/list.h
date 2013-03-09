@@ -20,7 +20,7 @@ typedef struct cpr_list cpr_list_t;
 extern const size_t cpr_list_sizeof;
 
 /**
- * ...
+ * Returns a pointer to a new heap-allocated cpr_list_t structure.
  */
 cpr_list_t* cpr_list_alloc(void);
 

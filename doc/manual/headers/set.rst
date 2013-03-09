@@ -11,4 +11,6 @@ The size of the :c:type:`cpr_set_t` opaque type, i.e., ``sizeof(cpr_set_t)``.
 
 .. c:function:: cpr_set_t* cpr_set_alloc(void)
 
+Returns a pointer to a new heap-allocated ``cpr_set_t`` structure.
+
 .. c:function:: void cpr_set_free(cpr_set_t* set)

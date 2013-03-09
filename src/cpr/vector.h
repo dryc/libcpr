@@ -21,7 +21,7 @@ typedef struct cpr_vector cpr_vector_t;
 extern const size_t cpr_vector_sizeof;
 
 /**
- * ...
+ * Returns a pointer to a new heap-allocated cpr_vector_t structure.
  */
 cpr_vector_t* cpr_vector_alloc(void);
 

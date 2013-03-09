@@ -20,7 +20,7 @@ typedef struct cpr_map cpr_map_t;
 extern const size_t cpr_map_sizeof;
 
 /**
- * ...
+ * Returns a pointer to a new heap-allocated cpr_map_t structure.
  */
 cpr_map_t* cpr_map_alloc(void);
 

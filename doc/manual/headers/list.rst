@@ -11,4 +11,6 @@ The size of the :c:type:`cpr_list_t` opaque type, i.e., ``sizeof(cpr_list_t)``.
 
 .. c:function:: cpr_list_t* cpr_list_alloc(void)
 
+Returns a pointer to a new heap-allocated ``cpr_list_t`` structure.
+
 .. c:function:: void cpr_list_free(cpr_list_t* list)

@@ -5,6 +5,7 @@ LDADD       = $(top_srcdir)/src/cpr/libcpr.la
 check_PROGRAMS = \
   check_feature  \
   check_module   \
+  check_unsafe   \
   check_version
 
 if !DISABLE_LIST
