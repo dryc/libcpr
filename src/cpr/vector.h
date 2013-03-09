@@ -24,6 +24,11 @@ void cpr_vector_init(cpr_vector_t* vector);
 
 void cpr_vector_dispose(cpr_vector_t* vector);
 
+/**
+ * Returns the number of elements in a vector.
+ */
+size_t cpr_vector_size(const cpr_vector_t* vector);
+
 #ifdef __cplusplus
 } /* extern "C" */
 #endif

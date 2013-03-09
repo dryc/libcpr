@@ -103,6 +103,10 @@ The size of the :c:type:`cpr_vector_t` opaque type, i.e., ``sizeof(cpr_vector_t)
 
 .. c:function:: void cpr_vector_dispose(cpr_vector_t* vector)
 
+.. c:function:: size_t cpr_vector_size(const cpr_vector_t* vector)
+
+Returns the number of elements in a vector.
+
 ``<cpr/version.h>``
 -------------------
 
