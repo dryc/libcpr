@@ -52,6 +52,16 @@ void* cpr_vector_at(const cpr_vector_t* vector,
   size_t position);
 
 /**
+ * Returns a pointer to the first element in a vector.
+ */
+void* cpr_vector_front(const cpr_vector_t* vector);
+
+/**
+ * Returns a pointer to the last element in a vector.
+ */
+void* cpr_vector_back(const cpr_vector_t* vector);
+
+/**
  * Adjusts the minimum capacity of a vector, allocating storage if necessary.
  */
 void cpr_vector_reserve(cpr_vector_t* vector,

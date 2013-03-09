@@ -31,9 +31,17 @@ Returns the number of elements that a vector has allocated space for.
 
 Returns a direct pointer to a vector's internal memory array.
 
-.. c:function:: void* cpr_vector_at(cpr_vector_t* vector, size_t position);
+.. c:function:: void* cpr_vector_at(cpr_vector_t* vector, size_t position)
 
 Returns a pointer to the element at the given position in a vector.
+
+.. c:function:: void* cpr_vector_front(const cpr_vector_t* vector)
+
+Returns a pointer to the first element in a vector.
+
+.. c:function:: void* cpr_vector_back(const cpr_vector_t* vector)
+
+Returns a pointer to the last element in a vector.
 
 .. c:function:: void cpr_vector_reserve(cpr_vector_t* vector, size_t capacity)
 
