@@ -42,18 +42,30 @@ bool
 cpr_vector_empty(const cpr_vector* const vector) {
   /* Guaranteed to never throw an exception: */
   return vector->empty();
+#ifdef DEBUG
+  static_assert(noexcept(vector->empty()),
+    "std::vector::empty() declaration is missing the noexcept specifier");
+#endif
 }
 
 size_t
 cpr_vector_size(const cpr_vector* const vector) {
   /* Guaranteed to never throw an exception: */
   return vector->size();
+#ifdef DEBUG
+  static_assert(noexcept(vector->size()),
+    "std::vector::size() declaration is missing the noexcept specifier");
+#endif
 }
 
 void*
 cpr_vector_data(const cpr_vector* const vector) {
   /* Guaranteed to never throw an exception: */
   return const_cast<cpr_vector*>(vector)->data();
+#ifdef DEBUG
+  static_assert(noexcept(vector->data()),
+    "std::vector::data() declaration is missing the noexcept specifier");
+#endif
 }
 
 void*
@@ -72,6 +84,10 @@ void
 cpr_vector_clear(cpr_vector* const vector) {
   /* Guaranteed to never throw an exception: */
   vector->clear();
+#ifdef DEBUG
+  static_assert(noexcept(vector->clear()),
+    "std::vector::clear() declaration is missing the noexcept specifier");
+#endif
 }
 
 void
@@ -96,4 +112,8 @@ cpr_vector_pop_back(cpr_vector* const vector) {
   }
   /* Guaranteed to never throw an exception: */
   vector->pop_back();
+#if 0
+  static_assert(noexcept(vector->pop_back()),
+    "std::vector::pop_back() declaration is missing the noexcept specifier");
+#endif
 }
