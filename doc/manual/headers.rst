@@ -54,9 +54,6 @@ The size of the :c:type:`cpr_map_t` opaque type, i.e., ``sizeof(cpr_map_t)``.
 
 Determines whether libcpr includes a given module.
 
-``<cpr/prelude.h>``
--------------------
-
 ``<cpr/set.h>``
 ---------------
 

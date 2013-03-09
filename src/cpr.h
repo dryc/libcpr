@@ -13,8 +13,6 @@ extern "C" {
  * @see http://libcpr.org/
  */
 
-#include "cpr/prelude.h"
-
 #include "cpr/feature.h"
 #include "cpr/module.h"
 #include "cpr/version.h"

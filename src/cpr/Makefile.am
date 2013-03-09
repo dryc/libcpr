@@ -14,7 +14,6 @@ base_pkgincludedir = $(includedir)/cpr
 base_pkginclude_HEADERS = \
   feature.h               \
   module.h                \
-  prelude.h               \
   unsafe.h                \
   version.h
 
