@@ -1,14 +1,6 @@
 Installation
 ============
 
-::
-
-    $ ./autogen.sh
-    $ ./configure
-    $ make
-    $ sudo make install
-    $ sudo ldconfig             # on Linux
-
 .. toctree::
    :maxdepth: 2
 

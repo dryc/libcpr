@@ -1,5 +1,5 @@
-``<cpr/feature.h>``
-===================
+``cpr_feature_exists()``
+========================
 
 .. c:function:: bool cpr_feature_exists(const char* feature_name)
 

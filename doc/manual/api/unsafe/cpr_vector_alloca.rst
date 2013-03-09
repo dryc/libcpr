@@ -1,5 +1,5 @@
-``<cpr/unsafe.h>``
-==================
+``cpr_vector_alloca()``
+=======================
 
 .. c:function:: cpr_vector_t* cpr_vector_alloca(void)
 

@@ -9,12 +9,14 @@
    concepts
    macros
    classes
-   utilities
-   ref
+   api
+   abi
+   faq
+   contrib
    license
 
 Indices and Tables
-==================
+------------------
 
 * :ref:`genindex`
 * :ref:`search`
