@@ -9,6 +9,7 @@
 #include <cstring> /* for std::strcmp() */
 
 static const char* const cpr_module_names[] = {
+/*
 #ifndef DISABLE_LIST
   "list",
 #endif
@@ -21,6 +22,7 @@ static const char* const cpr_module_names[] = {
 #ifndef DISABLE_STRING
   "string",
 #endif
+*/
 #ifndef DISABLE_VECTOR
   "vector",
 #endif
