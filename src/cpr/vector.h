@@ -36,6 +36,11 @@ bool cpr_vector_empty(const cpr_vector_t* vector);
 size_t cpr_vector_size(const cpr_vector_t* vector);
 
 /**
+ * Returns a direct pointer to a vector's internal memory array.
+ */
+void* cpr_vector_data(const cpr_vector_t* vector);
+
+/**
  * Returns a pointer to the element at the given position in a vector.
  */
 void* cpr_vector_at(const cpr_vector_t* vector,

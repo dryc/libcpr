@@ -34,17 +34,26 @@ cpr_vector_init(cpr_vector* const vector) {
 
 void
 cpr_vector_dispose(cpr_vector* const vector) {
-  vector->~cpr_vector(); /* guaranteed to never throw an exception */
+  /* Guaranteed to never throw an exception: */
+  vector->~cpr_vector();
 }
 
 bool
 cpr_vector_empty(const cpr_vector* const vector) {
-  return vector->empty(); /* guaranteed to never throw an exception */
+  /* Guaranteed to never throw an exception: */
+  return vector->empty();
 }
 
 size_t
 cpr_vector_size(const cpr_vector* const vector) {
-  return vector->size(); /* guaranteed to never throw an exception */
+  /* Guaranteed to never throw an exception: */
+  return vector->size();
+}
+
+void*
+cpr_vector_data(const cpr_vector* const vector) {
+  /* Guaranteed to never throw an exception: */
+  return const_cast<cpr_vector*>(vector)->data();
 }
 
 void*
@@ -61,7 +70,8 @@ cpr_vector_at(const cpr_vector* const vector,
 
 void
 cpr_vector_clear(cpr_vector* const vector) {
-  vector->clear(); /* guaranteed to never throw an exception */
+  /* Guaranteed to never throw an exception: */
+  vector->clear();
 }
 
 void
@@ -84,5 +94,6 @@ cpr_vector_pop_back(cpr_vector* const vector) {
     errno = static_cast<int>(std::errc::bad_address); /* EFAULT */
     return;
   }
-  vector->pop_back(); /* guaranteed to never throw an exception */
+  /* Guaranteed to never throw an exception: */
+  vector->pop_back();
 }

@@ -108,6 +108,10 @@ Tests whether a vector is empty, i.e., whether its size is 0.
 
 Returns the number of elements in a vector.
 
+.. c:function:: void* cpr_vector_data(const cpr_vector_t* vector)
+
+Returns a direct pointer to a vector's internal memory array.
+
 .. c:function:: void* cpr_vector_at(cpr_vector_t* vector, size_t position);
 
 Returns a pointer to the element at the given position in a vector.
