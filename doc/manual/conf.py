@@ -209,9 +209,9 @@ latex_documents = [
 
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
+man_author = ['Arto Bendiken <arto@bendiken.net>']
 man_pages = [
-    ('index', 'libcpr', u'libcpr Documentation',
-     [u'Arto Bendiken'], 7)
+  ('man/libcpr', 'libcpr', 'Standard library supplement for C', man_author, 3),
 ]
 
 # If true, show URL addresses after external links.
