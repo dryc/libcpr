@@ -111,6 +111,10 @@ Tests whether a vector is empty, i.e., whether its size is 0.
 
 Returns the number of elements in a vector.
 
+.. c:function:: void cpr_vector_clear(cpr_vector_t* vector)
+
+Removes all elements from a vector, leaving its size 0.
+
 ``<cpr/version.h>``
 -------------------
 

@@ -32,15 +32,20 @@ cpr_vector_init(cpr_vector* const vector) {
 
 void
 cpr_vector_dispose(cpr_vector* const vector) {
-  vector->~cpr_vector();
+  vector->~cpr_vector(); /* guaranteed to never throw an exception */
 }
 
 bool
 cpr_vector_empty(const cpr_vector* const vector) {
-  return vector->empty();
+  return vector->empty(); /* guaranteed to never throw an exception */
 }
 
 size_t
 cpr_vector_size(const cpr_vector* const vector) {
-  return vector->size();
+  return vector->size(); /* guaranteed to never throw an exception */
+}
+
+void
+cpr_vector_clear(cpr_vector* const vector) {
+  vector->clear(); /* guaranteed to never throw an exception */
 }

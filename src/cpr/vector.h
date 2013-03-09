@@ -35,6 +35,11 @@ bool cpr_vector_empty(const cpr_vector_t* vector);
  */
 size_t cpr_vector_size(const cpr_vector_t* vector);
 
+/**
+ * Removes all elements from a vector, leaving its size 0.
+ */
+void cpr_vector_clear(cpr_vector_t* vector);
+
 #ifdef __cplusplus
 } /* extern "C" */
 #endif
