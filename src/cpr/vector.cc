@@ -35,6 +35,11 @@ cpr_vector_dispose(cpr_vector* const vector) {
   vector->~cpr_vector();
 }
 
+bool
+cpr_vector_empty(const cpr_vector* const vector) {
+  return vector->empty();
+}
+
 size_t
 cpr_vector_size(const cpr_vector* const vector) {
   return vector->size();

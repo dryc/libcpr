@@ -7,7 +7,8 @@
 extern "C" {
 #endif
 
-#include <stddef.h> /* for size_t */
+#include <stdbool.h> /* for bool */
+#include <stddef.h>  /* for size_t */
 
 typedef struct cpr_vector cpr_vector_t;
 
@@ -23,6 +24,11 @@ void cpr_vector_free(cpr_vector_t* vector);
 void cpr_vector_init(cpr_vector_t* vector);
 
 void cpr_vector_dispose(cpr_vector_t* vector);
+
+/**
+ * Tests whether a vector is empty, i.e., whether its size is 0.
+ */
+bool cpr_vector_empty(const cpr_vector_t* vector);
 
 /**
  * Returns the number of elements in a vector.
