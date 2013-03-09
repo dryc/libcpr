@@ -23,6 +23,10 @@ Tests whether a vector is empty, i.e., whether its size is 0.
 
 Returns the number of elements in a vector.
 
+.. c:function:: size_t cpr_vector_capacity(const cpr_vector_t* vector)
+
+Returns the number of elements that a vector has allocated space for.
+
 .. c:function:: void* cpr_vector_data(const cpr_vector_t* vector)
 
 Returns a direct pointer to a vector's internal memory array.

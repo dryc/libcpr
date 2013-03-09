@@ -58,6 +58,16 @@ cpr_vector_size(const cpr_vector* const vector) {
 #endif
 }
 
+size_t
+cpr_vector_capacity(const cpr_vector* const vector) {
+  /* Guaranteed to never throw an exception: */
+  return vector->capacity();
+#ifdef DEBUG
+  static_assert(noexcept(vector->capacity()),
+    "std::vector::capacity() declaration is missing the noexcept specifier");
+#endif
+}
+
 void*
 cpr_vector_data(const cpr_vector* const vector) {
   /* Guaranteed to never throw an exception: */
