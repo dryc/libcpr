@@ -36,6 +36,12 @@ bool cpr_vector_empty(const cpr_vector_t* vector);
 size_t cpr_vector_size(const cpr_vector_t* vector);
 
 /**
+ * Returns a pointer to the element at the given position in a vector.
+ */
+void* cpr_vector_at(const cpr_vector_t* vector,
+  size_t position);
+
+/**
  * Removes all elements from a vector, leaving its size zero.
  */
 void cpr_vector_clear(cpr_vector_t* vector);

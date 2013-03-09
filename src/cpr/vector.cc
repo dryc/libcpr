@@ -6,10 +6,11 @@
 
 #include "cpr/vector.h"
 
-#include <cerrno>  /* for errno */
-#include <cstdlib> /* for std::calloc(), std::free() */
-#include <new>     /* for std::bad_alloc */
-#include <vector>  /* for std::vector */
+#include <cerrno>    /* for errno */
+#include <cstdlib>   /* for std::calloc(), std::free() */
+#include <new>       /* for std::bad_alloc */
+#include <stdexcept> /* for std::out_of_range */
+#include <vector>    /* for std::vector */
 
 struct cpr_vector : public std::vector<void*> {
   // TODO
@@ -47,6 +48,18 @@ cpr_vector_size(const cpr_vector* const vector) {
   return vector->size(); /* guaranteed to never throw an exception */
 }
 
+void*
+cpr_vector_at(const cpr_vector* const vector,
+              const size_t position) {
+  try {
+    return vector->at(position);
+  }
+  catch (const std::out_of_range& error) {
+    errno = EDOM; /* out of domain */
+    return nullptr;
+  }
+}
+
 void
 cpr_vector_clear(cpr_vector* const vector) {
   vector->clear(); /* guaranteed to never throw an exception */
@@ -58,7 +71,7 @@ cpr_vector_push_back(cpr_vector* const vector,
   try {
     vector->push_back(const_cast<void*>(element));
   }
-  catch (const std::bad_alloc& e) {
+  catch (const std::bad_alloc& error) {
     errno = ENOMEM; /* out of memory */
   }
 }
