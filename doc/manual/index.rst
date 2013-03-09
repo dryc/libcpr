@@ -7,10 +7,10 @@
    intro
    install
    concepts
-   headers
    macros
    classes
    utilities
+   ref
    license
 
 Indices and Tables
