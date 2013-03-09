@@ -20,6 +20,10 @@ cpr_vector_t* cpr_vector_alloc(void);
 
 void cpr_vector_free(cpr_vector_t* vector);
 
+void cpr_vector_init(cpr_vector_t* vector);
+
+void cpr_vector_dispose(cpr_vector_t* vector);
+
 #ifdef __cplusplus
 } /* extern "C" */
 #endif

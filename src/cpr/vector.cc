@@ -13,14 +13,24 @@ struct cpr_vector : public std::vector<void*> {
   // TODO
 };
 
-extern const size_t cpr_vector_sizeof = sizeof(cpr_vector_t);
+extern const size_t cpr_vector_sizeof = sizeof(cpr_vector);
 
-cpr_vector_t*
+cpr_vector*
 cpr_vector_alloc(void) {
-  return reinterpret_cast<cpr_vector_t*>(std::calloc(1, sizeof(cpr_vector_t)));
+  return reinterpret_cast<cpr_vector*>(std::calloc(1, sizeof(cpr_vector)));
 }
 
 void
-cpr_vector_free(cpr_vector_t* const vector) {
+cpr_vector_free(cpr_vector* const vector) {
   std::free(vector);
+}
+
+void
+cpr_vector_init(cpr_vector* const vector) {
+  new(vector) cpr_vector();
+}
+
+void
+cpr_vector_dispose(cpr_vector* const vector) {
+  vector->~cpr_vector();
 }

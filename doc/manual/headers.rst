@@ -99,6 +99,10 @@ The size of the :c:type:`cpr_vector_t` opaque type, i.e., ``sizeof(cpr_vector_t)
 
 .. c:function:: void cpr_vector_free(cpr_vector_t* vector)
 
+.. c:function:: void cpr_vector_init(cpr_vector_t* vector)
+
+.. c:function:: void cpr_vector_dispose(cpr_vector_t* vector)
+
 ``<cpr/version.h>``
 -------------------
 
