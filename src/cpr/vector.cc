@@ -6,7 +6,9 @@
 
 #include "cpr/vector.h"
 
+#include <cerrno>  /* for errno */
 #include <cstdlib> /* for std::calloc(), std::free() */
+#include <new>     /* for std::bad_alloc */
 #include <vector>  /* for std::vector */
 
 struct cpr_vector : public std::vector<void*> {
@@ -27,7 +29,7 @@ cpr_vector_free(cpr_vector* const vector) {
 
 void
 cpr_vector_init(cpr_vector* const vector) {
-  new(vector) cpr_vector();
+  new(vector) cpr_vector(); // TODO: handle exceptions?
 }
 
 void
@@ -48,4 +50,15 @@ cpr_vector_size(const cpr_vector* const vector) {
 void
 cpr_vector_clear(cpr_vector* const vector) {
   vector->clear(); /* guaranteed to never throw an exception */
+}
+
+void
+cpr_vector_push_back(cpr_vector* const vector,
+                     const void* const element) {
+  try {
+    vector->push_back(const_cast<void*>(element));
+  }
+  catch (const std::bad_alloc& e) {
+    errno = ENOMEM; /* out of memory */
+  }
 }

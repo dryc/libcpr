@@ -40,6 +40,13 @@ size_t cpr_vector_size(const cpr_vector_t* vector);
  */
 void cpr_vector_clear(cpr_vector_t* vector);
 
+/**
+ * Adds a new element at the end of a vector, after its current last
+ * element.
+ */
+void cpr_vector_push_back(cpr_vector_t* vector,
+  const void* element);
+
 #ifdef __cplusplus
 } /* extern "C" */
 #endif

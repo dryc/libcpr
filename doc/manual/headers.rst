@@ -115,6 +115,10 @@ Returns the number of elements in a vector.
 
 Removes all elements from a vector, leaving its size 0.
 
+.. c:function:: void cpr_vector_push_back(cpr_vector_t* vector, const void* element)
+
+Adds a new element at the end of a vector, after its current last element.
+
 ``<cpr/version.h>``
 -------------------
 
