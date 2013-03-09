@@ -6,6 +6,7 @@
 
 #include "cpr/feature.h"
 
+#include <cassert> /* for assert() */
 #include <cstring> /* for std::strcmp() */
 
 static const char* const cpr_feature_names[] = {
@@ -21,10 +22,15 @@ static const unsigned int cpr_feature_count =
 
 bool
 cpr_feature_exists(const char* const feature_name) {
-  for (unsigned int index = 0; index < cpr_feature_count; index++) {
-    if (std::strcmp(feature_name, cpr_feature_names[index]) == 0) {
-      return true; /* found */
+  assert(feature_name != nullptr);
+
+  if (feature_name != nullptr) {
+    for (unsigned int index = 0; index < cpr_feature_count; index++) {
+      if (std::strcmp(feature_name, cpr_feature_names[index]) == 0) {
+        return true; /* found */
+      }
     }
   }
+
   return false; /* not found */
 }

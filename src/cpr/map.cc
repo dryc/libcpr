@@ -8,8 +8,6 @@
 
 #include <map> /* for std::map */
 
-struct cpr_map : public std::map<void*, void*> {
-  // TODO
-};
+struct cpr_map : public std::map<void*, void*> {};
 
 extern const size_t cpr_map_sizeof = sizeof(cpr_map);

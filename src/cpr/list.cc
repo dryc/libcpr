@@ -8,8 +8,6 @@
 
 #include <list> /* for std::list */
 
-struct cpr_list : public std::list<void*> {
-  // TODO
-};
+struct cpr_list : public std::list<void*> {};
 
 extern const size_t cpr_list_sizeof = sizeof(cpr_list);

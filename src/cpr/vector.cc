@@ -6,6 +6,7 @@
 
 #include "cpr/vector.h"
 
+#include <cassert>      /* for assert() */
 #include <cerrno>       /* for errno */
 #include <cstdlib>      /* for std::calloc(), std::free() */
 #include <new>          /* for std::bad_alloc */
@@ -29,17 +30,23 @@ cpr_vector_free(cpr_vector* const vector) {
 
 void
 cpr_vector_init(cpr_vector* const vector) {
+  assert(vector != nullptr);
+
   new(vector) cpr_vector(); // TODO: handle exceptions?
 }
 
 void
 cpr_vector_dispose(cpr_vector* const vector) {
+  assert(vector != nullptr);
+
   /* Guaranteed to never throw an exception: */
   vector->~cpr_vector();
 }
 
 bool
 cpr_vector_empty(const cpr_vector* const vector) {
+  assert(vector != nullptr);
+
   /* Guaranteed to never throw an exception: */
   return vector->empty();
 #ifdef DEBUG
@@ -50,6 +57,8 @@ cpr_vector_empty(const cpr_vector* const vector) {
 
 size_t
 cpr_vector_size(const cpr_vector* const vector) {
+  assert(vector != nullptr);
+
   /* Guaranteed to never throw an exception: */
   return vector->size();
 #ifdef DEBUG
@@ -60,6 +69,8 @@ cpr_vector_size(const cpr_vector* const vector) {
 
 size_t
 cpr_vector_capacity(const cpr_vector* const vector) {
+  assert(vector != nullptr);
+
   /* Guaranteed to never throw an exception: */
   return vector->capacity();
 #ifdef DEBUG
@@ -70,6 +81,8 @@ cpr_vector_capacity(const cpr_vector* const vector) {
 
 void*
 cpr_vector_data(const cpr_vector* const vector) {
+  assert(vector != nullptr);
+
   /* Guaranteed to never throw an exception: */
   return const_cast<cpr_vector*>(vector)->data();
 #ifdef DEBUG
@@ -81,6 +94,8 @@ cpr_vector_data(const cpr_vector* const vector) {
 void*
 cpr_vector_at(const cpr_vector* const vector,
               const size_t position) {
+  assert(vector != nullptr);
+
   try {
     return vector->at(position);
   }
@@ -92,24 +107,30 @@ cpr_vector_at(const cpr_vector* const vector,
 
 void*
 cpr_vector_front(const cpr_vector* const vector) {
+  assert(vector != nullptr);
+
   if (vector->empty()) {
     /* Calling #front() on an empty vector results in undefined behavior.
      * We'd rather avoid undefined behavior, so we'll return NULL instead: */
     errno = static_cast<int>(std::errc::bad_address); /* EFAULT */
     return nullptr;
   }
+
   /* Guaranteed to never throw an exception for nonempty vectors: */
   return vector->front();
 }
 
 void*
 cpr_vector_back(const cpr_vector* const vector) {
+  assert(vector != nullptr);
+
   if (vector->empty()) {
     /* Calling #back() on an empty vector results in undefined behavior.
      * We'd rather avoid undefined behavior, so we'll return NULL instead: */
     errno = static_cast<int>(std::errc::bad_address); /* EFAULT */
     return nullptr;
   }
+
   /* Guaranteed to never throw an exception for nonempty vectors: */
   return vector->back();
 }
@@ -117,6 +138,8 @@ cpr_vector_back(const cpr_vector* const vector) {
 void
 cpr_vector_reserve(cpr_vector* const vector,
                    const size_t capacity) {
+  assert(vector != nullptr);
+
   try {
     vector->reserve(capacity);
   }
@@ -127,6 +150,8 @@ cpr_vector_reserve(cpr_vector* const vector,
 
 void
 cpr_vector_clear(cpr_vector* const vector) {
+  assert(vector != nullptr);
+
   /* Guaranteed to never throw an exception: */
   vector->clear();
 #ifdef DEBUG
@@ -138,6 +163,8 @@ cpr_vector_clear(cpr_vector* const vector) {
 void
 cpr_vector_push_back(cpr_vector* const vector,
                      const void* const element) {
+  assert(vector != nullptr);
+
   try {
     vector->push_back(const_cast<void*>(element));
   }
@@ -148,6 +175,8 @@ cpr_vector_push_back(cpr_vector* const vector,
 
 void
 cpr_vector_pop_back(cpr_vector* const vector) {
+  assert(vector != nullptr);
+
   if (vector->empty()) {
     /* Calling #pop_back() on an empty vector results in undefined behavior.
      * We'd rather avoid undefined behavior, so we'll just fail gracefully
@@ -155,6 +184,7 @@ cpr_vector_pop_back(cpr_vector* const vector) {
     errno = static_cast<int>(std::errc::bad_address); /* EFAULT */
     return;
   }
+
   /* Guaranteed to never throw an exception for nonempty vectors: */
   vector->pop_back();
 }

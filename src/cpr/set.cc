@@ -8,8 +8,6 @@
 
 #include <set> /* for std::set */
 
-struct cpr_set : public std::set<void*> {
-  // TODO
-};
+struct cpr_set : public std::set<void*> {};
 
 extern const size_t cpr_set_sizeof = sizeof(cpr_set);

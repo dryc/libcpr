@@ -6,6 +6,7 @@
 
 #include "cpr/module.h"
 
+#include <cassert> /* for assert() */
 #include <cstring> /* for std::strcmp() */
 
 static const char* const cpr_module_names[] = {
@@ -34,10 +35,15 @@ static const unsigned int cpr_module_count =
 
 bool
 cpr_module_exists(const char* const module_name) {
-  for (unsigned int index = 0; index < cpr_module_count; index++) {
-    if (std::strcmp(module_name, cpr_module_names[index]) == 0) {
-      return true; /* found */
+  assert(module_name != nullptr);
+
+  if (module_name != nullptr) {
+    for (unsigned int index = 0; index < cpr_module_count; index++) {
+      if (std::strcmp(module_name, cpr_module_names[index]) == 0) {
+        return true; /* found */
+      }
     }
   }
+
   return false; /* not found */
 }

@@ -8,8 +8,6 @@
 
 #include <string> /* for std::string */
 
-struct cpr_string : public std::string {
-  // TODO
-};
+struct cpr_string : public std::string {};
 
 extern const size_t cpr_string_sizeof = sizeof(cpr_string);
