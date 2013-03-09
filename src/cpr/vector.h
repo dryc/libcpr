@@ -36,16 +36,20 @@ bool cpr_vector_empty(const cpr_vector_t* vector);
 size_t cpr_vector_size(const cpr_vector_t* vector);
 
 /**
- * Removes all elements from a vector, leaving its size 0.
+ * Removes all elements from a vector, leaving its size zero.
  */
 void cpr_vector_clear(cpr_vector_t* vector);
 
 /**
- * Adds a new element at the end of a vector, after its current last
- * element.
+ * Adds a new element at the end of a vector, after its current last element.
  */
 void cpr_vector_push_back(cpr_vector_t* vector,
   const void* element);
+
+/**
+ * Removes the last element in a vector, reducing the vector's size by one.
+ */
+void cpr_vector_pop_back(cpr_vector_t* vector);
 
 #ifdef __cplusplus
 } /* extern "C" */

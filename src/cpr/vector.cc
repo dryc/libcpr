@@ -62,3 +62,15 @@ cpr_vector_push_back(cpr_vector* const vector,
     errno = ENOMEM; /* out of memory */
   }
 }
+
+void
+cpr_vector_pop_back(cpr_vector* const vector) {
+  if (vector->empty()) {
+    /* Invoking #pop_back() on an empty vector is defined to result in
+     * undefined behavior. We'd rather avoid undefined behavior, so we'll
+     * just fail gracefully instead. */
+    errno = EFAULT; /* bad address */
+    return;
+  }
+  vector->pop_back(); /* guaranteed to never throw an exception */
+}
