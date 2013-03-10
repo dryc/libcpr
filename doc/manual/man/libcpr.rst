@@ -19,6 +19,9 @@ Header Files
 ``<cpr.h>``
    TODO
 
+``<cpr/error.h>``
+   TODO
+
 ``<cpr/feature.h>``
    TODO
 

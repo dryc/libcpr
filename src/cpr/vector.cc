@@ -5,9 +5,9 @@
 #endif
 
 #include "cpr/vector.h"
+#include "cpr/error.h"
 
 #include <cassert>      /* for assert() */
-#include <cerrno>       /* for errno */
 #include <cstdlib>      /* for std::calloc(), std::free() */
 #include <new>          /* for std::bad_alloc */
 #include <stdexcept>    /* for std::length_error, std::out_of_range */
@@ -100,7 +100,7 @@ cpr_vector_at(const cpr_vector* const vector,
     return vector->at(position);
   }
   catch (const std::out_of_range& error) {
-    errno = static_cast<int>(std::errc::argument_out_of_domain); /* EDOM */
+    cpr_error(std::errc::argument_out_of_domain, nullptr); /* EDOM */
     return nullptr;
   }
 }
@@ -112,7 +112,7 @@ cpr_vector_front(const cpr_vector* const vector) {
   if (vector->empty()) {
     /* Calling #front() on an empty vector results in undefined behavior.
      * We'd rather avoid undefined behavior, so we'll return NULL instead: */
-    errno = static_cast<int>(std::errc::bad_address); /* EFAULT */
+    cpr_error(std::errc::bad_address, nullptr); /* EFAULT */
     return nullptr;
   }
 
@@ -127,7 +127,7 @@ cpr_vector_back(const cpr_vector* const vector) {
   if (vector->empty()) {
     /* Calling #back() on an empty vector results in undefined behavior.
      * We'd rather avoid undefined behavior, so we'll return NULL instead: */
-    errno = static_cast<int>(std::errc::bad_address); /* EFAULT */
+    cpr_error(std::errc::bad_address, nullptr); /* EFAULT */
     return nullptr;
   }
 
@@ -144,7 +144,7 @@ cpr_vector_reserve(cpr_vector* const vector,
     vector->reserve(capacity);
   }
   catch (const std::length_error& error) {
-    errno = static_cast<int>(std::errc::invalid_argument); /* EINVAL */
+    cpr_error(std::errc::invalid_argument, nullptr); /* EINVAL */
   }
 }
 
@@ -169,7 +169,7 @@ cpr_vector_push_back(cpr_vector* const vector,
     vector->push_back(const_cast<void*>(element));
   }
   catch (const std::bad_alloc& error) {
-    errno = static_cast<int>(std::errc::not_enough_memory); /* ENOMEM */
+    cpr_error(std::errc::not_enough_memory, nullptr); /* ENOMEM */
   }
 }
 
@@ -181,7 +181,7 @@ cpr_vector_pop_back(cpr_vector* const vector) {
     /* Calling #pop_back() on an empty vector results in undefined behavior.
      * We'd rather avoid undefined behavior, so we'll just fail gracefully
      * instead: */
-    errno = static_cast<int>(std::errc::bad_address); /* EFAULT */
+    cpr_error(std::errc::bad_address, nullptr); /* EFAULT */
     return;
   }
 

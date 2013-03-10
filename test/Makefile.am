@@ -3,6 +3,7 @@ AM_CFLAGS   = -Wall -Wextra -pipe
 LDADD       = $(top_srcdir)/src/cpr/libcpr.la
 
 check_PROGRAMS = \
+  check_error    \
   check_feature  \
   check_module   \
   check_unsafe   \

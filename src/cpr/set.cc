@@ -5,6 +5,7 @@
 #endif
 
 #include "cpr/set.h"
+#include "cpr/error.h"
 
 #include <set> /* for std::set */
 

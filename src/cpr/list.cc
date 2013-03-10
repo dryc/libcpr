@@ -5,6 +5,7 @@
 #endif
 
 #include "cpr/list.h"
+#include "cpr/error.h"
 
 #include <list> /* for std::list */
 

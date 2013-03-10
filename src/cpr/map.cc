@@ -5,6 +5,7 @@
 #endif
 
 #include "cpr/map.h"
+#include "cpr/error.h"
 
 #include <map> /* for std::map */
 

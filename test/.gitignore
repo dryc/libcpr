@@ -5,6 +5,7 @@
 *.o
 *.la
 *.lo
+check_error
 check_feature
 check_list
 check_map

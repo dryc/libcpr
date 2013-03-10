@@ -5,6 +5,7 @@
 #endif
 
 #include "cpr/string.h"
+#include "cpr/error.h"
 
 #include <string> /* for std::string */
 

@@ -5,6 +5,7 @@ LDADD       = $(top_srcdir)/src/cpr/libcpr.la
 lib_LTLIBRARIES = libcpr.la
 
 libcpr_la_SOURCES =       \
+  error.cc                \
   feature.cc              \
   module.cc               \
   version.cc
@@ -12,6 +13,7 @@ libcpr_la_SOURCES =       \
 base_pkgincludedir = $(includedir)/cpr
 
 base_pkginclude_HEADERS = \
+  error.h                 \
   feature.h               \
   module.h                \
   unsafe.h                \

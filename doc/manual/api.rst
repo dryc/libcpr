@@ -5,6 +5,7 @@ API Reference
    :maxdepth: 2
 
    api/index
+   api/error
    api/feature
    api/list
    api/map
