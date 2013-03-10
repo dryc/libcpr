@@ -11,6 +11,7 @@
    classes
    api
    abi
+   xref
    faq
    contrib
    license
