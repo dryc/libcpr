@@ -21,7 +21,7 @@
 
 .. c:macro:: CPR_VERSION_PATCH
 
-``cpr_version_string``
-----------------------
+.. toctree::
+   :maxdepth: 1
 
-.. c:var:: const char* const cpr_version_string
+   version/cpr_version_string

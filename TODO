@@ -42,3 +42,8 @@ Nice to Have
 ------------
 
 - Support --with-stdlib=libc++ and --with-stdlib=libstdc++ options.
+
+Documentation
+-------------
+
+- The function man pages ought to have an initial LIBRARY section.

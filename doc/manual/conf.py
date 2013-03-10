@@ -212,6 +212,7 @@ latex_documents = [
 man_author = ['Arto Bendiken <arto@bendiken.net>']
 man_pages = [
   ('man/libcpr', 'libcpr', 'Standard library supplement for C', man_author, 3),
+  ('api/vector/cpr_vector_size', 'cpr_vector_size', 'TODO', man_author, 3),
 ]
 
 # If true, show URL addresses after external links.
