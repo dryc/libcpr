@@ -47,7 +47,7 @@ copyright = ''
 # built documents.
 #
 # The short X.Y version.
-version = '0.1.0' # TODO: read the ../../VERSION file
+version = open('../../VERSION', 'r').readline().strip()
 # The full version, including alpha/beta/rc tags.
 release = '2013-03-10'
 
