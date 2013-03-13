@@ -1,4 +1,4 @@
-.. index:: module: <cpr/version.h>
+.. index:: <cpr/version.h>
 .. index:: versioning; macros
 
 Header ``<cpr/version.h>``

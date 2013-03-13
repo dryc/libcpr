@@ -1,4 +1,7 @@
-.. index:: module: <cpr/error.h>
+.. index:: <cpr/error.h>
+
+.. module:: cpr_error
+   :synopsis: ...
 
 Header ``<cpr/error.h>``
 ========================

@@ -1,3 +1,5 @@
+.. currentmodule:: cpr_error
+
 ``cpr_error_trigger()``
 =======================
 

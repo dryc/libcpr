@@ -1,4 +1,4 @@
-.. index:: module: <cpr/feature.h>
+.. index:: <cpr/feature.h>
 
 Header ``<cpr/feature.h>``
 ==========================

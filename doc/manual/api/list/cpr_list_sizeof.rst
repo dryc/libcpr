@@ -1,3 +1,5 @@
+.. currentmodule:: cpr_list
+
 ``cpr_list_sizeof``
 ===================
 

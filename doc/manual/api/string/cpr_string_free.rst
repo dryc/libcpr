@@ -1,3 +1,5 @@
+.. currentmodule:: cpr_string
+
 ``cpr_string_free()``
 =====================
 

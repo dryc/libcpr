@@ -1,3 +1,5 @@
+.. currentmodule:: cpr_set
+
 ``cpr_set_free()``
 ==================
 

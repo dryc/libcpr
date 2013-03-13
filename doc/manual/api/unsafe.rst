@@ -1,4 +1,4 @@
-.. index:: module: <cpr/unsafe.h>
+.. index:: <cpr/unsafe.h>
 
 Header ``<cpr/unsafe.h>``
 =========================

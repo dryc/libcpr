@@ -1,4 +1,7 @@
-.. index:: module: <cpr/set.h>
+.. index:: <cpr/set.h>
+
+.. module:: cpr_set
+   :synopsis: ...
 
 Header ``<cpr/set.h>``
 ======================

@@ -1,4 +1,7 @@
-.. index:: module: <cpr/string.h>
+.. index:: <cpr/string.h>
+
+.. module:: cpr_string
+   :synopsis: ...
 
 Header ``<cpr/string.h>``
 =========================

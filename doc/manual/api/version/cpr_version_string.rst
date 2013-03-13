@@ -1,3 +1,5 @@
+.. currentmodule:: cpr_version
+
 ``cpr_version_string``
 ======================
 

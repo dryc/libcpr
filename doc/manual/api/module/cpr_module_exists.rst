@@ -1,3 +1,5 @@
+.. currentmodule:: cpr_module
+
 ``cpr_module_exists()``
 =======================
 

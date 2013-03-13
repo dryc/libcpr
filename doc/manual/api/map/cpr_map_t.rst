@@ -1,3 +1,5 @@
+.. currentmodule:: cpr_map
+
 ``cpr_map_t``
 =============
 

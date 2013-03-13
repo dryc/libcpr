@@ -1,4 +1,7 @@
-.. index:: module: <cpr/list.h>
+.. index:: <cpr/list.h>
+
+.. module:: cpr_list
+   :synopsis: ...
 
 Header ``<cpr/list.h>``
 =======================

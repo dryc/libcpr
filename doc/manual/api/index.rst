@@ -1,4 +1,4 @@
-.. index:: module: <cpr.h>
+.. index:: <cpr.h>
 
 Header ``<cpr.h>``
 ==================

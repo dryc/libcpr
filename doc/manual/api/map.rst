@@ -1,4 +1,7 @@
-.. index:: module: <cpr/map.h>
+.. index:: <cpr/map.h>
+
+.. module:: cpr_map
+   :synopsis: ...
 
 Header ``<cpr/map.h>``
 ======================

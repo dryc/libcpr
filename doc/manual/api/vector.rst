@@ -1,4 +1,7 @@
-.. index:: module: <cpr/vector.h>
+.. index:: <cpr/vector.h>
+
+.. module:: cpr_vector
+   :synopsis: ...
 
 Header ``<cpr/vector.h>``
 =========================

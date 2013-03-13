@@ -1,3 +1,5 @@
+.. currentmodule:: cpr_vector
+
 ``cpr_vector_init()``
 =====================
 
