@@ -1,6 +1,13 @@
 ``cpr_string_sizeof``
 =====================
 
+.. only:: man
+
+   Library
+   -------
+
+   libcpr, -lcpr
+
 Synopsis
 --------
 

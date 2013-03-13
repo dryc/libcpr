@@ -1,6 +1,13 @@
 ``cpr_map_free()``
 ==================
 
+.. only:: man
+
+   Library
+   -------
+
+   libcpr, -lcpr
+
 Synopsis
 --------
 

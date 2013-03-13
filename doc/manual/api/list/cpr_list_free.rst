@@ -1,6 +1,13 @@
 ``cpr_list_free()``
 ===================
 
+.. only:: man
+
+   Library
+   -------
+
+   libcpr, -lcpr
+
 Synopsis
 --------
 

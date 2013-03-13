@@ -1,6 +1,13 @@
 ``cpr_module_exists()``
 =======================
 
+.. only:: man
+
+   Library
+   -------
+
+   libcpr, -lcpr
+
 Synopsis
 --------
 

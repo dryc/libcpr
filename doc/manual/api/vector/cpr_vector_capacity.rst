@@ -1,6 +1,13 @@
 ``cpr_vector_capacity()``
 =========================
 
+.. only:: man
+
+   Library
+   -------
+
+   libcpr, -lcpr
+
 Synopsis
 --------
 

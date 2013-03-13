@@ -1,6 +1,13 @@
 ``cpr_vector_reserve()``
 ========================
 
+.. only:: man
+
+   Library
+   -------
+
+   libcpr, -lcpr
+
 Synopsis
 --------
 

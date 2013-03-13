@@ -1,6 +1,13 @@
 ``cpr_vector_free()``
 =====================
 
+.. only:: man
+
+   Library
+   -------
+
+   libcpr, -lcpr
+
 Synopsis
 --------
 

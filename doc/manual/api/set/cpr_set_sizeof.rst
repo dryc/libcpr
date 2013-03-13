@@ -1,6 +1,13 @@
 ``cpr_set_sizeof``
 ==================
 
+.. only:: man
+
+   Library
+   -------
+
+   libcpr, -lcpr
+
 Synopsis
 --------
 

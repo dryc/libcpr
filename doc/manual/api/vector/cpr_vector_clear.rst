@@ -1,6 +1,13 @@
 ``cpr_vector_clear()``
 ======================
 
+.. only:: man
+
+   Library
+   -------
+
+   libcpr, -lcpr
+
 Synopsis
 --------
 

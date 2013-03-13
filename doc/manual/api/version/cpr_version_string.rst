@@ -1,6 +1,13 @@
 ``cpr_version_string``
 ======================
 
+.. only:: man
+
+   Library
+   -------
+
+   libcpr, -lcpr
+
 Synopsis
 --------
 

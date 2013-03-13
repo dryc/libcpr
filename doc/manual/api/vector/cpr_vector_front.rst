@@ -1,6 +1,13 @@
 ``cpr_vector_front()``
 ======================
 
+.. only:: man
+
+   Library
+   -------
+
+   libcpr, -lcpr
+
 Synopsis
 --------
 

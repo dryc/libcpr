@@ -1,6 +1,13 @@
 ``cpr_error_trigger()``
 =======================
 
+.. only:: man
+
+   Library
+   -------
+
+   libcpr, -lcpr
+
 Synopsis
 --------
 

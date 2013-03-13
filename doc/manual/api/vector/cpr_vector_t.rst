@@ -1,6 +1,13 @@
 ``cpr_vector_t``
 ================
 
+.. only:: man
+
+   Library
+   -------
+
+   libcpr, -lcpr
+
 Synopsis
 --------
 

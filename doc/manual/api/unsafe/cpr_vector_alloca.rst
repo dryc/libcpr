@@ -1,6 +1,13 @@
 ``cpr_vector_alloca()``
 =======================
 
+.. only:: man
+
+   Library
+   -------
+
+   libcpr, -lcpr
+
 Synopsis
 --------
 

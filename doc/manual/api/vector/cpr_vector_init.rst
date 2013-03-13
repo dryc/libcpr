@@ -1,6 +1,13 @@
 ``cpr_vector_init()``
 =====================
 
+.. only:: man
+
+   Library
+   -------
+
+   libcpr, -lcpr
+
 Synopsis
 --------
 

@@ -1,6 +1,13 @@
 ``cpr_vector_sizeof``
 =====================
 
+.. only:: man
+
+   Library
+   -------
+
+   libcpr, -lcpr
+
 Synopsis
 --------
 

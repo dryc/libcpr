@@ -1,6 +1,13 @@
 ``cpr_feature_exists()``
 ========================
 
+.. only:: man
+
+   Library
+   -------
+
+   libcpr, -lcpr
+
 Synopsis
 --------
 

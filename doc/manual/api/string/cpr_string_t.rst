@@ -1,6 +1,13 @@
 ``cpr_string_t``
 ================
 
+.. only:: man
+
+   Library
+   -------
+
+   libcpr, -lcpr
+
 Synopsis
 --------
 

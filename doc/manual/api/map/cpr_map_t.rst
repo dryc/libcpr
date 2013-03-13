@@ -1,6 +1,13 @@
 ``cpr_map_t``
 =============
 
+.. only:: man
+
+   Library
+   -------
+
+   libcpr, -lcpr
+
 Synopsis
 --------
 

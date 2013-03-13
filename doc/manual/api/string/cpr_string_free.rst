@@ -1,6 +1,13 @@
 ``cpr_string_free()``
 =====================
 
+.. only:: man
+
+   Library
+   -------
+
+   libcpr, -lcpr
+
 Synopsis
 --------
 

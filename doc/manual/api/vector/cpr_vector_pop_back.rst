@@ -1,6 +1,13 @@
 ``cpr_vector_pop_back()``
 =========================
 
+.. only:: man
+
+   Library
+   -------
+
+   libcpr, -lcpr
+
 Synopsis
 --------
 

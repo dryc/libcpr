@@ -1,6 +1,13 @@
 ``cpr_vector_dispose()``
 ========================
 
+.. only:: man
+
+   Library
+   -------
+
+   libcpr, -lcpr
+
 Synopsis
 --------
 

@@ -1,6 +1,13 @@
 ``cpr_list_t``
 ==============
 
+.. only:: man
+
+   Library
+   -------
+
+   libcpr, -lcpr
+
 Synopsis
 --------
 

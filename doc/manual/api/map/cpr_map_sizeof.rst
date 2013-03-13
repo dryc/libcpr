@@ -1,6 +1,13 @@
 ``cpr_map_sizeof``
 ==================
 
+.. only:: man
+
+   Library
+   -------
+
+   libcpr, -lcpr
+
 Synopsis
 --------
 

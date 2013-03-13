@@ -1,6 +1,13 @@
 ``cpr_vector_data()``
 =====================
 
+.. only:: man
+
+   Library
+   -------
+
+   libcpr, -lcpr
+
 Synopsis
 --------
 

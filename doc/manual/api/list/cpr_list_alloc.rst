@@ -1,6 +1,13 @@
 ``cpr_list_alloc()``
 ====================
 
+.. only:: man
+
+   Library
+   -------
+
+   libcpr, -lcpr
+
 Synopsis
 --------
 
