@@ -21,4 +21,5 @@ Indices and Tables
 
 * :ref:`glossary`
 * :ref:`genindex`
+* :ref:`modindex`
 * :ref:`search`
