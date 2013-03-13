@@ -1,3 +1,5 @@
+.. index:: module: <cpr.h>
+
 Header ``<cpr.h>``
 ==================
 

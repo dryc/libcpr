@@ -1,3 +1,5 @@
+.. index:: module: <cpr/list.h>
+
 Header ``<cpr/list.h>``
 =======================
 

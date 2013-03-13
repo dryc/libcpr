@@ -1,3 +1,5 @@
+.. index:: module: <cpr/map.h>
+
 Header ``<cpr/map.h>``
 ======================
 

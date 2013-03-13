@@ -1,3 +1,5 @@
+.. index:: module: <cpr/vector.h>
+
 Header ``<cpr/vector.h>``
 =========================
 

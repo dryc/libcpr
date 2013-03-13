@@ -1,3 +1,5 @@
+.. index:: module: <cpr/error.h>
+
 Header ``<cpr/error.h>``
 ========================
 
