@@ -43,8 +43,8 @@ AC_LANG([C++])
 dnl Check for configuration options:
 # --enable-debug/--disable-debug
 AC_ARG_ENABLE([debug],
-  [AS_HELP_STRING([--enable-debug], [build with debugging support [default=yes]])],
-  [], [enable_debug=yes])
+  [AS_HELP_STRING([--enable-debug], [build with debugging support [default=no]])],
+  [], [enable_debug=no])
 AS_IF([test "x$enable_debug" != "xno"],
   [AC_DEFINE([DEBUG], [1], [Enable debugging support.])],
   [AC_DEFINE([NDEBUG], [1], [Disable assertions.])])
