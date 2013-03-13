@@ -1,6 +1,11 @@
 libcpr
 ======
 
+.. image:: https://travis-ci.org/bendiken/libcpr.png?branch=master
+   :target: https://travis-ci.org/bendiken/libcpr
+   :align: right
+   :alt: Travis CI build status
+
 A modern, sane, and minimalistic standard library supplement for the
 venerable C programming language.
 
