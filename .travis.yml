@@ -5,9 +5,7 @@ compiler:
 before_script:
   - ./autogen.sh
 script:
-  - ./configure
-  - make
-  - make check
+  - ./configure && make && make check
 branches:
   only:
     - master
