@@ -1,2 +1,4 @@
-``cpr_list_t``
-==============
+.. index:: cpr_list; class
+
+Class ``cpr_list``
+==================

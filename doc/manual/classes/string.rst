@@ -1,2 +1,4 @@
-``cpr_string_t``
-================
+.. index:: cpr_string; class
+
+Class ``cpr_string``
+====================

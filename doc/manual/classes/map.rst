@@ -1,2 +1,4 @@
-``cpr_map_t``
-=============
+.. index:: cpr_map; class
+
+Class ``cpr_map``
+=================

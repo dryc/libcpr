@@ -1,3 +1,5 @@
+.. index:: pair: installation; Linux
+
 Installation on Linux
 =====================
 

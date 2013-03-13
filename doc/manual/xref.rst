@@ -1,3 +1,5 @@
+.. index:: cross-reference
+
 Cross Reference
 ===============
 

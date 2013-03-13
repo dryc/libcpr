@@ -1,3 +1,5 @@
+.. index:: pair: cross-reference; GLib
+
 GLib 2.x Cross Reference
 ========================
 

@@ -1,2 +1,4 @@
-``cpr_vector_t``
-================
+.. index:: cpr_vector; class
+
+Class ``cpr_vector``
+====================

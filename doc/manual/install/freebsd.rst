@@ -1,3 +1,5 @@
+.. index:: pair: installation; FreeBSD
+
 Installation on FreeBSD
 =======================
 

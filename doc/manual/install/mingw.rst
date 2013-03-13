@@ -1,3 +1,6 @@
+.. index:: pair: installation; MinGW
+.. index:: pair: installation; Windows
+
 Installation on MinGW
 =====================
 

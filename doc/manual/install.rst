@@ -1,5 +1,14 @@
+.. index:: installation
+
 Installation
 ============
+
+.. index:: configuration; options
+
+Configuration Options
+---------------------
+
+TODO
 
 .. toctree::
    :maxdepth: 2

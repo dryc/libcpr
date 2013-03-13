@@ -1,3 +1,5 @@
+.. index:: pair: installation; Mac OS X
+
 Installation on Mac OS X
 ========================
 

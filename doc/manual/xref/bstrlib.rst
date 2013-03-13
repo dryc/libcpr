@@ -1,3 +1,5 @@
+.. index:: pair: cross-reference; Bstrlib
+
 Bstrlib Cross Reference
 =======================
 
