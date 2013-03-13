@@ -1,5 +1,5 @@
-``<cpr/map.h>``
-===============
+Header ``<cpr/map.h>``
+======================
 
 .. toctree::
    :maxdepth: 1

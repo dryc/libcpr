@@ -1,5 +1,5 @@
-``<cpr/unsafe.h>``
-==================
+Header ``<cpr/unsafe.h>``
+=========================
 
 .. toctree::
    :maxdepth: 1

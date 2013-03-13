@@ -1,5 +1,5 @@
-``<cpr/list.h>``
-================
+Header ``<cpr/list.h>``
+=======================
 
 .. toctree::
    :maxdepth: 1
