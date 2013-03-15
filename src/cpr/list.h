@@ -3,6 +3,10 @@
 #ifndef CPR_LIST_H
 #define CPR_LIST_H
 
+/**
+ * @file
+ */
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -15,12 +19,12 @@ extern "C" {
 typedef struct cpr_list cpr_list_t;
 
 /**
- * The size of the cpr_list_t opaque type, i.e., sizeof(cpr_list_t).
+ * The size of the `cpr_list_t` opaque type, i.e., `sizeof(cpr_list_t)`.
  */
 extern const size_t cpr_list_sizeof;
 
 /**
- * Returns a pointer to a new heap-allocated cpr_list_t structure.
+ * Returns a pointer to a new heap-allocated `cpr_list_t` structure.
  */
 cpr_list_t* cpr_list_alloc(void);
 
@@ -30,7 +34,7 @@ cpr_list_t* cpr_list_alloc(void);
 void cpr_list_free(cpr_list_t* list);
 
 /**
- * Abbreviated type and function names when CPR_ABBREV is defined.
+ * Abbreviated type and function names when `CPR_ABBREV` is defined:
  */
 #ifdef CPR_ABBREV
   #define list_t      cpr_list_t

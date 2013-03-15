@@ -3,6 +3,10 @@
 #ifndef CPR_STRING_H
 #define CPR_STRING_H
 
+/**
+ * @file
+ */
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -15,12 +19,12 @@ extern "C" {
 typedef struct cpr_string cpr_string_t;
 
 /**
- * The size of the cpr_string_t opaque type, i.e., sizeof(cpr_string_t).
+ * The size of the `cpr_string_t` opaque type, i.e., `sizeof(cpr_string_t)`.
  */
 extern const size_t cpr_string_sizeof;
 
 /**
- * Returns a pointer to a new heap-allocated cpr_string_t structure.
+ * Returns a pointer to a new heap-allocated `cpr_string_t` structure.
  */
 cpr_string_t* cpr_string_alloc(void);
 
@@ -30,7 +34,7 @@ cpr_string_t* cpr_string_alloc(void);
 void cpr_string_free(cpr_string_t* string);
 
 /**
- * Abbreviated type and function names when CPR_ABBREV is defined.
+ * Abbreviated type and function names when `CPR_ABBREV` is defined:
  */
 #ifdef CPR_ABBREV
   #define string_t      cpr_string_t

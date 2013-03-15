@@ -3,6 +3,10 @@
 #ifndef CPR_SET_H
 #define CPR_SET_H
 
+/**
+ * @file
+ */
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -15,12 +19,12 @@ extern "C" {
 typedef struct cpr_set cpr_set_t;
 
 /**
- * The size of the cpr_set_t opaque type, i.e., sizeof(cpr_set_t).
+ * The size of the `cpr_set_t` opaque type, i.e., `sizeof(cpr_set_t)`.
  */
 extern const size_t cpr_set_sizeof;
 
 /**
- * Returns a pointer to a new heap-allocated cpr_set_t structure.
+ * Returns a pointer to a new heap-allocated `cpr_set_t` structure.
  */
 cpr_set_t* cpr_set_alloc(void);
 
@@ -30,7 +34,7 @@ cpr_set_t* cpr_set_alloc(void);
 void cpr_set_free(cpr_set_t* set);
 
 /**
- * Abbreviated type and function names when CPR_ABBREV is defined.
+ * Abbreviated type and function names when `CPR_ABBREV` is defined:
  */
 #ifdef CPR_ABBREV
   #define set_t      cpr_set_t

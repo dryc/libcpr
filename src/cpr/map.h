@@ -3,6 +3,10 @@
 #ifndef CPR_MAP_H
 #define CPR_MAP_H
 
+/**
+ * @file
+ */
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -15,12 +19,12 @@ extern "C" {
 typedef struct cpr_map cpr_map_t;
 
 /**
- * The size of the cpr_map_t opaque type, i.e., sizeof(cpr_map_t).
+ * The size of the `cpr_map_t` opaque type, i.e., `sizeof(cpr_map_t)`.
  */
 extern const size_t cpr_map_sizeof;
 
 /**
- * Returns a pointer to a new heap-allocated cpr_map_t structure.
+ * Returns a pointer to a new heap-allocated `cpr_map_t` structure.
  */
 cpr_map_t* cpr_map_alloc(void);
 
@@ -30,7 +34,7 @@ cpr_map_t* cpr_map_alloc(void);
 void cpr_map_free(cpr_map_t* map);
 
 /**
- * Abbreviated type and function names when CPR_ABBREV is defined.
+ * Abbreviated type and function names when `CPR_ABBREV` is defined:
  */
 #ifdef CPR_ABBREV
   #define map_t      cpr_map_t

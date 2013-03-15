@@ -3,6 +3,10 @@
 #ifndef CPR_PRELUDE_H
 #define CPR_PRELUDE_H
 
+/**
+ * @file
+ */
+
 #ifdef __cplusplus
 extern "C" {
 #endif

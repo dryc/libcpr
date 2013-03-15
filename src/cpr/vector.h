@@ -3,6 +3,12 @@
 #ifndef CPR_VECTOR_H
 #define CPR_VECTOR_H
 
+/**
+ * @file
+ *
+ * Vectors are sequence containers that represent dynamic arrays.
+ */
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -16,12 +22,12 @@ extern "C" {
 typedef struct cpr_vector cpr_vector_t;
 
 /**
- * The size of the cpr_vector_t opaque type, i.e., sizeof(cpr_vector_t).
+ * The size of the `cpr_vector_t` opaque type, i.e., `sizeof(cpr_vector_t)`.
  */
 extern const size_t cpr_vector_sizeof;
 
 /**
- * Returns a pointer to a new heap-allocated cpr_vector_t structure.
+ * Returns a pointer to a new heap-allocated `cpr_vector_t` structure.
  */
 cpr_vector_t* cpr_vector_alloc(void);
 
@@ -99,7 +105,7 @@ void cpr_vector_push_back(cpr_vector_t* vector,
 void cpr_vector_pop_back(cpr_vector_t* vector);
 
 /**
- * Abbreviated type and function names if CPR_ABBREV is defined.
+ * Abbreviated type and function names if `CPR_ABBREV` is defined:
  */
 #ifdef CPR_ABBREV
   #define vector_t         cpr_vector_t

@@ -3,6 +3,10 @@
 #ifndef CPR_ERROR_H
 #define CPR_ERROR_H
 
+/**
+ * @file
+ */
+
 #ifdef __cplusplus
 extern "C" {
 #endif
