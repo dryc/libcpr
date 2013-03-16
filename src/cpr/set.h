@@ -41,9 +41,9 @@ void cpr_set_free(cpr_set_t* set);
  * preprocessor symbol is defined:
  */
 #ifdef CPR_ABBREV
-  /** Alias for `cpr_set_t` when `CPR_ABBREV` is defined. */
+  /** Alias for `::cpr_set_t` when `CPR_ABBREV` is defined. */
   #define set_t      cpr_set_t
-  /** Alias for `cpr_set_sizeof` when `CPR_ABBREV` is defined. */
+  /** Alias for `#cpr_set_sizeof` when `CPR_ABBREV` is defined. */
   #define set_sizeof cpr_set_sizeof
   /** Alias for `cpr_set_alloc()` when `CPR_ABBREV` is defined. */
   #define set_alloc  cpr_set_alloc

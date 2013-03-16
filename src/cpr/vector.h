@@ -112,9 +112,9 @@ void cpr_vector_pop_back(cpr_vector_t* vector);
  * preprocessor symbol is defined:
  */
 #ifdef CPR_ABBREV
-  /** Alias for `cpr_vector_t` when `CPR_ABBREV` is defined. */
+  /** Alias for `::cpr_vector_t` when `CPR_ABBREV` is defined. */
   #define vector_t         cpr_vector_t
-  /** Alias for `cpr_vector_sizeof` when `CPR_ABBREV` is defined. */
+  /** Alias for `#cpr_vector_sizeof` when `CPR_ABBREV` is defined. */
   #define vector_sizeof    cpr_vector_sizeof
   /** Alias for `cpr_vector_alloc()` when `CPR_ABBREV` is defined. */
   #define vector_alloc     cpr_vector_alloc

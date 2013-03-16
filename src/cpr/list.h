@@ -41,9 +41,9 @@ void cpr_list_free(cpr_list_t* list);
  * preprocessor symbol is defined:
  */
 #ifdef CPR_ABBREV
-  /** Alias for `cpr_list_t` when `CPR_ABBREV` is defined. */
+  /** Alias for `::cpr_list_t` when `CPR_ABBREV` is defined. */
   #define list_t      cpr_list_t
-  /** Alias for `cpr_list_sizeof` when `CPR_ABBREV` is defined. */
+  /** Alias for `#cpr_list_sizeof` when `CPR_ABBREV` is defined. */
   #define list_sizeof cpr_list_sizeof
   /** Alias for `cpr_list_alloc()` when `CPR_ABBREV` is defined. */
   #define list_alloc  cpr_list_alloc

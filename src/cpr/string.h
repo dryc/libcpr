@@ -41,9 +41,9 @@ void cpr_string_free(cpr_string_t* string);
  * preprocessor symbol is defined:
  */
 #ifdef CPR_ABBREV
-  /** Alias for `cpr_string_t` when `CPR_ABBREV` is defined. */
+  /** Alias for `::cpr_string_t` when `CPR_ABBREV` is defined. */
   #define string_t      cpr_string_t
-  /** Alias for `cpr_string_sizeof` when `CPR_ABBREV` is defined. */
+  /** Alias for `#cpr_string_sizeof` when `CPR_ABBREV` is defined. */
   #define string_sizeof cpr_string_sizeof
   /** Alias for `cpr_string_alloc()` when `CPR_ABBREV` is defined. */
   #define string_alloc  cpr_string_alloc

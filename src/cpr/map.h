@@ -41,9 +41,9 @@ void cpr_map_free(cpr_map_t* map);
  * preprocessor symbol is defined:
  */
 #ifdef CPR_ABBREV
-  /** Alias for `cpr_map_t` when `CPR_ABBREV` is defined. */
+  /** Alias for `::cpr_map_t` when `CPR_ABBREV` is defined. */
   #define map_t      cpr_map_t
-  /** Alias for `cpr_map_sizeof` when `CPR_ABBREV` is defined. */
+  /** Alias for `#cpr_map_sizeof` when `CPR_ABBREV` is defined. */
   #define map_sizeof cpr_map_sizeof
   /** Alias for `cpr_map_alloc()` when `CPR_ABBREV` is defined. */
   #define map_alloc  cpr_map_alloc
