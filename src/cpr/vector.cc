@@ -144,7 +144,10 @@ cpr_vector_reserve(cpr_vector* const vector,
     vector->reserve(capacity);
   }
   catch (const std::length_error& error) {
-    cpr_error(std::errc::invalid_argument, nullptr); /* EINVAL */
+    cpr_error(std::errc::invalid_argument, nullptr);  /* EINVAL */
+  }
+  catch (const std::bad_alloc& error) {
+    cpr_error(std::errc::not_enough_memory, nullptr); /* ENOMEM */
   }
 }
 
