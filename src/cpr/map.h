@@ -36,13 +36,18 @@ cpr_map_t* cpr_map_alloc(void);
  */
 void cpr_map_free(cpr_map_t* map);
 
-/**
- * Abbreviated type and function names when `CPR_ABBREV` is defined:
+/*
+ * Abbreviated type, variable, and function names if the `CPR_ABBREV`
+ * preprocessor symbol is defined:
  */
 #ifdef CPR_ABBREV
+  /** Alias for `cpr_map_t` when `CPR_ABBREV` is defined. */
   #define map_t      cpr_map_t
+  /** Alias for `cpr_map_sizeof` when `CPR_ABBREV` is defined. */
   #define map_sizeof cpr_map_sizeof
+  /** Alias for `cpr_map_alloc()` when `CPR_ABBREV` is defined. */
   #define map_alloc  cpr_map_alloc
+  /** Alias for `cpr_map_free()` when `CPR_ABBREV` is defined. */
   #define map_free   cpr_map_free
 #endif /* CPR_ABBREV */
 

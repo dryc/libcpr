@@ -36,13 +36,18 @@ cpr_string_t* cpr_string_alloc(void);
  */
 void cpr_string_free(cpr_string_t* string);
 
-/**
- * Abbreviated type and function names when `CPR_ABBREV` is defined:
+/*
+ * Abbreviated type, variable, and function names if the `CPR_ABBREV`
+ * preprocessor symbol is defined:
  */
 #ifdef CPR_ABBREV
+  /** Alias for `cpr_string_t` when `CPR_ABBREV` is defined. */
   #define string_t      cpr_string_t
+  /** Alias for `cpr_string_sizeof` when `CPR_ABBREV` is defined. */
   #define string_sizeof cpr_string_sizeof
+  /** Alias for `cpr_string_alloc()` when `CPR_ABBREV` is defined. */
   #define string_alloc  cpr_string_alloc
+  /** Alias for `cpr_string_free()` when `CPR_ABBREV` is defined. */
   #define string_free   cpr_string_free
 #endif /* CPR_ABBREV */
 

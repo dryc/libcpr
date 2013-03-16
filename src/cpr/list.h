@@ -36,13 +36,18 @@ cpr_list_t* cpr_list_alloc(void);
  */
 void cpr_list_free(cpr_list_t* list);
 
-/**
- * Abbreviated type and function names when `CPR_ABBREV` is defined:
+/*
+ * Abbreviated type, variable, and function names if the `CPR_ABBREV`
+ * preprocessor symbol is defined:
  */
 #ifdef CPR_ABBREV
+  /** Alias for `cpr_list_t` when `CPR_ABBREV` is defined. */
   #define list_t      cpr_list_t
+  /** Alias for `cpr_list_sizeof` when `CPR_ABBREV` is defined. */
   #define list_sizeof cpr_list_sizeof
+  /** Alias for `cpr_list_alloc()` when `CPR_ABBREV` is defined. */
   #define list_alloc  cpr_list_alloc
+  /** Alias for `cpr_list_free()` when `CPR_ABBREV` is defined. */
   #define list_free   cpr_list_free
 #endif /* CPR_ABBREV */
 
