@@ -43,69 +43,95 @@ void cpr_vector_free(cpr_vector_t* vector);
 
 /**
  * ...
+ *
+ * @pre \a vector is not `NULL`
  */
 void cpr_vector_init(cpr_vector_t* vector);
 
 /**
  * ...
+ *
+ * @pre \a vector is not `NULL`
  */
 void cpr_vector_dispose(cpr_vector_t* vector);
 
 /**
  * Tests whether a vector is empty, i.e., whether its size is 0.
+ *
+ * @pre \a vector is not `NULL`
  */
 bool cpr_vector_empty(const cpr_vector_t* vector);
 
 /**
  * Returns the number of elements in a vector.
+ *
+ * @pre \a vector is not `NULL`
  */
 size_t cpr_vector_size(const cpr_vector_t* vector);
 
 /**
  * Returns the number of elements that a vector has allocated space for.
+ *
+ * @pre \a vector is not `NULL`
  */
 size_t cpr_vector_capacity(const cpr_vector_t* vector);
 
 /**
  * Returns a direct pointer to a vector's internal memory array.
+ *
+ * @pre \a vector is not `NULL`
  */
 void* cpr_vector_data(const cpr_vector_t* vector);
 
 /**
  * Returns a pointer to the element at the given position in a vector.
+ *
+ * @pre \a vector is not `NULL`
  */
 void* cpr_vector_at(const cpr_vector_t* vector,
   size_t position);
 
 /**
  * Returns a pointer to the first element in a vector.
+ *
+ * @pre \a vector is not `NULL`
  */
 void* cpr_vector_front(const cpr_vector_t* vector);
 
 /**
  * Returns a pointer to the last element in a vector.
+ *
+ * @pre \a vector is not `NULL`
  */
 void* cpr_vector_back(const cpr_vector_t* vector);
 
 /**
  * Adjusts the minimum capacity of a vector, allocating storage if necessary.
+ *
+ * @pre \a vector is not `NULL`
  */
 void cpr_vector_reserve(cpr_vector_t* vector,
   size_t capacity);
 
 /**
  * Removes all elements from a vector, leaving its size zero.
+ *
+ * @pre \a vector is not `NULL`
  */
 void cpr_vector_clear(cpr_vector_t* vector);
 
 /**
  * Adds a new element at the end of a vector, after its current last element.
+ *
+ * @pre \a vector is not `NULL`
  */
 void cpr_vector_push_back(cpr_vector_t* vector,
   const void* element);
 
 /**
  * Removes the last element in a vector, reducing the vector's size by one.
+ *
+ * @pre \a vector is not `NULL`
  */
 void cpr_vector_pop_back(cpr_vector_t* vector);
 
