@@ -5,6 +5,9 @@
 
 /**
  * @file
+ *
+ * @include map.c
+ * @example map.c
  */
 
 #ifdef __cplusplus

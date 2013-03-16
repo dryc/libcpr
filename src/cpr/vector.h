@@ -7,6 +7,9 @@
  * @file
  *
  * Vectors are sequence containers that represent dynamic arrays.
+ *
+ * @include vector.c
+ * @example vector.c
  */
 
 #ifdef __cplusplus

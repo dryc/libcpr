@@ -5,6 +5,9 @@
 
 /**
  * @file
+ *
+ * @include string.c
+ * @example string.c
  */
 
 #ifdef __cplusplus

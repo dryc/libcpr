@@ -5,6 +5,9 @@
 
 /**
  * @file
+ *
+ * @include set.c
+ * @example set.c
  */
 
 #ifdef __cplusplus
