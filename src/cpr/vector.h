@@ -32,61 +32,79 @@ extern const size_t cpr_vector_sizeof;
 /**
  * Returns a pointer to a new heap-allocated `cpr_vector_t` structure.
  *
+ * @return a pointer to the beginning of the allocated heap space
  * @see cpr_vector_alloca()
  */
 cpr_vector_t* cpr_vector_alloc(void);
 
 /**
  * ...
+ *
+ * @param vector a pointer to the vector to deallocate, or a `NULL` pointer
  */
 void cpr_vector_free(cpr_vector_t* vector);
 
 /**
  * ...
  *
- * @pre \a vector is not `NULL`
+ * @param vector a pointer to the vector to initialize
+ * @pre `vector` is not a `NULL` pointer
  */
 void cpr_vector_init(cpr_vector_t* vector);
 
 /**
  * ...
  *
- * @pre \a vector is not `NULL`
+ * @param vector a pointer to the vector to dispose of
+ * @pre `vector` is not a `NULL` pointer
  */
 void cpr_vector_dispose(cpr_vector_t* vector);
 
 /**
- * Tests whether a vector is empty, i.e., whether its size is 0.
+ * Tests whether a vector is empty, i.e., whether its size is zero.
  *
- * @pre \a vector is not `NULL`
+ * @param vector a pointer to the vector to be accessed
+ * @pre `vector` is not a `NULL` pointer
+ * @retval true if `*vector` contains no elements
+ * @retval false otherwise
  */
 bool cpr_vector_empty(const cpr_vector_t* vector);
 
 /**
  * Returns the number of elements in a vector.
  *
- * @pre \a vector is not `NULL`
+ * @param vector a pointer to the vector to be accessed
+ * @pre `vector` is not a `NULL` pointer
+ * @return the element count of `*vector`
  */
 size_t cpr_vector_size(const cpr_vector_t* vector);
 
 /**
  * Returns the number of elements that a vector has allocated space for.
  *
- * @pre \a vector is not `NULL`
+ * @param vector a pointer to the vector to be accessed
+ * @pre `vector` is not a `NULL` pointer
+ * @return the element capacity of `*vector`
  */
 size_t cpr_vector_capacity(const cpr_vector_t* vector);
 
 /**
  * Returns a direct pointer to a vector's internal memory array.
  *
- * @pre \a vector is not `NULL`
+ * @param vector a pointer to the vector to be accessed
+ * @pre `vector` is not a `NULL` pointer
+ * @return a pointer to the internal memory array of `*vector`
  */
 void* cpr_vector_data(const cpr_vector_t* vector);
 
 /**
  * Returns a pointer to the element at the given position in a vector.
  *
- * @pre \a vector is not `NULL`
+ * @param vector a pointer to the vector to be accessed
+ * @param position the position of an element in the vector
+ * @pre `vector` is not a `NULL` pointer
+ * @error EDOM if `position` is out of bounds
+ * @return a pointer to the element at `position` in `*vector`
  */
 void* cpr_vector_at(const cpr_vector_t* vector,
   size_t position);
@@ -94,21 +112,32 @@ void* cpr_vector_at(const cpr_vector_t* vector,
 /**
  * Returns a pointer to the first element in a vector.
  *
- * @pre \a vector is not `NULL`
+ * @param vector a pointer to the vector to be accessed
+ * @pre `vector` is not a `NULL` pointer
+ * @error EFAULT if `*vector` is empty
+ * @return a pointer to the first element in `*vector`
  */
 void* cpr_vector_front(const cpr_vector_t* vector);
 
 /**
  * Returns a pointer to the last element in a vector.
  *
- * @pre \a vector is not `NULL`
+ * @param vector a pointer to the vector to be accessed
+ * @pre `vector` is not a `NULL` pointer
+ * @error EFAULT if `*vector` is empty
+ * @return a pointer to the last element in `*vector`
  */
 void* cpr_vector_back(const cpr_vector_t* vector);
 
 /**
  * Adjusts the minimum capacity of a vector, allocating storage if necessary.
  *
- * @pre \a vector is not `NULL`
+ * @param vector a pointer to the vector to be mutated
+ * @param capacity the minimum capacity of the vector
+ * @pre `vector` is not a `NULL` pointer
+ * @error EINVAL if `capacity` is greater than `max_size()`
+ * @error ENOMEM if the reallocation of storage failed
+ * @post the capacity of `*vector` is equal or greater than `capacity`
  */
 void cpr_vector_reserve(cpr_vector_t* vector,
   size_t capacity);
@@ -116,14 +145,21 @@ void cpr_vector_reserve(cpr_vector_t* vector,
 /**
  * Removes all elements from a vector, leaving its size zero.
  *
- * @pre \a vector is not `NULL`
+ * @param vector a pointer to the vector to be mutated
+ * @pre `vector` is not a `NULL` pointer
+ * @post the size `*vector` is zero
  */
 void cpr_vector_clear(cpr_vector_t* vector);
 
 /**
  * Adds a new element at the end of a vector, after its current last element.
  *
- * @pre \a vector is not `NULL`
+ * @param vector a pointer to the vector to be mutated
+ * @param element a pointer to the element to be added
+ * @pre `vector` is not a `NULL` pointer
+ * @pre `element` is not a `NULL` pointer
+ * @error ENOMEM if the reallocation of storage failed
+ * @post the size of `*vector` is increased by one
  */
 void cpr_vector_push_back(cpr_vector_t* vector,
   const void* element);
@@ -131,7 +167,10 @@ void cpr_vector_push_back(cpr_vector_t* vector,
 /**
  * Removes the last element in a vector, reducing the vector's size by one.
  *
- * @pre \a vector is not `NULL`
+ * @param vector a pointer to the vector to be mutated
+ * @pre `vector` is not a `NULL` pointer
+ * @error EFAULT if `*vector` is empty
+ * @post if `*vector` was not empty, its size is reduced by one
  */
 void cpr_vector_pop_back(cpr_vector_t* vector);
 
