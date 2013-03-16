@@ -164,6 +164,7 @@ void
 cpr_vector_push_back(cpr_vector* const vector,
                      const void* const element) {
   assert(vector != nullptr);
+  assert(element != nullptr);
 
   try {
     vector->push_back(const_cast<void*>(element));
