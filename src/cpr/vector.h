@@ -32,6 +32,7 @@ extern const size_t cpr_vector_sizeof;
 /**
  * Returns a pointer to a new heap-allocated `cpr_vector_t` structure.
  *
+ * @error ENOMEM if the allocation of storage failed
  * @return a pointer to the beginning of the allocated heap space
  * @see cpr_vector_alloca()
  */

@@ -20,7 +20,11 @@ extern const size_t cpr_vector_sizeof = sizeof(cpr_vector);
 
 cpr_vector*
 cpr_vector_alloc(void) {
-  return reinterpret_cast<cpr_vector*>(std::calloc(1, sizeof(cpr_vector)));
+  cpr_vector* const vector = reinterpret_cast<cpr_vector*>(std::calloc(1, sizeof(cpr_vector)));
+  if (vector == nullptr) {
+    cpr_error(std::errc::not_enough_memory, nullptr); /* ENOMEM */
+  }
+  return vector;
 }
 
 void
