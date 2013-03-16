@@ -28,6 +28,8 @@ extern const size_t cpr_map_sizeof;
 
 /**
  * Returns a pointer to a new heap-allocated `cpr_map_t` structure.
+ *
+ * @see cpr_map_alloca()
  */
 cpr_map_t* cpr_map_alloc(void);
 

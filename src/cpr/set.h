@@ -28,6 +28,8 @@ extern const size_t cpr_set_sizeof;
 
 /**
  * Returns a pointer to a new heap-allocated `cpr_set_t` structure.
+ *
+ * @see cpr_set_alloca()
  */
 cpr_set_t* cpr_set_alloc(void);
 

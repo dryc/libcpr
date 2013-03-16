@@ -31,6 +31,8 @@ extern const size_t cpr_vector_sizeof;
 
 /**
  * Returns a pointer to a new heap-allocated `cpr_vector_t` structure.
+ *
+ * @see cpr_vector_alloca()
  */
 cpr_vector_t* cpr_vector_alloc(void);
 
