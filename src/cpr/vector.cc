@@ -14,7 +14,14 @@
 #include <system_error> /* for std::errc */
 #include <vector>       /* for std::vector */
 
-struct cpr_vector : public std::vector<void*> {};
+struct cpr_vector {
+  public:
+    std::vector<void*> data;
+
+    cpr_vector() : data() {}
+
+    cpr_vector(std::size_t size) : data(size) {}
+};
 
 extern const size_t cpr_vector_sizeof = sizeof(cpr_vector);
 
@@ -40,6 +47,23 @@ cpr_vector_init(cpr_vector* const vector) {
 }
 
 void
+cpr_vector_init_with_capacity(cpr_vector* const vector,
+                              const std::size_t capacity) {
+  assert(vector != nullptr);
+
+  try {
+    new(vector) cpr_vector(capacity);
+  }
+  catch (const std::bad_alloc& error) {
+    cpr_error(std::errc::not_enough_memory, nullptr); /* ENOMEM */
+    return; /* vector remains uninitalized */
+  }
+
+  /* This sets the size to zero, but retains the initial capacity: */
+  vector->data.clear();
+}
+
+void
 cpr_vector_dispose(cpr_vector* const vector) {
   assert(vector != nullptr);
 
@@ -52,9 +76,9 @@ cpr_vector_empty(const cpr_vector* const vector) {
   assert(vector != nullptr);
 
   /* Guaranteed to never throw an exception: */
-  return vector->empty();
+  return vector->data.empty();
 #ifdef DEBUG
-  static_assert(noexcept(vector->empty()),
+  static_assert(noexcept(vector->data.empty()),
     "std::vector::empty() declaration is missing the noexcept specifier");
 #endif
 }
@@ -64,9 +88,9 @@ cpr_vector_size(const cpr_vector* const vector) {
   assert(vector != nullptr);
 
   /* Guaranteed to never throw an exception: */
-  return vector->size();
+  return vector->data.size();
 #ifdef DEBUG
-  static_assert(noexcept(vector->size()),
+  static_assert(noexcept(vector->data.size()),
     "std::vector::size() declaration is missing the noexcept specifier");
 #endif
 }
@@ -76,9 +100,9 @@ cpr_vector_capacity(const cpr_vector* const vector) {
   assert(vector != nullptr);
 
   /* Guaranteed to never throw an exception: */
-  return vector->capacity();
+  return vector->data.capacity();
 #ifdef DEBUG
-  static_assert(noexcept(vector->capacity()),
+  static_assert(noexcept(vector->data.capacity()),
     "std::vector::capacity() declaration is missing the noexcept specifier");
 #endif
 }
@@ -88,9 +112,9 @@ cpr_vector_data(const cpr_vector* const vector) {
   assert(vector != nullptr);
 
   /* Guaranteed to never throw an exception: */
-  return const_cast<cpr_vector*>(vector)->data();
+  return const_cast<cpr_vector*>(vector)->data.data();
 #ifdef DEBUG
-  static_assert(noexcept(vector->data()),
+  static_assert(noexcept(vector->data.data()),
     "std::vector::data() declaration is missing the noexcept specifier");
 #endif
 }
@@ -101,7 +125,7 @@ cpr_vector_at(const cpr_vector* const vector,
   assert(vector != nullptr);
 
   try {
-    return vector->at(position);
+    return vector->data.at(position);
   }
   catch (const std::out_of_range& error) {
     cpr_error(std::errc::argument_out_of_domain, nullptr); /* EDOM */
@@ -113,7 +137,7 @@ void*
 cpr_vector_front(const cpr_vector* const vector) {
   assert(vector != nullptr);
 
-  if (vector->empty()) {
+  if (vector->data.empty()) {
     /* Calling #front() on an empty vector results in undefined behavior.
      * We'd rather avoid undefined behavior, so we'll return NULL instead: */
     cpr_error(std::errc::bad_address, nullptr); /* EFAULT */
@@ -121,14 +145,14 @@ cpr_vector_front(const cpr_vector* const vector) {
   }
 
   /* Guaranteed to never throw an exception for nonempty vectors: */
-  return vector->front();
+  return vector->data.front();
 }
 
 void*
 cpr_vector_back(const cpr_vector* const vector) {
   assert(vector != nullptr);
 
-  if (vector->empty()) {
+  if (vector->data.empty()) {
     /* Calling #back() on an empty vector results in undefined behavior.
      * We'd rather avoid undefined behavior, so we'll return NULL instead: */
     cpr_error(std::errc::bad_address, nullptr); /* EFAULT */
@@ -136,7 +160,7 @@ cpr_vector_back(const cpr_vector* const vector) {
   }
 
   /* Guaranteed to never throw an exception for nonempty vectors: */
-  return vector->back();
+  return vector->data.back();
 }
 
 void
@@ -145,7 +169,7 @@ cpr_vector_reserve(cpr_vector* const vector,
   assert(vector != nullptr);
 
   try {
-    vector->reserve(capacity);
+    vector->data.reserve(capacity);
   }
   catch (const std::length_error& error) {
     cpr_error(std::errc::invalid_argument, nullptr);  /* EINVAL */
@@ -160,9 +184,9 @@ cpr_vector_clear(cpr_vector* const vector) {
   assert(vector != nullptr);
 
   /* Guaranteed to never throw an exception: */
-  vector->clear();
+  vector->data.clear();
 #ifdef DEBUG
-  static_assert(noexcept(vector->clear()),
+  static_assert(noexcept(vector->data.clear()),
     "std::vector::clear() declaration is missing the noexcept specifier");
 #endif
 }
@@ -174,7 +198,7 @@ cpr_vector_push_back(cpr_vector* const vector,
   assert(element != nullptr);
 
   try {
-    vector->push_back(const_cast<void*>(element));
+    vector->data.push_back(const_cast<void*>(element));
   }
   catch (const std::bad_alloc& error) {
     cpr_error(std::errc::not_enough_memory, nullptr); /* ENOMEM */
@@ -185,7 +209,7 @@ void
 cpr_vector_pop_back(cpr_vector* const vector) {
   assert(vector != nullptr);
 
-  if (vector->empty()) {
+  if (vector->data.empty()) {
     /* Calling #pop_back() on an empty vector results in undefined behavior.
      * We'd rather avoid undefined behavior, so we'll just fail gracefully
      * instead: */
@@ -194,5 +218,5 @@ cpr_vector_pop_back(cpr_vector* const vector) {
   }
 
   /* Guaranteed to never throw an exception for nonempty vectors: */
-  vector->pop_back();
+  vector->data.pop_back();
 }
