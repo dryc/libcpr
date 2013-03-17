@@ -4,4 +4,5 @@ Frequently Asked Questions (FAQ)
 .. toctree::
    :maxdepth: 2
 
-   faq/general
+   General Questions <faq/general>
+   Technical Questions <faq/technical>

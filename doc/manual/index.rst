@@ -6,15 +6,14 @@
 
    intro
    install
-   concepts
-   macros
-   classes
+   usage
    api
    abi
-   xref
    faq
+   design
    contrib
    license
+   xref
 
 Indices and Tables
 ------------------

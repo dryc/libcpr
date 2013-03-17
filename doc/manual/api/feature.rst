@@ -1,5 +1,7 @@
 .. index:: <cpr/feature.h>
 
+.. _feature-information:
+
 Header ``<cpr/feature.h>``
 ==========================
 

@@ -41,9 +41,11 @@ Missing Functions
 Nice to Have
 ------------
 
+- Support custom memory management hooks.
 - Support --with-stdlib=libc++ and --with-stdlib=libstdc++ options.
 
 Documentation
 -------------
 
-- The function man pages ought to have an initial LIBRARY section.
+- Define modules in Doxygen:
+  http://www.stack.nl/~dimitri/doxygen/manual/grouping.html

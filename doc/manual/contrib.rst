@@ -9,3 +9,4 @@ Contributing
    contrib/bugs
    contrib/patches
    contrib/style
+   contrib/donations

@@ -3,16 +3,10 @@
 Installation
 ============
 
-.. index:: configuration; options
-
-Configuration Options
----------------------
-
-TODO
-
 .. toctree::
    :maxdepth: 2
 
+   install/config
    install/linux
    install/freebsd
    install/darwin

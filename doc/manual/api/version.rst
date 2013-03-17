@@ -1,6 +1,8 @@
 .. index:: <cpr/version.h>
 .. index:: versioning; macros
 
+.. _version-information:
+
 Header ``<cpr/version.h>``
 ==========================
 

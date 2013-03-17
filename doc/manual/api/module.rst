@@ -1,5 +1,7 @@
 .. index:: <cpr/module.h>
 
+.. _module-information:
+
 Header ``<cpr/module.h>``
 =========================
 
