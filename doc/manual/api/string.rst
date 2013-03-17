@@ -8,14 +8,6 @@ Header ``<cpr/string.h>``
 
 .. toctree::
    :maxdepth: 1
+   :glob:
 
-   string/cpr_string_t
-   string/cpr_string_sizeof
-   string/cpr_string
-   string/cpr_string_alloc
-   string/cpr_string_free
-   string/cpr_string_empty
-   string/cpr_string_size
-   string/cpr_string_length
-   string/cpr_string_max_size
-   string/cpr_string_capacity
+   string/*

@@ -4,6 +4,12 @@
 Header ``<cpr/version.h>``
 ==========================
 
+.. toctree::
+   :maxdepth: 1
+   :glob:
+
+   version/*
+
 .. index:: macros
 
 ``CPR_VERSION_STRING``
@@ -25,8 +31,3 @@ Header ``<cpr/version.h>``
 ---------------------
 
 .. c:macro:: CPR_VERSION_PATCH
-
-.. toctree::
-   :maxdepth: 1
-
-   version/cpr_version_string

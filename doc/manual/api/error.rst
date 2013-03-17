@@ -8,5 +8,6 @@ Header ``<cpr/error.h>``
 
 .. toctree::
    :maxdepth: 1
+   :glob:
 
-   error/cpr_error_trigger
+   error/*

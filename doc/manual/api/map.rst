@@ -8,8 +8,6 @@ Header ``<cpr/map.h>``
 
 .. toctree::
    :maxdepth: 1
+   :glob:
 
-   map/cpr_map_t
-   map/cpr_map_sizeof
-   map/cpr_map_alloc
-   map/cpr_map_free
+   map/*

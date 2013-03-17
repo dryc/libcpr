@@ -5,5 +5,6 @@ Header ``<cpr/module.h>``
 
 .. toctree::
    :maxdepth: 1
+   :glob:
 
-   module/cpr_module_exists
+   module/*

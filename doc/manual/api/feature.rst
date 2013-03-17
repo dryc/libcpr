@@ -5,5 +5,6 @@ Header ``<cpr/feature.h>``
 
 .. toctree::
    :maxdepth: 1
+   :glob:
 
-   feature/cpr_feature_exists
+   feature/*
