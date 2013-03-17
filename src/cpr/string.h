@@ -6,6 +6,8 @@
 /**
  * @file
  *
+ * Dynamic string library.
+ *
  * @include string.c
  *
  * @see http://en.wikipedia.org/wiki/String_(computer_science)
@@ -31,6 +33,11 @@ typedef struct cpr_string cpr_string_t;
 extern const size_t cpr_string_sizeof;
 
 /**
+ * The largest possible string length; equal to `(size_t)-1`.
+ */
+extern const size_t cpr_string_npos;
+
+/**
  * Constructs a new string from the given NUL-terminated input.
  *
  * @param  str a NUL-terminated character string
@@ -40,6 +47,13 @@ extern const size_t cpr_string_sizeof;
  *         or a `NULL` pointer if an error occurred
  */
 cpr_string_t* cpr_string(const char* str);
+
+/**
+ * ...
+ */
+cpr_string_t* cpr_string_substr(const char* str,
+  size_t position,
+  size_t length);
 
 /**
  * Allocates heap memory for a new `cpr_string_t` structure.
@@ -106,27 +120,183 @@ size_t cpr_string_max_size(const cpr_string_t* string);
  */
 size_t cpr_string_capacity(const cpr_string_t* string);
 
+/**
+ * ...
+ */
+void cpr_string_clear(cpr_string_t* string);
+
+/**
+ * ...
+ */
+void cpr_string_reserve(cpr_string_t* string,
+  size_t capacity);
+
+/**
+ * ...
+ */
+void cpr_string_resize(cpr_string_t* string,
+  size_t length,
+  char character);
+
+/**
+ * ...
+ */
+void cpr_string_pop_back(cpr_string_t* string);
+
+/**
+ * ...
+ */
+void cpr_string_push_back(cpr_string_t* string,
+  char character);
+
+/**
+ * ...
+ */
+char* cpr_string_at(cpr_string_t* string,
+  size_t position);
+
+/**
+ * ...
+ */
+char* cpr_string_str(cpr_string_t* string);
+
+/**
+ * ...
+ */
+char* cpr_string_data(cpr_string_t* string);
+
+/**
+ * ...
+ */
+char* cpr_string_front(cpr_string_t* string);
+
+/**
+ * ...
+ */
+char* cpr_string_back(cpr_string_t* string);
+
+/**
+ * ...
+ */
+int cpr_string_compare(const cpr_string_t* string);
+
+/**
+ * ...
+ */
+size_t cpr_string_copy(const cpr_string_t* string, ...);
+
+/**
+ * ...
+ */
+void cpr_string_erase(cpr_string_t* string,
+  size_t position,
+  size_t length);
+
+/**
+ * ...
+ */
+size_t cpr_string_find_char(const cpr_string_t* string,
+  char character,
+  size_t position);
+
+/**
+ * ...
+ */
+size_t cpr_string_find_str(const cpr_string_t* string,
+  const char* str,
+  size_t position);
+
+/**
+ * ...
+ */
+size_t cpr_string_rfind_char(const cpr_string_t* string,
+  char character,
+  size_t position);
+
+/**
+ * ...
+ */
+size_t cpr_string_rfind_str(const cpr_string_t* string,
+  const char* str,
+  size_t position);
+
+/**
+ * ...
+ */
+void cpr_string_append_char(cpr_string_t* string,
+  size_t count,
+  char character);
+
+/**
+ * ...
+ */
+void cpr_string_append_str(cpr_string_t* string,
+  const char* str,
+  size_t length);
+
+/**
+ * ...
+ */
+void cpr_string_assign_char(cpr_string_t* string,
+  size_t count,
+  char character);
+
+/**
+ * ...
+ */
+void cpr_string_assign_str(cpr_string_t* string,
+  const char* str,
+  size_t length);
+
+/**
+ * ...
+ */
+size_t cpr_string_insert_char(cpr_string_t* string,
+  size_t position,
+  char character,
+  size_t count);
+
+/**
+ * ...
+ */
+size_t cpr_string_insert_str(cpr_string_t* string,
+  size_t position,
+  const char* str,
+  size_t length);
+
+/**
+ * ...
+ */
+void cpr_string_swap(cpr_string_t* string1,
+  cpr_string_t* string2);
+
 /*
  * Abbreviated type, variable, and function names if the `CPR_ABBREV`
  * preprocessor symbol is defined:
  */
 #ifdef CPR_ABBREV
   /** Alias for `::cpr_string_t` when `CPR_ABBREV` is defined. */
-  #define string_t      cpr_string_t
+  #define string_t        cpr_string_t
   /** Alias for `#cpr_string_sizeof` when `CPR_ABBREV` is defined. */
-  #define string_sizeof cpr_string_sizeof
+  #define string_sizeof   cpr_string_sizeof
+  /** Alias for `#cpr_string_npos` when `CPR_ABBREV` is defined. */
+  #define string_npos     cpr_string_npos
   /** Alias for `cpr_string()` when `CPR_ABBREV` is defined. */
-  #define string        cpr_string
+  #define string          cpr_string
   /** Alias for `cpr_string_alloc()` when `CPR_ABBREV` is defined. */
-  #define string_alloc  cpr_string_alloc
+  #define string_alloc    cpr_string_alloc
   /** Alias for `cpr_string_free()` when `CPR_ABBREV` is defined. */
-  #define string_free   cpr_string_free
+  #define string_free     cpr_string_free
   /** Alias for `cpr_string_empty()` when `CPR_ABBREV` is defined. */
-  #define string_empty  cpr_string_empty
+  #define string_empty    cpr_string_empty
   /** Alias for `cpr_string_size()` when `CPR_ABBREV` is defined. */
-  #define string_size   cpr_string_size
+  #define string_size     cpr_string_size
   /** Alias for `cpr_string_length()` when `CPR_ABBREV` is defined. */
-  #define string_length cpr_string_length
+  #define string_length   cpr_string_length
+  /** Alias for `cpr_string_max_size()` when `CPR_ABBREV` is defined. */
+  #define string_max_size cpr_string_max_size
+  /** Alias for `cpr_string_capacity()` when `CPR_ABBREV` is defined. */
+  #define string_capacity cpr_string_capacity
 #endif /* CPR_ABBREV */
 
 #ifdef __cplusplus

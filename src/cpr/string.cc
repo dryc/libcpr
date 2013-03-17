@@ -25,6 +25,8 @@ struct cpr_string {
 
 extern const size_t cpr_string_sizeof = sizeof(cpr_string_t);
 
+extern const size_t cpr_string_npos = std::string::npos;
+
 cpr_string_t*
 cpr_string(const char* const str) {
   cpr_string_t* const string = reinterpret_cast<cpr_string_t*>(cpr_calloc(1, sizeof(cpr_string_t)));
