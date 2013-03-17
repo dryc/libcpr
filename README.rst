@@ -6,8 +6,7 @@ libcpr
    :align: right
    :alt: Travis CI build status
 
-A modern, sane, and minimalistic standard library supplement for the
-venerable C programming language.
+Public domain backport of the core C++11 standard library to C11.
 
 Build Dependencies
 ------------------
