@@ -27,19 +27,15 @@ static const char* const cpr_module_names[] = {
 #ifndef DISABLE_VECTOR
   "vector",
 #endif
-  nullptr
 };
-
-static const unsigned int cpr_module_count =
-  (sizeof(cpr_module_names) / sizeof(cpr_module_names[0])) - 1;
 
 bool
 cpr_module_exists(const char* const module_name) {
   assert(module_name != nullptr);
 
   if (module_name != nullptr) {
-    for (unsigned int index = 0; index < cpr_module_count; index++) {
-      if (std::strcmp(module_name, cpr_module_names[index]) == 0) {
+    for (const char* cpr_module_name : cpr_module_names) {
+      if (std::strcmp(cpr_module_name, module_name) == 0) {
         return true; /* found */
       }
     }

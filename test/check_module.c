@@ -6,7 +6,14 @@
 
 #include <cpr/module.h>
 
+static void
+test_exists(void) {
+  assert(cpr_module_exists("vector"));  /* likely present */
+  assert(!cpr_module_exists("foobar")); /* not present */
+}
+
 int
 main(void) {
-  return EXIT_SUCCESS; // TODO
+  test_exists();
+  return EXIT_SUCCESS;
 }
