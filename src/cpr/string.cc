@@ -48,3 +48,15 @@ cpr_string(const char* const str) {
 
   return string;
 }
+
+bool
+cpr_string_empty(const cpr_string_t* const string) {
+  assert(string != nullptr);
+
+  /* Guaranteed to never throw an exception: */
+  return string->data.empty();
+#ifdef DEBUG
+  static_assert(noexcept(string->data.empty()),
+    "std::string::empty() declaration is missing the noexcept specifier");
+#endif
+}

@@ -14,3 +14,4 @@ Header ``<cpr/string.h>``
    string/cpr_string
    string/cpr_string_alloc
    string/cpr_string_free
+   string/cpr_string_empty

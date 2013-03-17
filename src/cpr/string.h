@@ -17,7 +17,8 @@
 extern "C" {
 #endif
 
-#include <stddef.h> /* for size_t */
+#include <stdbool.h> /* for bool */
+#include <stddef.h>  /* for size_t */
 
 /**
  * An opaque type representing a dynamic string.
@@ -59,6 +60,16 @@ cpr_string_t* cpr_string_alloc(void);
  */
 void cpr_string_free(cpr_string_t* string);
 
+/**
+ * Tests whether a string is empty, i.e., whether its size is zero.
+ *
+ * @param  string a pointer to the string to be accessed
+ * @pre    `string` is not a `NULL` pointer
+ * @retval true if `*string` contains no characters
+ * @retval false otherwise
+ */
+bool cpr_string_empty(const cpr_string_t* string);
+
 /*
  * Abbreviated type, variable, and function names if the `CPR_ABBREV`
  * preprocessor symbol is defined:
@@ -68,10 +79,14 @@ void cpr_string_free(cpr_string_t* string);
   #define string_t      cpr_string_t
   /** Alias for `#cpr_string_sizeof` when `CPR_ABBREV` is defined. */
   #define string_sizeof cpr_string_sizeof
+  /** Alias for `cpr_string()` when `CPR_ABBREV` is defined. */
+  #define string        cpr_string
   /** Alias for `cpr_string_alloc()` when `CPR_ABBREV` is defined. */
   #define string_alloc  cpr_string_alloc
   /** Alias for `cpr_string_free()` when `CPR_ABBREV` is defined. */
   #define string_free   cpr_string_free
+  /** Alias for `cpr_string_empty()` when `CPR_ABBREV` is defined. */
+  #define string_empty  cpr_string_empty
 #endif /* CPR_ABBREV */
 
 #ifdef __cplusplus
