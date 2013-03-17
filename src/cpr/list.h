@@ -7,6 +7,9 @@
  * @file
  *
  * @include list.c
+ *
+ * http://en.wikipedia.org/wiki/Linked_list#Doubly_linked_list
+ *
  * @example list.c
  */
 
@@ -27,14 +30,21 @@ typedef struct cpr_list cpr_list_t;
 extern const size_t cpr_list_sizeof;
 
 /**
- * Returns a pointer to a new heap-allocated `cpr_list_t` structure.
+ * Allocates heap memory for a new `cpr_list_t` structure.
  *
- * @see cpr_list_alloca()
+ * @error  ENOMEM if the allocation of storage failed
+ * @return a pointer to the beginning of the allocated heap space,
+ *         or a `NULL` pointer if an error occurred
+ * @note   before use, the structure must first be initialized
+ * @see    cpr_list_alloca()
  */
 cpr_list_t* cpr_list_alloc(void);
 
 /**
- * ...
+ * Deallocates the heap memory used by a list.
+ *
+ * @param list a pointer to the list to deallocate, or a `NULL` pointer
+ * @post  the `list` pointer is invalidated
  */
 void cpr_list_free(cpr_list_t* list);
 

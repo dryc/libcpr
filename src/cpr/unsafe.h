@@ -21,7 +21,7 @@ extern "C" {
 #include <alloca.h> /* for alloca() */
 
 /**
- * Returns a pointer to a new stack-allocated `cpr_list_t` structure.
+ * Allocates stack memory for a new `cpr_list_t` structure.
  *
  * @return a pointer to the beginning of the allocated stack space
  * @warning undefined behavior if the allocation causes stack overflow
@@ -30,7 +30,7 @@ extern "C" {
 #define cpr_list_alloca() alloca(cpr_list_sizeof)
 
 /**
- * Returns a pointer to a new stack-allocated `cpr_map_t` structure.
+ * Allocates stack memory for a new `cpr_map_t` structure.
  *
  * @return a pointer to the beginning of the allocated stack space
  * @warning undefined behavior if the allocation causes stack overflow
@@ -39,7 +39,7 @@ extern "C" {
 #define cpr_map_alloca() alloca(cpr_map_sizeof)
 
 /**
- * Returns a pointer to a new stack-allocated `cpr_set_t` structure.
+ * Allocates stack memory for a new `cpr_set_t` structure.
  *
  * @return a pointer to the beginning of the allocated stack space
  * @warning undefined behavior if the allocation causes stack overflow
@@ -48,7 +48,7 @@ extern "C" {
 #define cpr_set_alloca() alloca(cpr_set_sizeof)
 
 /**
- * Returns a pointer to a new stack-allocated `cpr_string_t` structure.
+ * Allocates stack memory for a new `cpr_string_t` structure.
  *
  * @return a pointer to the beginning of the allocated stack space
  * @warning undefined behavior if the allocation causes stack overflow
@@ -57,7 +57,7 @@ extern "C" {
 #define cpr_string_alloca() alloca(cpr_string_sizeof)
 
 /**
- * Returns a pointer to a new stack-allocated `cpr_vector_t` structure.
+ * Allocates stack memory for a new `cpr_vector_t` structure.
  *
  * @return a pointer to the beginning of the allocated stack space
  * @warning undefined behavior if the allocation causes stack overflow

@@ -7,6 +7,9 @@
  * @file
  *
  * @include set.c
+ *
+ * @see http://en.wikipedia.org/wiki/Set_(computer_science)
+ *
  * @example set.c
  */
 
@@ -27,14 +30,21 @@ typedef struct cpr_set cpr_set_t;
 extern const size_t cpr_set_sizeof;
 
 /**
- * Returns a pointer to a new heap-allocated `cpr_set_t` structure.
+ * Allocates heap memory for a new `cpr_set_t` structure.
  *
- * @see cpr_set_alloca()
+ * @error  ENOMEM if the allocation of storage failed
+ * @return a pointer to the beginning of the allocated heap space,
+ *         or a `NULL` pointer if an error occurred
+ * @note   before use, the structure must first be initialized
+ * @see    cpr_set_alloca()
  */
 cpr_set_t* cpr_set_alloc(void);
 
 /**
- * ...
+ * Deallocates the heap memory used by a set.
+ *
+ * @param set a pointer to the set to deallocate, or a `NULL` pointer
+ * @post  the `set` pointer is invalidated
  */
 void cpr_set_free(cpr_set_t* set);
 

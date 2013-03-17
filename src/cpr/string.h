@@ -7,6 +7,9 @@
  * @file
  *
  * @include string.c
+ *
+ * @see http://en.wikipedia.org/wiki/String_(computer_science)
+ *
  * @example string.c
  */
 
@@ -27,14 +30,21 @@ typedef struct cpr_string cpr_string_t;
 extern const size_t cpr_string_sizeof;
 
 /**
- * Returns a pointer to a new heap-allocated `cpr_string_t` structure.
+ * Allocates heap memory for a new `cpr_string_t` structure.
  *
- * @see cpr_string_alloca()
+ * @error  ENOMEM if the allocation of storage failed
+ * @return a pointer to the beginning of the allocated heap space,
+ *         or a `NULL` pointer if an error occurred
+ * @note   before use, the structure must first be initialized
+ * @see    cpr_string_alloca()
  */
 cpr_string_t* cpr_string_alloc(void);
 
 /**
- * ...
+ * Deallocates the heap memory used by a string.
+ *
+ * @param string a pointer to the string to deallocate, or a `NULL` pointer
+ * @post  the `string` pointer is invalidated
  */
 void cpr_string_free(cpr_string_t* string);
 

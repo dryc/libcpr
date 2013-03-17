@@ -7,6 +7,9 @@
  * @file
  *
  * @include map.c
+ *
+ * @see http://en.wikipedia.org/wiki/Associative_array
+ *
  * @example map.c
  */
 
@@ -27,14 +30,21 @@ typedef struct cpr_map cpr_map_t;
 extern const size_t cpr_map_sizeof;
 
 /**
- * Returns a pointer to a new heap-allocated `cpr_map_t` structure.
+ * Allocates heap memory for a new `cpr_map_t` structure.
  *
- * @see cpr_map_alloca()
+ * @error  ENOMEM if the allocation of storage failed
+ * @return a pointer to the beginning of the allocated heap space,
+ *         or a `NULL` pointer if an error occurred
+ * @note   before use, the structure must first be initialized
+ * @see    cpr_map_alloca()
  */
 cpr_map_t* cpr_map_alloc(void);
 
 /**
- * ...
+ * Deallocates the heap memory used by a map.
+ *
+ * @param map a pointer to the map to deallocate, or a `NULL` pointer
+ * @post  the `map` pointer is invalidated
  */
 void cpr_map_free(cpr_map_t* map);
 
