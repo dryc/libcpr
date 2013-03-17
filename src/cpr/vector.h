@@ -35,7 +35,7 @@ extern const size_t cpr_vector_sizeof;
 /**
  * Constructs a new vector from the given `NULL`-terminated arguments.
  *
- * @param element the first element to insert into the vector
+ * @param  element the first element to insert into the vector
  * @error  ENOMEM if the allocation of storage failed
  * @return a pointer to a new heap-allocated vector,
  *         or a `NULL` pointer if an error occurred

@@ -30,6 +30,17 @@ typedef struct cpr_string cpr_string_t;
 extern const size_t cpr_string_sizeof;
 
 /**
+ * Constructs a new string from the given NUL-terminated input.
+ *
+ * @param  str a NUL-terminated character string
+ * @error  EINVAL if the length would exceed `max_size()`
+ * @error  ENOMEM if the allocation of storage failed
+ * @return a pointer to a new heap-allocated string,
+ *         or a `NULL` pointer if an error occurred
+ */
+cpr_string_t* cpr_string(const char* str);
+
+/**
  * Allocates heap memory for a new `cpr_string_t` structure.
  *
  * @error  ENOMEM if the allocation of storage failed

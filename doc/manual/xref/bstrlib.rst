@@ -31,7 +31,7 @@ Bstrlib                                     libcpr
 :c:func:`bfindreplacecaseless()`            N/A
 :c:func:`bformat()`                         N/A
 :c:func:`bformata()`                        N/A
-:c:func:`bfromcstr()`                       N/A
+:c:func:`bfromcstr()`                       :c:func:`cpr_string()`
 :c:func:`bfromcstralloc()`                  N/A
 :c:func:`binchr()`                          N/A
 :c:func:`binchrr()`                         N/A

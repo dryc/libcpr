@@ -6,7 +6,23 @@
 
 #include <cpr/string.h>
 
+static void
+test_construct_empty(void) {
+  cpr_string_t* string = cpr_string(NULL);
+  assert(string != NULL);
+  // TODO
+}
+
+static void
+test_construct_nonempty(void) {
+  cpr_string_t* string = cpr_string("Hello, world!\n");
+  assert(string != NULL);
+  // TODO
+}
+
 int
 main(void) {
-  return EXIT_SUCCESS; // TODO
+  test_construct_empty();
+  test_construct_nonempty();
+  return EXIT_SUCCESS;
 }

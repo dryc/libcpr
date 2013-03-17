@@ -3,6 +3,16 @@
 GLib 2.x Cross Reference
 ========================
 
+``GString``
+-----------
+
+=========================================== ====================================
+GLib 2.x                                    libcpr
+=========================================== ====================================
+:c:type:`GString`                           :c:type:`cpr_string_t`
+:c:func:`g_string_new`                      :c:func:`cpr_string()`
+=========================================== ====================================
+
 ``GPtrArray``
 -------------
 
@@ -16,7 +26,7 @@ GLib 2.x                                    libcpr
 :c:func:`g_ptr_array_index`                 :c:func:`cpr_vector_at()`
 :c:func:`g_ptr_array_new_full`              N/A
 :c:func:`g_ptr_array_new_with_free_func`    N/A
-:c:func:`g_ptr_array_new`                   N/A
+:c:func:`g_ptr_array_new`                   :c:func:`cpr_vector()`
 :c:func:`g_ptr_array_ref`                   N/A
 :c:func:`g_ptr_array_remove_fast`           N/A
 :c:func:`g_ptr_array_remove_index_fast`     N/A

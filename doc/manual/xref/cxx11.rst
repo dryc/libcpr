@@ -3,6 +3,16 @@
 C++11 Cross Reference
 =====================
 
+``std::string``
+---------------
+
+=========================================== ====================================
+C++11                                       libcpr
+=========================================== ====================================
+:cpp:class:`std::string`                    :c:type:`cpr_string_t`
+:cpp:func:`std::string::string()`           :c:func:`cpr_string()`
+=========================================== ====================================
+
 ``std::vector``
 ---------------
 
@@ -10,6 +20,7 @@ C++11 Cross Reference
 C++11                                       libcpr
 =========================================== ====================================
 :cpp:class:`std::vector`                    :c:type:`cpr_vector_t`
+:cpp:func:`std::vector::vector()`           :c:func:`cpr_vector()`
 :cpp:func:`std::vector::assign()`           N/A
 :cpp:func:`std::vector::at()`               :c:func:`cpr_vector_at()`
 :cpp:func:`std::vector::back()`             :c:func:`cpr_vector_back()`
