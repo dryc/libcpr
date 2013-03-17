@@ -15,7 +15,7 @@ Synopsis
 
 .. describe:: #include <cpr/vector.h>
 
-.. c:function:: void cpr_vector_init_with_capacity(cpr_vector_t* vector, size_t capacity)
+.. c:function:: void cpr_vector_init_with_capacity(cpr_vector_t* vector, void (*erase_hook)(void*), size_t capacity)
 
 Description
 -----------
@@ -26,6 +26,9 @@ Parameters
 ----------
 
 ``vector``
+   TODO
+
+``erase_hook``
    TODO
 
 ``capacity``

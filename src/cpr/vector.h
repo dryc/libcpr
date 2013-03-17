@@ -65,15 +65,18 @@ void cpr_vector_free(cpr_vector_t* vector);
  * Initializes a vector with a default initial capacity.
  *
  * @param vector a pointer to the vector to initialize
+ * @param erase_hook ...
  * @pre   `vector` is not a `NULL` pointer
  * @post  `*vector` is initialized
  */
-void cpr_vector_init(cpr_vector_t* vector);
+void cpr_vector_init(cpr_vector_t* vector,
+  void (*erase_hook)(void*));
 
 /**
  * Initializes a vector with a specified initial capacity.
  *
  * @param vector a pointer to the vector to initialize
+ * @param erase_hook ...
  * @param capacity the initial capacity to allocate
  * @pre   `vector` is not a `NULL` pointer
  * @error  ENOMEM if the allocation of storage failed
@@ -81,6 +84,7 @@ void cpr_vector_init(cpr_vector_t* vector);
  *        or remains uninitialized if an error occurred
  */
 void cpr_vector_init_with_capacity(cpr_vector_t* vector,
+  void (*erase_hook)(void*),
   size_t capacity);
 
 /**

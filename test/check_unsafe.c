@@ -10,7 +10,7 @@
 static void
 test_unsafe_vector(void) {
   cpr_vector_t* vector = cpr_vector_alloca();
-  cpr_vector_init(vector);
+  cpr_vector_init(vector, NULL);
   cpr_vector_clear(vector);
   cpr_vector_dispose(vector);
 }

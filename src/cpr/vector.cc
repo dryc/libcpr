@@ -18,10 +18,16 @@
 struct cpr_vector {
   public:
     std::vector<void*> data;
+    void (*erase_hook)(void*);
 
-    cpr_vector() : data() {}
+    cpr_vector()
+      : data(), erase_hook(nullptr) {}
 
-    cpr_vector(std::size_t size) : data(size) {}
+    cpr_vector(void (*erase_hook)(void*))
+      : data(), erase_hook(erase_hook) {}
+
+    cpr_vector(std::size_t size, void (*erase_hook)(void*))
+      : data(size), erase_hook(erase_hook) {}
 };
 
 extern const size_t cpr_vector_sizeof = sizeof(cpr_vector_t);
@@ -68,24 +74,26 @@ cpr_vector_alloc(void) {
 
 void
 cpr_vector_free(cpr_vector_t* const vector) {
-  std::free(vector);
+  cpr_free(vector);
 }
 
 void
-cpr_vector_init(cpr_vector_t* const vector) {
+cpr_vector_init(cpr_vector_t* const vector,
+                void (*erase_hook)(void*)) {
   assert(vector != nullptr);
 
   /* Should never throw an exception: */
-  new(vector) cpr_vector_t();
+  new(vector) cpr_vector_t(erase_hook);
 }
 
 void
 cpr_vector_init_with_capacity(cpr_vector_t* const vector,
+                              void (*erase_hook)(void*),
                               const std::size_t capacity) {
   assert(vector != nullptr);
 
   try {
-    new(vector) cpr_vector_t(capacity);
+    new(vector) cpr_vector_t(capacity, erase_hook);
   }
   catch (const std::bad_alloc&) {
     cpr_error(std::errc::not_enough_memory, nullptr); /* ENOMEM */
@@ -101,6 +109,13 @@ cpr_vector_init_with_capacity(cpr_vector_t* const vector,
 void
 cpr_vector_dispose(cpr_vector_t* const vector) {
   assert(vector != nullptr);
+
+  /* Call the erase hook on all elements: */
+  if (vector->erase_hook != nullptr) {
+    for (void* const element : vector->data) {
+      vector->erase_hook(element);
+    }
+  }
 
   /* Guaranteed to never throw an exception: */
   vector->~cpr_vector();
@@ -218,6 +233,13 @@ void
 cpr_vector_clear(cpr_vector_t* const vector) {
   assert(vector != nullptr);
 
+  /* Call the erase hook on all elements: */
+  if (vector->erase_hook != nullptr) {
+    for (void* const element : vector->data) {
+      vector->erase_hook(element);
+    }
+  }
+
   /* Guaranteed to never throw an exception: */
   vector->data.clear();
 #ifdef DEBUG
@@ -250,6 +272,12 @@ cpr_vector_pop_back(cpr_vector_t* const vector) {
      * instead: */
     cpr_error(std::errc::bad_address, nullptr); /* EFAULT */
     return;
+  }
+
+  /* Call the erase hook on the last element: */
+  if (vector->erase_hook != nullptr) {
+    /* Guaranteed to never throw an exception for nonempty vectors: */
+    vector->erase_hook(vector->data.back());
   }
 
   /* Guaranteed to never throw an exception for nonempty vectors: */
