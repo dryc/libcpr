@@ -33,6 +33,16 @@ typedef struct cpr_vector cpr_vector_t;
 extern const size_t cpr_vector_sizeof;
 
 /**
+ * Constructs a new vector from the given `NULL`-terminated arguments.
+ *
+ * @param element the first element to insert into the vector
+ * @error  ENOMEM if the allocation of storage failed
+ * @return a pointer to a new heap-allocated vector,
+ *         or a `NULL` pointer if an error occurred
+ */
+cpr_vector_t* cpr_vector(const void* element, ...);
+
+/**
  * Allocates heap memory for a new `cpr_vector_t` structure.
  *
  * @error  ENOMEM if the allocation of storage failed
@@ -206,6 +216,8 @@ void cpr_vector_pop_back(cpr_vector_t* vector);
   #define vector_t                  cpr_vector_t
   /** Alias for `#cpr_vector_sizeof` when `CPR_ABBREV` is defined. */
   #define vector_sizeof             cpr_vector_sizeof
+  /** Alias for `cpr_vector()` when `CPR_ABBREV` is defined. */
+  #define vector                    cpr_vector
   /** Alias for `cpr_vector_alloc()` when `CPR_ABBREV` is defined. */
   #define vector_alloc              cpr_vector_alloc
   /** Alias for `cpr_vector_free()` when `CPR_ABBREV` is defined. */

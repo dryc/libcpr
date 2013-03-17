@@ -6,7 +6,27 @@
 
 #include <cpr/vector.h>
 
+static void
+test_construct_empty(void) {
+  cpr_vector_t* vector = cpr_vector(NULL);
+  assert(vector != NULL);
+  assert(cpr_vector_empty(vector));
+}
+
+static void
+test_construct_nonempty(void) {
+  cpr_vector_t* vector = cpr_vector((void*)1, (void*)2, (void*)3, NULL);
+  assert(vector != NULL);
+  assert(!cpr_vector_empty(vector));
+  assert(cpr_vector_size(vector) == 3);
+  assert(cpr_vector_at(vector, 0) == (void*)1);
+  assert(cpr_vector_at(vector, 1) == (void*)2);
+  assert(cpr_vector_at(vector, 2) == (void*)3);
+}
+
 int
 main(void) {
-  return EXIT_SUCCESS; // TODO
+  test_construct_empty();
+  test_construct_nonempty();
+  return EXIT_SUCCESS;
 }

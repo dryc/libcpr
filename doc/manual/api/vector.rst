@@ -11,6 +11,7 @@ Header ``<cpr/vector.h>``
 
    vector/cpr_vector_t
    vector/cpr_vector_sizeof
+   vector/cpr_vector
    vector/cpr_vector_alloc
    vector/cpr_vector_free
    vector/cpr_vector_init
