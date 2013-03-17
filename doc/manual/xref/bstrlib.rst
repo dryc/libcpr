@@ -7,6 +7,9 @@ Bstrlib Cross Reference
 Bstrlib                                     libcpr
 =========================================== ====================================
 :c:type:`bstring`                           :c:type:`cpr_string_t`
+:c:data:`bstring.mlen`                      N/A
+:c:data:`bstring.slen`                      :c:func:`cpr_string_size()`
+:c:data:`bstring.data`                      N/A
 :c:func:`balloc()`                          N/A
 :c:func:`ballocmin()`                       N/A
 :c:func:`bassign()`                         N/A
@@ -47,8 +50,8 @@ Bstrlib                                     libcpr
 :c:func:`biseqcstrcaseless()`               N/A
 :c:func:`bisstemeqblk()`                    N/A
 :c:func:`bisstemeqcaselessblk()`            N/A
-:c:func:`blength()`                         N/A
-:c:func:`blengthe()`                        N/A
+:c:func:`blength()`                         :c:func:`cpr_string_size()`
+:c:func:`blengthe()`                        :c:func:`cpr_string_size()`
 :c:func:`blk2bstr()`                        N/A
 :c:func:`bltrimws()`                        N/A
 :c:func:`bmidstr()`                         N/A

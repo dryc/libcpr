@@ -70,6 +70,24 @@ void cpr_string_free(cpr_string_t* string);
  */
 bool cpr_string_empty(const cpr_string_t* string);
 
+/**
+ * Returns the byte length of a string.
+ *
+ * @param  string a pointer to the string to be accessed
+ * @pre    `string` is not a `NULL` pointer
+ * @return the byte length of `*string`
+ */
+size_t cpr_string_size(const cpr_string_t* string);
+
+/**
+ * Alias for `cpr_string_size()`.
+ *
+ * @param  string a pointer to the string to be accessed
+ * @pre    `string` is not a `NULL` pointer
+ * @return the byte length of `*string`
+ */
+size_t cpr_string_length(const cpr_string_t* string);
+
 /*
  * Abbreviated type, variable, and function names if the `CPR_ABBREV`
  * preprocessor symbol is defined:
@@ -87,6 +105,10 @@ bool cpr_string_empty(const cpr_string_t* string);
   #define string_free   cpr_string_free
   /** Alias for `cpr_string_empty()` when `CPR_ABBREV` is defined. */
   #define string_empty  cpr_string_empty
+  /** Alias for `cpr_string_size()` when `CPR_ABBREV` is defined. */
+  #define string_size   cpr_string_size
+  /** Alias for `cpr_string_length()` when `CPR_ABBREV` is defined. */
+  #define string_length cpr_string_length
 #endif /* CPR_ABBREV */
 
 #ifdef __cplusplus

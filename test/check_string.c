@@ -11,13 +11,15 @@ test_construct_empty(void) {
   cpr_string_t* string = cpr_string(NULL);
   assert(string != NULL);
   assert(cpr_string_empty(string));
+  assert(cpr_string_size(string) == 0);
 }
 
 static void
 test_construct_nonempty(void) {
-  cpr_string_t* string = cpr_string("Hello, world!\n");
+  cpr_string_t* string = cpr_string("Hello, world!");
   assert(string != NULL);
   assert(!cpr_string_empty(string));
+  assert(cpr_string_size(string) == 13);
 }
 
 int

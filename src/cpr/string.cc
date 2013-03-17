@@ -60,3 +60,22 @@ cpr_string_empty(const cpr_string_t* const string) {
     "std::string::empty() declaration is missing the noexcept specifier");
 #endif
 }
+
+std::size_t
+cpr_string_size(const cpr_string_t* const string) {
+  assert(string != nullptr);
+
+  /* Guaranteed to never throw an exception: */
+  return string->data.size();
+#ifdef DEBUG
+  static_assert(noexcept(string->data.size()),
+    "std::string::size() declaration is missing the noexcept specifier");
+#endif
+}
+
+std::size_t
+cpr_string_length(const cpr_string_t* const string) {
+  assert(string != nullptr);
+
+  return cpr_string_size(string);
+}

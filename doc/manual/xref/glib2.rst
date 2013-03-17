@@ -10,6 +10,9 @@ GLib 2.x Cross Reference
 GLib 2.x                                    libcpr
 =========================================== ====================================
 :c:type:`GString`                           :c:type:`cpr_string_t`
+:c:data:`GString.str`                       N/A
+:c:data:`GString.len`                       :c:func:`cpr_string_size()`
+:c:data:`GString.allocated_len`             N/A
 :c:func:`g_string_new`                      :c:func:`cpr_string()`
 =========================================== ====================================
 
