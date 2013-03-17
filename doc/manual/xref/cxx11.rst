@@ -10,7 +10,9 @@ C++11 Cross Reference
 C++11                                       libcpr
 =========================================== ====================================
 :cpp:class:`std::string`                    :c:type:`cpr_string_t`
+:cpp:func:`std::string::capacity()`         :c:func:`cpr_string_capacity()`
 :cpp:func:`std::string::length()`           :c:func:`cpr_string_size()`
+:cpp:func:`std::string::max_size()`         :c:func:`cpr_string_max_size()`
 :cpp:func:`std::string::size()`             :c:func:`cpr_string_size()`
 :cpp:func:`std::string::string()`           :c:func:`cpr_string()`
 =========================================== ====================================

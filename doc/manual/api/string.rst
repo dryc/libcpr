@@ -17,3 +17,5 @@ Header ``<cpr/string.h>``
    string/cpr_string_empty
    string/cpr_string_size
    string/cpr_string_length
+   string/cpr_string_max_size
+   string/cpr_string_capacity

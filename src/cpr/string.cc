@@ -79,3 +79,27 @@ cpr_string_length(const cpr_string_t* const string) {
 
   return cpr_string_size(string);
 }
+
+std::size_t
+cpr_string_max_size(const cpr_string_t* const string) {
+  assert(string != nullptr);
+
+  /* Guaranteed to never throw an exception: */
+  return string->data.max_size();
+#ifdef DEBUG
+  static_assert(noexcept(string->data.size()),
+    "std::string::max_size() declaration is missing the noexcept specifier");
+#endif
+}
+
+std::size_t
+cpr_string_capacity(const cpr_string_t* const string) {
+  assert(string != nullptr);
+
+  /* Guaranteed to never throw an exception: */
+  return string->data.capacity();
+#ifdef DEBUG
+  static_assert(noexcept(string->data.size()),
+    "std::string::capacity() declaration is missing the noexcept specifier");
+#endif
+}

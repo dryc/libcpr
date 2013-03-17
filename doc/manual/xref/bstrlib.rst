@@ -7,7 +7,7 @@ Bstrlib Cross Reference
 Bstrlib                                     libcpr
 =========================================== ====================================
 :c:type:`bstring`                           :c:type:`cpr_string_t`
-:c:data:`bstring.mlen`                      N/A
+:c:data:`bstring.mlen`                      :c:func:`cpr_string_capacity()`
 :c:data:`bstring.slen`                      :c:func:`cpr_string_size()`
 :c:data:`bstring.data`                      N/A
 :c:func:`balloc()`                          N/A

@@ -88,6 +88,24 @@ size_t cpr_string_size(const cpr_string_t* string);
  */
 size_t cpr_string_length(const cpr_string_t* string);
 
+/**
+ * Returns the maximum size a string can reach.
+ *
+ * @param  string a pointer to the string to be accessed
+ * @pre    `string` is not a `NULL` pointer
+ * @return the maximum size `*string` can reach
+ */
+size_t cpr_string_max_size(const cpr_string_t* string);
+
+/**
+ * Returns the size of allocated storage for a string.
+ *
+ * @param  string a pointer to the string to be accessed
+ * @pre    `string` is not a `NULL` pointer
+ * @return the current storage capacity of `*string`
+ */
+size_t cpr_string_capacity(const cpr_string_t* string);
+
 /*
  * Abbreviated type, variable, and function names if the `CPR_ABBREV`
  * preprocessor symbol is defined:
