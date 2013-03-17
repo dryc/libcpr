@@ -11,6 +11,11 @@
 extern "C" {
 #endif
 
+#define cpr_malloc(s)     std::malloc(s)
+#define cpr_free(p)       std::free(p)
+#define cpr_calloc(n, s)  std::calloc(n, s)
+#define cpr_realloc(p, s) std::realloc(p, s)
+
 #ifndef __has_builtin
   #define __has_builtin(x) 0
 #endif
