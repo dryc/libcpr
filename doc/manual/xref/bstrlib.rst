@@ -81,3 +81,10 @@ Bstrlib                                     libcpr
 :c:func:`bvcformata()`                      N/A
 :c:func:`bvformata()`                       N/A
 =========================================== ====================================
+
+.. seealso::
+
+   `Better String Library`__
+      Documentation for the bstring library.
+
+__ http://bstring.cvs.sourceforge.net/viewvc/bstring/tree/bstrlib.txt?pathrev=HEAD

@@ -3,6 +3,36 @@
 C++11 Cross Reference
 =====================
 
+``std::list``
+-------------
+
+.. seealso::
+
+   `C++ Reference: std::list`__
+      Documentation for the ``std::list`` interface.
+
+__ http://www.cplusplus.com/reference/list/list/
+
+``std::map``
+------------
+
+.. seealso::
+
+   `C++ Reference: std::map`__
+      Documentation for the ``std::map`` interface.
+
+__ http://www.cplusplus.com/reference/map/map/
+
+``std::set``
+------------
+
+.. seealso::
+
+   `C++ Reference: std::set`__
+      Documentation for the ``std::set`` interface.
+
+__ http://www.cplusplus.com/reference/set/set/
+
 ``std::string``
 ---------------
 
@@ -16,6 +46,13 @@ C++11                                       libcpr
 :cpp:func:`std::string::size()`             :c:func:`cpr_string_size()`
 :cpp:func:`std::string::string()`           :c:func:`cpr_string()`
 =========================================== ====================================
+
+.. seealso::
+
+   `C++ Reference: std::string`__
+      Documentation for the ``std::string`` interface.
+
+__ http://www.cplusplus.com/reference/string/string/
 
 ``std::vector``
 ---------------
@@ -57,3 +94,10 @@ C++11                                       libcpr
 :cpp:func:`std::vector::size()`             :c:func:`cpr_vector_size()`
 :cpp:func:`std::vector::swap()`             N/A
 =========================================== ====================================
+
+.. seealso::
+
+   `C++ Reference: std::vector`__
+      Documentation for the ``std::vector`` interface.
+
+__ http://www.cplusplus.com/reference/vector/vector/
