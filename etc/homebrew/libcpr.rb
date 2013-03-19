@@ -15,6 +15,7 @@ class Libcpr < Formula
 
     args = ["--prefix=#{prefix}", '--disable-dependency-tracking']
     args << '--enable-debug' if build.include?('enable-debug')
+    args << '--with-stdlib=libc++' # required for full C++11 support
     system './configure', *args
 
     system 'make install'

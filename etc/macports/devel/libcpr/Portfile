@@ -19,3 +19,5 @@ git.url             https://github.com/bendiken/libcpr.git
 
 use_autoreconf      yes
 autoreconf.args     -fiv
+
+configure.args      --with-stdlib=libc++ # required for full C++11 support
