@@ -42,7 +42,6 @@ Nice to Have
 ------------
 
 - Support custom memory management hooks.
-- Support --with-stdlib=libc++ and --with-stdlib=libstdc++ options.
 
 Documentation
 -------------

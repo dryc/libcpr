@@ -39,8 +39,16 @@ AC_PROG_CXX
 m4_ifdef([AM_PROG_AR], [AM_PROG_AR])
 LT_INIT
 AC_LANG([C++])
+AX_CXX_COMPILE_STDCXX_11([noext])
 
 dnl Check for configuration options:
+# --with-stdlib=libstdc++|libc++
+AC_ARG_WITH([stdlib],
+  [AS_HELP_STRING([--with-stdlib=LIB], [specify the C++ standard library to use [default=system]])],
+  [], [with_stdlib=system])
+AS_IF([test "x$with_stdlib" != "xsystem"],
+  [CXXFLAGS="$CXXFLAGS -stdlib=$with_stdlib"
+   LDFLAGS="$LDFLAGS -stdlib=$with_stdlib"])
 # --enable-debug/--disable-debug
 AC_ARG_ENABLE([debug],
   [AS_HELP_STRING([--enable-debug], [build with debugging support [default=no]])],
@@ -98,7 +106,6 @@ AC_CANONICAL_HOST
 AC_C_BIGENDIAN
 AC_C_INLINE
 AC_C_RESTRICT
-AX_CXX_COMPILE_STDCXX_11([noext])
 
 dnl Check for library functions:
 AC_FUNC_ALLOCA
