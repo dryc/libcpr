@@ -1,0 +1,21 @@
+# $Id$
+
+PortSystem          1.0
+
+name                libcpr
+version             0.1.0-head
+categories          devel
+platforms           darwin
+maintainers         bendiken.net:arto
+description         Backport of the core C++11 standard library to C11.
+long_description    Public domain backport of the core data structures \
+                    and algorithms from the C++11 standard library to C11.
+license             public-domain
+homepage            http://libcpr.org/
+
+master_sites        sourceforge
+fetch.type          git
+git.url             https://github.com/bendiken/libcpr.git
+
+use_autoreconf      yes
+autoreconf.args     -fiv
