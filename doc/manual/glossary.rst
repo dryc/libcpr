@@ -10,3 +10,7 @@ Glossary
    application binary interface
 
       Also known as ABI.
+
+   toolchain
+
+      TODO
