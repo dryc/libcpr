@@ -3,6 +3,9 @@
 Installation on Linux
 =====================
 
+From a source tarball
+---------------------
+
 .. code-block:: bash
 
    $ ./autogen.sh
@@ -11,8 +14,12 @@ Installation on Linux
    $ sudo make install
    $ sudo ldconfig
 
-Installation on Ubuntu Linux 12.10
-----------------------------------
+On Debian or Ubuntu Linux
+-------------------------
 
-Installation on Ubuntu Linux 12.04
-----------------------------------
+For now, use the tarball instructions.
+
+On Gentoo Linux
+---------------
+
+For now, use the tarball instructions.

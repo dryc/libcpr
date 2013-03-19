@@ -4,6 +4,9 @@
 Installation on MinGW
 =====================
 
+From a source tarball
+---------------------
+
 .. code-block:: bash
 
    $ ./autogen.sh
