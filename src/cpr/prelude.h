@@ -7,9 +7,9 @@
  * @file
  */
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+#include <system_error> /* for std::errc */
+
+#include "cpr/error.h"  /* for cpr_error_trigger() */
 
 #define cpr_malloc(s)     std::malloc(s)
 #define cpr_free(p)       std::free(p)
@@ -28,8 +28,12 @@ extern "C" {
   #define __has_extension __has_feature
 #endif
 
-#ifdef __cplusplus
-} /* extern "C" */
-#endif
+static inline void
+cpr_error_trigger(const char* caller_name,
+                  const std::errc& error_code,
+                  const char* error_message, ...) {
+  cpr_error_trigger(caller_name,
+    static_cast<int>(error_code), error_message); // TODO: varargs
+}
 
 #endif /* CPR_PRELUDE_H */
