@@ -32,10 +32,12 @@ AM_INIT_AUTOMAKE([foreign -Wall -Werror dist-bzip2 subdir-objects nostdinc])
 AM_SILENT_RULES([yes])
 
 dnl Check for programs:
-AC_PROG_CC
+AC_PROG_CC(clang gcc cc)
 AC_PROG_CC_C99
 AM_PROG_CC_C_O
-AC_PROG_CXX
+AC_PROG_CPP
+AC_PROG_CXX(clang++ g++ c++)
+AC_PROG_CXXCPP
 m4_ifdef([AM_PROG_AR], [AM_PROG_AR])
 LT_INIT
 AC_LANG([C++])
