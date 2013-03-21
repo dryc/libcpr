@@ -17,7 +17,7 @@
     <doap:license rdf:resource="http://creativecommons.org/licenses/publicdomain/"/>
     <doap:maintainer rdf:resource="http://ar.to/#self"/>
     <doap:name>libcpr</doap:name>
-    <doap:platform>C11</doap:platform>
+    <doap:platform>C</doap:platform>
     <doap:shortdesc xml:lang="en">...</doap:shortdesc>
     <foaf:maker rdf:resource="http://ar.to/#self"/>
   </doap:Project>

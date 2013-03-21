@@ -2,7 +2,7 @@ Introduction
 ============
 
 ``libcpr`` is a public domain backport of the core data structures and
-algorithms from the C++11 standard library to C11.
+algorithms from the C++11 standard library to C.
 
 Features
 --------

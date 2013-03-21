@@ -7,9 +7,9 @@ version             0.1.0-head
 categories          devel
 platforms           darwin
 maintainers         bendiken.net:arto
-description         Backport of the core C++11 standard library to C11.
+description         Backport of the core C++11 standard library to C.
 long_description    Public domain backport of the core data structures \
-                    and algorithms from the C++11 standard library to C11.
+                    and algorithms from the C++11 standard library to C.
 license             public-domain
 homepage            http://libcpr.org/
 
