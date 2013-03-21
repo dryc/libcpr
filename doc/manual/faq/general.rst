@@ -1,31 +1,46 @@
 FAQ: General Questions
 ======================
 
+This section collects answers to frequently-asked general questions
+regarding the ``libcpr`` project.
+
 **Q:** What is ``libcpr``?
 --------------------------
 
 **A:** ``libcpr`` is a public domain backport of the core data structures
 and algorithms from the C++11 standard library to C.
 
-.. index:: portability
+For more particulars, take a look at the :doc:`../intro` chapter.
 
 **Q:** Why is it named ``libcpr`` instead of something else?
 ------------------------------------------------------------
 
-**A:** TODO
+**A:** The name has two parallel and congruent origins:
+
+1. The project originally started out being called C′ (as in, C-`prime`_),
+   with a rather larger scope than presently, before being rebooted back to
+   basics.
+
+2. The library could be considered an effort to administer CPR_ to the
+   venerable C language.
+
+.. _prime: http://en.wikipedia.org/wiki/Prime_(symbol)
+.. _CPR:   http://en.wikipedia.org/wiki/Cardiopulmonary_resuscitation
 
 **Q:** Which version of the C standard does the library require?
 ----------------------------------------------------------------
 
 **A:** TODO
 
-.. index:: GCC, Clang
+.. index:: portability
 
 **Q:** How portable is the library?
 -----------------------------------
 
 **A:** The code base is written in standard, clean, and modern C++11, and
 should be highly portable to conforming compilers.
+
+.. index:: GCC, Clang
 
 **Q:** Which C/C++ compilers does the library build with?
 ---------------------------------------------------------
@@ -48,3 +63,8 @@ Ubuntu 12.10            | Clang 3.2 PPA                 | libc++
 Ubuntu 12.04            | Clang 3.2 SVN                 | libstdc++
                         | GCC 4.6.3                     | libstdc++
 ======================= =============================== ========================
+
+**Q:** Is this in any way related to the SGI IRIX ``libcpr`` facility?
+----------------------------------------------------------------------
+
+**A:** No.
