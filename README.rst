@@ -24,7 +24,7 @@ Build Dependencies
 ------------------
 
 * Clang (>= 3.0) or GCC (>= 4.6)
-* Autoconf (>= 2.60)
+* Autoconf (>= 2.68)
 * Automake (>= 1.11)
 * Libtool (>= 2.2)
 

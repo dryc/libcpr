@@ -3,7 +3,7 @@ dnl
 dnl Process this file with `autoconf` to produce a configure script.
 dnl
 dnl This is free and unencumbered software released into the public domain.
-AC_PREREQ([2.60])
+AC_PREREQ([2.68])
 
 dnl Define version information:
 m4_define([VERSION_MAJOR],
