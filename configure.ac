@@ -25,7 +25,6 @@ AC_CONFIG_HEADERS([src/config.h])
 AC_CONFIG_SRCDIR([src/cpr.h])
 AC_CONFIG_AUX_DIR([etc/aclocal])
 AC_CONFIG_MACRO_DIR([etc/aclocal])
-AC_USE_SYSTEM_EXTENSIONS
 
 dnl Configure Automake:
 AM_INIT_AUTOMAKE([foreign -Wall -Werror dist-bzip2 subdir-objects nostdinc])
@@ -96,6 +95,7 @@ AS_IF([test "x$enable_vector" == "xno"], [
 AM_CONDITIONAL([DISABLE_VECTOR], [test "x$enable_vector" == "xno"])
 
 dnl Check for libraries:
+AC_USE_SYSTEM_EXTENSIONS
 
 dnl Check for header files:
 
