@@ -99,6 +99,7 @@ dnl Check for libraries:
 
 dnl Check for header files:
 AC_LANG_PUSH([C])
+AC_HEADER_ASSERT
 AC_HEADER_STDBOOL
 AC_LANG_POP([C])
 
