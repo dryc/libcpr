@@ -4,12 +4,25 @@
 Installation on MinGW
 =====================
 
+This section describes how to build and install ``libcpr`` on MSYS/MinGW.
+
+From the source repository
+--------------------------
+
+.. code-block:: bash
+
+   $ git clone https://github.com/bendiken/libcpr.git
+   $ cd libcpr
+   $ ./autogen.sh
+   $ ./configure
+   $ make
+   $ sudo make install
+
 From a source tarball
 ---------------------
 
 .. code-block:: bash
 
-   $ ./autogen.sh
    $ ./configure
    $ make
    $ sudo make install

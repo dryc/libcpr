@@ -3,12 +3,26 @@
 Installation on Linux
 =====================
 
+This section describes how to build and install ``libcpr`` on Linux
+platforms.
+
+From the source repository
+--------------------------
+
+.. code-block:: bash
+
+   $ git clone https://github.com/bendiken/libcpr.git
+   $ cd libcpr
+   $ ./autogen.sh
+   $ ./configure
+   $ make
+   $ sudo make install
+
 From a source tarball
 ---------------------
 
 .. code-block:: bash
 
-   $ ./autogen.sh
    $ ./configure
    $ make
    $ sudo make install
@@ -17,14 +31,14 @@ From a source tarball
 On Debian or Ubuntu Linux
 -------------------------
 
-For now, use the tarball instructions.
+For now, use the tarball instructions (see previous subsection) to install.
 
 On Fedora or RHEL
 -----------------
 
-For now, use the tarball instructions.
+For now, use the tarball instructions (see previous subsection) to install.
 
 On Gentoo Linux
 ---------------
 
-For now, use the tarball instructions.
+For now, use the tarball instructions (see previous subsection) to install.

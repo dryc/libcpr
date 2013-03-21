@@ -36,6 +36,8 @@ From the source repository
 
 .. code-block:: bash
 
+   $ git clone https://github.com/bendiken/libcpr.git
+   $ cd libcpr
    $ ./autogen.sh
    $ ./configure
    $ make
