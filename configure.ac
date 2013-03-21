@@ -98,6 +98,9 @@ AM_CONDITIONAL([DISABLE_VECTOR], [test "x$enable_vector" == "xno"])
 dnl Check for libraries:
 
 dnl Check for header files:
+AC_LANG_PUSH([C])
+AC_HEADER_STDBOOL
+AC_LANG_POP([C])
 
 dnl Check for types:
 
