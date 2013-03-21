@@ -37,6 +37,7 @@ AM_PROG_CC_C_O
 AC_PROG_CPP
 AC_PROG_CXX(clang++ g++ c++)
 AC_PROG_CXXCPP
+AC_USE_SYSTEM_EXTENSIONS
 m4_ifdef([AM_PROG_AR], [AM_PROG_AR])
 LT_INIT
 AC_LANG([C++])
@@ -95,7 +96,6 @@ AS_IF([test "x$enable_vector" == "xno"], [
 AM_CONDITIONAL([DISABLE_VECTOR], [test "x$enable_vector" == "xno"])
 
 dnl Check for libraries:
-AC_USE_SYSTEM_EXTENSIONS
 
 dnl Check for header files:
 
