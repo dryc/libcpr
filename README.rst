@@ -7,7 +7,7 @@ libcpr
    :alt: Travis CI build status
 
 ``libcpr`` is a public domain backport of the core data structures and
-algorithms from the C++11 standard library to C11.
+algorithms from the C++11 standard library to C.
 
 Features
 --------
@@ -38,6 +38,15 @@ Installation on Unix
    $ make
    $ sudo make install
    $ sudo ldconfig             # on Linux
+
+Elsewhere
+---------
+
+* http://libcpr.org/
+* http://ohloh.net/p/libcpr
+* http://freecode.com/projects/libcpr
+* http://sourceforge.net/p/libcpr/
+* http://travis-ci.org/bendiken/libcpr
 
 License
 -------
