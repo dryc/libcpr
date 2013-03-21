@@ -42,6 +42,21 @@ Nice to Have
 ------------
 
 - Support custom memory management hooks.
+- Bump build dependencies to Automake 1.11.2 (breaks Ubuntu 11.10):
+  - Simplify m4_ifdef([AM_PROG_AR], [AM_PROG_AR]) to AM_PROG_AR.
+- Bump build dependencies to Automake 1.13 (breaks Ubuntu 12.10):
+  - Remove ACLOCAL_AMFLAGS from Makefile.am.
+  - Remove the 'color-tests' option (it's now the default).
+  - Remove the 'parallel-tests' option (it's now the default).
+- Bump build dependencies to Automake 1.13.2 (in Ubuntu 13.04?):
+  - Remove AM_PROG_CC_C_O from configure.ac.
+- Bump build dependencies to Autoconf 2.70 & Automake 2.0 (once released):
+  http://git.savannah.gnu.org/gitweb/?p=autoconf.git;a=blob_plain;f=NEWS;hb=HEAD
+  http://git.savannah.gnu.org/gitweb/?p=automake.git;a=blob_plain;f=NEWS;hb=HEAD
+  - Replace obsolescent AC_CONFIG_MACRO_DIR with AC_CONFIG_MACRO_DIRS.
+  - Remove obsolete AC_PROG_CC_C99 from configure.ac.
+  - Refactor AX_CXX_COMPILE_STDCXX_11 for new AC_PROG_CXX.
+  - Assuming a requirement for a POSIX shell, what can be simplified?
 
 Documentation
 -------------
