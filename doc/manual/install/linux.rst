@@ -19,6 +19,11 @@ On Debian or Ubuntu Linux
 
 For now, use the tarball instructions.
 
+On Fedora or RHEL
+-----------------
+
+For now, use the tarball instructions.
+
 On Gentoo Linux
 ---------------
 

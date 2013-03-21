@@ -4,8 +4,8 @@ FAQ: General Questions
 **Q:** What is ``libcpr``?
 --------------------------
 
-**A:** ``libcpr`` is a public domain backport of the core C++ standard
-library to C.
+**A:** ``libcpr`` is a public domain backport of the core data structures
+and algorithms from the C++11 standard library to C.
 
 .. index:: portability
 
@@ -14,13 +14,18 @@ library to C.
 
 **A:** TODO
 
+**Q:** Which version of the C standard does the library require?
+----------------------------------------------------------------
+
+**A:** TODO
+
+.. index:: GCC, Clang
+
 **Q:** How portable is the library?
 -----------------------------------
 
 **A:** The code base is written in standard, clean, and modern C++11, and
 should be highly portable to conforming compilers.
-
-.. index:: GCC, Clang
 
 **Q:** Which C/C++ compilers does the library build with?
 ---------------------------------------------------------

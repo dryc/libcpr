@@ -1,6 +1,13 @@
 FAQ: Technical Questions
 ========================
 
+.. index:: naming
+
+**Q:** Why are all exported symbols prefixed with ``cpr_``?
+-----------------------------------------------------------
+
+**A:** TODO
+
 .. index:: threads; safety
 
 **Q:** Is the library thread-safe?
