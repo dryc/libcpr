@@ -48,6 +48,7 @@ needed for most common programming tasks, and adds no bloat since it's
 already installed on the system regardless.
 
 .. _bloats: http://en.wikipedia.org/wiki/Wirth%27s_law
+.. _GLib:   http://libcpr.org/xref/glib2.html
 
 Build Prerequisites
 -------------------
@@ -57,7 +58,7 @@ Build Prerequisites
 * Automake_ (>= 1.11)
 * Libtool_ (>= 2.2)
 
-.. _Clang     http://clang.llvm.org/
+.. _Clang:    http://clang.llvm.org/
 .. _GCC:      http://gcc.gnu.org/
 .. _Autoconf: http://www.gnu.org/software/autoconf/
 .. _Automake: http://www.gnu.org/software/automake/
