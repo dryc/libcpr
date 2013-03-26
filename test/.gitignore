@@ -5,6 +5,8 @@
 *.o
 *.la
 *.lo
+*.log
+*.trs
 check_error
 check_feature
 check_generic
