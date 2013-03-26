@@ -3,38 +3,68 @@
 C++11 Cross Reference
 =====================
 
-``std::list``
+``<algorithm>``
+---------------
+
+.. seealso::
+
+   `C++ Reference: <algorithm> header`__
+      Documentation for the ``std::*`` algorithms.
+
+__ http://www.cplusplus.com/reference/algorithm/
+
+``<bitset>``
+------------
+
+.. seealso::
+
+   `C++ Reference: <bitset> header`__
+      Documentation for the ``std::bitset`` interface.
+
+__ http://www.cplusplus.com/reference/bitset/
+
+``<dequeue>``
 -------------
 
 .. seealso::
 
-   `C++ Reference: std::list`__
+   `C++ Reference: <dequeue> header`__
+      Documentation for the ``std::dequeue`` interface.
+
+__ http://www.cplusplus.com/reference/dequeue/
+
+``<list>``
+----------
+
+.. seealso::
+
+   `C++ Reference: <list> header`__
       Documentation for the ``std::list`` interface.
 
-__ http://www.cplusplus.com/reference/list/list/
+__ http://www.cplusplus.com/reference/list/
 
-``std::map``
-------------
+``<map>``
+---------
 
 .. seealso::
 
-   `C++ Reference: std::map`__
+   `C++ Reference: <map> header`__
       Documentation for the ``std::map`` interface.
 
-__ http://www.cplusplus.com/reference/map/map/
+__ http://www.cplusplus.com/reference/map/
 
-``std::set``
-------------
+``<set>``
+---------
 
 .. seealso::
 
-   `C++ Reference: std::set`__
+   `C++ Reference: <set> header`__
       Documentation for the ``std::set`` interface.
 
-__ http://www.cplusplus.com/reference/set/set/
+__ http://www.cplusplus.com/reference/set/
 
-``std::string``
----------------
+``<string>``
+------------
 
 ============================================ ===================================
 C++11                                        libcpr
@@ -47,19 +77,19 @@ C++11                                        libcpr
                                              | :c:func:`cpr_string_assign_str()`
 :cpp:func:`std::string::at()`                TODO: :c:func:`cpr_string_at()`
 :cpp:func:`std::string::back()`              TODO: :c:func:`cpr_string_back()`
-:cpp:func:`std::string::begin()`             N/A
+:cpp:func:`std::string::begin()`             N/A [#string-iterate]_
 :cpp:func:`std::string::capacity()`          :c:func:`cpr_string_capacity()`
-:cpp:func:`std::string::cbegin()`            N/A
-:cpp:func:`std::string::cend()`              N/A
+:cpp:func:`std::string::cbegin()`            N/A [#string-iterate]_
+:cpp:func:`std::string::cend()`              N/A [#string-iterate]_
 :cpp:func:`std::string::clear()`             TODO: :c:func:`cpr_string_clear()`
 :cpp:func:`std::string::compare()`           TODO: :c:func:`cpr_string_compare()`
 :cpp:func:`std::string::copy()`              TODO: :c:func:`cpr_string_copy()`
-:cpp:func:`std::string::crbegin()`           N/A
-:cpp:func:`std::string::crend()`             N/A
+:cpp:func:`std::string::crbegin()`           N/A [#string-iterate]_
+:cpp:func:`std::string::crend()`             N/A [#string-iterate]_
 :cpp:func:`std::string::c_str()`             TODO: :c:func:`cpr_string_str()`
 :cpp:func:`std::string::data()`              TODO: :c:func:`cpr_string_data()`
 :cpp:func:`std::string::empty()`             :c:func:`cpr_string_empty()`
-:cpp:func:`std::string::end()`               N/A
+:cpp:func:`std::string::end()`               N/A [#string-iterate]_
 :cpp:func:`std::string::erase()`             TODO: :c:func:`cpr_string_erase()`
 :cpp:func:`std::string::find()`              | TODO: :c:func:`cpr_string_find_char()`
                                              | :c:func:`cpr_string_find_str()`
@@ -79,8 +109,8 @@ C++11                                        libcpr
                                              | :c:func:`cpr_string_append_str()`
 :cpp:func:`std::string::pop_back()`          TODO: :c:func:`cpr_string_pop_back()`
 :cpp:func:`std::string::push_back()`         TODO: :c:func:`cpr_string_push_back()`
-:cpp:func:`std::string::rbegin()`            N/A
-:cpp:func:`std::string::rend()`              N/A
+:cpp:func:`std::string::rbegin()`            N/A [#string-iterate]_
+:cpp:func:`std::string::rend()`              N/A [#string-iterate]_
 :cpp:func:`std::string::replace()`           TODO
 :cpp:func:`std::string::reserve()`           TODO: :c:func:`cpr_string_reserve()`
 :cpp:func:`std::string::resize()`            TODO: :c:func:`cpr_string_resize()`
@@ -92,15 +122,19 @@ C++11                                        libcpr
 :cpp:func:`std::string::swap()`              TODO: :c:func:`cpr_string_swap()`
 ============================================ ===================================
 
+.. rubric:: Footnotes
+
+.. [#string-iterate] Iterator operations are not supported.
+
 .. seealso::
 
-   `C++ Reference: std::string`__
+   `C++ Reference: <string> header`__
       Documentation for the ``std::string`` interface.
 
-__ http://www.cplusplus.com/reference/string/string/
+__ http://www.cplusplus.com/reference/string/
 
-``std::vector``
----------------
+``<vector>``
+------------
 
 ============================================ ===================================
 C++11                                        libcpr
@@ -110,18 +144,18 @@ C++11                                        libcpr
 :cpp:func:`std::vector::assign()`            N/A
 :cpp:func:`std::vector::at()`                :c:func:`cpr_vector_at()`
 :cpp:func:`std::vector::back()`              :c:func:`cpr_vector_back()`
-:cpp:func:`std::vector::begin()`             N/A
+:cpp:func:`std::vector::begin()`             N/A [#vector-iterate]_
 :cpp:func:`std::vector::capacity()`          :c:func:`cpr_vector_capacity()`
-:cpp:func:`std::vector::cbegin()`            N/A
-:cpp:func:`std::vector::cend()`              N/A
+:cpp:func:`std::vector::cbegin()`            N/A [#vector-iterate]_
+:cpp:func:`std::vector::cend()`              N/A [#vector-iterate]_
 :cpp:func:`std::vector::clear()`             :c:func:`cpr_vector_clear()`
-:cpp:func:`std::vector::crbegin()`           N/A
-:cpp:func:`std::vector::crend()`             N/A
+:cpp:func:`std::vector::crbegin()`           N/A [#vector-iterate]_
+:cpp:func:`std::vector::crend()`             N/A [#vector-iterate]_
 :cpp:func:`std::vector::data()`              :c:func:`cpr_vector_data()`
-:cpp:func:`std::vector::emplace()`           N/A
-:cpp:func:`std::vector::emplace_back()`      N/A
+:cpp:func:`std::vector::emplace()`           N/A [#vector-emplace]_
+:cpp:func:`std::vector::emplace_back()`      N/A [#vector-emplace]_
 :cpp:func:`std::vector::empty()`             :c:func:`cpr_vector_empty()`
-:cpp:func:`std::vector::end()`               N/A
+:cpp:func:`std::vector::end()`               N/A [#vector-iterate]_
 :cpp:func:`std::vector::erase()`             N/A
 :cpp:func:`std::vector::front()`             :c:func:`cpr_vector_front()`
 :cpp:func:`std::vector::get_allocator()`     N/A
@@ -131,8 +165,8 @@ C++11                                        libcpr
 :cpp:func:`std::vector::operator[]`          :c:func:`cpr_vector_at()`
 :cpp:func:`std::vector::pop_back()`          :c:func:`cpr_vector_pop_back()`
 :cpp:func:`std::vector::push_back()`         :c:func:`cpr_vector_push_back()`
-:cpp:func:`std::vector::rbegin()`            N/A
-:cpp:func:`std::vector::rend()`              N/A
+:cpp:func:`std::vector::rbegin()`            N/A [#vector-iterate]_
+:cpp:func:`std::vector::rend()`              N/A [#vector-iterate]_
 :cpp:func:`std::vector::reserve()`           :c:func:`cpr_vector_reserve()`
 :cpp:func:`std::vector::resize()`            N/A
 :cpp:func:`std::vector::shrink_to_fit()`     N/A
@@ -140,9 +174,19 @@ C++11                                        libcpr
 :cpp:func:`std::vector::swap()`              N/A
 ============================================ ===================================
 
+.. rubric:: Footnotes
+
+.. [#vector-iterate] Iterator operations are not supported.
+   Access the vector elements with :c:func:`cpr_vector_at()`, bounded by
+   :c:func:`cpr_vector_size()`; or, alternatively, directly through the
+   pointer returned by :c:func:`cpr_vector_data()`.
+
+.. [#vector-emplace] Emplacement operations are not supported.
+   Use :c:func:`cpr_vector_insert()` or :c:func:`cpr_vector_push_back()`.
+
 .. seealso::
 
-   `C++ Reference: std::vector`__
+   `C++ Reference: <vector> header`__
       Documentation for the ``std::vector`` interface.
 
-__ http://www.cplusplus.com/reference/vector/vector/
+__ http://www.cplusplus.com/reference/vector/
