@@ -14,6 +14,10 @@
  * @see http://www.gnu.org/software/libc/manual/html_node/Variable-Size-Automatic.html
  */
 
+#ifndef CPR_UNSAFE
+#define CPR_UNSAFE
+#endif
+
 #ifdef __cplusplus
 extern "C" {
 #endif

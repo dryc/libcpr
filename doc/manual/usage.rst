@@ -39,4 +39,11 @@ directly if you prefer the following style:
 
    #include <cpr.h>
    #include <cpr/unsafe.h>
-   
+
+.. note::
+
+   When the ``<cpr/unsafe.h>`` header is included, the header defines
+   ``CPR_UNSAFE`` if it has not yet been defined. This ensures reliable
+   conditionalization of code based on ``#ifdef CPR_UNSAFE``, regardless of
+   whether the user or the header originally defined this preprocessor
+   symbol.
