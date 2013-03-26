@@ -24,8 +24,8 @@ any of the ``cpr/*.h`` header files, as follows:
 
 If defined, enables the use of stack allocation for ``libcpr`` data
 structures. This is more efficient than heap allocation, but "unsafe" since
-it can break the ABI if the structure sizes change in a future ``libcpr``
-release.
+it will break the :term:`ABI` should the structure sizes change in a
+future ``libcpr`` release.
 
 .. code-block:: c
 
