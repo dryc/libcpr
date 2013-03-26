@@ -25,6 +25,9 @@ Header Files
 ``<cpr/feature.h>``
    TODO
 
+``<cpr/generic.h>``
+   TODO
+
 ``<cpr/list.h>``
    TODO
 

@@ -9,6 +9,10 @@ check_PROGRAMS = \
   check_unsafe   \
   check_version
 
+#if 1
+  check_PROGRAMS += check_generic
+#endif
+
 if !DISABLE_LIST
   check_PROGRAMS += check_list
 endif

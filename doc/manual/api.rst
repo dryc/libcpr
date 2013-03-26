@@ -9,6 +9,7 @@ API Reference
    api/index
    api/error
    api/feature
+   api/generic
    api/list
    api/map
    api/module
