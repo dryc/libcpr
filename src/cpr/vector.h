@@ -23,6 +23,11 @@ extern "C" {
 #include <stddef.h>  /* for size_t */
 
 /**
+ * Indicates that the `cpr_vector_t` structure type has been defined.
+ */
+#define CPR_VECTOR_T
+
+/**
  * An opaque type representing a contiguous vector of elements.
  */
 typedef struct cpr_vector cpr_vector_t;

@@ -23,6 +23,11 @@ extern "C" {
 #include <stddef.h>  /* for size_t */
 
 /**
+ * Indicates that the `cpr_string_t` structure type has been defined.
+ */
+#define CPR_STRING_T
+
+/**
  * An opaque type representing a dynamic string.
  */
 typedef struct cpr_string cpr_string_t;

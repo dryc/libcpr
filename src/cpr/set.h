@@ -20,6 +20,11 @@ extern "C" {
 #include <stddef.h> /* for size_t */
 
 /**
+ * Indicates that the `cpr_set_t` structure type has been defined.
+ */
+#define CPR_SET_T
+
+/**
  * An opaque type representing a set of elements.
  */
 typedef struct cpr_set cpr_set_t;

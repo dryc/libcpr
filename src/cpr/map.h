@@ -20,6 +20,11 @@ extern "C" {
 #include <stddef.h> /* for size_t */
 
 /**
+ * Indicates that the `cpr_map_t` structure type has been defined.
+ */
+#define CPR_MAP_T
+
+/**
  * An opaque type representing a key-value map.
  */
 typedef struct cpr_map cpr_map_t;
