@@ -26,6 +26,10 @@ extern "C" {
 #include "cpr/string.h"
 #include "cpr/vector.h"
 
+#ifdef CPR_UNSAFE
+#include "cpr/unsafe.h"
+#endif
+
 #ifdef __cplusplus
 } /* extern "C" */
 #endif

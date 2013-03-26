@@ -19,3 +19,24 @@ any of the ``cpr/*.h`` header files, as follows:
 
    #define CPR_ABBREV
    #include <cpr.h>
+
+.. c:macro:: CPR_UNSAFE
+
+If defined, enables the use of stack allocation for ``libcpr`` data
+structures. This is more efficient than heap allocation, but "unsafe" since
+it can break the ABI if the structure sizes change in a future ``libcpr``
+release.
+
+.. code-block:: c
+
+   #define CPR_UNSAFE
+   #include <cpr.h>
+
+Alternatively and equivalently, just include the ``<cpr/unsafe.h>`` header
+directly if you prefer the following style:
+
+.. code-block:: c
+
+   #include <cpr.h>
+   #include <cpr/unsafe.h>
+   
