@@ -124,7 +124,7 @@ C++11                                        libcpr
 
 .. rubric:: Footnotes
 
-.. [#string-iterate] Iterator operations are not supported.
+.. [#string-iterate] :ref:`Iterator operations <iterator>` are not supported.
 
 .. seealso::
 
@@ -176,12 +176,12 @@ C++11                                        libcpr
 
 .. rubric:: Footnotes
 
-.. [#vector-iterate] Iterator operations are not supported.
+.. [#vector-iterate] :ref:`Iterator operations <iterator>` are not supported.
    Access the vector elements with :c:func:`cpr_vector_at()`, bounded by
    :c:func:`cpr_vector_size()`; or, alternatively, directly through the
    pointer returned by :c:func:`cpr_vector_data()`.
 
-.. [#vector-emplace] Emplacement operations are not supported.
+.. [#vector-emplace] :ref:`Emplacement operations <emplacement>` are not supported.
    Use :c:func:`cpr_vector_insert()` or :c:func:`cpr_vector_push_back()`.
 
 .. seealso::

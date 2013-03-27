@@ -9,3 +9,5 @@ Design Notes
    design/modules
    design/memory
    design/errors
+   design/iterators
+   design/emplace
