@@ -11,7 +11,7 @@ From the source repository
 
 .. code-block:: bash
 
-   $ git clone https://github.com/bendiken/libcpr.git
+   $ git clone https://github.com/unlicensed/libcpr.git
    $ cd libcpr
    $ ./autogen.sh
    $ ./configure

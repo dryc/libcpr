@@ -2,7 +2,7 @@ require 'formula'
 
 class Libcpr < Formula
   homepage 'http://libcpr.org/'
-  head 'https://github.com/bendiken/libcpr.git', :using => :git
+  head 'https://github.com/unlicensed/libcpr.git', :using => :git
 
   option 'enable-debug', "Build with debugging support"
 

@@ -7,7 +7,7 @@
   <doap:Project rdf:about="http://libcpr.org/">
     <dc:creator rdf:resource="http://ar.to/#self"/>
     <doap:blog rdf:resource="http://ar.to/"/>
-    <doap:bug-database rdf:resource="https://github.com/bendiken/libcpr/issues"/>
+    <doap:bug-database rdf:resource="https://github.com/unlicensed/libcpr/issues"/>
     <doap:created>2011-07-13</doap:created>
     <doap:description xml:lang="en">
       Public domain backport of the core C++11 standard library to C.

@@ -4,7 +4,7 @@ Reporting Bugs
 ==============
 
 Please report bugs to the issue tracker at:
-https://github.com/bendiken/libcpr/issues.
+https://github.com/unlicensed/libcpr/issues.
 
 .. seealso::
 

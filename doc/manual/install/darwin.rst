@@ -36,7 +36,7 @@ From the source repository
 
 .. code-block:: bash
 
-   $ git clone https://github.com/bendiken/libcpr.git
+   $ git clone https://github.com/unlicensed/libcpr.git
    $ cd libcpr
    $ ./autogen.sh
    $ ./configure
@@ -64,7 +64,7 @@ to quickly and easily install ``libcpr``, as follows:
 .. code-block:: bash
 
    $ brew install --HEAD \
-     https://raw.github.com/bendiken/libcpr/master/etc/homebrew/libcpr.rb
+     https://raw.github.com/unlicensed/libcpr/master/etc/homebrew/libcpr.rb
 
 .. _Homebrew: http://mxcl.github.com/homebrew/
 
