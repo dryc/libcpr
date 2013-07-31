@@ -64,8 +64,11 @@ Build Prerequisites
 .. _Automake: http://www.gnu.org/software/automake/
 .. _Libtool:  http://www.gnu.org/software/libtool/
 
+Installation
+------------
+
 Installation on Unix
---------------------
+^^^^^^^^^^^^^^^^^^^^
 
 ::
 
@@ -79,7 +82,7 @@ Installation on Unix
 Elsewhere
 ---------
 
-Find the project at: GitHub_, Bitbucket_, Ohloh_, Freecode_, SourceForge_,
+Find this project at: GitHub_, Bitbucket_, Ohloh_, Freecode_, SourceForge_,
 and `Travis CI`_.
 
 .. _GitHub:      http://github.com/unlicensed/libcpr
@@ -88,6 +91,21 @@ and `Travis CI`_.
 .. _Freecode:    http://freecode.com/projects/libcpr
 .. _SourceForge: http://sourceforge.net/projects/libcpr/
 .. _Travis CI:   http://travis-ci.org/unlicensed/libcpr
+
+Author
+------
+
+* `Arto Bendiken <https://github.com/bendiken>`_ - http://ar.to/
+
+Donations
+---------
+
+If you found this software useful and would like to encourage its
+maintenance and further development, please consider making a donation to
+the `Bitcoin`_ wallet address `1FxcaWrxZ1sVCdbw6ZC8eM6BhwPVnKy5fZ`__.
+
+.. _Bitcoin: http://en.wikipedia.org/wiki/Bitcoin
+.. __: bitcoin:1FxcaWrxZ1sVCdbw6ZC8eM6BhwPVnKy5fZ?label=libcpr.org&message=Donation
 
 License
 -------
