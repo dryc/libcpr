@@ -1,6 +1,4 @@
-AM_CPPFLAGS = -I$(top_srcdir)/src -iquote $(srcdir)
-AM_CFLAGS   = -Wall -Wextra -pipe
-LDADD       = $(top_srcdir)/src/cpr/libcpr.la
+LDADD = $(top_srcdir)/src/cpr/libcpr.la
 
 check_PROGRAMS = \
   check_error    \
