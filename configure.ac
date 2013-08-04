@@ -110,12 +110,12 @@ dnl Check for structures:
 dnl Check for compiler characteristics:
 AC_CANONICAL_HOST
 AM_CPPFLAGS="$AM_CPPFLAGS -I\$(top_srcdir)/src -iquote \$(srcdir)"
-AC_SUBST([AM_CPPFLAGS])
 AM_CFLAGS="$AM_CFLAGS -Wall -Wextra -pipe"
-AC_SUBST([AM_CFLAGS])
 AM_CXXFLAGS="$AM_CXXFLAGS -Wall -Wextra -pipe"
-AC_SUBST([AM_CXXFLAGS])
 AM_LDFLAGS="$AM_LDFLAGS"
+AC_SUBST([AM_CPPFLAGS])
+AC_SUBST([AM_CFLAGS])
+AC_SUBST([AM_CXXFLAGS])
 AC_SUBST([AM_LDFLAGS])
 
 dnl Check for library functions:
