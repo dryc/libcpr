@@ -1,4 +1,10 @@
 # -*- coding: utf-8 -*-
+#
+# The missing `c:header` directive for Sphinx's built-in C domain.
+# This works similarly to the `py:module` directive.
+#
+# Written by Arto Bendiken <http://ar.to/>.
+#
 # This is free and unencumbered software released into the public domain.
 
 from docutils import nodes
