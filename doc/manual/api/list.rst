@@ -1,4 +1,4 @@
-.. index:: <cpr/list.h>
+.. c:header:: cpr/list.h
 
 .. module:: cpr_list
    :synopsis: ...

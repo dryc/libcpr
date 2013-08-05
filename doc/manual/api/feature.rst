@@ -1,4 +1,4 @@
-.. index:: <cpr/feature.h>
+.. c:header:: cpr/feature.h
 
 .. _feature-information:
 

@@ -1,4 +1,4 @@
-.. index:: <cpr.h>
+.. c:header:: cpr.h
 
 Header ``<cpr.h>``
 ==================

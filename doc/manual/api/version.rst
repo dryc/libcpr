@@ -1,4 +1,4 @@
-.. index:: <cpr/version.h>
+.. c:header:: cpr/version.h
 .. index:: versioning; macros
 
 .. _version-information:

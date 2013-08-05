@@ -1,4 +1,4 @@
-.. index:: <cpr/error.h>
+.. c:header:: cpr/error.h
 
 .. module:: cpr_error
    :synopsis: ...

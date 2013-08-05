@@ -1,4 +1,4 @@
-.. index:: <cpr/set.h>
+.. c:header:: cpr/set.h
 
 .. module:: cpr_set
    :synopsis: ...

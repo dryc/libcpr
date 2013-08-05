@@ -1,4 +1,4 @@
-.. index:: <cpr/module.h>
+.. c:header:: cpr/module.h
 
 .. _module-information:
 

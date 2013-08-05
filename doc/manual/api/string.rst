@@ -1,4 +1,4 @@
-.. index:: <cpr/string.h>
+.. c:header:: cpr/string.h
 
 .. module:: cpr_string
    :synopsis: ...

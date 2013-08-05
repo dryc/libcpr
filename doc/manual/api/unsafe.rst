@@ -1,4 +1,4 @@
-.. index:: <cpr/unsafe.h>
+.. c:header:: cpr/unsafe.h
 
 Header ``<cpr/unsafe.h>``
 =========================

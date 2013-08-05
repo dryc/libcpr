@@ -1,4 +1,4 @@
-.. index:: <cpr/generic.h>
+.. c:header:: cpr/generic.h
 
 Header ``<cpr/generic.h>``
 ==========================

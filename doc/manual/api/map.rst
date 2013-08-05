@@ -1,4 +1,4 @@
-.. index:: <cpr/map.h>
+.. c:header:: cpr/map.h
 
 .. module:: cpr_map
    :synopsis: ...
