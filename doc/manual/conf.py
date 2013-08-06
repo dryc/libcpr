@@ -29,7 +29,8 @@ extensions = [
   'sphinx.ext.todo',
   'sphinx.ext.mathjax',
   'sphinx.ext.ifconfig',
-  'cheader',
+  'breathe', # https://pypi.python.org/pypi/breathe
+  'cheader', # file:.extensions/cheader.py
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -286,3 +287,8 @@ epub_language = ''
 
 # Allow duplicate toc entries.
 #epub_tocdup = True
+
+# -- Options for the Breathe extension -----------------------------------------
+
+breathe_projects = {'libcpr': '../doxygen/xml/'}
+breathe_default_project = 'libcpr'
