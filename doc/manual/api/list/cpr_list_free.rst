@@ -15,28 +15,27 @@ Synopsis
 
 .. describe:: #include <cpr/list.h>
 
-.. c:function:: void cpr_list_free(cpr_list_t* list)
+.. cpr:function:: cpr_list_free
 
 Description
 -----------
 
-TODO
+.. cpr:summary::
 
 Parameters
 ----------
 
-``list``
-   TODO
+.. cpr:params::
 
 Return Value
 ------------
 
-None.
+.. cpr:return::
 
 Errors
 ------
 
-TODO
+.. cpr:errors::
 
 Complexity
 ----------

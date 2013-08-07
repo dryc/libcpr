@@ -15,28 +15,27 @@ Synopsis
 
 .. describe:: #include <cpr/feature.h>
 
-.. c:function:: bool cpr_feature_exists(const char* feature_name)
+.. cpr:function:: cpr_feature_exists
 
 Description
 -----------
 
-Determines whether ``libcpr`` supports a given feature.
+.. cpr:summary::
 
 Parameters
 ----------
 
-``feature_name``
-   TODO
+.. cpr:params::
 
 Return Value
 ------------
 
-TODO
+.. cpr:return::
 
 Errors
 ------
 
-TODO
+.. cpr:errors::
 
 Complexity
 ----------

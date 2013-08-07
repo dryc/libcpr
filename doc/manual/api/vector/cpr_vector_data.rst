@@ -15,28 +15,27 @@ Synopsis
 
 .. describe:: #include <cpr/vector.h>
 
-.. c:function:: void* cpr_vector_data(const cpr_vector_t* vector)
+.. cpr:function:: cpr_vector_data
 
 Description
 -----------
 
-Returns a direct pointer to a vector's internal memory array.
+.. cpr:summary::
 
 Parameters
 ----------
 
-``vector``
-   TODO
+.. cpr:params::
 
 Return Value
 ------------
 
-TODO
+.. cpr:return::
 
 Errors
 ------
 
-None.
+.. cpr:errors::
 
 Complexity
 ----------

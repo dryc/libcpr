@@ -15,28 +15,27 @@ Synopsis
 
 .. describe:: #include <cpr/map.h>
 
-.. c:function:: cpr_map_t* cpr_map_alloc(void)
+.. cpr:function:: cpr_map_alloc
 
 Description
 -----------
 
-Returns a pointer to a new heap-allocated ``cpr_map_t`` structure.
+.. cpr:summary::
 
 Parameters
 ----------
 
-None.
+.. cpr:params::
 
 Return Value
 ------------
 
-TODO
+.. cpr:return::
 
 Errors
 ------
 
-``ENOMEM``
-   TODO
+.. cpr:errors::
 
 Complexity
 ----------

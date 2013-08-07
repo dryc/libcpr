@@ -15,28 +15,27 @@ Synopsis
 
 .. describe:: #include <cpr/vector.h>
 
-.. c:function:: cpr_vector_t* cpr_vector(const void* element, ...)
+.. cpr:function:: cpr_vector
 
 Description
 -----------
 
-Constructs a new vector from the given ``NULL``-terminated arguments.
+.. cpr:summary::
 
 Parameters
 ----------
 
-TODO
+.. cpr:params::
 
 Return Value
 ------------
 
-TODO
+.. cpr:return::
 
 Errors
 ------
 
-``ENOMEM``
-   TODO
+.. cpr:errors::
 
 Complexity
 ----------

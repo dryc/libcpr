@@ -15,28 +15,27 @@ Synopsis
 
 .. describe:: #include <cpr/list.h>
 
-.. c:function:: cpr_list_t* cpr_list_alloc(void)
+.. cpr:function:: cpr_list_alloc
 
 Description
 -----------
 
-Returns a pointer to a new heap-allocated ``cpr_list_t`` structure.
+.. cpr:summary::
 
 Parameters
 ----------
 
-None.
+.. cpr:params::
 
 Return Value
 ------------
 
-TODO
+.. cpr:return::
 
 Errors
 ------
 
-``ENOMEM``
-   TODO
+.. cpr:errors::
 
 Complexity
 ----------

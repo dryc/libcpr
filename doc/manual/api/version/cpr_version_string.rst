@@ -15,12 +15,12 @@ Synopsis
 
 .. describe:: #include <cpr/version.h>
 
-.. c:var:: const char* const cpr_version_string
+.. cpr:var:: cpr_version_string
 
 Description
 -----------
 
-TODO
+.. cpr:summary::
 
 Example
 -------

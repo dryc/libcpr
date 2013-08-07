@@ -15,13 +15,12 @@ Synopsis
 
 .. describe:: #include <cpr/set.h>
 
-.. c:var:: const size_t cpr_set_sizeof
+.. cpr:var:: cpr_set_sizeof
 
 Description
 -----------
 
-The size of the :c:type:`cpr_set_t` opaque type, i.e.,
-``sizeof(cpr_set_t)``.
+.. cpr:summary::
 
 Example
 -------

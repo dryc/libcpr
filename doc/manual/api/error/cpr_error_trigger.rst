@@ -15,29 +15,22 @@ Synopsis
 
 .. describe:: #include <cpr/error.h>
 
-.. c:function:: void cpr_error_trigger(const char* caller_name, int error_code, const char* error_message, ...)
+.. cpr:function:: cpr_error_trigger
 
 Description
 -----------
 
-Sets ``errno`` and invokes the error callback function.
+.. cpr:summary::
 
 Parameters
 ----------
 
-``caller_name``
-   TODO
-
-``error_code``
-   TODO
-
-``error_message``
-   TODO
+.. cpr:params::
 
 Return Value
 ------------
 
-None.
+.. cpr:return::
 
 Errors
 ------

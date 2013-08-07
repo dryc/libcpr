@@ -18,10 +18,12 @@ Synopsis
 
 .. c:function:: cpr_vector_t* cpr_vector_alloca(void)
 
+.. cpr:function:: cpr_vector_alloca
+
 Description
 -----------
 
-Returns a pointer to a new stack-allocated ``cpr_vector_t`` structure.
+.. cpr:summary::
 
 This is a macro that translates into the following code:
 
@@ -29,20 +31,22 @@ This is a macro that translates into the following code:
 
    alloca(cpr_vector_sizeof)
 
+.. cpr:warning::
+
 Parameters
 ----------
 
-None.
+.. cpr:params::
 
 Return Value
 ------------
 
-TODO
+.. cpr:return::
 
 Errors
 ------
 
-TODO
+.. cpr:errors::
 
 Complexity
 ----------

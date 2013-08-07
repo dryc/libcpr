@@ -15,28 +15,27 @@ Synopsis
 
 .. describe:: #include <cpr/set.h>
 
-.. c:function:: cpr_set_t* cpr_set_alloc(void)
+.. cpr:function:: cpr_set_alloc
 
 Description
 -----------
 
-Returns a pointer to a new heap-allocated ``cpr_set_t`` structure.
+.. cpr:summary::
 
 Parameters
 ----------
 
-None.
+.. cpr:params::
 
 Return Value
 ------------
 
-TODO
+.. cpr:return::
 
 Errors
 ------
 
-``ENOMEM``
-   TODO
+.. cpr:errors::
 
 Complexity
 ----------

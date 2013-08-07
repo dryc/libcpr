@@ -15,28 +15,27 @@ Synopsis
 
 .. describe:: #include <cpr/map.h>
 
-.. c:function:: void cpr_map_free(cpr_map_t* map)
+.. cpr:function:: cpr_map_free
 
 Description
 -----------
 
-TODO
+.. cpr:summary::
 
 Parameters
 ----------
 
-``map``
-   TODO
+.. cpr:params::
 
 Return Value
 ------------
 
-None.
+.. cpr:return::
 
 Errors
 ------
 
-TODO
+.. cpr:errors::
 
 Complexity
 ----------

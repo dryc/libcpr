@@ -30,6 +30,8 @@ extensions = [
   'sphinx.ext.mathjax',
   'sphinx.ext.ifconfig',
   'cheader', # file:.extensions/cheader.py
+  'doxygen', # file:.extensions/doxygen.py
+  'cpr',     # file:.extensions/cpr.py
 ]
 
 # Add any paths that contain templates here, relative to this directory.

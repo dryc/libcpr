@@ -15,28 +15,27 @@ Synopsis
 
 .. describe:: #include <cpr/vector.h>
 
-.. c:function:: void cpr_vector_pop_back(cpr_vector_t* vector)
+.. cpr:function:: cpr_vector_pop_back
 
 Description
 -----------
 
-Removes the last element in a vector, reducing the vector's size by one.
+.. cpr:summary::
 
 Parameters
 ----------
 
-``vector``
-   TODO
+.. cpr:params::
 
 Return Value
 ------------
 
-None.
+.. cpr:return::
 
 Errors
 ------
 
-TODO
+.. cpr:errors::
 
 Complexity
 ----------

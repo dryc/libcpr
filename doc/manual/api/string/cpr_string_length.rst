@@ -15,28 +15,27 @@ Synopsis
 
 .. describe:: #include <cpr/string.h>
 
-.. c:function:: size_t cpr_string_length(const cpr_string_t* string)
+.. cpr:function:: cpr_string_length
 
 Description
 -----------
 
-TODO
+.. cpr:summary::
 
 Parameters
 ----------
 
-``string``
-   TODO
+.. cpr:params::
 
 Return Value
 ------------
 
-TODO
+.. cpr:return::
 
 Errors
 ------
 
-TODO
+.. cpr:errors::
 
 Complexity
 ----------

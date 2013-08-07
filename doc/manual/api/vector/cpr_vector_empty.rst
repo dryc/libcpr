@@ -15,28 +15,27 @@ Synopsis
 
 .. describe:: #include <cpr/vector.h>
 
-.. c:function:: bool cpr_vector_empty(const cpr_vector_t* vector)
+.. cpr:function:: cpr_vector_empty
 
 Description
 -----------
 
-Tests whether a vector is empty, i.e., whether its size is 0.
+.. cpr:summary::
 
 Parameters
 ----------
 
-``vector``
-   TODO
+.. cpr:params::
 
 Return Value
 ------------
 
-TODO
+.. cpr:return::
 
 Errors
 ------
 
-TODO
+.. cpr:errors::
 
 Complexity
 ----------

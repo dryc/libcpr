@@ -15,28 +15,27 @@ Synopsis
 
 .. describe:: #include <cpr/set.h>
 
-.. c:function:: void cpr_set_free(cpr_set_t* set)
+.. cpr:function:: cpr_set_free
 
 Description
 -----------
 
-TODO
+.. cpr:summary::
 
 Parameters
 ----------
 
-``set``
-   TODO
+.. cpr:params::
 
 Return Value
 ------------
 
-None.
+.. cpr:return::
 
 Errors
 ------
 
-TODO
+.. cpr:errors::
 
 Complexity
 ----------

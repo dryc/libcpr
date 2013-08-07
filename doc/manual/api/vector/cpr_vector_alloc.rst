@@ -15,28 +15,27 @@ Synopsis
 
 .. describe:: #include <cpr/vector.h>
 
-.. c:function:: cpr_vector_t* cpr_vector_alloc(void)
+.. cpr:function:: cpr_vector_alloc
 
 Description
 -----------
 
-Returns a pointer to a new heap-allocated ``cpr_vector_t`` structure.
+.. cpr:summary::
 
 Parameters
 ----------
 
-None.
+.. cpr:params::
 
 Return Value
 ------------
 
-TODO
+.. cpr:return::
 
 Errors
 ------
 
-``ENOMEM``
-   TODO
+.. cpr:errors::
 
 Complexity
 ----------

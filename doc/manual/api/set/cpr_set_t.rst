@@ -15,12 +15,12 @@ Synopsis
 
 .. describe:: #include <cpr/set.h>
 
-.. c:type:: cpr_set_t
+.. cpr:type:: cpr_set_t
 
 Description
 -----------
 
-An opaque type representing a set of elements.
+.. cpr:summary::
 
 Example
 -------

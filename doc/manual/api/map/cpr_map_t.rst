@@ -15,12 +15,12 @@ Synopsis
 
 .. describe:: #include <cpr/map.h>
 
-.. c:type:: cpr_map_t
+.. cpr:type:: cpr_map_t
 
 Description
 -----------
 
-An opaque type representing a key-value map.
+.. cpr:summary::
 
 Example
 -------

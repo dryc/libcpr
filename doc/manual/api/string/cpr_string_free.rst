@@ -15,28 +15,27 @@ Synopsis
 
 .. describe:: #include <cpr/string.h>
 
-.. c:function:: void cpr_string_free(cpr_string_t* string)
+.. cpr:function:: cpr_string_free
 
 Description
 -----------
 
-TODO
+.. cpr:summary::
 
 Parameters
 ----------
 
-``string``
-   TODO
+.. cpr:params::
 
 Return Value
 ------------
 
-None.
+.. cpr:return::
 
 Errors
 ------
 
-TODO
+.. cpr:errors::
 
 Complexity
 ----------

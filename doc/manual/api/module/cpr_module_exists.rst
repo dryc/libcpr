@@ -15,28 +15,27 @@ Synopsis
 
 .. describe:: #include <cpr/module.h>
 
-.. c:function:: bool cpr_module_exists(const char* module_name)
+.. cpr:function:: cpr_module_exists
 
 Description
 -----------
 
-Determines whether ``libcpr`` includes a given module.
+.. cpr:summary::
 
 Parameters
 ----------
 
-``module_name``
-   TODO
+.. cpr:params::
 
 Return Value
 ------------
 
-TODO
+.. cpr:return::
 
 Errors
 ------
 
-TODO
+.. cpr:errors::
 
 Complexity
 ----------

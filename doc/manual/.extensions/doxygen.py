@@ -42,12 +42,16 @@ class DoxygenIndex(object):
       raise KeyError, symbol
     return result
 
+  def __iter__(self):
+    for symbol in self.symbols:
+      yield symbol
+
   def __str__(self):
     return "<class %s %r>" % (type(self).__name__, self.__dict__)
 
 class DoxygenMemberDef(object):
   def __init__(self, node):
-    ElementTree.dump(node)
+    ElementTree.dump(node) # DEBUG
 
     # Extract the <memberdef> attributes:
     self.__dict__ = extract_attrs(node)
@@ -57,13 +61,19 @@ class DoxygenMemberDef(object):
       self.__dict__[node_name] = extract_text(node.find(node_name))
 
     # Parse the <param> tags:
-    if self.argsstring == '(void)':
-      self.params = [] # special case for C support
+    if self.argsstring == '' or self.argsstring == '(void)':
+      self.params = []
     else:
       self.params = parse_param_tags(node.findall('param'))
 
     # Parse the <detaileddescription> tag:
-    parse_detaileddescription_tag(node.find('detaileddescription'))
+    detaileddescription = node.find('detaileddescription')
+    self.exceptions = parse_parameterlist_tag(
+      detaileddescription.find('./para/parameterlist[@kind="exception"]'))
+    self.returns = parse_simplesect_tag(
+      detaileddescription.find('./para/simplesect[@kind="return"]'))
+    self.warning = parse_simplesect_tag(
+      detaileddescription.find('./para/simplesect[@kind="warning"]'))
 
     # Parse the <inbodydescription> tag:
     parse_inbodydescription_tag(node.find('inbodydescription'))
@@ -105,8 +115,19 @@ def parse_param_tags(nodes):
     result.append(param)
   return result
 
-def parse_detaileddescription_tag(node):
-  pass # TODO
+def parse_parameterlist_tag(parameterlist):
+  result = {}
+  if parameterlist is not None:
+    for parameteritem in parameterlist:
+      description = extract_text(parameteritem.find('parameterdescription'))
+      for parametername in parameteritem.findall('./parameternamelist/parametername'):
+        result[extract_text(parametername)] = description
+  return result
+
+def parse_simplesect_tag(simplesect):
+  if simplesect is None:
+    return None
+  return extract_text(simplesect)
 
 def parse_inbodydescription_tag(node):
   pass # TODO
@@ -138,10 +159,6 @@ def setup(app):
     app.require_sphinx('1.0')
 
 if __name__ == '__main__':
-  #print index()
-  #node = index().get('cpr_feature_exists')
-  node = index().get('cpr_vector_alloc')
-  #node = index().get('CPR_VERSION_STRING')
-  #node = index().get('cpr_version_string')
-  #node = index().get('cpr_vector_t')
-  print node
+  for symbol in index():
+    print index().get(symbol)
+  print index().get('cpr_list_alloca')

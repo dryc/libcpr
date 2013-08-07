@@ -15,31 +15,27 @@ Synopsis
 
 .. describe:: #include <cpr/vector.h>
 
-.. c:function:: void cpr_vector_init(cpr_vector_t* vector, void (*erase_hook)(void*))
+.. cpr:function:: cpr_vector_init
 
 Description
 -----------
 
-TODO
+.. cpr:summary::
 
 Parameters
 ----------
 
-``vector``
-   TODO
-
-``erase_hook``
-   TODO
+.. cpr:params::
 
 Return Value
 ------------
 
-None.
+.. cpr:return::
 
 Errors
 ------
 
-TODO
+.. cpr:errors::
 
 Complexity
 ----------

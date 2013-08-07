@@ -15,28 +15,27 @@ Synopsis
 
 .. describe:: #include <cpr/vector.h>
 
-.. c:function:: void cpr_vector_clear(cpr_vector_t* vector)
+.. cpr:function:: cpr_vector_clear
 
 Description
 -----------
 
-Removes all elements from a vector, leaving its size zero.
+.. cpr:summary::
 
 Parameters
 ----------
 
-``vector``
-   TODO
+.. cpr:params::
 
 Return Value
 ------------
 
-None.
+.. cpr:return::
 
 Errors
 ------
 
-TODO
+.. cpr:errors::
 
 Complexity
 ----------

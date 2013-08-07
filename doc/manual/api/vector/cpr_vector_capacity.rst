@@ -15,28 +15,27 @@ Synopsis
 
 .. describe:: #include <cpr/vector.h>
 
-.. c:function:: size_t cpr_vector_capacity(const cpr_vector_t* vector)
+.. cpr:function:: cpr_vector_capacity
 
 Description
 -----------
 
-Returns the number of elements that a vector has allocated space for.
+.. cpr:summary::
 
 Parameters
 ----------
 
-``vector``
-   TODO
+.. cpr:params::
 
 Return Value
 ------------
 
-TODO
+.. cpr:return::
 
 Errors
 ------
 
-None.
+.. cpr:errors::
 
 Complexity
 ----------

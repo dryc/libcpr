@@ -15,14 +15,12 @@ Synopsis
 
 .. describe:: #include <cpr/string.h>
 
-.. c:type:: cpr_string_t
-
-An opaque type representing a dynamic string.
+.. cpr:type:: cpr_string_t
 
 Description
 -----------
 
-TODO
+.. cpr:summary::
 
 Example
 -------

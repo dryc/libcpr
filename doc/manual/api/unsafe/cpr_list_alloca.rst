@@ -18,10 +18,12 @@ Synopsis
 
 .. c:function:: cpr_list_t* cpr_list_alloca(void)
 
+.. cpr:function:: cpr_list_alloca
+
 Description
 -----------
 
-Returns a pointer to a new stack-allocated ``cpr_list_t`` structure.
+.. cpr:summary::
 
 This is a macro that translates into the following code:
 
@@ -29,20 +31,22 @@ This is a macro that translates into the following code:
 
    alloca(cpr_list_sizeof)
 
+.. cpr:warning::
+
 Parameters
 ----------
 
-None.
+.. cpr:params::
 
 Return Value
 ------------
 
-TODO
+.. cpr:return::
 
 Errors
 ------
 
-TODO
+.. cpr:errors::
 
 Complexity
 ----------

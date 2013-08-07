@@ -15,31 +15,27 @@ Synopsis
 
 .. describe:: #include <cpr/vector.h>
 
-.. c:function:: void* cpr_vector_at(cpr_vector_t* vector, size_t position)
+.. cpr:function:: cpr_vector_at
 
 Description
 -----------
 
-Returns a pointer to the element at the given position in a vector.
+.. cpr:summary::
 
 Parameters
 ----------
 
-``vector``
-   TODO
-
-``position``
-   TODO
+.. cpr:params::
 
 Return Value
 ------------
 
-TODO
+.. cpr:return::
 
 Errors
 ------
 
-TODO
+.. cpr:errors::
 
 Complexity
 ----------

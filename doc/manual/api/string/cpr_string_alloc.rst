@@ -15,28 +15,27 @@ Synopsis
 
 .. describe:: #include <cpr/string.h>
 
-.. c:function:: cpr_string_t* cpr_string_alloc(void)
+.. cpr:function:: cpr_string_alloc
 
 Description
 -----------
 
-Returns a pointer to a new heap-allocated ``cpr_string_t`` structure.
+.. cpr:summary::
 
 Parameters
 ----------
 
-None.
+.. cpr:params::
 
 Return Value
 ------------
 
-TODO
+.. cpr:return::
 
 Errors
 ------
 
-``ENOMEM``
-   TODO
+.. cpr:errors::
 
 Complexity
 ----------
