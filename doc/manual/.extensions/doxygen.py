@@ -9,89 +9,139 @@
 #from lxml import etree as ElementTree
 from xml.etree import cElementTree as ElementTree
 
+ATTR_TYPES  = {'const': bool, 'explicit': bool, 'id': str, 'inline': bool,
+               'kind': str, 'mutable': bool, 'prot': str, 'static': bool,
+               'virt': str, 'volatile': bool}
+MEMBER_TAGS = ['type', 'definition', 'argsstring', 'name', 'initializer', 'briefdescription'] # TODO
+PARAM_TAGS  = ['type', 'declname', 'defname', 'array', 'defval', 'briefdescription']
+
 __index__ = None
 
 def index():
   global __index__
   if __index__ is None:
-    __index__ = DoxygenIndex()
+    __index__ = DoxygenIndex('../doxygen/xml/')
   return __index__
 
 class DoxygenIndex(object):
-  def __init__(self):
-    tree = ElementTree.parse('../doxygen/xml/index.xml')
-    self.symbols = {}
-    for compound in tree.findall('compound'):
-      compound_refid = compound.get('refid')
-      for member in compound.findall('member'):
-        member_refid = member.get('refid')
-        member_name = member.find('name').text
-        self.symbols[member_name] = (compound_refid, member_refid)
-    # TODO: handle duplicate names?
+  def __init__(self, path):
+    self.path = path
+    self.symbols = parse_index(ElementTree.parse(path + '/index.xml'))
 
-  def lookup(self, symbol):
-    compound_refid, member_refid = self.symbols[symbol]
-    tree = ElementTree.parse('../doxygen/xml/%s.xml' % (compound_refid))
-    for memberdef in tree.findall(".//sectiondef/memberdef[@id='%s']" % (member_refid)):
-      return DoxygenMemberDef(memberdef)
-    return None
+  def get(self, symbol, default=None):
+    if symbol in self.symbols:
+      compound_refid, member_refid = self.symbols[symbol]
+      tree = ElementTree.parse((self.path + '/%s.xml') % (compound_refid))
+      for memberdef in tree.findall(".//sectiondef/memberdef[@id='%s']" % (member_refid)):
+        return DoxygenMemberDef(memberdef)
+    return default
 
-class DoxygenMemberDef(object):
-  BASIC_TAGS = ['definition', 'argsstring', 'name']
-  OTHER_TAGS = ['type', 'briefdescription']
-  PARAM_TAGS = ['type', 'declname']
-
-  def __init__(self, tree):
-    ElementTree.dump(tree)
-
-    # Extract the attributes:
-    for (attr_name, attr_value) in tree.items():
-      self.__dict__[attr_name] = attr_value
-
-    # Parse the basic tags:
-    for node_name in self.BASIC_TAGS:
-      self.__dict__[node_name] = tree.findtext(node_name)
-
-    # Parse the parameter list:
-    self.params = []
-    if self.argsstring != '(void)':
-      for param_node in tree.findall('param'):
-        param = {}
-        for node_name in self.PARAM_TAGS:
-          param[node_name] = param_node.findtext(node_name)
-        if 'type' in param:
-          self.params.append(param)
-
-    # Parse description tags:
-    for node_name in self.OTHER_TAGS:
-      self.__dict__[node_name] = self.extract_text(tree.find(node_name))
-
-    # Parse the <location> tag:
-    # TODO
-
-  def extract_text(self, root):
-    buffer = []
-    for text in self.collect_text(root):
-      buffer.append(text)
-    return ''.join(buffer).strip()
-
-  def collect_text(self, root):
-    if root is not None:
-      if root.text is not None:
-        yield root.text
-      for node in root:
-        for text in self.collect_text(node):
-          yield text
-      if root.tail is not None:
-        yield root.tail
+  def __getitem__(self, symbol):
+    result = self.get(symbol)
+    if result is None:
+      raise KeyError, symbol
+    return result
 
   def __str__(self):
     return "<class %s %r>" % (type(self).__name__, self.__dict__)
 
+class DoxygenMemberDef(object):
+  def __init__(self, node):
+    ElementTree.dump(node)
+
+    # Extract the <memberdef> attributes:
+    self.__dict__ = extract_attrs(node)
+
+    # Parse the basic tags:
+    for node_name in MEMBER_TAGS:
+      self.__dict__[node_name] = extract_text(node.find(node_name))
+
+    # Parse the <param> tags:
+    if self.argsstring == '(void)':
+      self.params = [] # special case for C support
+    else:
+      self.params = parse_param_tags(node.findall('param'))
+
+    # Parse the <detaileddescription> tag:
+    parse_detaileddescription_tag(node.find('detaileddescription'))
+
+    # Parse the <inbodydescription> tag:
+    parse_inbodydescription_tag(node.find('inbodydescription'))
+
+    # Parse the <location> tag:
+    location = parse_location_tag(node.find('location'))
+
+  def __str__(self):
+    return "<class %s %r>" % (type(self).__name__, self.__dict__)
+
+def parse_index(tree):
+  result = {}
+  for compound in tree.findall('compound'):
+    compound_refid = compound.get('refid')
+    for member in compound.findall('member'):
+      member_refid = member.get('refid')
+      member_name = member.findtext('name')
+      result[member_name] = (compound_refid, member_refid)
+  # TODO: handle duplicate names?
+  return result
+
+def extract_attrs(node):
+  result = {}
+  for (attr_name, attr_value) in node.items():
+    attr_type = ATTR_TYPES.get(attr_name)
+    if attr_type == bool:
+      attr_value = (attr_value == 'yes')
+    result[attr_name] = attr_value
+  return result
+
+def parse_param_tags(nodes):
+  result = []
+  for node in nodes:
+    param = {}
+    for node_name in PARAM_TAGS:
+      tag = node.find(node_name)
+      if tag is not None:
+        param[node_name] = extract_text(tag)
+    result.append(param)
+  return result
+
+def parse_detaileddescription_tag(node):
+  pass # TODO
+
+def parse_inbodydescription_tag(node):
+  pass # TODO
+
+def parse_location_tag(node):
+  if node is not None:
+    return (node.get('file'), node.get('line'))
+  return None
+
+def extract_text(node):
+  buffer = []
+  for text in collect_text(node):
+    buffer.append(text)
+  return ''.join(buffer).strip()
+
+def collect_text(node):
+  if node is not None:
+    if node.text is not None:
+      yield node.text
+    for subnode in node:
+      for text in collect_text(subnode):
+        yield text
+    if node.tail is not None:
+      yield node.tail
+
 def setup(app):
-  app.require_sphinx('1.0')
+  # Sphinx integration:
+  if type(app).__name__ == 'sphinx.application.Sphinx':
+    app.require_sphinx('1.0')
 
 if __name__ == '__main__':
-  #node = DoxygenIndex().lookup('cpr_feature_exists')
-  node = DoxygenIndex().lookup('cpr_vector_alloc')
+  #print index()
+  #node = index().get('cpr_feature_exists')
+  node = index().get('cpr_vector_alloc')
+  #node = index().get('CPR_VERSION_STRING')
+  #node = index().get('cpr_version_string')
+  #node = index().get('cpr_vector_t')
   print node
