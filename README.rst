@@ -83,7 +83,7 @@ Elsewhere
 ---------
 
 Find this project at: GitHub_, Bitbucket_, Ohloh_, Freecode_, SourceForge_,
-and `Travis CI`_.
+`Travis CI`_, Twitter_, and Tumblr_.
 
 .. _GitHub:      http://github.com/unlicensed/libcpr
 .. _Bitbucket:   http://bitbucket.org/unlicensed/libcpr
@@ -91,6 +91,8 @@ and `Travis CI`_.
 .. _Freecode:    http://freecode.com/projects/libcpr
 .. _SourceForge: http://sourceforge.net/projects/libcpr/
 .. _Travis CI:   http://travis-ci.org/unlicensed/libcpr
+.. _Twitter:     http://twitter.com/libcpr
+.. _Tumblr:      http://libcpr.tumblr.com/
 
 Author
 ------
