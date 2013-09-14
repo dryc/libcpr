@@ -10,7 +10,7 @@ From the source repository
 
 .. code-block:: bash
 
-   $ git clone https://github.com/unlicensed/libcpr.git
+   $ git clone https://github.com/dryproject/libcpr.git
    $ cd libcpr
    $ ./autogen.sh
    $ ./configure

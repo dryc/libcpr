@@ -15,7 +15,7 @@ homepage            http://libcpr.org/
 
 master_sites        sourceforge
 fetch.type          git
-git.url             https://github.com/unlicensed/libcpr.git
+git.url             https://github.com/dryproject/libcpr.git
 
 use_autoreconf      yes
 autoreconf.args     -fiv

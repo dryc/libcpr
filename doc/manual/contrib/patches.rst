@@ -4,7 +4,7 @@ Contributing Patches
 ====================
 
 If you wish to contribute a patch, please open a `pull request`__ at:
-https://github.com/unlicensed/libcpr/pulls
+https://github.com/dryproject/libcpr/pulls
 
 __ https://help.github.com/articles/using-pull-requests
 

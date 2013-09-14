@@ -12,6 +12,7 @@
    faq
    design
    contrib
+   notes
    license
    xref
 
