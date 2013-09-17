@@ -83,7 +83,7 @@ Elsewhere
 ---------
 
 Find this project at: GitHub_, Bitbucket_, Ohloh_, Freecode_, SourceForge_,
-`Travis CI`_, Twitter_, and Tumblr_.
+`Travis CI`_, Twitter_, Tumblr_, and COD5_.
 
 .. _GitHub:      http://github.com/dryproject/libcpr
 .. _Bitbucket:   http://bitbucket.org/dryproject/libcpr
@@ -93,6 +93,7 @@ Find this project at: GitHub_, Bitbucket_, Ohloh_, Freecode_, SourceForge_,
 .. _Travis CI:   http://travis-ci.org/dryproject/libcpr
 .. _Twitter:     http://twitter.com/libcpr
 .. _Tumblr:      http://libcpr.tumblr.com/
+.. _COD5:        http://www.cod5.org/archive/l/libcpr.html
 
 Author
 ------
