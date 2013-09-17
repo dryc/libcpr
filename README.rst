@@ -97,6 +97,8 @@ Find this project at: GitHub_, Bitbucket_, Ohloh_, Freecode_, SourceForge_,
 Author
 ------
 
+This project is part of the `DRY <http://dryproject.org/>`_ initiative.
+
 * `Arto Bendiken <https://github.com/bendiken>`_ - http://ar.to/
 
 Donations
