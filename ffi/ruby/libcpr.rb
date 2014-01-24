@@ -11,18 +11,18 @@ module Libcpr extend FFI::Library
   ffi_lib ['cpr', 'libcpr.so.0']
 
   attach_variable :cpr_version_string, :string
+  attach_function :cpr_feature_exists, [:string], :bool
+  attach_function :cpr_module_exists, [:string], :bool
   attach_variable :cpr_list_sizeof, :size_t
   attach_variable :cpr_map_sizeof, :size_t
   attach_variable :cpr_set_sizeof, :size_t
   attach_variable :cpr_string_sizeof, :size_t
   attach_variable :cpr_vector_sizeof, :size_t
-  attach_function :cpr_feature_exists, [:string], :bool
-  attach_function :cpr_module_exists, [:string], :bool
 
   ##
   # Returns the library version string.
   #
-  # @return [String]
+  # @return [String] a version string in "x.y.z" form
   def self.version_string
     cpr_version_string
   end
@@ -31,7 +31,7 @@ module Libcpr extend FFI::Library
   # Determines whether the library supports a given feature.
   #
   # @param  [#to_s] feature_name the name of the feature, e.g. `:ascii`
-  # @return [Boolean]
+  # @return [Boolean] `true` if the feature is supported, `false` otherwise
   def self.has_feature?(feature_name)
     cpr_feature_exists(feature_name.to_s)
   end
@@ -40,7 +40,7 @@ module Libcpr extend FFI::Library
   # Determines whether the library includes a given module.
   #
   # @param  [#to_s] module_name the name of the module, e.g. `:vector`
-  # @return [Boolean]
+  # @return [Boolean] `true` if the module is supported, `false` otherwise
   def self.has_module?(module_name)
     cpr_module_exists(module_name.to_s)
   end
