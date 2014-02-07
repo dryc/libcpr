@@ -4,8 +4,8 @@
 #include <config.h>
 #endif
 
-#include "cpr/string.h"
-#include "cpr/error.h"
+#include "error.h"
+#include "string.h"
 
 #include <cassert>      /* for assert() */
 #include <cstdlib>      /* for std::calloc(), std::free() */

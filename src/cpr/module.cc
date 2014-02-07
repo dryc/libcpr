@@ -4,7 +4,7 @@
 #include <config.h>
 #endif
 
-#include "cpr/module.h"
+#include "module.h"
 
 #include <cassert> /* for assert() */
 #include <cstring> /* for std::strcmp() */

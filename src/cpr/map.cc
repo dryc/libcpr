@@ -4,8 +4,8 @@
 #include <config.h>
 #endif
 
-#include "cpr/map.h"
-#include "cpr/error.h"
+#include "error.h"
+#include "map.h"
 
 #include <map> /* for std::map */
 

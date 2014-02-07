@@ -4,7 +4,7 @@
 #include <config.h>
 #endif
 
-#include "cpr/error.h"
+#include "error.h"
 
 #include <cerrno> /* for errno */
 

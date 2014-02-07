@@ -4,6 +4,6 @@
 #include <config.h>
 #endif
 
-#include "cpr/version.h"
+#include "version.h"
 
 extern const char* const cpr_version_string = CPR_VERSION_STRING;

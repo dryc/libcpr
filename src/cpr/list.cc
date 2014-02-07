@@ -4,8 +4,8 @@
 #include <config.h>
 #endif
 
-#include "cpr/list.h"
-#include "cpr/error.h"
+#include "error.h"
+#include "list.h"
 
 #include <list> /* for std::list */
 

@@ -4,8 +4,8 @@
 #include <config.h>
 #endif
 
-#include "cpr/vector.h"
-#include "cpr/error.h"
+#include "error.h"
+#include "vector.h"
 
 #include <cassert>      /* for assert() */
 #include <cstdarg>      /* for std::va_list, va_*() */
