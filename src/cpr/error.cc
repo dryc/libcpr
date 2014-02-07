@@ -12,7 +12,7 @@ cpr_error_callback_t cpr_error_callback = nullptr;
 
 void
 cpr_error_trigger(const char* const caller_name,
-                  const int error_code,
+                  const cpr_error_code_t error_code,
                   const char* const error_message, ...) {
   (void)caller_name, (void)error_message; /* unused at present */
 
