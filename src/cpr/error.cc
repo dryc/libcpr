@@ -8,6 +8,8 @@
 
 #include <cerrno> /* for errno */
 
+cpr_error_callback_t cpr_error_callback = nullptr;
+
 void
 cpr_error_trigger(const char* const caller_name,
                   const int error_code,
