@@ -87,6 +87,11 @@ typedef struct cpr_error {
 } cpr_error_t;
 
 /**
+ * The size of the `cpr_error_t` type, i.e., `sizeof(cpr_error_t)`.
+ */
+extern const size_t cpr_error_sizeof;
+
+/**
  * Sets `errno` and invokes the error callback hook.
  */
 bool _cpr_error(

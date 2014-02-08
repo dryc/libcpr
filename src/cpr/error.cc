@@ -9,6 +9,8 @@
 #include <cerrno>  /* for errno */
 #include <cstdarg> /* for va_list, va_*(), vsnprintf() */
 
+const size_t cpr_error_sizeof = sizeof(cpr_error_t);
+
 cpr_error_hook_t cpr_error_hook = nullptr;
 
 /**
