@@ -5,6 +5,7 @@
  */
 
 #include <stdio.h>
+#include <stdlib.h>
 
 #include <cpr/list.h>
 #include <cpr/map.h>
@@ -12,10 +13,11 @@
 #include <cpr/string.h>
 #include <cpr/vector.h>
 
-void main() {
+int main(void) {
   printf("sizeof(cpr_list_t):\t%zu bytes\n",   cpr_list_sizeof);
   printf("sizeof(cpr_map_t):\t%zu bytes\n",    cpr_map_sizeof);
   printf("sizeof(cpr_set_t):\t%zu bytes\n",    cpr_set_sizeof);
   printf("sizeof(cpr_string_t):\t%zu bytes\n", cpr_string_sizeof);
   printf("sizeof(cpr_vector_t):\t%zu bytes\n", cpr_vector_sizeof);
+  return EXIT_SUCCESS;
 }

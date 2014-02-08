@@ -1,7 +1,8 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #include <cpr/list.h>
 
-void main() {
-  // TODO
+int main(void) {
+  return EXIT_SUCCESS; // TODO
 }

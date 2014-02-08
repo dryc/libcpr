@@ -1,7 +1,8 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #include <cpr/string.h>
 
-void main() {
-  // TODO
+int main(void) {
+  return EXIT_SUCCESS; // TODO
 }
