@@ -5,18 +5,38 @@
 
 /**
  * @file
+ *
+ * Library version metadata for libcpr.
  */
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #define CPR_VERSION_STRING "@PACKAGE_VERSION@"
 #define CPR_VERSION_MAJOR  @PACKAGE_VERSION_MAJOR@
 #define CPR_VERSION_MINOR  @PACKAGE_VERSION_MINOR@
 #define CPR_VERSION_PATCH  @PACKAGE_VERSION_PATCH@
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+/**
+ * The libcpr version as a NUL-terminated string.
+ */
 extern const char* const cpr_version_string;
+
+/**
+ * The libcpr major version.
+ */
+extern const short cpr_version_major;
+
+/**
+ * The libcpr minor version.
+ */
+extern const short cpr_version_minor;
+
+/**
+ * The libcpr patch level.
+ */
+extern const short cpr_version_patch;
 
 #ifdef __cplusplus
 } /* extern "C" */
