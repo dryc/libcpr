@@ -14,6 +14,13 @@ extern "C" {
 #endif
 
 /**
+ * Aborts the program, printing the caller location to `stderr`.
+ *
+ * @return never returns
+ */
+#define cpr_abort() _cpr_abort(__func__, __FILE__, __LINE__)
+
+/**
  * Invokes the error hook with an error condition.
  *
  * @param  error_type the error type (logic, runtime, or fatal)
@@ -87,22 +94,6 @@ typedef struct cpr_error {
 } cpr_error_t;
 
 /**
- * The size of the `cpr_error_t` type, i.e., `sizeof(cpr_error_t)`.
- */
-extern const size_t cpr_error_sizeof;
-
-/**
- * Sets `errno` and invokes the error callback hook.
- */
-bool _cpr_error(
-  const char* function,
-  const char* file,
-  unsigned int line,
-  cpr_error_type_t error_type,
-  cpr_error_code_t error_code,
-  const char* error_message, ...);
-
-/**
  * The type signature of the error callback hook.
  */
 typedef bool (*cpr_error_hook_t)(const cpr_error_t* error);
@@ -111,6 +102,42 @@ typedef bool (*cpr_error_hook_t)(const cpr_error_t* error);
  * The current error callback hook, if any.
  */
 extern cpr_error_hook_t cpr_error_hook;
+
+/**
+ * The size of the `cpr_error_t` type, i.e., `sizeof(cpr_error_t)`.
+ */
+extern const size_t cpr_error_sizeof;
+
+/**
+ * Aborts the program, printing error information to `stderr`.
+ *
+ * @param  error the error to print
+ * @return never returns
+ */
+bool cpr_abort_with_error(const cpr_error_t* error);
+
+/**
+ * Internal helper function that invokes `cpr_abort_with_error()`.
+ *
+ * @private
+ */
+void _cpr_abort(
+  const char* function,
+  const char* file,
+  unsigned int line);
+
+/**
+ * Internal helper function that sets `errno` and invokes the error hook.
+ *
+ * @private
+ */
+bool _cpr_error(
+  const char* function,
+  const char* file,
+  unsigned int line,
+  cpr_error_type_t error_type,
+  cpr_error_code_t error_code,
+  const char* error_message, ...);
 
 #ifdef __cplusplus
 } /* extern "C" */
