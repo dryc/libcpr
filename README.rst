@@ -50,6 +50,39 @@ already installed on the system regardless.
 .. _bloats: http://en.wikipedia.org/wiki/Wirth%27s_law
 .. _GLib:   http://libcpr.org/xref/glib2.html
 
+Error Handling
+--------------
+
+This library makes a careful distinction between three different classes of
+error conditions:
+
+* **Logic errors**, triggered using ``cpr_logic_error()``. Errors of this
+  class are thrown due to programming errors where the function interfaces
+  are used in violation of documented preconditions. A common strategy for
+  handling this class of error conditions is to abort the program with a
+  core dump, facilitating introspection to locate and remedy the bug.
+* **Fatal errors**, triggered using ``cpr_fatal_error()``. Errors of this
+  class are thrown due to the exhaustion of critical system resources, in
+  particular available memory (``ENOMEM``), or due to attempts to exceed
+  applicable system resource limits. A typical strategy for handling this
+  class of error conditions is to terminate the program with a descriptive
+  error message. More robust programs and shared libraries may wish to
+  implement another strategy, such as retrying the operation after first
+  letting most of the call stack unwind in order to free up scarce
+  resources.
+* **Runtime errors**, triggered using ``cpr_runtime_error()``. Errors of
+  this class are thrown as a matter of course to indicate various
+  exceptional conditions. These conditions are generally recoverable and
+  robust programs will take care to correctly handle them.
+
+.. note::
+
+   The distinction between logic errors and runtime errors mirrors that
+   found in the C++11 standard library, where the ``<stdexcept>`` header
+   defines the standard exception base classes ``std::logic_error`` and
+   ``std::runtime_error``. The standard exception class ``std::bad_alloc``,
+   on the other hand, is a representative example of a fatal error.
+
 Build Prerequisites
 -------------------
 
