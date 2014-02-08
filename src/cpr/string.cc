@@ -41,10 +41,10 @@ cpr_string(const char* const str) {
       }
     }
     catch (const std::length_error&) {
-      cpr_error(std::errc::invalid_argument, nullptr);  /* EINVAL */
+      cpr_logic_error(std::errc::invalid_argument, nullptr);  /* EINVAL */
     }
     catch (const std::bad_alloc&) {
-      cpr_error(std::errc::not_enough_memory, nullptr); /* ENOMEM */
+      cpr_fatal_error(std::errc::not_enough_memory, nullptr); /* ENOMEM */
     }
   }
 

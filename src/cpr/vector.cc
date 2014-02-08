@@ -51,7 +51,7 @@ cpr_vector(const void* element, ...) {
         }
       }
       catch (const std::bad_alloc&) {
-        cpr_error(std::errc::not_enough_memory, nullptr); /* ENOMEM */
+        cpr_fatal_error(std::errc::not_enough_memory, nullptr); /* ENOMEM */
       }
 
       va_end(arguments);
@@ -66,7 +66,7 @@ cpr_vector_alloc(void) {
   cpr_vector_t* const vector = reinterpret_cast<cpr_vector_t*>(cpr_calloc(1, sizeof(cpr_vector_t)));
 
   if (vector == nullptr) {
-    cpr_error(std::errc::not_enough_memory, nullptr); /* ENOMEM */
+    cpr_fatal_error(std::errc::not_enough_memory, nullptr); /* ENOMEM */
   }
 
   return vector;
@@ -96,7 +96,7 @@ cpr_vector_init_with_capacity(cpr_vector_t* const vector,
     new(vector) cpr_vector_t(capacity, erase_hook);
   }
   catch (const std::bad_alloc&) {
-    cpr_error(std::errc::not_enough_memory, nullptr); /* ENOMEM */
+    cpr_fatal_error(std::errc::not_enough_memory, nullptr); /* ENOMEM */
     return; /* vector remains uninitalized */
   }
 
@@ -178,7 +178,7 @@ cpr_vector_at(const cpr_vector_t* const vector,
     return vector->data.at(position);
   }
   catch (const std::out_of_range&) {
-    cpr_error(std::errc::argument_out_of_domain, nullptr); /* EDOM */
+    cpr_logic_error(std::errc::argument_out_of_domain, nullptr); /* EDOM */
     return nullptr;
   }
 }
@@ -190,7 +190,7 @@ cpr_vector_front(const cpr_vector_t* const vector) {
   if (vector->data.empty()) {
     /* Calling #front() on an empty vector results in undefined behavior.
      * We'd rather avoid undefined behavior, so we'll return NULL instead: */
-    cpr_error(std::errc::bad_address, nullptr); /* EFAULT */
+    cpr_logic_error(std::errc::bad_address, nullptr); /* EFAULT */
     return nullptr;
   }
 
@@ -205,7 +205,7 @@ cpr_vector_back(const cpr_vector_t* const vector) {
   if (vector->data.empty()) {
     /* Calling #back() on an empty vector results in undefined behavior.
      * We'd rather avoid undefined behavior, so we'll return NULL instead: */
-    cpr_error(std::errc::bad_address, nullptr); /* EFAULT */
+    cpr_logic_error(std::errc::bad_address, nullptr); /* EFAULT */
     return nullptr;
   }
 
@@ -222,10 +222,10 @@ cpr_vector_reserve(cpr_vector_t* const vector,
     vector->data.reserve(capacity);
   }
   catch (const std::length_error&) {
-    cpr_error(std::errc::invalid_argument, nullptr);  /* EINVAL */
+    cpr_logic_error(std::errc::invalid_argument, nullptr);  /* EINVAL */
   }
   catch (const std::bad_alloc&) {
-    cpr_error(std::errc::not_enough_memory, nullptr); /* ENOMEM */
+    cpr_fatal_error(std::errc::not_enough_memory, nullptr); /* ENOMEM */
   }
 }
 
@@ -258,7 +258,7 @@ cpr_vector_push_back(cpr_vector_t* const vector,
     vector->data.push_back(const_cast<void*>(element));
   }
   catch (const std::bad_alloc&) {
-    cpr_error(std::errc::not_enough_memory, nullptr); /* ENOMEM */
+    cpr_fatal_error(std::errc::not_enough_memory, nullptr); /* ENOMEM */
   }
 }
 
@@ -270,7 +270,7 @@ cpr_vector_pop_back(cpr_vector_t* const vector) {
     /* Calling #pop_back() on an empty vector results in undefined behavior.
      * We'd rather avoid undefined behavior, so we'll just fail gracefully
      * instead: */
-    cpr_error(std::errc::bad_address, nullptr); /* EFAULT */
+    cpr_logic_error(std::errc::bad_address, nullptr); /* EFAULT */
     return;
   }
 
