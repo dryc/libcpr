@@ -7,7 +7,8 @@
  * @file
  */
 
-#include <stddef.h> /* for size_t */
+#include <stdbool.h> /* for bool */
+#include <stddef.h>  /* for size_t */
 
 #ifdef __cplusplus
 extern "C" {
