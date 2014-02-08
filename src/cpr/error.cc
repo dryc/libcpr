@@ -9,7 +9,7 @@
 #include <cerrno>  /* for errno */
 #include <cstdarg> /* for va_list, va_*(), vsnprintf() */
 
-cpr_error_callback_t cpr_error_callback = nullptr;
+cpr_error_hook_t cpr_error_hook = nullptr;
 
 /**
  * A thread-local buffer large enough to hold typical formatted error
@@ -27,7 +27,7 @@ _cpr_error(const char* const function,
            const char* const error_format, ...) {
   errno = error_code;
 
-  if (cpr_error_callback) {
+  if (cpr_error_hook) {
     if (error_format) {
       va_list args;
       va_start(args, error_format);
@@ -44,7 +44,7 @@ _cpr_error(const char* const function,
       .line     = line,
     };
 
-    return cpr_error_callback(&error);
+    return cpr_error_hook(&error);
   }
 
   return false; /* don't retry */

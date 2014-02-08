@@ -20,7 +20,7 @@ extern "C" {
  * @param  error_code the error code (an integer)
  * @param  error_message the error message (a string)
  * @return the boolean returned by the error hook,
- *         or `false` if `cpr_error_callback` is `NULL`
+ *         or `false` if `cpr_error_hook` is `NULL`
  */
 #define cpr_error(error_type, error_code, error_message)     \
   _cpr_error(__func__, __FILE__, __LINE__,                   \
@@ -32,7 +32,7 @@ extern "C" {
  * @param  error_code the error code (an integer)
  * @param  error_message the error message (a C string)
  * @return the boolean returned by the error hook,
- *         or `false` if `cpr_error_callback` is `NULL`
+ *         or `false` if `cpr_error_hook` is `NULL`
  */
 #define cpr_logic_error(error_code, error_message)           \
   cpr_error(CPR_ERROR_TYPE_LOGIC, error_code, error_message)
@@ -43,7 +43,7 @@ extern "C" {
  * @param  error_code the error code (an integer)
  * @param  error_message the error message (a C string)
  * @return the boolean returned by the error hook,
- *         or `false` if `cpr_error_callback` is `NULL`
+ *         or `false` if `cpr_error_hook` is `NULL`
  */
 #define cpr_runtime_error(error_code, error_message)         \
   cpr_error(CPR_ERROR_TYPE_RUNTIME, error_code, error_message)
@@ -54,7 +54,7 @@ extern "C" {
  * @param  error_code the error code (an integer)
  * @param  error_message the error message (a C string)
  * @return the boolean returned by the error hook,
- *         or `false` if `cpr_error_callback` is `NULL`
+ *         or `false` if `cpr_error_hook` is `NULL`
  */
 #define cpr_fatal_error(error_code, error_message)           \
   cpr_error(CPR_ERROR_TYPE_FATAL, error_code, error_message)
@@ -100,12 +100,12 @@ bool _cpr_error(
 /**
  * The type signature of the error callback hook.
  */
-typedef bool (*cpr_error_callback_t)(const cpr_error_t* error);
+typedef bool (*cpr_error_hook_t)(const cpr_error_t* error);
 
 /**
  * The current error callback hook, if any.
  */
-extern cpr_error_callback_t cpr_error_callback;
+extern cpr_error_hook_t cpr_error_hook;
 
 #ifdef __cplusplus
 } /* extern "C" */
