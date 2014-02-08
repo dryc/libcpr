@@ -120,6 +120,7 @@ AC_SUBST([AM_LDFLAGS])
 
 dnl Check for library functions:
 AC_FUNC_ALLOCA
+AC_CHECK_FUNCS_ONCE([vsnprintf])
 
 dnl Check for system services:
 
