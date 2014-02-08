@@ -41,6 +41,7 @@ Missing Functions
 Nice to Have
 ------------
 
+- Change from '__thread' to 'thread_local' (libstdc++ 4.8+).
 - Support custom memory management hooks.
 - Bump build dependencies to Automake 1.11.2 (breaks Ubuntu 11.10):
   - Simplify m4_ifdef([AM_PROG_AR], [AM_PROG_AR]) to AM_PROG_AR.

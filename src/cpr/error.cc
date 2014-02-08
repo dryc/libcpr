@@ -22,7 +22,11 @@ cpr_error_hook_t cpr_error_hook = nullptr;
  * messages. Messages larger than the capacity of the buffer are truncated
  * at `sizeof(error_buffer)-1`. The buffer is always NUL-terminated.
  */
+#if __has_feature(cxx_thread_local)
+static thread_local char error_buffer[4096];
+#else
 static __thread char error_buffer[4096];
+#endif
 
 static const char* error_types[] = {
   nullptr,   /* CPR_ERROR_TYPE_UNDEFINED */
