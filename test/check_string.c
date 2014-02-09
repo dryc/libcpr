@@ -32,6 +32,15 @@ test_construct_nonempty(void) {
 }
 
 static void
+test_back(void) {
+  cpr_string_t* string = cpr_string("foobar");
+  assert(string);
+  char* string_back = cpr_string_back(string);
+  assert(string_back);
+  assert(*string_back == 'r');
+}
+
+static void
 test_capacity(void) {
   cpr_string_t* string = cpr_string("foobar");
   assert(string);
@@ -62,6 +71,15 @@ test_data(void) {
 static void
 test_empty(void) {
   // TODO
+}
+
+static void
+test_front(void) {
+  cpr_string_t* string = cpr_string("foobar");
+  assert(string);
+  char* string_front = cpr_string_front(string);
+  assert(string_front);
+  assert(*string_front == 'f');
 }
 
 static void
@@ -124,10 +142,12 @@ int
 main(void) {
   test_construct_empty();
   test_construct_nonempty();
+  test_back();
   test_capacity();
   test_clear();
   test_data();
   test_empty();
+  test_front();
   test_length();
   test_max_size();
   test_pop_back();

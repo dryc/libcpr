@@ -76,7 +76,7 @@ C++11                                        libcpr
 :cpp:func:`std::string::assign()`            | TODO: :c:func:`cpr_string_assign_char()`
                                              | :c:func:`cpr_string_assign_str()`
 :cpp:func:`std::string::at()`                TODO: :c:func:`cpr_string_at()`
-:cpp:func:`std::string::back()`              TODO: :c:func:`cpr_string_back()`
+:cpp:func:`std::string::back()`              :c:func:`cpr_string_back()`
 :cpp:func:`std::string::begin()`             N/A [#string-iterate]_
 :cpp:func:`std::string::capacity()`          :c:func:`cpr_string_capacity()`
 :cpp:func:`std::string::cbegin()`            N/A [#string-iterate]_
@@ -97,7 +97,7 @@ C++11                                        libcpr
 :cpp:func:`std::string::find_first_of()`     N/A
 :cpp:func:`std::string::find_last_not_of()`  N/A
 :cpp:func:`std::string::find_last_of()`      N/A
-:cpp:func:`std::string::front()`             TODO: :c:func:`cpr_string_front()`
+:cpp:func:`std::string::front()`             :c:func:`cpr_string_front()`
 :cpp:func:`std::string::get_allocator()`     N/A
 :cpp:func:`std::string::insert()`            | TODO: :c:func:`cpr_string_insert_char()`
                                              | :c:func:`cpr_string_insert_str()`

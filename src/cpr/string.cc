@@ -48,6 +48,26 @@ cpr_string(const char* const str) {
   return string;
 }
 
+char*
+cpr_string_back(cpr_string_t* const string) {
+  assert(string != nullptr);
+
+  if (string->data.empty()) {
+    /* Calling #back() on an empty string results in undefined behavior.
+     * We'd rather avoid undefined behavior, so we'll just fail gracefully
+     * instead: */
+    cpr_logic_error(std::errc::bad_address, nullptr); /* EFAULT */
+    return nullptr;
+  }
+
+  /* Guaranteed to never throw an exception for nonempty strings: */
+  return &(string->data.back());
+#ifdef DEBUG
+  static_assert(noexcept(string->data.back()),
+    "std::string::back() declaration is missing the noexcept specifier");
+#endif
+}
+
 std::size_t
 cpr_string_capacity(const cpr_string_t* const string) {
   assert(string != nullptr);
@@ -73,7 +93,7 @@ cpr_string_clear(cpr_string_t* const string) {
 }
 
 char*
-cpr_string_data(const cpr_string_t* const string) {
+cpr_string_data(cpr_string_t* const string) {
   assert(string != nullptr);
 
   /* Guaranteed to never throw an exception: */
@@ -93,6 +113,26 @@ cpr_string_empty(const cpr_string_t* const string) {
 #ifdef DEBUG
   static_assert(noexcept(string->data.empty()),
     "std::string::empty() declaration is missing the noexcept specifier");
+#endif
+}
+
+char*
+cpr_string_front(cpr_string_t* const string) {
+  assert(string != nullptr);
+
+  if (string->data.empty()) {
+    /* Calling #front() on an empty string results in undefined behavior.
+     * We'd rather avoid undefined behavior, so we'll just fail gracefully
+     * instead: */
+    cpr_logic_error(std::errc::bad_address, nullptr); /* EFAULT */
+    return nullptr;
+  }
+
+  /* Guaranteed to never throw an exception for nonempty strings: */
+  return &(string->data.front());
+#ifdef DEBUG
+  static_assert(noexcept(string->data.front()),
+    "std::string::front() declaration is missing the noexcept specifier");
 #endif
 }
 

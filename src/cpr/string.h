@@ -198,15 +198,25 @@ char* cpr_string_str(cpr_string_t* string);
  * @pre    `string` is not a `NULL` pointer
  * @return a pointer to the C string representation of `*string`
  */
-char* cpr_string_data(const cpr_string_t* string);
+char* cpr_string_data(cpr_string_t* string);
 
 /**
- * ...
+ * Returns a pointer to the first character in a string.
+ *
+ * @param  string a pointer to the string to be accessed
+ * @pre    `string` is not a `NULL` pointer
+ * @error  EFAULT if `*string` is empty
+ * @return a pointer to the first character in `*string`
  */
 char* cpr_string_front(cpr_string_t* string);
 
 /**
- * ...
+ * Returns a pointer to the last character in a string.
+ *
+ * @param  string a pointer to the string to be accessed
+ * @pre    `string` is not a `NULL` pointer
+ * @error  EFAULT if `*string` is empty
+ * @return a pointer to the last character in `*string`
  */
 char* cpr_string_back(cpr_string_t* string);
 
