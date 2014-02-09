@@ -15,12 +15,12 @@
  * @example string.c
  */
 
+#include <stdbool.h> /* for bool */
+#include <stddef.h>  /* for size_t */
+
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-#include <stdbool.h> /* for bool */
-#include <stddef.h>  /* for size_t */
 
 /**
  * Indicates that the `cpr_string_t` structure type has been defined.
@@ -74,8 +74,8 @@ cpr_string_t* cpr_string_alloc(void);
 /**
  * Deallocates the heap memory used by a string.
  *
- * @param string a pointer to the string to deallocate, or a `NULL` pointer
- * @post  the `string` pointer is invalidated
+ * @param  string a pointer to the string to deallocate, or a `NULL` pointer
+ * @post   the `string` pointer is invalidated
  */
 void cpr_string_free(cpr_string_t* string);
 
@@ -128,9 +128,9 @@ size_t cpr_string_capacity(const cpr_string_t* string);
 /**
  * Removes all elements from a string, leaving its size zero.
  *
- * @param string a pointer to the string to be mutated
- * @pre   `string` is not a `NULL` pointer
- * @post  the size of `*string` is zero
+ * @param  string a pointer to the string to be mutated
+ * @pre    `string` is not a `NULL` pointer
+ * @post   the size of `*string` is zero
  */
 void cpr_string_clear(cpr_string_t* string);
 
@@ -141,10 +141,18 @@ void cpr_string_reserve(cpr_string_t* string,
   size_t capacity);
 
 /**
- * ...
+ * Resizes a string, increasing or reducing its size.
+ *
+ * @param  string a pointer to the string to be mutated
+ * @param  size the new size of the string
+ * @param  character the fill character used when extended
+ * @pre    `string` is not a `NULL` pointer
+ * @error  EOVERFLOW if the length would exceed `max_size()`
+ * @error  ENOMEM if the allocation of storage failed
+ * @post   the size of `*string` is equal to `size`
  */
 void cpr_string_resize(cpr_string_t* string,
-  size_t length,
+  size_t size,
   char character);
 
 /**

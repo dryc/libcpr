@@ -113,7 +113,7 @@ C++11                                        libcpr
 :cpp:func:`std::string::rend()`              N/A [#string-iterate]_
 :cpp:func:`std::string::replace()`           TODO
 :cpp:func:`std::string::reserve()`           TODO: :c:func:`cpr_string_reserve()`
-:cpp:func:`std::string::resize()`            TODO: :c:func:`cpr_string_resize()`
+:cpp:func:`std::string::resize()`            :c:func:`cpr_string_resize()`
 :cpp:func:`std::string::rfind()`             | TODO: :c:func:`cpr_string_rfind_char()`
                                              | :c:func:`cpr_string_rfind_str()`
 :cpp:func:`std::string::shrink_to_fit()`     TODO: :c:func:`cpr_string_shrink_to_fit()`

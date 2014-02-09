@@ -152,6 +152,24 @@ cpr_string_push_back(cpr_string_t* const string,
   }
 }
 
+void
+cpr_string_resize(cpr_string_t* const string,
+                  const size_t size,
+                  const char character) {
+  assert(string != nullptr);
+
+  try {
+    string->data.resize(size, character);
+  }
+  catch (const std::length_error& error) {
+    /* The resulting string length would exceed `max_size`: */
+    cpr_logic_error(std::errc::value_too_large, error.what());   /* EOVERFLOW */
+  }
+  catch (const std::bad_alloc& error) {
+    cpr_fatal_error(std::errc::not_enough_memory, error.what()); /* ENOMEM */
+  }
+}
+
 std::size_t
 cpr_string_size(const cpr_string_t* const string) {
   assert(string != nullptr);
