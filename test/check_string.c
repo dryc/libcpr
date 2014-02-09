@@ -8,23 +8,78 @@
 
 static void
 test_construct_empty(void) {
-  cpr_string_t* string = cpr_string(NULL);
-  assert(string != NULL);
-  assert(cpr_string_empty(string));
-  assert(cpr_string_size(string) == 0);
+  {
+    cpr_string_t* string = cpr_string(NULL);
+    assert(string);
+    assert(cpr_string_empty(string));
+    assert(cpr_string_size(string) == 0);
+  }
+  {
+    cpr_string_t* string = cpr_string("");
+    assert(string);
+    assert(cpr_string_empty(string));
+    assert(cpr_string_size(string) == 0);
+  }
 }
 
 static void
 test_construct_nonempty(void) {
   cpr_string_t* string = cpr_string("Hello, world!");
-  assert(string != NULL);
+  assert(string);
   assert(!cpr_string_empty(string));
   assert(cpr_string_size(string) == 13);
+}
+
+static void
+test_capacity(void) {
+  cpr_string_t* string = cpr_string("foobar");
+  assert(string);
+  assert(cpr_string_capacity(string) >= 6);
+}
+
+static void
+test_empty(void) {
+  // TODO
+}
+
+static void
+test_length(void) {
+  // TODO
+}
+
+static void
+test_max_size(void) {
+  cpr_string_t* string = cpr_string(NULL);
+  assert(string);
+  assert(cpr_string_max_size(string) > 0);
+}
+
+static void
+test_push_back(void) {
+  cpr_string_t* string = cpr_string(NULL);
+  assert(string);
+  cpr_string_push_back(string, 'f');
+  assert(cpr_string_size(string) == 1);
+  cpr_string_push_back(string, 'o');
+  assert(cpr_string_size(string) == 2);
+  cpr_string_push_back(string, 'o');
+  assert(cpr_string_size(string) == 3);
+}
+
+static void
+test_size(void) {
+  // TODO
 }
 
 int
 main(void) {
   test_construct_empty();
   test_construct_nonempty();
+  test_capacity();
+  test_empty();
+  test_length();
+  test_max_size();
+  test_push_back();
+  test_size();
   return EXIT_SUCCESS;
 }

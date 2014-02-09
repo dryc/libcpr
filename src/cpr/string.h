@@ -46,7 +46,7 @@ extern const size_t cpr_string_npos;
  * Constructs a new string from the given NUL-terminated input.
  *
  * @param  str a NUL-terminated character string
- * @error  EINVAL if the length would exceed `max_size()`
+ * @error  EOVERFLOW if the length would exceed `max_size()`
  * @error  ENOMEM if the allocation of storage failed
  * @return a pointer to a new heap-allocated string,
  *         or a `NULL` pointer if an error occurred
@@ -149,7 +149,13 @@ void cpr_string_resize(cpr_string_t* string,
 void cpr_string_pop_back(cpr_string_t* string);
 
 /**
- * ...
+ * Appends a character to the end of a string, increasing its length by one.
+ *
+ * @param  string a pointer to the string to be mutated
+ * @param  character the character to append
+ * @pre    `string` is not a `NULL` pointer
+ * @error  EOVERFLOW if the length would exceed `max_size()`
+ * @error  ENOMEM if the allocation of storage failed
  */
 void cpr_string_push_back(cpr_string_t* string,
   char character);

@@ -7,8 +7,6 @@
  * @file
  */
 
-#include <system_error> /* for std::errc */
-
 #define cpr_malloc(s)     std::malloc(s)
 #define cpr_free(p)       std::free(p)
 #define cpr_calloc(n, s)  std::calloc(n, s)
