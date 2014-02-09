@@ -189,7 +189,7 @@ void cpr_vector_reserve(cpr_vector_t* vector,
  *
  * @param vector a pointer to the vector to be mutated
  * @pre   `vector` is not a `NULL` pointer
- * @post  the size `*vector` is zero
+ * @post  the size of `*vector` is zero
  */
 void cpr_vector_clear(cpr_vector_t* vector);
 

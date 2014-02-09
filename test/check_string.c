@@ -38,6 +38,15 @@ test_capacity(void) {
 }
 
 static void
+test_clear(void) {
+  cpr_string_t* string = cpr_string("foobar");
+  assert(string);
+  assert(!cpr_string_empty(string));
+  cpr_string_clear(string);
+  assert(cpr_string_empty(string));
+}
+
+static void
 test_empty(void) {
   // TODO
 }
@@ -90,6 +99,7 @@ main(void) {
   test_construct_empty();
   test_construct_nonempty();
   test_capacity();
+  test_clear();
   test_empty();
   test_length();
   test_max_size();

@@ -126,7 +126,11 @@ size_t cpr_string_max_size(const cpr_string_t* string);
 size_t cpr_string_capacity(const cpr_string_t* string);
 
 /**
- * ...
+ * Removes all elements from a string, leaving its size zero.
+ *
+ * @param string a pointer to the string to be mutated
+ * @pre   `string` is not a `NULL` pointer
+ * @post  the size of `*string` is zero
  */
 void cpr_string_clear(cpr_string_t* string);
 
