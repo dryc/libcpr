@@ -55,9 +55,23 @@ test_max_size(void) {
 }
 
 static void
+test_pop_back(void) {
+  cpr_string_t* string = cpr_string("foo");
+  assert(string);
+  assert(cpr_string_size(string) == 3);
+  cpr_string_pop_back(string);
+  assert(cpr_string_size(string) == 2);
+  cpr_string_pop_back(string);
+  assert(cpr_string_size(string) == 1);
+  cpr_string_pop_back(string);
+  assert(cpr_string_size(string) == 0);
+}
+
+static void
 test_push_back(void) {
   cpr_string_t* string = cpr_string(NULL);
   assert(string);
+  assert(cpr_string_size(string) == 0);
   cpr_string_push_back(string, 'f');
   assert(cpr_string_size(string) == 1);
   cpr_string_push_back(string, 'o');
@@ -79,6 +93,7 @@ main(void) {
   test_empty();
   test_length();
   test_max_size();
+  test_pop_back();
   test_push_back();
   test_size();
   return EXIT_SUCCESS;

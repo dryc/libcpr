@@ -144,12 +144,17 @@ void cpr_string_resize(cpr_string_t* string,
   char character);
 
 /**
- * ...
+ * Removes the last character of a string, reducing its size by one.
+ *
+ * @param  string a pointer to the string to be mutated
+ * @pre    `string` is not a `NULL` pointer
+ * @error  EFAULT if `*string` is empty
+ * @post   if `*string` was not empty, its size is reduced by one
  */
 void cpr_string_pop_back(cpr_string_t* string);
 
 /**
- * Appends a character to the end of a string, increasing its length by one.
+ * Appends a character to the end of a string, increasing its size by one.
  *
  * @param  string a pointer to the string to be mutated
  * @param  character the character to append

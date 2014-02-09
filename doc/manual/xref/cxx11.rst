@@ -107,7 +107,7 @@ C++11                                        libcpr
 :cpp:func:`std::string::operator[]`          TODO: :c:func:`cpr_string_at()`
 :cpp:func:`std::string::operator+=`          | TODO: :c:func:`cpr_string_append_char()`
                                              | :c:func:`cpr_string_append_str()`
-:cpp:func:`std::string::pop_back()`          TODO: :c:func:`cpr_string_pop_back()`
+:cpp:func:`std::string::pop_back()`          :c:func:`cpr_string_pop_back()`
 :cpp:func:`std::string::push_back()`         :c:func:`cpr_string_push_back()`
 :cpp:func:`std::string::rbegin()`            N/A [#string-iterate]_
 :cpp:func:`std::string::rend()`              N/A [#string-iterate]_

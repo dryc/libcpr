@@ -55,7 +55,7 @@ cpr_string_capacity(const cpr_string_t* const string) {
   /* Guaranteed to never throw an exception: */
   return string->data.capacity();
 #ifdef DEBUG
-  static_assert(noexcept(string->data.size()),
+  static_assert(noexcept(string->data.capacity()),
     "std::string::capacity() declaration is missing the noexcept specifier");
 #endif
 }
@@ -86,8 +86,28 @@ cpr_string_max_size(const cpr_string_t* const string) {
   /* Guaranteed to never throw an exception: */
   return string->data.max_size();
 #ifdef DEBUG
-  static_assert(noexcept(string->data.size()),
+  static_assert(noexcept(string->data.max_size()),
     "std::string::max_size() declaration is missing the noexcept specifier");
+#endif
+}
+
+void
+cpr_string_pop_back(cpr_string_t* const string) {
+  assert(string != nullptr);
+
+  if (string->data.empty()) {
+    /* Calling #pop_back() on an empty string results in undefined behavior.
+     * We'd rather avoid undefined behavior, so we'll just fail gracefully
+     * instead: */
+    cpr_logic_error(std::errc::bad_address, nullptr); /* EFAULT */
+    return;
+  }
+
+  /* Guaranteed to never throw an exception for nonempty strings: */
+  string->data.pop_back();
+#ifdef DEBUG
+  static_assert(noexcept(string->data.pop_back()),
+    "std::string::pop_back() declaration is missing the noexcept specifier");
 #endif
 }
 
