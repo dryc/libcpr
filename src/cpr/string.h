@@ -181,9 +181,16 @@ char* cpr_string_at(cpr_string_t* string,
 char* cpr_string_str(cpr_string_t* string);
 
 /**
- * ...
+ * Returns a direct pointer to a string's internal memory array.
+ *
+ * The returned pointer may be invalidated by further calls to other
+ * functions that mutate the string.
+ *
+ * @param  string a pointer to the string to be accessed
+ * @pre    `string` is not a `NULL` pointer
+ * @return a pointer to the C string representation of `*string`
  */
-char* cpr_string_data(cpr_string_t* string);
+char* cpr_string_data(const cpr_string_t* string);
 
 /**
  * ...

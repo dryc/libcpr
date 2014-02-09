@@ -86,8 +86,8 @@ C++11                                        libcpr
 :cpp:func:`std::string::copy()`              TODO: :c:func:`cpr_string_copy()`
 :cpp:func:`std::string::crbegin()`           N/A [#string-iterate]_
 :cpp:func:`std::string::crend()`             N/A [#string-iterate]_
-:cpp:func:`std::string::c_str()`             TODO: :c:func:`cpr_string_str()`
-:cpp:func:`std::string::data()`              TODO: :c:func:`cpr_string_data()`
+:cpp:func:`std::string::c_str()`             :c:func:`cpr_string_data()`
+:cpp:func:`std::string::data()`              :c:func:`cpr_string_data()`
 :cpp:func:`std::string::empty()`             :c:func:`cpr_string_empty()`
 :cpp:func:`std::string::end()`               N/A [#string-iterate]_
 :cpp:func:`std::string::erase()`             TODO: :c:func:`cpr_string_erase()`

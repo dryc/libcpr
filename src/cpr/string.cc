@@ -72,6 +72,18 @@ cpr_string_clear(cpr_string_t* const string) {
 #endif
 }
 
+char*
+cpr_string_data(const cpr_string_t* const string) {
+  assert(string != nullptr);
+
+  /* Guaranteed to never throw an exception: */
+  return const_cast<char*>(string->data.data());
+#ifdef DEBUG
+  static_assert(noexcept(string->data.data()),
+    "std::string::data() declaration is missing the noexcept specifier");
+#endif
+}
+
 bool
 cpr_string_empty(const cpr_string_t* const string) {
   assert(string != nullptr);

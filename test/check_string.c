@@ -3,6 +3,7 @@
 #include <assert.h> /* for assert() */
 #include <stdio.h>  /* for printf() */
 #include <stdlib.h> /* for EXIT_SUCCESS */
+#include <string.h> /* for strcmp(), strlen() */
 
 #include <cpr/string.h>
 
@@ -44,6 +45,18 @@ test_clear(void) {
   assert(!cpr_string_empty(string));
   cpr_string_clear(string);
   assert(cpr_string_empty(string));
+}
+
+static void
+test_data(void) {
+  cpr_string_t* string = cpr_string("foobar");
+  assert(string);
+  char* string_data = cpr_string_data(string);
+  assert(string_data);
+  assert(string_data[0] == 'f');
+  assert(string_data[6] == '\0');
+  assert(strlen(string_data) == 6);
+  assert(strcmp(string_data, "foobar") == 0);
 }
 
 static void
@@ -100,6 +113,7 @@ main(void) {
   test_construct_nonempty();
   test_capacity();
   test_clear();
+  test_data();
   test_empty();
   test_length();
   test_max_size();
