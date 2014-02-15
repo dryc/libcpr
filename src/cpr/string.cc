@@ -116,6 +116,16 @@ cpr_string_empty(const cpr_string_t* const string) {
 #endif
 }
 
+void
+cpr_string_free(cpr_string_t* const string) {
+  if (!string) return;
+
+  /* Guaranteed to never throw an exception: */
+  string->~cpr_string();
+
+  cpr_free(string);
+}
+
 char*
 cpr_string_front(cpr_string_t* const string) {
   assert(string != nullptr);

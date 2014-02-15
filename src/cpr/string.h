@@ -184,11 +184,6 @@ char* cpr_string_at(cpr_string_t* string,
   size_t position);
 
 /**
- * ...
- */
-char* cpr_string_str(cpr_string_t* string);
-
-/**
  * Returns a direct pointer to a string's internal memory array.
  *
  * The returned pointer may be invalidated by further calls to other

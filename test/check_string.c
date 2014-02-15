@@ -74,6 +74,13 @@ test_empty(void) {
 }
 
 static void
+test_free(void) {
+  cpr_string_t* string = cpr_string("foobar");
+  assert(string);
+  cpr_string_free(string);
+}
+
+static void
 test_front(void) {
   cpr_string_t* string = cpr_string("foobar");
   assert(string);
@@ -147,6 +154,7 @@ main(void) {
   test_clear();
   test_data();
   test_empty();
+  test_free();
   test_front();
   test_length();
   test_max_size();
