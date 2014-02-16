@@ -48,6 +48,24 @@ cpr_string(const char* const str) {
   return string;
 }
 
+void
+cpr_string_append_char(cpr_string_t* const string,
+                       const std::size_t count,
+                       const char character) {
+  assert(string != nullptr);
+
+  try {
+    string->data.append(count, character);
+  }
+  catch (const std::length_error& error) {
+    /* The resulting string length would exceed `max_size`: */
+    cpr_logic_error(std::errc::value_too_large, error.what());   /* EOVERFLOW */
+  }
+  catch (const std::bad_alloc& error) {
+    cpr_fatal_error(std::errc::not_enough_memory, error.what()); /* ENOMEM */
+  }
+}
+
 char*
 cpr_string_at(cpr_string_t* const string,
               const std::size_t position) {

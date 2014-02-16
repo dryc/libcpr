@@ -32,6 +32,17 @@ test_construct_nonempty(void) {
 }
 
 static void
+test_append_char(void) {
+  cpr_string_t* string = cpr_string(NULL);
+  assert(string);
+  assert(cpr_string_size(string) == 0);
+  cpr_string_append_char(string, 1, 'f');
+  assert(cpr_string_size(string) == 1);
+  cpr_string_append_char(string, 2, 'o');
+  assert(cpr_string_size(string) == 3);
+}
+
+static void
 test_at(void) {
   cpr_string_t* string = cpr_string("0123456789");
   assert(string);
@@ -169,6 +180,7 @@ int
 main(void) {
   test_construct_empty();
   test_construct_nonempty();
+  test_append_char();
   test_at();
   test_back();
   test_capacity();

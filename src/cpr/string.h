@@ -57,13 +57,22 @@ cpr_string_t* cpr_string(const char* str);
 cpr_string_t* cpr_string_alloc(void);
 
 /**
- * ...
+ * Appends `count` consecutive copies of `character` to a string.
+ *
+ * @param  string a pointer to the string to be mutated
+ * @param  count the repeat count
+ * @param  character the character to append
+ * @pre    `string` is not a `NULL` pointer
+ * @error  EOVERFLOW if the length would exceed `max_size()`
+ * @error  ENOMEM if the allocation of storage failed
  */
 void cpr_string_append_char(cpr_string_t* string,
   size_t count,
   char character);
 
 /**
+ * Appends a copy of the first `length` characters of `str` to a string.
+ *
  * ...
  */
 void cpr_string_append_str(cpr_string_t* string,
@@ -71,6 +80,8 @@ void cpr_string_append_str(cpr_string_t* string,
   size_t length);
 
 /**
+ * Appends a copy of `suffix` to a string.
+ *
  * ...
  */
 void cpr_string_append_string(cpr_string_t* string,

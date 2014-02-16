@@ -72,8 +72,9 @@ C++11                                        libcpr
 :cpp:class:`std::string`                     :c:type:`cpr_string_t`
 :cpp:func:`std::string::string()`            :c:func:`cpr_string()`
 :cpp:func:`std::string::~string()`           :c:func:`cpr_string_free()`
-:cpp:func:`std::string::append()`            | TODO: :c:func:`cpr_string_append_char()`
+:cpp:func:`std::string::append()`            | :c:func:`cpr_string_append_char()`
                                              | :c:func:`cpr_string_append_str()`
+                                             | :c:func:`cpr_string_append_string()`
 :cpp:func:`std::string::assign()`            | TODO: :c:func:`cpr_string_assign_char()`
                                              | :c:func:`cpr_string_assign_str()`
 :cpp:func:`std::string::at()`                TODO: :c:func:`cpr_string_at()`
