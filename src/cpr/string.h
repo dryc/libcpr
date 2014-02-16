@@ -142,9 +142,16 @@ size_t cpr_string_capacity(const cpr_string_t* string);
 void cpr_string_clear(cpr_string_t* string);
 
 /**
- * ...
+ * Compares two strings lexicographically.
+ *
+ * @param  string1 the first string to be compared
+ * @param  string2 the second string to be compared
+ * @pre    `string1` is not a `NULL` pointer
+ * @pre    `string2` is not a `NULL` pointer
+ * @return 0, < 0, or > 0
  */
-int cpr_string_compare(const cpr_string_t* string, ...);
+int cpr_string_compare(const cpr_string_t* string1,
+  const cpr_string_t* string2);
 
 /**
  * ...

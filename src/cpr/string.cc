@@ -124,6 +124,16 @@ cpr_string_clear(cpr_string_t* const string) {
 #endif
 }
 
+int
+cpr_string_compare(const cpr_string_t* const string1,
+                   const cpr_string_t* const string2) {
+  assert(string1 != nullptr);
+  assert(string2 != nullptr);
+
+  /* Guaranteed to never throw an exception: */
+  return string1->data.compare(string2->data);
+}
+
 char*
 cpr_string_data(cpr_string_t* const string) {
   assert(string != nullptr);

@@ -84,7 +84,7 @@ C++11                                        libcpr
 :cpp:func:`std::string::cbegin()`            N/A [#string-iterate]_
 :cpp:func:`std::string::cend()`              N/A [#string-iterate]_
 :cpp:func:`std::string::clear()`             :c:func:`cpr_string_clear()`
-:cpp:func:`std::string::compare()`           TODO: :c:func:`cpr_string_compare()`
+:cpp:func:`std::string::compare()`           :c:func:`cpr_string_compare()`
 :cpp:func:`std::string::copy()`              TODO: :c:func:`cpr_string_copy()`
 :cpp:func:`std::string::crbegin()`           N/A [#string-iterate]_
 :cpp:func:`std::string::crend()`             N/A [#string-iterate]_

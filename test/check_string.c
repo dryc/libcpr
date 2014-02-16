@@ -80,6 +80,18 @@ test_clear(void) {
 }
 
 static void
+test_compare(void) {
+  cpr_string_t* string1 = cpr_string("foo");
+  cpr_string_t* string2 = cpr_string("bar");
+  assert(string1);
+  assert(string2);
+  assert(cpr_string_compare(string1, string1) == 0);
+  assert(cpr_string_compare(string2, string2) == 0);
+  assert(cpr_string_compare(string1, string2) > 0);
+  assert(cpr_string_compare(string2, string1) < 0);
+}
+
+static void
 test_data(void) {
   cpr_string_t* string = cpr_string("foobar");
   assert(string);
@@ -185,6 +197,7 @@ main(void) {
   test_back();
   test_capacity();
   test_clear();
+  test_compare();
   test_data();
   test_empty();
   test_free();
