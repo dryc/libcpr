@@ -32,6 +32,18 @@ test_construct_nonempty(void) {
 }
 
 static void
+test_at(void) {
+  cpr_string_t* string = cpr_string("0123456789");
+  assert(string);
+  for (int i = 0; i < 9; i++) {
+    char* const char_at = cpr_string_at(string, i);
+    assert(char_at);
+    assert(*char_at == '0' + i);
+  }
+  assert(!cpr_string_at(string, 10));
+}
+
+static void
 test_back(void) {
   cpr_string_t* string = cpr_string("foobar");
   assert(string);
@@ -157,6 +169,7 @@ int
 main(void) {
   test_construct_empty();
   test_construct_nonempty();
+  test_at();
   test_back();
   test_capacity();
   test_clear();

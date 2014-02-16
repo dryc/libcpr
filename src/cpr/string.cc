@@ -49,6 +49,20 @@ cpr_string(const char* const str) {
 }
 
 char*
+cpr_string_at(cpr_string_t* const string,
+              const std::size_t position) {
+  assert(string != nullptr);
+
+  try {
+    return const_cast<char*>(&(string->data.at(position)));
+  }
+  catch (const std::out_of_range& error) {
+    cpr_logic_error(std::errc::argument_out_of_domain, error.what()); /* EDOM */
+    return nullptr;
+  }
+}
+
+char*
 cpr_string_back(cpr_string_t* const string) {
   assert(string != nullptr);
 
@@ -204,7 +218,7 @@ cpr_string_push_back(cpr_string_t* const string,
 
 void
 cpr_string_reserve(cpr_string_t* const string,
-                   const size_t capacity) {
+                   const std::size_t capacity) {
   assert(string != nullptr);
 
   try {
@@ -221,7 +235,7 @@ cpr_string_reserve(cpr_string_t* const string,
 
 void
 cpr_string_resize(cpr_string_t* const string,
-                  const size_t size,
+                  const std::size_t size,
                   const char character) {
   assert(string != nullptr);
 

@@ -91,7 +91,13 @@ void cpr_string_assign_str(cpr_string_t* string,
   size_t length);
 
 /**
- * ...
+ * Returns a pointer to the character at the given position in a string.
+ *
+ * @param  string a pointer to the string to be accessed
+ * @param  position the position of a character in the string
+ * @pre    `string` is not a `NULL` pointer
+ * @error  EDOM if `position` is out of bounds
+ * @return a pointer to the character at `position` in `*string`
  */
 char* cpr_string_at(cpr_string_t* string,
   size_t position);
