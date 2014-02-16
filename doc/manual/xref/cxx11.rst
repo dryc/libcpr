@@ -142,6 +142,7 @@ C++11                                        libcpr
 ============================================ ===================================
 :cpp:class:`std::vector`                     :c:type:`cpr_vector_t`
 :cpp:func:`std::vector::vector()`            :c:func:`cpr_vector()`
+:cpp:func:`std::vector::~vector()`           :c:func:`cpr_vector_free()`
 :cpp:func:`std::vector::assign()`            N/A
 :cpp:func:`std::vector::at()`                :c:func:`cpr_vector_at()`
 :cpp:func:`std::vector::back()`              :c:func:`cpr_vector_back()`

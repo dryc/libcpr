@@ -5,6 +5,7 @@
 #endif
 
 #include "error.h"
+#include "string.h"
 #include "vector.h"
 
 #include <cassert>      /* for assert() */
@@ -16,18 +17,17 @@
 #include <vector>       /* for std::vector */
 
 struct cpr_vector {
-  public:
-    std::vector<void*> data;
-    void (*erase_hook)(void*);
+  std::vector<void*> data;
+  void (*erase_hook)(void*);
 
-    cpr_vector()
-      : data(), erase_hook(nullptr) {}
+  cpr_vector()
+    : data(), erase_hook(nullptr) {}
 
-    cpr_vector(void (*erase_hook)(void*))
-      : data(), erase_hook(erase_hook) {}
+  cpr_vector(void (*erase_hook)(void*))
+    : data(), erase_hook(erase_hook) {}
 
-    cpr_vector(std::size_t size, void (*erase_hook)(void*))
-      : data(size), erase_hook(erase_hook) {}
+  cpr_vector(std::size_t size, void (*erase_hook)(void*))
+    : data(size), erase_hook(erase_hook) {}
 };
 
 extern const size_t cpr_vector_sizeof = sizeof(cpr_vector_t);
@@ -36,11 +36,11 @@ cpr_vector_t*
 cpr_vector(const void* element, ...) {
   cpr_vector_t* const vector = cpr_vector_alloc();
 
-  if (vector != nullptr) {
+  if (vector) {
     /* Should never throw an exception: */
     new(vector) cpr_vector_t();
 
-    if (element != nullptr) {
+    if (element) {
       std::va_list arguments;
 
       va_start(arguments, element);
@@ -50,8 +50,37 @@ cpr_vector(const void* element, ...) {
           vector->data.push_back(const_cast<void*>(element));
         }
       }
-      catch (const std::bad_alloc&) {
-        cpr_fatal_error(std::errc::not_enough_memory, nullptr); /* ENOMEM */
+      catch (const std::bad_alloc& error) {
+        cpr_fatal_error(std::errc::not_enough_memory, error.what()); /* ENOMEM */
+      }
+
+      va_end(arguments);
+    }
+  }
+
+  return vector;
+}
+
+cpr_vector_t*
+cpr_vector_of_strings(cpr_string_t* element, ...) {
+  cpr_vector_t* const vector = cpr_vector_alloc();
+
+  if (vector) {
+    /* Should never throw an exception: */
+    new(vector) cpr_vector_t(reinterpret_cast<void (*)(void*)>(cpr_string_free));
+
+    if (element) {
+      std::va_list arguments;
+
+      va_start(arguments, element);
+
+      try {
+        for (; element != nullptr; element = va_arg(arguments, cpr_string_t*)) {
+          vector->data.push_back(element);
+        }
+      }
+      catch (const std::bad_alloc& error) {
+        cpr_fatal_error(std::errc::not_enough_memory, error.what()); /* ENOMEM */
       }
 
       va_end(arguments);
@@ -65,7 +94,7 @@ cpr_vector_t*
 cpr_vector_alloc(void) {
   cpr_vector_t* const vector = reinterpret_cast<cpr_vector_t*>(cpr_calloc(1, sizeof(cpr_vector_t)));
 
-  if (vector == nullptr) {
+  if (!vector) {
     cpr_fatal_error(std::errc::not_enough_memory, nullptr); /* ENOMEM */
   }
 

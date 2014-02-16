@@ -40,6 +40,21 @@ extern const size_t cpr_vector_sizeof;
 cpr_vector_t* cpr_vector(const void* element, ...);
 
 /**
+ * Constructs a new vector of strings from the given `NULL`-terminated
+ * arguments.
+ *
+ * Each element must be a `cpr_string_t` object. All elements are owned by
+ * the vector and automatically deallocated when removed from the vector,
+ * as well as when the vector is destructed.
+ *
+ * @param  element the first element to insert into the vector
+ * @error  ENOMEM if the allocation of storage failed
+ * @return a pointer to a new heap-allocated vector,
+ *         or a `NULL` pointer if an error occurred
+ */
+cpr_vector_t* cpr_vector_of_strings(cpr_string_t* element, ...);
+
+/**
  * Allocates heap memory for a new `cpr_vector_t` structure.
  *
  * @error  ENOMEM if the allocation of storage failed
