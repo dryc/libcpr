@@ -7,11 +7,11 @@
  * @file
  */
 
+#include <stdbool.h> /* for bool */
+
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-#include <stdbool.h> /* for bool */
 
 /**
  * Determines whether libcpr supports a given feature.

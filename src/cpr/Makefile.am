@@ -13,6 +13,7 @@ base_pkginclude_HEADERS = \
   feature.h               \
   generic.h               \
   module.h                \
+  types.h                 \
   unsafe.h                \
   version.h
 

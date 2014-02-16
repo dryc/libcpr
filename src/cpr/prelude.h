@@ -5,6 +5,8 @@
 
 /**
  * @file
+ *
+ * @note This header file is only for builds; it does not get installed.
  */
 
 #define cpr_malloc(s)     std::malloc(s)

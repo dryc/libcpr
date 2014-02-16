@@ -15,22 +15,14 @@
  * @example string.c
  */
 
+#include "types.h"
+
 #include <stdbool.h> /* for bool */
 #include <stddef.h>  /* for size_t */
 
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-/**
- * Indicates that the `cpr_string_t` structure type has been defined.
- */
-#define CPR_STRING_T
-
-/**
- * An opaque type representing a dynamic string.
- */
-typedef struct cpr_string cpr_string_t;
 
 /**
  * The size of the `cpr_string_t` opaque type, i.e., `sizeof(cpr_string_t)`.

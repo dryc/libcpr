@@ -13,21 +13,13 @@
  * @example set.c
  */
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+#include "types.h"
 
 #include <stddef.h> /* for size_t */
 
-/**
- * Indicates that the `cpr_set_t` structure type has been defined.
- */
-#define CPR_SET_T
-
-/**
- * An opaque type representing a set of elements.
- */
-typedef struct cpr_set cpr_set_t;
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /**
  * The size of the `cpr_set_t` opaque type, i.e., `sizeof(cpr_set_t)`.

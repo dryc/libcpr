@@ -13,21 +13,13 @@
  * @example map.c
  */
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+#include "types.h"
 
 #include <stddef.h> /* for size_t */
 
-/**
- * Indicates that the `cpr_map_t` structure type has been defined.
- */
-#define CPR_MAP_T
-
-/**
- * An opaque type representing a key-value map.
- */
-typedef struct cpr_map cpr_map_t;
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /**
  * The size of the `cpr_map_t` opaque type, i.e., `sizeof(cpr_map_t)`.

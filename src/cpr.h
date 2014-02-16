@@ -3,10 +3,6 @@
 #ifndef CPR_H
 #define CPR_H
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 /**
  * @file
  *
@@ -28,10 +24,6 @@ extern "C" {
 
 #ifdef CPR_UNSAFE
 #include "cpr/unsafe.h"
-#endif
-
-#ifdef __cplusplus
-} /* extern "C" */
 #endif
 
 #endif /* CPR_H */

@@ -18,11 +18,11 @@
 #define CPR_UNSAFE
 #endif
 
+#include <alloca.h> /* for alloca() */
+
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-#include <alloca.h> /* for alloca() */
 
 /**
  * Allocates stack memory for a new `cpr_list_t` structure.
