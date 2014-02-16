@@ -127,7 +127,14 @@ size_t cpr_string_capacity(const cpr_string_t* string);
 void cpr_string_clear(cpr_string_t* string);
 
 /**
- * ...
+ * Adjusts the minimum capacity of a string, allocating storage if necessary.
+ *
+ * @param  string a pointer to the string to be mutated
+ * @param  capacity the new minimum capacity of the string
+ * @pre    `string` is not a `NULL` pointer
+ * @error  EOVERFLOW if the capacity would exceed `max_size()`
+ * @error  ENOMEM if the allocation of storage failed
+ * @post   the capacity of `*string` may be mutated
  */
 void cpr_string_reserve(cpr_string_t* string,
   size_t capacity);

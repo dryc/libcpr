@@ -197,7 +197,7 @@ void* cpr_vector_back(const cpr_vector_t* vector);
  * Adjusts the minimum capacity of a vector, allocating storage if necessary.
  *
  * @param vector a pointer to the vector to be mutated
- * @param capacity the minimum capacity of the vector
+ * @param capacity the new minimum capacity of the vector
  * @pre   `vector` is not a `NULL` pointer
  * @error EINVAL if `capacity` is greater than `max_size()`
  * @error ENOMEM if the reallocation of storage failed

@@ -128,6 +128,14 @@ test_push_back(void) {
 }
 
 static void
+test_reserve(void) {
+  cpr_string_t* string = cpr_string(NULL);
+  assert(string);
+  cpr_string_reserve(string, 4096);
+  assert(cpr_string_capacity(string) >= 4096);
+}
+
+static void
 test_resize(void) {
   cpr_string_t* string = cpr_string(NULL);
   assert(string);
@@ -160,6 +168,7 @@ main(void) {
   test_max_size();
   test_pop_back();
   test_push_back();
+  test_reserve();
   test_resize();
   test_size();
   return EXIT_SUCCESS;

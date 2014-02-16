@@ -203,6 +203,23 @@ cpr_string_push_back(cpr_string_t* const string,
 }
 
 void
+cpr_string_reserve(cpr_string_t* const string,
+                   const size_t capacity) {
+  assert(string != nullptr);
+
+  try {
+    string->data.reserve(capacity);
+  }
+  catch (const std::length_error& error) {
+    /* The resulting string capacity would exceed `max_size`: */
+    cpr_logic_error(std::errc::value_too_large, error.what());   /* EOVERFLOW */
+  }
+  catch (const std::bad_alloc& error) {
+    cpr_fatal_error(std::errc::not_enough_memory, error.what()); /* ENOMEM */
+  }
+}
+
+void
 cpr_string_resize(cpr_string_t* const string,
                   const size_t size,
                   const char character) {
