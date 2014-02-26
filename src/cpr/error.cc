@@ -13,7 +13,7 @@
 #include <cstdlib> /* for std::abort() */
 #include <cstring> /* for std::strerror() */
 
-const size_t cpr_error_sizeof = sizeof(cpr_error_t);
+const std::size_t cpr_error_sizeof = sizeof(cpr_error_t);
 
 cpr_error_hook_t cpr_error_hook = nullptr;
 
@@ -36,7 +36,7 @@ static const char* error_types[] = {
   nullptr
 };
 
-static const size_t error_types_count =
+static const std::size_t error_types_count =
   (sizeof(error_types) / sizeof(error_types[0])) - 1;
 
 static void
@@ -46,7 +46,7 @@ cpr_error_print(const cpr_error_t* const error,
 
   assert(error->type >= CPR_ERROR_TYPE_UNDEFINED &&
          error->type <= CPR_ERROR_TYPE_FATAL);
-  const char* const error_type = (error->type < error_types_count) ?
+  const char* const error_type = (static_cast<std::size_t>(error->type) < error_types_count) ?
     error_types[error->type] : nullptr;
 
   const char* const error_message = error->message ?
