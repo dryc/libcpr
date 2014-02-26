@@ -80,9 +80,12 @@ _cpr_abort(const char* const function,
            const char* const file,
            const unsigned int line) {
   const cpr_error_t error = {
-    .function = function,
-    .file     = file,
-    .line     = line,
+    /*.type     =*/ CPR_ERROR_TYPE_UNDEFINED,
+    /*.code     =*/ 0,
+    /*.message  =*/ nullptr,
+    /*.function =*/ function,
+    /*.file     =*/ file,
+    /*.line     =*/ line,
   };
 
   (void)cpr_abort_with_error(&error);
@@ -109,12 +112,12 @@ _cpr_error(const char* const function,
   }
 
   const cpr_error_t error = {
-    .type     = error_type,
-    .code     = error_code,
-    .message  = error_format ? error_buffer : nullptr,
-    .function = function,
-    .file     = file,
-    .line     = line,
+    /*.type     =*/ error_type,
+    /*.code     =*/ error_code,
+    /*.message  =*/ error_format ? error_buffer : nullptr,
+    /*.function =*/ function,
+    /*.file     =*/ file,
+    /*.line     =*/ line,
   };
 
   return cpr_error_hook(&error);
