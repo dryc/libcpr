@@ -24,3 +24,16 @@ questions regarding the ``libcpr`` library.
 -------------------------------------------------------------------------
 
 **A:** TODO
+
+**Q:** Why are preconditions enforced using assertions?
+-------------------------------------------------------
+
+**A:** TODO
+
+**Q:** Why does the build fail with the error ``‘std::string’ has no member named ‘pop_back’``?
+-----------------------------------------------------------------------------------------------
+
+**A:** This indicates that your C++ standard library does not support the
+C++11 standard. This is the case for example with the version of
+``libstdc++`` shipped with GCC 4.6. To build ``libcpr`` successfully, you
+will need to upgrade your C++ compiler and/or standard library.
