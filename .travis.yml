@@ -26,6 +26,6 @@ addons:
     project:
       name: dryproject/libcpr
     notification_email: arto@bendiken.net
-    build_command_prepend: ./configure
+    build_command_prepend: cov-configure --comptype gcc --compiler $CC && ./configure
     build_command: make
     branch_pattern: coverity
