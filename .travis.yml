@@ -11,7 +11,21 @@ before_install:
 before_script:
   - ./autogen.sh
 script:
-  - ./configure && make && make check
+  - if [ "$COVERITY_SCAN_BRANCH" != 1 ]; then ./configure && make && make check; fi
 branches:
   only:
     - master
+    - coverity
+
+# https://scan.coverity.com/projects/3225
+env:
+  global:
+  - secure: "Hu3gFuuaQsI9yq1w7QX16+mNiojr5AfVNPacU3PZgKsVed05ZH7TWiiqNAQmYJCSEjvXvKng2tyVxPOv4cxUznPc2dQaZeWvluoJqoZMNZ5qNqWFQh+1FQ3ZiJA3yZA7GqGGL7fwWZ8owfBm59Npx+BCJbszpQsNXM0rD4isKpI="
+addons:
+  coverity_scan:
+    project:
+      name: dryproject/libcpr
+    notification_email: arto@bendiken.net
+    build_command_prepend: ./configure
+    build_command: make
+    branch_pattern: coverity

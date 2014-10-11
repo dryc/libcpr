@@ -3,8 +3,11 @@ libcpr: C++11 backport to C
 
 .. image:: https://travis-ci.org/dryproject/libcpr.png?branch=master
    :target: https://travis-ci.org/dryproject/libcpr
-   :align: right
    :alt: Travis CI build status
+
+.. image:: https://scan.coverity.com/projects/3225/badge.svg
+   :target: https://scan.coverity.com/projects/3225
+   :alt: Coverity Scan build status
 
 ``libcpr`` is a public domain backport of the core data structures and
 algorithms from the C++11 standard library to C.
@@ -116,17 +119,18 @@ Elsewhere
 ---------
 
 Find this project at: GitHub_, Bitbucket_, Ohloh_, Freecode_, SourceForge_,
-`Travis CI`_, Twitter_, Tumblr_, and COD5_.
+`Travis CI`_, `Coverity Scan`_, Twitter_, Tumblr_, and COD5_.
 
-.. _GitHub:      http://github.com/dryproject/libcpr
-.. _Bitbucket:   http://bitbucket.org/dryproject/libcpr
-.. _Ohloh:       http://www.ohloh.net/p/libcpr
-.. _Freecode:    http://freecode.com/projects/libcpr
-.. _SourceForge: http://sourceforge.net/projects/libcpr/
-.. _Travis CI:   http://travis-ci.org/dryproject/libcpr
-.. _Twitter:     http://twitter.com/libcpr
-.. _Tumblr:      http://libcpr.tumblr.com/
-.. _COD5:        http://www.cod5.org/archive/l/libcpr.html
+.. _GitHub:        http://github.com/dryproject/libcpr
+.. _Bitbucket:     http://bitbucket.org/dryproject/libcpr
+.. _Ohloh:         http://www.ohloh.net/p/libcpr
+.. _Freecode:      http://freecode.com/projects/libcpr
+.. _SourceForge:   http://sourceforge.net/projects/libcpr/
+.. _Travis CI:     http://travis-ci.org/dryproject/libcpr
+.. _Coverity Scan: http://scan.coverity.com/projects/3225
+.. _Twitter:       http://twitter.com/libcpr
+.. _Tumblr:        http://libcpr.tumblr.com/
+.. _COD5:          http://www.cod5.org/archive/l/libcpr.html
 
 Author
 ------
