@@ -64,15 +64,15 @@ module Libcpr extend FFI::Library
 end
 
 if __FILE__ == $0
-  puts "version: %s" % Libcpr.version_string
+  puts "Libcpr.version_string: %s" % Libcpr.version_string
   puts
-  %w(ascii).each do |feature_name|
-    puts "has_feature?(:#{feature_name}): %s" % Libcpr.has_feature?(feature_name)
-    puts
+  %w(ascii debug unicode).each do |feature_name|
+    puts "Libcpr.has_feature?(:#{feature_name}): %s" % Libcpr.has_feature?(feature_name)
   end
+  puts
   %w(list map set string vector).each do |module_name|
-    puts "has_module?(:#{module_name}) %s" % Libcpr.has_module?(module_name)
-    puts "sizeof(:#{module_name}): %d" % Libcpr.sizeof(module_name)
+    puts "Libcpr.has_module?(:#{module_name}) %s" % Libcpr.has_module?(module_name)
+    puts "Libcpr.sizeof(:#{module_name}): %d" % Libcpr.sizeof(module_name)
     puts
   end
 end
