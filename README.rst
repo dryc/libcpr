@@ -1,5 +1,6 @@
+***************************
 libcpr: C++11 backport to C
-===========================
+***************************
 
 .. image:: https://travis-ci.org/dryproject/libcpr.png?branch=master
    :target: https://travis-ci.org/dryproject/libcpr
@@ -13,7 +14,7 @@ libcpr: C++11 backport to C
 algorithms from the C++11 standard library to C.
 
 Features
---------
+========
 
 * Implements a straightforward mapping from C++ to C, with consistent naming.
 * No runtime dependencies other than C99 and the system's C++ standard library.
@@ -24,7 +25,7 @@ Features
   usable in any context and for any purpose.
 
 Motivation
-----------
+==========
 
 The C standard library is severely deficient in useful data structures
 essential to modern programming practice. Consequently, most non-trivial C
@@ -54,17 +55,17 @@ installed on the system regardless.
 .. _GLib:   http://libcpr.org/xref/glib2.html
 
 Target Audience
----------------
+===============
 
 The target audience for this library is twofold. On the one hand, C
 programmers who need a robust, reliable, and stable implementation of the
-provided data structures will certainly benefit from libcpr. On the other,
-C++ programmers who find themselves, for whatever reason, visiting plain-C
-territory will appreciate having their standard data structures at hand with
-a trivial learning curve to applying existing STL know-how.
+provided data structures will certainly benefit from ``libcpr``. On the
+other, C++ programmers who find themselves, for whatever reason, visiting
+plain-C territory will appreciate having their standard data structures at
+hand with a trivial learning curve to applying existing STL know-how.
 
 Current Status
---------------
+==============
 
 This table summarizes the data types that are implemented at present:
 
@@ -76,12 +77,12 @@ Header          Interface     Description                    Status
 =============== ============= ============================== ===================
 
 Usage Examples
---------------
+==============
 
 Dynamic Strings
-^^^^^^^^^^^^^^^
+---------------
 
-The ``cpr_string_t`` interface implements dynamic strings.
+The ``<cpr/string.h>`` interface implements dynamic strings.
 
 Creating strings
 ^^^^^^^^^^^^^^^^
@@ -90,10 +91,10 @@ Creating strings
 
    cpr_string_t* string = cpr_string("Hello, world!\n");
 
-Dynamic Arrays (Vectors)
-^^^^^^^^^^^^^^^^^^^^^^^^
+Dynamic Arrays
+--------------
 
-The ``cpr_vector_t`` interface implements `dynamic arrays`_.
+The ``<cpr/vector.h>`` interface implements `dynamic arrays`_.
 
 .. _dynamic arrays: http://en.wikipedia.org/wiki/Dynamic_array
 
@@ -105,7 +106,7 @@ Creating vectors
    cpr_vector_t* vector = cpr_vector_of_strings(...);
 
 Library Metadata
-^^^^^^^^^^^^^^^^
+----------------
 
 ::
 
@@ -116,19 +117,49 @@ Library Metadata
      cpr_version_major, cpr_version_minor, cpr_version_patch);
 
 Design Principles
------------------
+=================
 
 * Catches all C++ exceptions and translates them into C error codes.
 * Carefully differentiates logic errors, runtime errors, and fatal errors.
-* Naming convention
+* Adheres to uniform naming conventions patterned after the C++ standard library.
+
+Naming Conventions
+------------------
+
+The naming conventions and indeed symbol the symbol names themselves are
+closely patterned after those of the C++ standard library.
+
+Since C does not support function overloading, C++ standard library methods
+which provide multiple overloads are differentiated in ``libcpr`` by
+suffixing the corresponding function names with a disambiguating string,
+usually a type name. For example ``std::string::append()`` provides multiple
+overloads; the corresponding ``libcpr`` functions are provided as
+``cpr_string_append_char()`` for a character argument,
+``cpr_string_append_str()`` for a C string argument, and so on.
 
 Memory Management
-^^^^^^^^^^^^^^^^^
+-----------------
 
-...
+All constructor functions return pointers to opaque structures allocated on
+the program heap using the system's standard ``calloc()`` facility. The
+library provides corresponding deallocation functions to destruct and free
+these pointers.
+
+Given that all object pointers are to opaque structures, no direct access to
+any structure fields is permitted or afforded; all access is procedural. This
+encapsulation facilitates and ensures ABI stability as the library evolves.
+
+For advanced users
+^^^^^^^^^^^^^^^^^^
+
+In addition, for expert users, a so-called "unsafe" mode is provided wherein
+``libcpr`` structures can be allocated directly on the stack using the
+system's ``alloca()`` facility. This is more efficient than heap allocation,
+but not generally safe since it will certainly break the ABI should the
+structure sizes change in a future ``libcpr`` release. *Caveat utilitor*.
 
 Error Handling
-^^^^^^^^^^^^^^
+--------------
 
 This library makes a careful distinction between three different classes of
 error conditions:
@@ -161,7 +192,7 @@ error conditions:
    on the other hand, is a representative example of a fatal error.
 
 Build Prerequisites
--------------------
+===================
 
 * Clang_ (>= 3.0) or GCC_ (>= 4.6)
 * Autoconf_ (>= 2.68)
@@ -175,10 +206,10 @@ Build Prerequisites
 .. _Libtool:  http://www.gnu.org/software/libtool/
 
 Installation
-------------
+============
 
 Installation on Unix
-^^^^^^^^^^^^^^^^^^^^
+--------------------
 
 ::
 
@@ -190,7 +221,7 @@ Installation on Unix
    $ sudo ldconfig                      # on Linux
 
 Elsewhere
----------
+=========
 
 Find this project at: GitHub_, Bitbucket_, `Open Hub`_, Freecode_,
 SourceForge_, `Travis CI`_, `Coverity Scan`_, Twitter_, Tumblr_, and COD5_.
@@ -207,14 +238,14 @@ SourceForge_, `Travis CI`_, `Coverity Scan`_, Twitter_, Tumblr_, and COD5_.
 .. _COD5:          http://www.cod5.org/archive/l/libcpr.html
 
 Author
-------
+======
 
 This project is part of the `DRY <http://dryproject.org/>`_ initiative.
 
 * `Arto Bendiken <https://github.com/bendiken>`_ - http://ar.to/
 
 Donations
----------
+=========
 
 If you found this software useful and would like to encourage its
 maintenance and further development, please consider making a donation to
@@ -224,7 +255,7 @@ the `Bitcoin`_ wallet address `1FxcaWrxZ1sVCdbw6ZC8eM6BhwPVnKy5fZ`__.
 .. __: bitcoin:1FxcaWrxZ1sVCdbw6ZC8eM6BhwPVnKy5fZ?label=libcpr.org&message=Donation
 
 License
--------
+=======
 
 This is free and unencumbered public domain software. For more information,
 see http://unlicense.org/ or the accompanying ``UNLICENSE`` file.

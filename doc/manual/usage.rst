@@ -1,10 +1,11 @@
+*****
 Usage
-=====
+*****
 
 .. index:: ! macros
 
 Macros
-------
+======
 
 This chapter describes the C/C++ preprocessor macros that enable the
 customization of your use of ``libcpr``.

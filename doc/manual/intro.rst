@@ -1,5 +1,6 @@
+************
 Introduction
-============
+************
 
 ``libcpr`` is a public domain backport of the core data structures and
 algorithms from the `C++11`_ `standard library`_ to C.
@@ -8,7 +9,7 @@ algorithms from the `C++11`_ `standard library`_ to C.
 .. _standard library: http://en.wikipedia.org/wiki/C%2B%2B_Standard_Library
 
 Features
---------
+========
 
 * Implements a straightforward mapping from C++ to C, with consistent naming.
 * No runtime dependencies other than C99 and the system's C++ standard library.
@@ -19,7 +20,7 @@ Features
   usable in any context and for any purpose.
 
 Motivation
-----------
+==========
 
 The C standard library is severely deficient in useful data structures
 essential to modern programming practice. Consequently, most non-trivial C
@@ -49,7 +50,7 @@ installed on the system regardless.
 .. _bloats: http://en.wikipedia.org/wiki/Wirth%27s_law
 
 Current Status
---------------
+==============
 
 At present, :doc:`vectors <../api/vector>` and :doc:`strings <../api/string>`
 are partially implemented. Other sequence containers (list, deque) and

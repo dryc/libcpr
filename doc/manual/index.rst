@@ -1,5 +1,6 @@
+#################
 ``libcpr`` Manual
-=================
+#################
 
 .. toctree::
    :maxdepth: 2
@@ -17,7 +18,7 @@
    xref
 
 Indices and Tables
-------------------
+==================
 
 * :ref:`glossary`
 * :ref:`genindex`

@@ -1,7 +1,8 @@
 .. index:: application programming interface; reference
 
+*************
 API Reference
-=============
+*************
 
 .. toctree::
    :maxdepth: 2

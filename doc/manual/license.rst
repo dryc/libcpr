@@ -1,7 +1,8 @@
 .. index:: licensing
 
+*******
 License
-=======
+*******
 
 ``libcpr`` is 100% free and unencumbered public domain software.
 

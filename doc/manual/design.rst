@@ -1,5 +1,6 @@
+************
 Design Notes
-============
+************
 
 .. toctree::
    :maxdepth: 2

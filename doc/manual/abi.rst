@@ -1,8 +1,9 @@
 .. index:: application binary interface; policy
 .. index:: versioning; application binary interface
 
+**********************
 API and ABI Versioning
-======================
+**********************
 
 ``libcpr`` uses a three-level "X.Y.Z" API versioning scheme, as follows:
 

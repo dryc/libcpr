@@ -1,7 +1,8 @@
 .. index:: cross-reference
 
+***************
 Cross Reference
-===============
+***************
 
 .. toctree::
    :maxdepth: 2

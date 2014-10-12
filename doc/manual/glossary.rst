@@ -2,8 +2,9 @@
 
 .. _glossary:
 
+********
 Glossary
-========
+********
 
 .. glossary::
 
