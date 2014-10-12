@@ -16,9 +16,9 @@ Features
 --------
 
 * Implements a straightforward mapping from C++ to C, with consistent naming.
-* No runtime dependencies other than the system's C++ standard library.
+* No runtime dependencies other than C99 and the system's C++ standard library.
 * No build prerequisites beyond the Autotools toolchain and a C++11 compiler.
-* Compatible with Clang and GCC, or any standard C++11 implementation.
+* Compatible with Clang and GCC, or indeed any standard C++11 implementation.
 * Plays nice with others: all exported symbols are prefixed with ``cpr_``.
 * 100% free and unencumbered `public domain <http://unlicense.org/>`_ software,
   usable in any context and for any purpose.
@@ -43,18 +43,92 @@ ensuring that your potential user base will prefer competing projects who do
 roll their own data structures.
 
 ``libcpr`` is a new take on an old problem. Given that every modern desktop
-and server system today is practically guaranteed to already have not merely
-the C standard library but also the C++ standard library, ``libcpr``
-provides the until-now missing glue to access that library from pure C.
-The C++ standard library contains the basic data structures and algorithms
-needed for most common programming tasks, and adds no bloat since it's
-already installed on the system regardless.
+and server system today is guaranteed to already have not merely the C
+standard library but also the C++ standard library, ``libcpr`` provides the
+until-now missing glue to access that latter library from pure C. The C++
+standard library contains the basic data structures and algorithms needed
+for most common programming tasks, and adds no bloat since it's already
+installed on the system regardless.
 
 .. _bloats: http://en.wikipedia.org/wiki/Wirth%27s_law
 .. _GLib:   http://libcpr.org/xref/glib2.html
 
-Error Handling
+Target Audience
+---------------
+
+The target audience for this library is twofold. On the one hand, C
+programmers who need a robust, reliable, and stable implementation of the
+provided data structures will certainly benefit from libcpr. On the other,
+C++ programmers who find themselves, for whatever reason, visiting plain-C
+territory will appreciate having their standard data structures at hand with
+a trivial learning curve to applying existing STL know-how.
+
+Current Status
 --------------
+
+This table summarizes the data types that are implemented at present:
+
+=============== ============= ============================== ===================
+Header          Interface     Description                    Status
+=============== ============= ============================== ===================
+<cpr/string.h>  std::string   Dynamic strings                Usable
+<cpr/vector.h>  std::vector   Dynamic arrays                 WIP
+=============== ============= ============================== ===================
+
+Usage Examples
+--------------
+
+Dynamic Strings
+^^^^^^^^^^^^^^^
+
+The ``cpr_string_t`` interface implements dynamic strings.
+
+Creating strings
+^^^^^^^^^^^^^^^^
+
+::
+
+   cpr_string_t* string = cpr_string("Hello, world!\n");
+
+Dynamic Arrays (Vectors)
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+The ``cpr_vector_t`` interface implements `dynamic arrays`_.
+
+.. _dynamic arrays: http://en.wikipedia.org/wiki/Dynamic_array
+
+Creating vectors
+^^^^^^^^^^^^^^^^
+
+::
+
+   cpr_vector_t* vector = cpr_vector_of_strings(...);
+
+Library Metadata
+^^^^^^^^^^^^^^^^
+
+::
+
+   printf("libcpr compile version: %hu.%hu.%hu\n",
+     CPR_VERSION_MAJOR, CPR_VERSION_MINOR, CPR_VERSION_PATCH);
+
+   printf("libcpr runtime version: %hu.%hu.%hu\n",
+     cpr_version_major, cpr_version_minor, cpr_version_patch);
+
+Design Principles
+-----------------
+
+* Catches all C++ exceptions and translates them into C error codes.
+* Carefully differentiates logic errors, runtime errors, and fatal errors.
+* Naming convention
+
+Memory Management
+^^^^^^^^^^^^^^^^^
+
+...
+
+Error Handling
+^^^^^^^^^^^^^^
 
 This library makes a careful distinction between three different classes of
 error conditions:
@@ -75,7 +149,7 @@ error conditions:
   resources.
 * **Runtime errors**, triggered using ``cpr_runtime_error()``. Errors of
   this class are thrown as a matter of course to indicate various
-  exceptional conditions. These conditions are generally recoverable and
+  exceptional conditions. These conditions are generally recoverable, and
   robust programs will take care to correctly handle them.
 
 .. note::
@@ -118,12 +192,12 @@ Installation on Unix
 Elsewhere
 ---------
 
-Find this project at: GitHub_, Bitbucket_, Ohloh_, Freecode_, SourceForge_,
-`Travis CI`_, `Coverity Scan`_, Twitter_, Tumblr_, and COD5_.
+Find this project at: GitHub_, Bitbucket_, `Open Hub`_, Freecode_,
+SourceForge_, `Travis CI`_, `Coverity Scan`_, Twitter_, Tumblr_, and COD5_.
 
 .. _GitHub:        http://github.com/dryproject/libcpr
 .. _Bitbucket:     http://bitbucket.org/dryproject/libcpr
-.. _Ohloh:         http://www.ohloh.net/p/libcpr
+.. _Open Hub:      http://www.openhub.net/p/libcpr
 .. _Freecode:      http://freecode.com/projects/libcpr
 .. _SourceForge:   http://sourceforge.net/projects/libcpr/
 .. _Travis CI:     http://travis-ci.org/dryproject/libcpr

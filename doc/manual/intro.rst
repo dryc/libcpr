@@ -11,9 +11,9 @@ Features
 --------
 
 * Implements a straightforward mapping from C++ to C, with consistent naming.
-* No runtime dependencies other than the system's C++ standard library.
+* No runtime dependencies other than C99 and the system's C++ standard library.
 * No build prerequisites beyond the Autotools toolchain and a C++11 compiler.
-* Compatible with Clang and GCC, or any standard C++11 implementation.
+* Compatible with Clang and GCC, or indeed any standard C++11 implementation.
 * Plays nice with others: all exported symbols are prefixed with ``cpr_``.
 * 100% free and unencumbered `public domain <http://unlicense.org/>`_ software,
   usable in any context and for any purpose.
@@ -39,12 +39,12 @@ ensuring that your potential user base will prefer competing projects who do
 roll their own data structures.
 
 ``libcpr`` is a new take on an old problem. Given that every modern desktop
-and server system today is practically guaranteed to already have not merely
-the C standard library but also the C++ standard library, ``libcpr``
-provides the until-now missing glue to access that library from pure C.
-The C++ standard library contains the basic data structures and algorithms
-needed for most common programming tasks, and adds no bloat since it's
-already installed on the system regardless.
+and server system today is guaranteed to already have not merely the C
+standard library but also the C++ standard library, ``libcpr`` provides the
+until-now missing glue to access that latter library from pure C. The C++
+standard library contains the basic data structures and algorithms needed
+for most common programming tasks, and adds no bloat since it's already
+installed on the system regardless.
 
 .. _bloats: http://en.wikipedia.org/wiki/Wirth%27s_law
 
