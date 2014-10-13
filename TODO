@@ -35,6 +35,12 @@ Release 1.0.0
 Missing Functions
 -----------------
 
+- Implement in the <cpr/string.h> module:
+  - size_t cpr_string_find_first_not_of(...)
+  - size_t cpr_string_find_first_of(...)
+  - size_t cpr_string_find_last_not_of(...)
+  - size_t cpr_string_find_last_of(...)
+  - void cpr_string_replace_*(...)
 - bool cpr_feature_enumerate(const char** feature_name)
 - bool cpr_module_enumerate(const char** module_name)
 

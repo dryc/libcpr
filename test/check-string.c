@@ -7,24 +7,26 @@
 
 #include <cpr/string.h>
 
+////////////////////////////////////////////////////////////////////////////////
+
 static void
-test_construct_empty(void) {
-  {
-    cpr_string_t* string = cpr_string(NULL);
-    assert(string);
-    assert(cpr_string_empty(string));
-    assert(cpr_string_size(string) == 0);
-  }
-  {
-    cpr_string_t* string = cpr_string("");
-    assert(string);
-    assert(cpr_string_empty(string));
-    assert(cpr_string_size(string) == 0);
-  }
+test_construct_with_null(void) {
+  cpr_string_t* string = cpr_string(NULL);
+  assert(string);
+  assert(cpr_string_empty(string));
+  assert(cpr_string_size(string) == 0);
 }
 
 static void
-test_construct_nonempty(void) {
+test_construct_with_empty_string(void) {
+  cpr_string_t* string = cpr_string("");
+  assert(string);
+  assert(cpr_string_empty(string));
+  assert(cpr_string_size(string) == 0);
+}
+
+static void
+test_construct_with_nonempty_string(void) {
   cpr_string_t* string = cpr_string("Hello, world!");
   assert(string);
   assert(!cpr_string_empty(string));
@@ -188,10 +190,13 @@ test_size(void) {
   // TODO
 }
 
+////////////////////////////////////////////////////////////////////////////////
+
 int
 main(void) {
-  test_construct_empty();
-  test_construct_nonempty();
+  test_construct_with_null();
+  test_construct_with_empty_string();
+  test_construct_with_nonempty_string();
   test_append_char();
   test_at();
   test_back();

@@ -75,9 +75,10 @@ C++11                                        libcpr
 :cpp:func:`std::string::append()`            | :c:func:`cpr_string_append_char()`
                                              | :c:func:`cpr_string_append_str()`
                                              | :c:func:`cpr_string_append_string()`
-:cpp:func:`std::string::assign()`            | TODO: :c:func:`cpr_string_assign_char()`
+:cpp:func:`std::string::assign()`            | :c:func:`cpr_string_assign_char()`
                                              | :c:func:`cpr_string_assign_str()`
-:cpp:func:`std::string::at()`                TODO: :c:func:`cpr_string_at()`
+                                             | :c:func:`cpr_string_assign_string()`
+:cpp:func:`std::string::at()`                :c:func:`cpr_string_at()`
 :cpp:func:`std::string::back()`              :c:func:`cpr_string_back()`
 :cpp:func:`std::string::begin()`             N/A [#string-iterate]_
 :cpp:func:`std::string::capacity()`          :c:func:`cpr_string_capacity()`
@@ -85,43 +86,50 @@ C++11                                        libcpr
 :cpp:func:`std::string::cend()`              N/A [#string-iterate]_
 :cpp:func:`std::string::clear()`             :c:func:`cpr_string_clear()`
 :cpp:func:`std::string::compare()`           :c:func:`cpr_string_compare()`
-:cpp:func:`std::string::copy()`              TODO: :c:func:`cpr_string_copy()`
+:cpp:func:`std::string::copy()`              :c:func:`cpr_string_copy()`
 :cpp:func:`std::string::crbegin()`           N/A [#string-iterate]_
 :cpp:func:`std::string::crend()`             N/A [#string-iterate]_
 :cpp:func:`std::string::c_str()`             :c:func:`cpr_string_data()`
 :cpp:func:`std::string::data()`              :c:func:`cpr_string_data()`
 :cpp:func:`std::string::empty()`             :c:func:`cpr_string_empty()`
 :cpp:func:`std::string::end()`               N/A [#string-iterate]_
-:cpp:func:`std::string::erase()`             TODO: :c:func:`cpr_string_erase()`
-:cpp:func:`std::string::find()`              | TODO: :c:func:`cpr_string_find_char()`
+:cpp:func:`std::string::erase()`             :c:func:`cpr_string_erase()`
+:cpp:func:`std::string::find()`              | :c:func:`cpr_string_find_char()`
                                              | :c:func:`cpr_string_find_str()`
+                                             | :c:func:`cpr_string_find_string()`
 :cpp:func:`std::string::find_first_not_of()` N/A
 :cpp:func:`std::string::find_first_of()`     N/A
 :cpp:func:`std::string::find_last_not_of()`  N/A
 :cpp:func:`std::string::find_last_of()`      N/A
 :cpp:func:`std::string::front()`             :c:func:`cpr_string_front()`
 :cpp:func:`std::string::get_allocator()`     N/A
-:cpp:func:`std::string::insert()`            | TODO: :c:func:`cpr_string_insert_char()`
+:cpp:func:`std::string::insert()`            | :c:func:`cpr_string_insert_char()`
                                              | :c:func:`cpr_string_insert_str()`
+                                             | :c:func:`cpr_string_insert_string()`
 :cpp:func:`std::string::length()`            :c:func:`cpr_string_length()`
 :cpp:func:`std::string::max_size()`          :c:func:`cpr_string_max_size()`
 :cpp:func:`std::string::npos`                :c:func:`cpr_string_npos`
-:cpp:func:`std::string::operator[]`          TODO: :c:func:`cpr_string_at()`
-:cpp:func:`std::string::operator+=`          | TODO: :c:func:`cpr_string_append_char()`
+:cpp:func:`std::string::operator+=`          | :c:func:`cpr_string_append_char()`
                                              | :c:func:`cpr_string_append_str()`
+                                             | :c:func:`cpr_string_append_string()`
+:cpp:func:`std::string::operator=`           | :c:func:`cpr_string_assign_char()`
+                                             | :c:func:`cpr_string_assign_str()`
+                                             | :c:func:`cpr_string_assign_string()`
+:cpp:func:`std::string::operator[]`          :c:func:`cpr_string_at()`
 :cpp:func:`std::string::pop_back()`          :c:func:`cpr_string_pop_back()`
 :cpp:func:`std::string::push_back()`         :c:func:`cpr_string_push_back()`
 :cpp:func:`std::string::rbegin()`            N/A [#string-iterate]_
 :cpp:func:`std::string::rend()`              N/A [#string-iterate]_
-:cpp:func:`std::string::replace()`           TODO
+:cpp:func:`std::string::replace()`           N/A
 :cpp:func:`std::string::reserve()`           :c:func:`cpr_string_reserve()`
 :cpp:func:`std::string::resize()`            :c:func:`cpr_string_resize()`
-:cpp:func:`std::string::rfind()`             | TODO: :c:func:`cpr_string_rfind_char()`
+:cpp:func:`std::string::rfind()`             | :c:func:`cpr_string_rfind_char()`
                                              | :c:func:`cpr_string_rfind_str()`
-:cpp:func:`std::string::shrink_to_fit()`     TODO: :c:func:`cpr_string_shrink_to_fit()`
+                                             | :c:func:`cpr_string_rfind_string()`
+:cpp:func:`std::string::shrink_to_fit()`     :c:func:`cpr_string_shrink_to_fit()`
 :cpp:func:`std::string::size()`              :c:func:`cpr_string_size()`
-:cpp:func:`std::string::substr()`            TODO: :c:func:`cpr_string_substr()`
-:cpp:func:`std::string::swap()`              TODO: :c:func:`cpr_string_swap()`
+:cpp:func:`std::string::substr()`            :c:func:`cpr_string_substr()`
+:cpp:func:`std::string::swap()`              :c:func:`cpr_string_swap()`
 ============================================ ===================================
 
 .. rubric:: Footnotes
