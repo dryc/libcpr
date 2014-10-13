@@ -9,6 +9,9 @@
  * @note This header file is only for builds; it does not get installed.
  */
 
+////////////////////////////////////////////////////////////////////////////////
+/* Macros */
+
 #define cpr_malloc(s)     std::malloc(s)
 #define cpr_free(p)       std::free(p)
 #define cpr_calloc(n, s)  std::calloc(n, s)
@@ -25,5 +28,7 @@
 #ifndef __has_extension
   #define __has_extension __has_feature
 #endif
+
+////////////////////////////////////////////////////////////////////////////////
 
 #endif /* CPR_PRELUDE_H */

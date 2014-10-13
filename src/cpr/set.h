@@ -21,10 +21,16 @@
 extern "C" {
 #endif
 
+////////////////////////////////////////////////////////////////////////////////
+/* Constants */
+
 /**
  * The size of the `cpr_set_t` opaque type, i.e., `sizeof(cpr_set_t)`.
  */
 extern const size_t cpr_set_sizeof;
+
+////////////////////////////////////////////////////////////////////////////////
+/* Constructors */
 
 /**
  * Allocates heap memory for a new `cpr_set_t` structure.
@@ -37,6 +43,9 @@ extern const size_t cpr_set_sizeof;
  */
 cpr_set_t* cpr_set_alloc(void);
 
+////////////////////////////////////////////////////////////////////////////////
+/* Destructor */
+
 /**
  * Deallocates the heap memory used by a set.
  *
@@ -44,6 +53,9 @@ cpr_set_t* cpr_set_alloc(void);
  * @post  the `set` pointer is invalidated
  */
 void cpr_set_free(cpr_set_t* set);
+
+////////////////////////////////////////////////////////////////////////////////
+/* Abbreviations */
 
 /*
  * Abbreviated type, variable, and function names if the `CPR_ABBREV`
@@ -59,6 +71,8 @@ void cpr_set_free(cpr_set_t* set);
   /** Alias for `cpr_set_free()` when `CPR_ABBREV` is defined. */
   #define set_free   cpr_set_free
 #endif /* CPR_ABBREV */
+
+////////////////////////////////////////////////////////////////////////////////
 
 #ifdef __cplusplus
 } /* extern "C" */

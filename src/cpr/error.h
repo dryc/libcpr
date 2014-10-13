@@ -14,6 +14,9 @@
 extern "C" {
 #endif
 
+////////////////////////////////////////////////////////////////////////////////
+/* Macros */
+
 /**
  * Aborts the program, printing the caller location to `stderr`.
  *
@@ -67,6 +70,9 @@ extern "C" {
 #define cpr_fatal_error(error_code, error_message)           \
   cpr_error(CPR_ERROR_TYPE_FATAL, error_code, error_message)
 
+////////////////////////////////////////////////////////////////////////////////
+/* Typedefs */
+
 /**
  * The error type.
  */
@@ -99,15 +105,24 @@ typedef struct cpr_error {
  */
 typedef bool (*cpr_error_hook_t)(const cpr_error_t* error);
 
+////////////////////////////////////////////////////////////////////////////////
+/* Variables */
+
 /**
  * The current error callback hook, if any.
  */
 extern cpr_error_hook_t cpr_error_hook;
 
+////////////////////////////////////////////////////////////////////////////////
+/* Constants */
+
 /**
  * The size of the `cpr_error_t` type, i.e., `sizeof(cpr_error_t)`.
  */
 extern const size_t cpr_error_sizeof;
+
+////////////////////////////////////////////////////////////////////////////////
+/* Functions */
 
 /**
  * Aborts the program, printing error information to `stderr`.
@@ -139,6 +154,8 @@ bool _cpr_error(
   cpr_error_type_t error_type,
   cpr_error_code_t error_code,
   const char* error_message, ...);
+
+////////////////////////////////////////////////////////////////////////////////
 
 #ifdef __cplusplus
 } /* extern "C" */

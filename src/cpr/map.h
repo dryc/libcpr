@@ -21,10 +21,16 @@
 extern "C" {
 #endif
 
+////////////////////////////////////////////////////////////////////////////////
+/* Constants */
+
 /**
  * The size of the `cpr_map_t` opaque type, i.e., `sizeof(cpr_map_t)`.
  */
 extern const size_t cpr_map_sizeof;
+
+////////////////////////////////////////////////////////////////////////////////
+/* Constructors */
 
 /**
  * Allocates heap memory for a new `cpr_map_t` structure.
@@ -37,6 +43,9 @@ extern const size_t cpr_map_sizeof;
  */
 cpr_map_t* cpr_map_alloc(void);
 
+////////////////////////////////////////////////////////////////////////////////
+/* Destructor */
+
 /**
  * Deallocates the heap memory used by a map.
  *
@@ -44,6 +53,9 @@ cpr_map_t* cpr_map_alloc(void);
  * @post  the `map` pointer is invalidated
  */
 void cpr_map_free(cpr_map_t* map);
+
+////////////////////////////////////////////////////////////////////////////////
+/* Abbreviations */
 
 /*
  * Abbreviated type, variable, and function names if the `CPR_ABBREV`
@@ -59,6 +71,8 @@ void cpr_map_free(cpr_map_t* map);
   /** Alias for `cpr_map_free()` when `CPR_ABBREV` is defined. */
   #define map_free   cpr_map_free
 #endif /* CPR_ABBREV */
+
+////////////////////////////////////////////////////////////////////////////////
 
 #ifdef __cplusplus
 } /* extern "C" */

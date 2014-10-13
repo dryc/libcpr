@@ -8,12 +8,18 @@
 
 #include <cassert> /* for assert() */
 #include <cerrno>  /* for errno */
-#include <cstdarg> /* for va_list, va_*(), vsnprintf() */
+#include <cstdarg> /* for va_list, va_*(), std::vsnprintf() */
 #include <cstdio>  /* for std::fprintf() */
 #include <cstdlib> /* for std::abort() */
 #include <cstring> /* for std::strerror() */
 
+////////////////////////////////////////////////////////////////////////////////
+/* Constants */
+
 const std::size_t cpr_error_sizeof = sizeof(cpr_error_t);
+
+////////////////////////////////////////////////////////////////////////////////
+/* Variables */
 
 cpr_error_hook_t cpr_error_hook = nullptr;
 
@@ -39,6 +45,9 @@ static const char* error_types[] = {
 static const std::size_t error_types_count =
   (sizeof(error_types) / sizeof(error_types[0])) - 1;
 
+////////////////////////////////////////////////////////////////////////////////
+/* Helpers */
+
 static void
 cpr_error_print(const cpr_error_t* const error,
                 FILE* const stream) {
@@ -61,6 +70,9 @@ cpr_error_print(const cpr_error_t* const error,
 
   std::fprintf(stream, "%s (%d)\n", error_message, error->code);
 }
+
+////////////////////////////////////////////////////////////////////////////////
+/* Functions */
 
 bool
 cpr_abort_with_error(const cpr_error_t* const error) {
@@ -88,7 +100,7 @@ _cpr_abort(const char* const function,
     /*.line     =*/ line,
   };
 
-  (void)cpr_abort_with_error(&error);
+  static_cast<void>(cpr_abort_with_error(&error));
 }
 
 bool
@@ -107,7 +119,7 @@ _cpr_error(const char* const function,
   if (error_format) {
     va_list args;
     va_start(args, error_format);
-    (void)vsnprintf(error_buffer, sizeof(error_buffer), error_format, args);
+    static_cast<void>(std::vsnprintf(error_buffer, sizeof(error_buffer), error_format, args));
     va_end(args);
   }
 

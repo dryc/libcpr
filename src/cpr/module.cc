@@ -9,6 +9,9 @@
 #include <cassert> /* for assert() */
 #include <cstring> /* for std::strcmp() */
 
+////////////////////////////////////////////////////////////////////////////////
+/* Constants */
+
 static const char* const cpr_module_names[] = {
 /*
 #ifndef DISABLE_LIST
@@ -20,14 +23,17 @@ static const char* const cpr_module_names[] = {
 #ifndef DISABLE_SET
   "set",
 #endif
+*/
 #ifndef DISABLE_STRING
   "string",
 #endif
-*/
 #ifndef DISABLE_VECTOR
   "vector",
 #endif
 };
+
+////////////////////////////////////////////////////////////////////////////////
+/* Functions */
 
 bool
 cpr_module_exists(const char* const module_name) {

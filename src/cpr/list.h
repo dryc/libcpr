@@ -21,10 +21,16 @@
 extern "C" {
 #endif
 
+////////////////////////////////////////////////////////////////////////////////
+/* Constants */
+
 /**
  * The size of the `cpr_list_t` opaque type, i.e., `sizeof(cpr_list_t)`.
  */
 extern const size_t cpr_list_sizeof;
+
+////////////////////////////////////////////////////////////////////////////////
+/* Constructors */
 
 /**
  * Allocates heap memory for a new `cpr_list_t` structure.
@@ -37,6 +43,9 @@ extern const size_t cpr_list_sizeof;
  */
 cpr_list_t* cpr_list_alloc(void);
 
+////////////////////////////////////////////////////////////////////////////////
+/* Destructor */
+
 /**
  * Deallocates the heap memory used by a list.
  *
@@ -44,6 +53,9 @@ cpr_list_t* cpr_list_alloc(void);
  * @post  the `list` pointer is invalidated
  */
 void cpr_list_free(cpr_list_t* list);
+
+////////////////////////////////////////////////////////////////////////////////
+/* Abbreviations */
 
 /*
  * Abbreviated type, variable, and function names if the `CPR_ABBREV`
@@ -59,6 +71,8 @@ void cpr_list_free(cpr_list_t* list);
   /** Alias for `cpr_list_free()` when `CPR_ABBREV` is defined. */
   #define list_free   cpr_list_free
 #endif /* CPR_ABBREV */
+
+////////////////////////////////////////////////////////////////////////////////
 
 #ifdef __cplusplus
 } /* extern "C" */

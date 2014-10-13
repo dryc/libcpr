@@ -7,6 +7,8 @@
 #include <cpr/unsafe.h>
 #include <cpr/vector.h>
 
+////////////////////////////////////////////////////////////////////////////////
+
 static void
 test_unsafe_vector(void) {
   cpr_vector_t* vector = cpr_vector_alloca();
@@ -14,6 +16,8 @@ test_unsafe_vector(void) {
   cpr_vector_clear(vector);
   cpr_vector_dispose(vector);
 }
+
+////////////////////////////////////////////////////////////////////////////////
 
 int
 main(void) {

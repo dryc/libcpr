@@ -18,6 +18,9 @@
 extern "C" {
 #endif
 
+////////////////////////////////////////////////////////////////////////////////
+/* Constants */
+
 /**
  * The libcpr version as a NUL-terminated string.
  */
@@ -37,6 +40,8 @@ extern const short cpr_version_minor;
  * The libcpr patch level.
  */
 extern const short cpr_version_patch;
+
+////////////////////////////////////////////////////////////////////////////////
 
 #ifdef __cplusplus
 } /* extern "C" */

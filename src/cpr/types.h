@@ -11,6 +11,9 @@
 extern "C" {
 #endif
 
+////////////////////////////////////////////////////////////////////////////////
+/* Typedefs */
+
 /**
  * Indicates that the `cpr_list_t` structure type has been defined.
  */
@@ -60,6 +63,8 @@ typedef struct cpr_string cpr_string_t;
  * An opaque type representing a contiguous vector of elements.
  */
 typedef struct cpr_vector cpr_vector_t;
+
+////////////////////////////////////////////////////////////////////////////////
 
 #ifdef __cplusplus
 } /* extern "C" */

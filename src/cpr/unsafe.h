@@ -24,6 +24,9 @@
 extern "C" {
 #endif
 
+////////////////////////////////////////////////////////////////////////////////
+/* Macros */
+
 /**
  * Allocates stack memory for a new `cpr_list_t` structure.
  *
@@ -69,6 +72,9 @@ extern "C" {
  */
 #define cpr_vector_alloca() alloca(cpr_vector_sizeof)
 
+////////////////////////////////////////////////////////////////////////////////
+/* Abbreviations */
+
 /*
  * Abbreviated type, variable, and function names if the `CPR_ABBREV`
  * preprocessor symbol is defined:
@@ -85,6 +91,8 @@ extern "C" {
   /** Alias for `cpr_vector_alloca()` when `CPR_ABBREV` is defined. */
   #define vector_alloca cpr_vector_alloca
 #endif
+
+////////////////////////////////////////////////////////////////////////////////
 
 #ifdef __cplusplus
 } /* extern "C" */

@@ -16,21 +16,30 @@
 #include <system_error> /* for std::errc */
 #include <vector>       /* for std::vector */
 
+////////////////////////////////////////////////////////////////////////////////
+/* Internals */
+
 struct cpr_vector {
   std::vector<void*> data;
   void (*erase_hook)(void*);
 
   cpr_vector()
-    : data(), erase_hook(nullptr) {}
+    : data{}, erase_hook{nullptr} {}
 
   cpr_vector(void (*erase_hook)(void*))
-    : data(), erase_hook(erase_hook) {}
+    : data{}, erase_hook{erase_hook} {}
 
   cpr_vector(std::size_t size, void (*erase_hook)(void*))
-    : data(size), erase_hook(erase_hook) {}
+    : data{size}, erase_hook{erase_hook} {}
 };
 
+////////////////////////////////////////////////////////////////////////////////
+/* Constants */
+
 extern const size_t cpr_vector_sizeof = sizeof(cpr_vector_t);
+
+////////////////////////////////////////////////////////////////////////////////
+/* Constructors */
 
 cpr_vector_t*
 cpr_vector(const void* element, ...) {
@@ -127,10 +136,15 @@ cpr_vector_alloc(void) {
   return vector;
 }
 
+////////////////////////////////////////////////////////////////////////////////
+/* Destructor */
+
 void
 cpr_vector_free(cpr_vector_t* const vector) {
   cpr_free(vector);
 }
+
+////////////////////////////////////////////////////////////////////////////////
 
 void
 cpr_vector_init(cpr_vector_t* const vector,
@@ -138,7 +152,7 @@ cpr_vector_init(cpr_vector_t* const vector,
   assert(vector != nullptr);
 
   /* Should never throw an exception: */
-  new(vector) cpr_vector_t(erase_hook);
+  new(vector) cpr_vector_t{erase_hook};
 }
 
 void
@@ -175,6 +189,9 @@ cpr_vector_dispose(cpr_vector_t* const vector) {
   /* Guaranteed to never throw an exception: */
   vector->~cpr_vector();
 }
+
+////////////////////////////////////////////////////////////////////////////////
+/* Methods */
 
 bool
 cpr_vector_empty(const cpr_vector_t* const vector) {

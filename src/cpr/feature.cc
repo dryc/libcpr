@@ -9,12 +9,18 @@
 #include <cassert> /* for assert() */
 #include <cstring> /* for std::strcmp() */
 
+////////////////////////////////////////////////////////////////////////////////
+/* Constants */
+
 static const char* const cpr_feature_names[] = {
   "ascii",
 #ifndef NDEBUG
   "debug",
 #endif
 };
+
+////////////////////////////////////////////////////////////////////////////////
+/* Functions */
 
 bool
 cpr_feature_exists(const char* const feature_name) {

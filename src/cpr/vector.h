@@ -24,10 +24,16 @@
 extern "C" {
 #endif
 
+////////////////////////////////////////////////////////////////////////////////
+/* Constants */
+
 /**
  * The size of the `cpr_vector_t` opaque type, i.e., `sizeof(cpr_vector_t)`.
  */
 extern const size_t cpr_vector_sizeof;
+
+////////////////////////////////////////////////////////////////////////////////
+/* Constructors */
 
 /**
  * Constructs a new vector from the given `NULL`-terminated arguments.
@@ -80,6 +86,9 @@ cpr_vector_t* cpr_vector_of_vectors(cpr_vector_t* element, ...);
  */
 cpr_vector_t* cpr_vector_alloc(void);
 
+////////////////////////////////////////////////////////////////////////////////
+/* Destructor */
+
 /**
  * Deallocates the heap memory used by a vector.
  *
@@ -87,6 +96,9 @@ cpr_vector_t* cpr_vector_alloc(void);
  * @post  the `vector` pointer is invalidated
  */
 void cpr_vector_free(cpr_vector_t* vector);
+
+////////////////////////////////////////////////////////////////////////////////
+/* Methods */
 
 /**
  * Initializes a vector with a default initial capacity.
@@ -238,6 +250,9 @@ void cpr_vector_push_back(cpr_vector_t* vector,
  */
 void cpr_vector_pop_back(cpr_vector_t* vector);
 
+////////////////////////////////////////////////////////////////////////////////
+/* Abbreviations */
+
 /*
  * Abbreviated type, variable, and function names if the `CPR_ABBREV`
  * preprocessor symbol is defined:
@@ -282,6 +297,8 @@ void cpr_vector_pop_back(cpr_vector_t* vector);
   /** Alias for `cpr_vector_pop_back()` when `CPR_ABBREV` is defined. */
   #define vector_pop_back           cpr_vector_pop_back
 #endif /* CPR_ABBREV */
+
+////////////////////////////////////////////////////////////////////////////////
 
 #ifdef __cplusplus
 } /* extern "C" */

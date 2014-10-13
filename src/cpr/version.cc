@@ -6,6 +6,9 @@
 
 #include "version.h"
 
+////////////////////////////////////////////////////////////////////////////////
+/* Constants */
+
 const char* const cpr_version_string = CPR_VERSION_STRING;
 
 const short cpr_version_major = CPR_VERSION_MAJOR;
