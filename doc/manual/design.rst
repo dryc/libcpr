@@ -12,3 +12,4 @@ Design Notes
    design/errors
    design/iterators
    design/emplace
+   design/layout
