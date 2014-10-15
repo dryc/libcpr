@@ -1,0 +1,19 @@
+<footer>
+  {% if next or prev %}
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      {% if next %}
+        <a href="{{ next.link|e }}" class="btn btn-neutral float-right" title="{{ next.title|striptags|e }}">Next <span class="fa fa-arrow-circle-right"></span></a>
+      {% endif %}
+      {% if prev %}
+        <a href="{{ prev.link|e }}" class="btn btn-neutral" title="{{ prev.title|striptags|e }}"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  {%- if last_updated %}
+  <hr/>
+  <div role="contentinfo">
+    <p>{% trans last_updated=last_updated|e %}Last updated on {{ last_updated }}.{% endtrans %}</p>
+  </div>
+  {%- endif %}
+</footer>
