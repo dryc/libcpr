@@ -2,7 +2,7 @@
 libcpr: C++11 backport to C
 ***************************
 
-.. image:: https://travis-ci.org/dryproject/libcpr.png?branch=master
+.. image:: https://api.travis-ci.org/dryproject/libcpr.svg?branch=master
    :target: https://travis-ci.org/dryproject/libcpr
    :alt: Travis CI build status
 
