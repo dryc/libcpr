@@ -117,7 +117,11 @@ html_context = {
   'conf_py_path': 'doc/manual',
   'source_suffix': source_suffix,
   'versions': [(release, '#')], # TODO
-  'downloads': [('PDF', '#'), ('HTML', '#'), ('EPUB', '#')] # TODO
+  'downloads': [
+    ('PDF',  'http://libcpr.org/manual.pdf'),
+    ('HTML', 'http://libcpr.org/manual.html'),
+    ('EPUB', 'http://libcpr.org/manual.epub'),
+  ]
 }
 
 # Add any paths that contain custom themes here, relative to this directory.
