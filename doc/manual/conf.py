@@ -112,6 +112,7 @@ html_theme_options = {
   'bitbucket_user': 'dryproject',
   'bitbucket_repo': 'libcpr',
   'bitbucket_version': 'HEAD',
+  'google_analytics': 'UA-83574-21',
 }
 html_context = {
   'conf_py_path': 'doc/manual',
