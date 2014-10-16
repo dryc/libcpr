@@ -9,6 +9,7 @@
 
 #include <cassert>      /* for assert() */
 #include <cstdlib>      /* for std::calloc(), std::free() */
+#include <cstring>      /* for std::strlen() */
 #include <new>          /* for std::bad_alloc */
 #include <stdexcept>    /* for std::length_error */
 #include <string>       /* for std::string */
