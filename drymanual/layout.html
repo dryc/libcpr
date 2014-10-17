@@ -1,4 +1,32 @@
 {% extends "sphinx_rtd_theme/layout.html" %}
+{%- if not embedded and docstitle %}
+  {%- set titleprefix = docstitle|striptags|e + ": " %}
+{%- else %}
+  {%- set titleprefix = "" %}
+{%- endif %}
+
+{% block htmltitle %}
+  {% if pagename == 'index' and not show_release %}
+    <title>{{ title|striptags|e }}</title>
+  {% elif pagename == 'index' %}
+    <title>{{ title|striptags|e }} [{{ release }}]</title>
+  {% else %}
+    <title>{{ titleprefix }}{{ title|striptags|e }}</title>
+  {% endif %}
+{% endblock %}
+
+{% block extrahead %}
+{% if theme_google_analytics %}
+  <!-- Google Analytics -->
+  <script async="async" src="//www.google-analytics.com/analytics.js"></script>
+  <script>
+    window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+    ga('create', '{{ theme_google_analytics }}', 'auto');
+    ga('send', 'pageview');
+</script>
+{% endif %}
+{% endblock %}
+
 {% block sidebartitle %}
   <a href="{{ pathto(master_doc) }}" class="fa fa-home"> {{ project }}</a>
 {% endblock %}
