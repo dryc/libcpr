@@ -224,7 +224,8 @@ Elsewhere
 =========
 
 Find this project at: GitHub_, Bitbucket_, `Open Hub`_, Freecode_,
-SourceForge_, `Travis CI`_, `Coverity Scan`_, Twitter_, Tumblr_, and COD5_.
+SourceForge_, `Travis CI`_, Wercker_, `Coverity Scan`_, Twitter_, Tumblr_,
+and COD5_.
 
 .. _GitHub:        http://github.com/dryproject/libcpr
 .. _Bitbucket:     http://bitbucket.org/dryproject/libcpr
@@ -232,6 +233,7 @@ SourceForge_, `Travis CI`_, `Coverity Scan`_, Twitter_, Tumblr_, and COD5_.
 .. _Freecode:      http://freecode.com/projects/libcpr
 .. _SourceForge:   http://sourceforge.net/projects/libcpr/
 .. _Travis CI:     http://travis-ci.org/dryproject/libcpr
+.. _Wercker:       https://app.wercker.com/#applications/544ad754ea87f6374f0003ff
 .. _Coverity Scan: http://scan.coverity.com/projects/3225
 .. _Twitter:       http://twitter.com/libcpr
 .. _Tumblr:        http://libcpr.tumblr.com/

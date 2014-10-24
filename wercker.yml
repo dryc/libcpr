@@ -1,0 +1,19 @@
+box: bendiken/cxx14
+build:
+  steps:
+    - install-packages:
+        packages: python-sphinx texlive texlive-latex-extra
+    - script:
+        name: sphinx-build --version
+        code: sphinx-build --version || true
+    - script:
+        cwd: doc/manual
+        name: build HTML manual
+        code: make html && mv .build/html $WERCKER_OUTPUT_DIR/html
+deploy:
+  steps:
+    - install-packages:
+        packages: rsync
+    - script:
+        name: deploy HTML manual
+        code: rsync -avz ./html/ libcpr@libcpr.org:sites/libcpr.org/
