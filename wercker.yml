@@ -17,12 +17,14 @@ deploy:
     - add-to-known_hosts:
         hostname: libcpr.org
         fingerprint: 8d:c5:5d:39:f4:1b:b8:9a:2a:58:e0:33:d4:42:27:ad
+    - mktemp:
+        envvar: SSH_KEY_PATH
     - create-file:
         name: activate SSH key
-        filename: ~/.ssh/id_rsa
+        filename: $SSH_KEY_PATH
         content: $SSH_KEY_PRIVATE
         overwrite: true
         hide-from-log: true
     - script:
         name: deploy HTML manual
-        code: rsync -e 'ssh -o BatchMode=yes' -avz ./html/ libcpr@libcpr.org:sites/libcpr.org/
+        code: rsync -e "ssh -i $SSH_KEY_PATH -o BatchMode=yes" -avz ./html/ libcpr@libcpr.org:sites/libcpr.org/
