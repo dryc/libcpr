@@ -194,10 +194,14 @@ error conditions:
 Build Prerequisites
 ===================
 
-* Clang_ (>= 3.0) or GCC_ (>= 4.6)
+* Clang_ (>= 3.2) or GCC_ (>= 4.8)
 * Autoconf_ (>= 2.68)
 * Automake_ (>= 1.11)
 * Libtool_ (>= 2.2)
+
+.. note::
+
+   Older releases may work, but are not actively tested for.
 
 .. _Clang:    http://clang.llvm.org/
 .. _GCC:      http://gcc.gnu.org/
@@ -250,11 +254,11 @@ Donations
 =========
 
 If you found this software useful and would like to encourage its
-maintenance and further development, please consider making a donation to
-the `Bitcoin`_ wallet address `1FxcaWrxZ1sVCdbw6ZC8eM6BhwPVnKy5fZ`__.
+maintenance and further development, please consider making a $5 donation
+to the author(s) via Gratipay_ or Bitcoin_.
 
-.. _Bitcoin: http://en.wikipedia.org/wiki/Bitcoin
-.. __: bitcoin:1FxcaWrxZ1sVCdbw6ZC8eM6BhwPVnKy5fZ?label=libcpr.org&message=Donation
+.. _Gratipay: https://gratipay.com/bendiken/
+.. _Bitcoin:  bitcoin:18jD8vi8RsYsTX8NxRARaTiD53AW5n4Exb?label=libcpr.org&message=Donation
 
 License
 =======
