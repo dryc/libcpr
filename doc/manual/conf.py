@@ -29,7 +29,7 @@ extensions = [
   'sphinx.ext.todo',
   'sphinx.ext.mathjax',
   'sphinx.ext.ifconfig',
-  #'cheader', # file:.extensions/cheader.py
+  'sphinxcontrib.cheader' # https://pypi.python.org/pypi/sphinxcontrib-cheader
   #'doxygen', # file:.extensions/doxygen.py
   #'cpr',     # file:.extensions/cpr.py
 ]
@@ -117,6 +117,7 @@ html_theme_options = {
 html_context = {
   'conf_py_path': 'doc/manual',
   'source_suffix': source_suffix,
+  'show_release': False, # TODO
   'versions': [(release, '#')], # TODO
   'downloads': [
     ('PDF',  'http://libcpr.org/manual.pdf'),
