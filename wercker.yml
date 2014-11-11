@@ -2,7 +2,10 @@ box: bendiken/cxx14
 build:
   steps:
     - install-packages:
-        packages: python-sphinx texlive texlive-latex-extra
+        packages: python-sphinx python-pip texlive texlive-latex-extra
+    - script:
+        name: pip install sphinxcontrib-cheader
+        code: pip install sphinxcontrib-cheader
     - script:
         name: sphinx-build --version
         code: sphinx-build --version || true
